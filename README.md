@@ -66,7 +66,7 @@ Utilize Layout to show the main page Html, which will be included on every page.
 
   
 
-In all vies display names of the users and topic should be clickable
+In all views display names of the users and topic should be clickable
 
   
 
