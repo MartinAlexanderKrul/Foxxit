@@ -120,7 +120,7 @@ A simple form to edit your display name and change the profile picture.
 
 ## API
 
-### - `topics/`
+### - `/topics/`
 
 return simple JSON with all posts
 
@@ -128,7 +128,7 @@ return simple JSON with all posts
 
 return simple JSON with post selected by id
 
-### - `users/`
+### - `/users/`
 
 return simple JSON with all users
 
