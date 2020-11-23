@@ -17,11 +17,11 @@
 
 - Environments
 
-- Test
+  - Test
 
-- Development
+  - Development
 
-- Production
+  - Production
 
 - Mocking
 
