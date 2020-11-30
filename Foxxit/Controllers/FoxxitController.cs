@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Foxxit.Controllers
 {
-    public class HomeController : Controller
+    public class FoxxitController : Controller
     {
         // public Service Service { get; private set; }
 
-        public HomeController(/*Service service*/)
+        public FoxxitController(/*Service service*/)
         {
             // Service = service;
         }

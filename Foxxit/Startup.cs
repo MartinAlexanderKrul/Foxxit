@@ -1,4 +1,5 @@
 using Foxxit.Database;
+using Foxxit.Models.Entities;
 using Foxxit.Services;
 using Foxxit.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -35,7 +36,7 @@ namespace Foxxit
             });
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Config.GetConnectionString("Main")));
 
-            /*            services.AddIdentity<UserModel, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();*/
+            services.AddIdentity<UserModelxxx, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
             services.AddAuthentication(options =>
             {
