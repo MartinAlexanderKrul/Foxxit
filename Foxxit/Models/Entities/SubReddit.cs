@@ -12,7 +12,7 @@ namespace Foxxit.Models.Entities
         public List<Post> Posts { get; set; }
         
         //each SubReddit has many members
-        public List<FoxxitUser> Members { get; set; }
+        public ICollection<FoxxitUser> Members { get; set; }
         
         //each SubReddit has one Creator/Owner
         public FoxxitUser Owner { get; set; }
