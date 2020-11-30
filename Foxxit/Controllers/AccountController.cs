@@ -13,14 +13,12 @@ namespace Foxxit.Controllers
     [Route("[controller]")]
     public class AccountController : Controller
     {
-        private readonly UserService userService;
         private readonly SignInManager<UserModelxxx> signInManager;
         private readonly UserManager<UserModelxxx> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
 
-        public AccountController(UserService userService, SignInManager<UserModelxxx> signInManager, UserManager<UserModelxxx> userManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(SignInManager<UserModelxxx> signInManager, UserManager<UserModelxxx> userManager, RoleManager<IdentityRole> roleManager)
         {
-            this.userService = userService;
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.roleManager = roleManager;
@@ -69,6 +67,49 @@ namespace Foxxit.Controllers
             }
 
             return View("Register", model);
+        }
+
+        [HttpGet("login")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await userManager.FindByNameAsync(model.UserName);
+            if (user != null)
+            {
+                var passwordCheck = await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
+
+                if (passwordCheck.Succeeded)
+                {
+                    return RedirectToAction("Index", "Foxxit");
+                }
+                else
+                {
+                    model.Message = "Try to type your password again!";
+                }
+            }
+            else
+            {
+                model.Message = "Username is not in database! Do you want to Sign Up?";
+            }
+
+            return View(model);
+        }
+
+        [HttpGet("logout")]
+        public IActionResult Logout()
+        {
+            signInManager.SignOutAsync();
+            return RedirectToAction("Login");
         }
     }
 }
