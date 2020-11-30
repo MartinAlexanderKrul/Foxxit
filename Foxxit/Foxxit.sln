@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foxxit", "Foxxit.csproj", "{55F9F23A-2D36-43AB-80D9-2E84650F213A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestsForFoxxit", "..\XUnitTestsForFoxxit\XUnitTestsForFoxxit.csproj", "{F5EAA312-D11E-444A-94C3-3C3C30C302ED}"
+	ProjectSection(ProjectDependencies) = postProject
+		{55F9F23A-2D36-43AB-80D9-2E84650F213A} = {55F9F23A-2D36-43AB-80D9-2E84650F213A}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55F9F23A-2D36-43AB-80D9-2E84650F213A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55F9F23A-2D36-43AB-80D9-2E84650F213A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55F9F23A-2D36-43AB-80D9-2E84650F213A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55F9F23A-2D36-43AB-80D9-2E84650F213A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5EAA312-D11E-444A-94C3-3C3C30C302ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5EAA312-D11E-444A-94C3-3C3C30C302ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5EAA312-D11E-444A-94C3-3C3C30C302ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5EAA312-D11E-444A-94C3-3C3C30C302ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2E85160-1A74-4E56-B7C0-98363F12E316}
+	EndGlobalSection
+EndGlobal
