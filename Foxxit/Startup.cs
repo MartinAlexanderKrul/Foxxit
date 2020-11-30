@@ -31,7 +31,31 @@ namespace Foxxit
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Config.GetConnectionString("Main")));
+
+            string environmentDbType = Environment.GetEnvironmentVariable("DbType", EnvironmentVariableTarget.User);
+            var dbType = !string.IsNullOrEmpty(environmentDbType)
+                                    ? environmentDbType
+                                    : Config.GetValue<string>("DatabaseSettings");
+
+            var environmentConnectionString = Environment.GetEnvironmentVariable("MyDbConnection", EnvironmentVariableTarget.User);
+            var connectionString = !string.IsNullOrEmpty(environmentConnectionString)
+                                    ? environmentConnectionString
+                                    : Config.GetConnectionString("DefaultConnection");
+
+            switch (dbType)
+            {
+                case "MSSQL":
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Config.GetConnectionString(connectionString)));
+                    break;
+
+                case "SQLite":
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Config.GetConnectionString(connectionString)));
+                    break;
+
+                case "Heroku":
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Config.GetConnectionString(connectionString)));
+                    break;
+            }
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
