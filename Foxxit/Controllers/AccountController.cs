@@ -1,12 +1,14 @@
 ﻿using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Foxxit.Controllers
@@ -23,6 +25,13 @@ namespace Foxxit.Controllers
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.roleManager = roleManager;
+        }
+
+        [Authorize]
+        [HttpGet("index")]
+        public IActionResult Index()
+        {
+            return View();
         }
 
         [HttpGet("register")]
@@ -103,6 +112,63 @@ namespace Foxxit.Controllers
             return View(model);
         }
 
+        [HttpPost("external-login")]
+        public IActionResult ExternalLogin(string provider, string returnUrl = null)
+        {
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { returnUrl });
+            var properties = signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+
+            return Challenge(properties, provider);
+        }
+
+        [HttpGet("external-login")]
+        public async Task<IActionResult> ExternalLoginCallback(LoginViewModel model, string returnUrl = null)
+        {
+            returnUrl ??= "/account/index";
+            var externalInfo = await signInManager.GetExternalLoginInfoAsync();
+
+            if (externalInfo is null)
+            {
+                model.Message = "Something went wrong while external information loading!";
+                return View("Login", model);
+            }
+
+            var signInResult = await signInManager.ExternalLoginSignInAsync(externalInfo.LoginProvider, externalInfo.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+
+            if (!signInResult.Succeeded)
+            {
+                var email = externalInfo.Principal.FindFirstValue(ClaimTypes.Email);
+
+                if (email != null)
+                {
+                    var user = await userManager.FindByEmailAsync(email);
+
+                    if (user is null)
+                    {
+                        user = new UserModelxxx
+                        {
+                            UserName = email,
+                            Email = email
+                        };
+
+                        await userManager.CreateAsync(user);
+                        await roleManager.CreateAsync(new IdentityRole("User"));
+                        await userManager.AddToRoleAsync(user, "User");
+                    }
+
+                    await userManager.AddLoginAsync(user, externalInfo);
+                    await signInManager.SignInAsync(user, isPersistent: false);
+
+                    return LocalRedirect(returnUrl);
+                }
+
+                model.Message = "Email claim not received!";
+                return View("Login", model);
+            }
+
+            return LocalRedirect(returnUrl);
+        }
+
         [Authorize]
         [HttpGet("passwordchange")]
         public IActionResult PasswordChange()
@@ -135,6 +201,7 @@ namespace Foxxit.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpGet("logout")]
         public IActionResult Logout()
         {

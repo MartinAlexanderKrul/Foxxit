@@ -15,7 +15,11 @@
     </div>
     <p>@Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })</p>
     <br>
+  
     @Html.CheckBox("RememberMe", false)
     <br>
-    <input class="button" type="submit" name="LOGIN" />
+
+    <input class="button" type="submit" value="LOGIN" />
 }
+
+@await Html.PartialAsync("_ExternalAuthentication")

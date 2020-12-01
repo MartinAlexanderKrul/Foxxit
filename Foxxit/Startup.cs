@@ -3,6 +3,7 @@ using Foxxit.Models.Entities;
 using Foxxit.Services;
 using Foxxit.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -38,10 +39,26 @@ namespace Foxxit
 
             services.AddIdentity<UserModelxxx, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            });
+            services.AddAuthentication()
+                .AddGoogle("google", options =>
+                {
+                    var googleAuth = Config.GetSection("Authentication:Google");
+
+                    options.ClientId = googleAuth["ClientId"];
+                    options.ClientSecret = googleAuth["ClientSecret"];
+                    options.SignInScheme = IdentityConstants.ExternalScheme;
+                });
+
+            services.AddAuthentication()
+                .AddFacebook("facebook", options =>
+                {
+                    var facebookAuth = Config.GetSection("Authentication:Facebook");
+
+                    options.ClientId = facebookAuth["ClientId"];
+                    options.ClientSecret = facebookAuth["ClientSecret"];
+                    options.SignInScheme = IdentityConstants.ExternalScheme;
+                });
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
