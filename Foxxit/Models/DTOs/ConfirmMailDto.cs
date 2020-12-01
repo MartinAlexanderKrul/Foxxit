@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Foxxit.Models.DTOs
 {
-    public class MailDto
+    public class ConfirmMailDto
     {
         public string MailTo { get; set; }
         public string Username { get; set; }
