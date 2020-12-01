@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Foxxit.Database
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<FoxxitUser>
     {
         public DbSet<FoxxitUser> FoxxitUsers { get; set; }
         public DbSet<Post> Posts { get; set; }
