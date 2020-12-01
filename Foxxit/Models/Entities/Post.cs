@@ -14,13 +14,18 @@ namespace Foxxit.Models.Entities
         
         //each post belong to one SubReddit
         public SubReddit SubReddit { get; set; }
-        public long SubredditId { get; set; }
+        public long SubRedditId { get; set; }
         
         //each post has one Owner
         public FoxxitUser Owner { get; set; }
         public long FoxxitUserId { get; set; }
         
         //each post has many Votes
-        public List<Vote> Votes { get; set; }
+        public ICollection<Vote> Votes { get; set; }
+
+        public Post()
+        {
+            Votes=new List<Vote>();
+        }
     }
 }
