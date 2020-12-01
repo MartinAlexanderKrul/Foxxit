@@ -40,7 +40,7 @@ namespace Foxxit.Database
 
             //Join table for User/Subreddit
             modelBuilder.Entity<FoxxitUserSubReddit>()
-                .HasKey(fs => new {fs.FoxxitUserId, fs.SubRedditId});
+                .HasKey(fs => new {fs.UserId, fs.SubRedditId});
 
             //Vote
             modelBuilder.Entity<Vote>()
@@ -58,9 +58,9 @@ namespace Foxxit.Database
 
             //Comment
             modelBuilder.Entity<Comment>()
-                .HasOne(u => u.Owner)
+                .HasOne(u => u.User)
                 .WithMany(c => c.Comments)
-                .HasForeignKey(u => u.FoxxitUserId)
+                .HasForeignKey(u => u.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.SetNull);
 
@@ -71,9 +71,9 @@ namespace Foxxit.Database
                 .HasForeignKey(p => p.PostId)
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Post>()
-                .HasOne(u => u.Owner)
+                .HasOne(u => u.User)
                 .WithMany(p => p.Posts)
-                .HasForeignKey(p => p.FoxxitUserId)
+                .HasForeignKey(p => p.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<Post>()

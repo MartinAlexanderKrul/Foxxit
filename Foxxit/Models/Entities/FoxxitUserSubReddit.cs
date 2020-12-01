@@ -2,8 +2,8 @@ namespace Foxxit.Models.Entities
 {
     public class FoxxitUserSubReddit
     {
-        public long FoxxitUserId { get; set; }
-        public FoxxitUser FoxxitUser { get; set; }
+        public long UserId { get; set; }
+        public FoxxitUser User { get; set; }
         public long SubRedditId { get; set; }
         public SubReddit SubReddit { get; set; }
     }

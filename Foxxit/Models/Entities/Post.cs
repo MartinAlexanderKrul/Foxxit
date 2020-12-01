@@ -12,7 +12,5 @@ namespace Foxxit.Models.Entities
         //each post belong to one SubReddit
         public SubReddit SubReddit { get; set; }
         public long SubRedditId { get; set; }
-        
-        public ICollection<Comment> Comments { get; set; }
     }
 }
