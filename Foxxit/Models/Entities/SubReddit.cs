@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Foxxit.Models.Entities
@@ -7,6 +8,7 @@ namespace Foxxit.Models.Entities
         public long Id { get; set; }
         public string Name { get; set; }
         public string About { get; set; }
+        public DateTime CreatedAt { get; set; }
        
         //each SubReddit has many posts
         public List<Post> Posts { get; set; }

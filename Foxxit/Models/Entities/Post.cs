@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Foxxit.Models.Entities
@@ -9,6 +10,7 @@ namespace Foxxit.Models.Entities
         public string URL { get; set; }
         public string ImageURL { get; set; }
         public string Text { get; set; }
+        public DateTime CreatedAt { get; set; }
         
         //each post belong to one SubReddit
         public SubReddit SubReddit { get; set; }

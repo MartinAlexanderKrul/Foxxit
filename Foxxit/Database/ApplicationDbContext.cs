@@ -9,7 +9,11 @@ namespace Foxxit.Database
 {
     public class ApplicationDbContext : DbContext
     {
-        // public DbSet<Entity> Entities { get; set; }
+        public DbSet<FoxxitUser> FoxxitUsers { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<SubReddit> SubReddits { get;set; }
+        public DbSet<Vote> Votes { get; set; }
+        public DbSet<FoxxitUserSubReddit> FoxxitUserSubReddits { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
@@ -17,6 +21,18 @@ namespace Foxxit.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Generate Timestamps on first save
+            modelBuilder.Entity<FoxxitUser>()
+                .Property(e => e.CreatedAt)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<Post>()
+                .Property(p => p.CreatedAt)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<SubReddit>()
+                .Property(s => s.CreatedAt)
+                .ValueGeneratedOnAdd();
+            
+            //
             modelBuilder.Entity<FoxxitUserSubReddit>().HasKey(fs => new {fs.FoxxitUserId, fs.SubRedditId});
             modelBuilder.Entity<Post>()
                 .HasOne(u => u.Owner)
@@ -32,4 +48,5 @@ namespace Foxxit.Database
                 .HasForeignKey(p => p.PostId);
         }
     }
+    
 }
