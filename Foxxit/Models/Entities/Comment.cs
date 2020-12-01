@@ -3,17 +3,13 @@ using System.Collections.Generic;
 
 namespace Foxxit.Models.Entities
 {
-    public class Comment
+    public class Comment:PostBase
     {
-        public long Id { get; set; }
-        public DateTime CreatedAt { get; set; }
-        
         //For comments hierarchy
+        public ICollection<Comment> Comments { get; set; }
         public long OriginalCommentId { get; set; }
         
-        public ICollection<Vote> Votes { get; set; }
-        
-        public FoxxitUser Owner { get; set; }
-        public long FoxxitUserId { get; set; }
+        public Post Post { get; set; }
+        public long PostId { get; set; }
     }
 }

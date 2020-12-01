@@ -11,7 +11,6 @@ namespace Foxxit.Models.Entities
         public string AvatarURL { get; set; }
         public string DisplayName { get; set; }
         
-        //Exclude from DbSet in FluentAPI
         public int Karma { get; set; }
         public string About { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -21,11 +20,9 @@ namespace Foxxit.Models.Entities
         
         //each user has many SubReddits
         public ICollection<SubReddit> SubReddits { get; set; }
-        
-        //each user has received many Votes
 
         //each user has given many Votes
-        public ICollection<Vote> VotesGiven { get; set; }
+        public ICollection<Vote> Votes { get; set; }
         
         //each user has many comments
         public ICollection<Comment> Comments { get; set; }
@@ -34,7 +31,7 @@ namespace Foxxit.Models.Entities
         {
             Posts=new Collection<Post>();
             SubReddits=new Collection<SubReddit>();
-            VotesGiven=new Collection<Vote>();
+            Votes=new Collection<Vote>();
             Comments=new Collection<Comment>();
         }
     }
