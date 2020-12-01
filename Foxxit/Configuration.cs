@@ -23,6 +23,7 @@ namespace Foxxit
 
     internal enum DatabaseType
     {
+        NonAssigned,
         MSSQL,
         SQLite,
         Heroku
