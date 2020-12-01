@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authentication;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -19,9 +20,17 @@ namespace Foxxit.Models.ViewModels
         public string DisplayName { get; set; }
         public string AvatarUrl { get; set; }
         public string Message { get; set; }
+        public string ReturnUrl { get; set; }
+        public ICollection<AuthenticationScheme> ExternalLogins { get; set; }
 
         public LoginViewModel()
         {
+        }
+
+        public LoginViewModel(string returnUrl, ICollection<AuthenticationScheme> externalLogins)
+        {
+            ReturnUrl = returnUrl;
+            ExternalLogins = externalLogins;
         }
     }
 }
