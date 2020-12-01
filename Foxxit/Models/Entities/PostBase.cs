@@ -11,7 +11,7 @@ namespace Foxxit.Models.Entities
         
         public ICollection<Vote> Votes { get; set; }
         
-        public FoxxitUser User { get; set; }
+        public User User { get; set; }
         public long UserId { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public PostBase()

@@ -6,7 +6,7 @@ namespace Foxxit.Models.Entities
         public bool IsNegative { get; set; }
 
         //each vote has one Owner
-        public FoxxitUser Owner { get; set; }
+        public User Owner { get; set; }
         public long FoxxitUserId { get; set; }
         
         //each vote belongs to a certain PostBase

@@ -18,12 +18,12 @@ namespace Foxxit.Models.Entities
         public ICollection<Post> Posts { get; set; }
         
         //each SubReddit has many members
-        public ICollection<FoxxitUser> Members { get; set; }
+        public ICollection<User> Members { get; set; }
 
         public SubReddit()
         {
             Posts=new Collection<Post>();
-            Members= new Collection<FoxxitUser>();
+            Members= new Collection<User>();
         }
 
     }

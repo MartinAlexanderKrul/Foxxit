@@ -8,16 +8,16 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Foxxit.Database
 {
-    public class ApplicationDbContext : IdentityDbContext<FoxxitUser>
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
-        public DbSet<FoxxitUser> FoxxitUsers { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<SubReddit> SubReddits { get;set; }
         public DbSet<Vote> Votes { get; set; }
         public DbSet<Comment> Comments { get; set; }
         
         //backing DbSet, maybe it is not necessary to access directly
-        public DbSet<FoxxitUserSubReddit> FoxxitUserSubReddits { get; set; }
+        public DbSet<UserSubReddit> UserSubReddits { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
@@ -26,7 +26,7 @@ namespace Foxxit.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Generate Timestamps on first save
-            modelBuilder.Entity<FoxxitUser>()
+            modelBuilder.Entity<User>()
                 .Property(e => e.CreatedAt)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<PostBase>()
@@ -39,7 +39,7 @@ namespace Foxxit.Database
             //Relations setup
 
             //Join table for User/Subreddit
-            modelBuilder.Entity<FoxxitUserSubReddit>()
+            modelBuilder.Entity<UserSubReddit>()
                 .HasKey(fs => new {fs.UserId, fs.SubRedditId});
 
             //Vote

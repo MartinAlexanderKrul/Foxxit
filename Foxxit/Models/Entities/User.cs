@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Foxxit.Models.Entities
 {
-    public class FoxxitUser : IdentityUser
+    public class User : IdentityUser
     {
         public string AvatarURL { get; set; }
         public string DisplayName { get; set; }
@@ -27,7 +27,7 @@ namespace Foxxit.Models.Entities
         //each user has many comments
         public ICollection<Comment> Comments { get; set; }
 
-        public FoxxitUser()
+        public User()
         {
             Posts=new Collection<Post>();
             SubReddits=new Collection<SubReddit>();
