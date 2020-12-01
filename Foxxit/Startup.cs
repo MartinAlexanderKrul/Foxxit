@@ -33,6 +33,21 @@ namespace Foxxit
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
+
+            switch (Configuration.DbType)
+            {
+                case DatabaseType.MSSQL:
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Config.GetConnectionString(Configuration.ConnectionString)));
+                    break;
+
+                case DatabaseType.SQLite:
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Config.GetConnectionString(Configuration.ConnectionString)));
+                    break;
+
+                case DatabaseType.Heroku:
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Config.GetConnectionString(Configuration.ConnectionString)));
+                    break;
+            }
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Config.GetConnectionString("Main")));
             services.AddTransient<MailService>();
             services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = true)
