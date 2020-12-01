@@ -10,5 +10,10 @@ namespace Foxxit.Models.Entities
     {
         public string DisplayName { get; set; }
         public string AvatarUrl { get; set; }
+
+        public UserModelxxx(string userName = null)
+        {
+            UserName = userName;
+        }
     }
 }

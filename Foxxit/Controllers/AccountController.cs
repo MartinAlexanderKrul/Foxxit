@@ -1,6 +1,7 @@
 ﻿using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -35,18 +36,14 @@ namespace Foxxit.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Register", model);
+                return View(model);
             }
 
-            if (userManager.FindByNameAsync(model.UserName) == null)
-            {
-                var user = new UserModelxxx
-                {
-                    UserName = model.UserName,
-                    DisplayName = model.DisplayName,
-                    AvatarUrl = model.AvatarUrl
-                };
+            var existingUser = await userManager.FindByNameAsync(model.UserName);
 
+            if (existingUser == null)
+            {
+                var user = new UserModelxxx(model.UserName);
                 var result = await userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
@@ -83,14 +80,15 @@ namespace Foxxit.Controllers
                 return View(model);
             }
 
-            var user = await userManager.FindByNameAsync(model.UserName);
-            if (user != null)
+            var existingUser = await userManager.FindByNameAsync(model.UserName);
+
+            if (existingUser != null)
             {
-                var passwordCheck = await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
+                var passwordCheck = await signInManager.PasswordSignInAsync(existingUser, model.Password, model.RememberMe, false);
 
                 if (passwordCheck.Succeeded)
                 {
-                    return RedirectToAction("Index", "Foxxit");
+                    return RedirectToAction("PasswordChange", "Account");
                 }
                 else
                 {
@@ -100,6 +98,38 @@ namespace Foxxit.Controllers
             else
             {
                 model.Message = "Username is not in database! Do you want to Sign Up?";
+            }
+
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpGet("passwordchange")]
+        public IActionResult PasswordChange()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost("passwordchange")]
+        public async Task<IActionResult> PasswordChange(PasswordChangeViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var userId = userManager.GetUserId(User);
+            var user = await userManager.FindByIdAsync(userId);
+            var result = await userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                model.Message = "Something went wrong!";
             }
 
             return View(model);

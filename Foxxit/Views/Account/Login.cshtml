@@ -1,0 +1,21 @@
+﻿@{ Layout = "_Layout";}
+@using Foxxit.Models.ViewModels
+@model LoginViewModel
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <div>
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "username" })
+    </div>
+    <p>@Html.ValidationMessageFor(m => m.UserName, null, new { @class = "text-danger" })</p>
+    <br>
+
+    <div>
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "password" })
+    </div>
+    <p>@Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })</p>
+    <br>
+    @Html.CheckBox("RememberMe", false)
+    <br>
+    <input class="button" type="submit" name="LOGIN" />
+}

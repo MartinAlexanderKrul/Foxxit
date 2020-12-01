@@ -8,7 +8,6 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void Test1()
         {
-
         }
     }
 }

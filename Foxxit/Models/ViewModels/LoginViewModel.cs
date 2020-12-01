@@ -14,7 +14,6 @@ namespace Foxxit.Models.ViewModels
         [Required, StringLength(255, ErrorMessage = "Must be between 6 and 255 characters", MinimumLength = 6), DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required, DataType(DataType.Password), Compare("Password", ErrorMessage = "The password does not match the confirmation password!")]
         public bool RememberMe { get; set; }
 
         public string DisplayName { get; set; }

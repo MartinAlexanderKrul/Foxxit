@@ -1,4 +1,5 @@
 ﻿using Foxxit.Database;
+using Foxxit.Models.Entities;
 using Foxxit.Services.Interfaces;
 using System;
 using System.Collections.Generic;
