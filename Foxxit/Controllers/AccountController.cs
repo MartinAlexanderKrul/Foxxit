@@ -39,5 +39,29 @@ namespace Foxxit.Controllers
             //}
 
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (userId == null || token == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+
+            var user = userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("", $"The user ID {userId} is invalid"); // use viewbag?
+                return View("NotFound"); //TODO create NotFound view for passing error info
+            }
+
+            var result = await userManager.ConfirmEmailAsync(user, token);
+
+            if (result.Succeeded)
+            {
+                return View("ConfirmEmail");
+            }
+        }
     }
 }
