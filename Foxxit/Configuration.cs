@@ -7,15 +7,10 @@ namespace Foxxit
 {
     public class Configuration
     {
-        public static Enum DbType { get { return GetEnvironmentVariableAsEnum("DbType"); } }
-        public static string ConnectionString { get { return GetEnvironmentVariableAsString("MyDbConnection"); } }
+        public static Enum DbType { get { return Enum.Parse<DatabaseType>(GetEnvironmentVariable("DbType")); } }
+        public static string ConnectionString { get { return GetEnvironmentVariable("MyDbConnection"); } }
 
-        public static Enum GetEnvironmentVariableAsEnum(string variable)
-        {
-            return Enum.Parse<DatabaseType>(GetEnvironmentVariableAsString(variable));
-        }
-
-        public static string GetEnvironmentVariableAsString(string variable)
+        public static string GetEnvironmentVariable(string variable)
         {
             return Environment.GetEnvironmentVariable(variable, EnvironmentVariableTarget.User);
         }
@@ -23,7 +18,6 @@ namespace Foxxit
 
     internal enum DatabaseType
     {
-        NonAssigned,
         MSSQL,
         SQLite,
         Heroku
