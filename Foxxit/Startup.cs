@@ -32,6 +32,7 @@ namespace Foxxit
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Config.GetConnectionString("Main")));
+            services.AddTransient<MailService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
