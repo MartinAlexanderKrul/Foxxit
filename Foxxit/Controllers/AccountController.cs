@@ -55,7 +55,7 @@ namespace Foxxit.Controllers
                 return View("Error");
             }
 
-            var result = await userManager.ConfirmEmailAsync(user, token);
+            var result = await userManager.ConfirmEmailAsync(user.Result, token);
 
             if (!result.Succeeded)
             {
