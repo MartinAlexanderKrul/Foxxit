@@ -17,16 +17,16 @@ html {
     margin: 0 auto;
 }
 
-nav {
+.navbar {
     height: 40px;
     background-color: white;
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 }
 
 .wrapper {
     display: grid;
     grid-template-columns: 9fr 3fr;
-    grid-gap: 1em;
+    grid-gap: 1rem;
     grid-auto-rows: minmax(100px, auto);
 }
 

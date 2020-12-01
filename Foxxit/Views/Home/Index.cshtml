@@ -1,6 +1,2 @@
-﻿@page
-@model Foxxit.Views.Home.IndexModel
-
-
-@{Html.RenderPartial("_HeaderViewPartial");}
-@{Html.RenderPartial("_ContentViewPartial");}
+﻿@{Layout = "_Layout";}
+@await Html.PartialAsync("_ContentViewPartial")

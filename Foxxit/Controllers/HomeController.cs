@@ -21,17 +21,6 @@ namespace Foxxit.Controllers
         {
             return View();
         }
-        public PartialViewResult _HeaderViewPartial()
-        {
-            return PartialView();
-        }
-
-        public PartialViewResult _ContentViewPartial()
-        {
-            return PartialView();
-        }
-
-
 
     }
 }
