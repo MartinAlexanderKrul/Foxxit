@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SendGrid.Helpers.Mail;
 
 namespace Foxxit.Controllers
 {
@@ -32,7 +33,8 @@ namespace Foxxit.Controllers
             var token = await userManager.GenerateChangeEmailTokenAsync(user, user.Email);
             var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token }, Request.Scheme);
 
-            string content = $"<h1>Please confirm your registration.</h1><p><a href=\"{confirmationLink}\">Click here</a></p>";
+            string content = confirmationLink;
+
             await mailService.SendEmailAsync(model.Email, "Please confim your email.", content);
 
             return View("ConfirmRegistration");
