@@ -25,19 +25,18 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             var user = new User { };
+
             // ...
             // if (result.Succeeded)
             //{
-
             var token = await userManager.GenerateChangeEmailTokenAsync(user, user.Email);
             var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token }, Request.Scheme);
 
-            string content = "<h1>Please confirm your registration.</h1><p>Please click on the following link: </p>";
+            string content = $"<h1>Please confirm your registration.</h1><p><a href=\"{confirmationLink}\">Click here</a></p>";
             await mailService.SendEmailAsync(model.Email, "Please confim your email.", content);
 
             return View("ConfirmRegistration");
             //}
-
         }
 
         [HttpGet]
@@ -52,16 +51,19 @@ namespace Foxxit.Controllers
 
             if (user == null)
             {
-                ModelState.AddModelError("", $"The user ID {userId} is invalid"); // use viewbag?
-                return View("NotFound"); //TODO create NotFound view for passing error info
+                ViewBag.ErrorMessage = $"The user ID {userId} is invalid";
+                return View("Error");
             }
 
             var result = await userManager.ConfirmEmailAsync(user, token);
 
-            if (result.Succeeded)
+            if (!result.Succeeded)
             {
-                return View("ConfirmEmail");
+                ViewBag.ErrorMessage = "Email cannot be confirmed.";
+                return View("Error");
             }
+
+            return View("EmailConfirmationSuccessful");
         }
     }
 }
