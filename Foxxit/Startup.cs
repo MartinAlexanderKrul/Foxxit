@@ -32,28 +32,18 @@ namespace Foxxit
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
 
-            string environmentDbType = Environment.GetEnvironmentVariable("DbType", EnvironmentVariableTarget.User);
-            var dbType = !string.IsNullOrEmpty(environmentDbType)
-                                    ? environmentDbType
-                                    : Config.GetValue<string>("DatabaseSettings");
-
-            var environmentConnectionString = Environment.GetEnvironmentVariable("MyDbConnection", EnvironmentVariableTarget.User);
-            var connectionString = !string.IsNullOrEmpty(environmentConnectionString)
-                                    ? environmentConnectionString
-                                    : Config.GetConnectionString("DefaultConnection");
-
-            switch (dbType)
+            switch (Configuration.DbType)
             {
-                case "MSSQL":
-                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Config.GetConnectionString(connectionString)));
+                case DatabaseType.MSSQL:
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Config.GetConnectionString(Configuration.ConnectionString)));
                     break;
 
-                case "SQLite":
-                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Config.GetConnectionString(connectionString)));
+                case DatabaseType.SQLite:
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Config.GetConnectionString(Configuration.ConnectionString)));
                     break;
 
-                case "Heroku":
-                    services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Config.GetConnectionString(connectionString)));
+                case DatabaseType.Heroku:
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Config.GetConnectionString(Configuration.ConnectionString)));
                     break;
             }
         }
