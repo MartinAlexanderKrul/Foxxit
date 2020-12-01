@@ -6,7 +6,6 @@
 <div class="col-md-4 offset-2">
     <section>
         <h4>Use different service for log in:</h4>
-        <hr/>
         @{
             var providers = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (!providers.Any())
@@ -19,17 +18,18 @@
             }
             else
             {@using (Html.BeginForm("ExternalLogin", "Account", FormMethod.Post, new { returnurl = @ViewData["ReturnUrl"] }))
-              {
+                {
                     <div class="form-horizontal">
                         <p>
                             @foreach (var provider in providers)
-                             {
+                            {
                                 <input type="submit" class="btn btn-info" value="@provider.Name" name="provider" />
-                             }
+                            }
                         </p>
                     </div>
-              }
-            }
-    }
+                }
+            @*  </form>*@
+        }
+        }
     </section>
 </div>

@@ -85,9 +85,7 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
 
             var existingUser = await userManager.FindByNameAsync(model.UserName);
 
@@ -122,7 +120,7 @@ namespace Foxxit.Controllers
         }
 
         [HttpGet("external-login")]
-        public async Task<IActionResult> ExternalLoginCallback(LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> ExternalLoginCallback(UserModelxxx user, LoginViewModel model, string returnUrl = null)
         {
             returnUrl ??= "/account/index";
             var externalInfo = await signInManager.GetExternalLoginInfoAsync();
@@ -138,16 +136,19 @@ namespace Foxxit.Controllers
             if (!signInResult.Succeeded)
             {
                 var email = externalInfo.Principal.FindFirstValue(ClaimTypes.Email);
+                var username = externalInfo.Principal.FindFirstValue(ClaimTypes.Name);
 
-                if (email != null)
+                if (email != null || username != null)
                 {
-                    var user = await userManager.FindByEmailAsync(email);
+                    user = username != null
+                        ? await userManager.FindByNameAsync(username)
+                        : await userManager.FindByEmailAsync(email);
 
                     if (user is null)
                     {
                         user = new UserModelxxx
                         {
-                            UserName = email,
+                            UserName = username ?? email,
                             Email = email
                         };
 
@@ -162,7 +163,7 @@ namespace Foxxit.Controllers
                     return LocalRedirect(returnUrl);
                 }
 
-                model.Message = "Email claim not received!";
+                model.Message = "Email or username claim not received!";
                 return View("Login", model);
             }
 
@@ -181,9 +182,7 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> PasswordChange(PasswordChangeViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
 
             var userId = userManager.GetUserId(User);
             var user = await userManager.FindByIdAsync(userId);

@@ -47,9 +47,7 @@ namespace Foxxit
                     options.ClientId = googleAuth["ClientId"];
                     options.ClientSecret = googleAuth["ClientSecret"];
                     options.SignInScheme = IdentityConstants.ExternalScheme;
-                });
-
-            services.AddAuthentication()
+                })
                 .AddFacebook("facebook", options =>
                 {
                     var facebookAuth = Config.GetSection("Authentication:Facebook");
@@ -57,6 +55,13 @@ namespace Foxxit
                     options.ClientId = facebookAuth["ClientId"];
                     options.ClientSecret = facebookAuth["ClientSecret"];
                     options.SignInScheme = IdentityConstants.ExternalScheme;
+                })
+                .AddTwitter("twitter", options =>
+                {
+                    var twitterAuth = Config.GetSection("Authentication:Twitter");
+
+                    options.ConsumerKey = twitterAuth["ConsumerAPIKey"];
+                    options.ConsumerSecret = twitterAuth["ConsumerSecret"];
                 });
 
             services.Configure<IdentityOptions>(options =>

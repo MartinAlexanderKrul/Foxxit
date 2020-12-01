@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Foxxit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201201103212_init")]
-    partial class init
+    [Migration("20201202115335_Foxxit-init")]
+    partial class Foxxitinit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

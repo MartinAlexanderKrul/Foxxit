@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Foxxit.Migrations
 {
-    public partial class init : Migration
+    public partial class Foxxitinit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
