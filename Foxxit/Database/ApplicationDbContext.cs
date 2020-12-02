@@ -19,6 +19,8 @@ namespace Foxxit.Database
         //backing DbSet, maybe it is not necessary to access directly
         public DbSet<UserSubReddit> UserSubReddits { get; set; }
 
+
+
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
