@@ -15,7 +15,7 @@ namespace Foxxit.Services
 
         public MailService()
         {
-            email = "foxxit20020@gmail.com";
+            email = "foxxit2020@gmail.com";
             name = "Foxxit Team";
             templateId = "d-eda73c0ba07a49d1bac1921215adda45";
         }
