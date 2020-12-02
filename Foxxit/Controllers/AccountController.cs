@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SendGrid.Helpers.Mail;
+using Foxxit.Models;
 
 namespace Foxxit.Controllers
 {
@@ -39,11 +40,7 @@ namespace Foxxit.Controllers
             var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
             var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token }, Request.Scheme);
 
-            var dynamicTemplateData = new Dictionary<string, string>() 
-            { 
-                { "confirmationLink", confirmationLink},
-                { "username", user.UserName}
-            };
+            var dynamicTemplateData = new RegistrationEmailData(confirmationLink, user.UserName);
 
             await mailService.SendEmailAsync(user.Email, dynamicTemplateData);
 
