@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Foxxit.Controllers
 {
+    [Route("")]
     public class HomeController : Controller
     {
         // public Service Service { get; private set; }
@@ -15,9 +16,11 @@ namespace Foxxit.Controllers
             // Service = service;
         }
 
+        [HttpGet("index")]
         public IActionResult Index()
         {
             return View();
         }
+
     }
 }
