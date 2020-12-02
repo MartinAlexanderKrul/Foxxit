@@ -10,6 +10,14 @@ namespace Foxxit.Models.DTOs
         public string MailTo { get; set; }
         public string Username { get; set; }
         public string ConfirmationLink { get; set; }
-        public IDictionary<string, string> CustomMessageHeaders { get; set; }
+        public string TemplateId { get; set; }
+
+        public ConfirmMailDto(string mailTo, string userName, string confirmationLink, string templateId)
+        {
+            MailTo = mailTo;
+            Username = userName;
+            ConfirmationLink = confirmationLink;
+            TemplateId = templateId;
+    }
     }
 }

@@ -36,12 +36,16 @@ namespace Foxxit.Controllers
 
         public async Task<IActionResult> SendEmailConfirmation(User user)
         {
-            var token = await userManager.GenerateChangeEmailTokenAsync(user, user.Email);
+            var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
             var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token }, Request.Scheme);
 
-            string content = confirmationLink;
+            var dynamicTemplateData = new Dictionary<string, string>() 
+            { 
+                { "confirmationLink", confirmationLink},
+                { "username", user.UserName}
+            };
 
-            await mailService.SendEmailAsync(user.Email, "Please confim your email.", content);
+            await mailService.SendEmailAsync(user.Email, dynamicTemplateData);
 
             return View("ConfirmRegistration");
         }

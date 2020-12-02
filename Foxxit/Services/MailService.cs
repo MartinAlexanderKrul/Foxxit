@@ -11,21 +11,23 @@ namespace Foxxit.Services
     {
         public string email;
         public string name;
+        public string templateId;
 
         public MailService()
         {
             email = "foxxit20020@gmail.com";
             name = "Foxxit Team";
+            templateId = "d-eda73c0ba07a49d1bac1921215adda45";
         }
 
-        public async Task SendEmailAsync(string mailTo, string subject, string content)
+        public async Task SendEmailAsync(string mailTo, object dynamicTemplateData)
         {
             var apiKey = Configuration.GetEnvironmentVariable("SENDGRID_API_KEY");
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress(email, name);
             var to = new EmailAddress(mailTo);
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, content, content);
-            var response = await client.SendEmailAsync(msg);
+            var msg = MailHelper.CreateSingleTemplateEmail(from, to, templateId, dynamicTemplateData);
+            await client.SendEmailAsync(msg);
         }
     }
 }
