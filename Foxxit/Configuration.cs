@@ -10,6 +10,8 @@ namespace Foxxit
         public static Enum DbType { get { return Enum.Parse<DatabaseType>(GetEnvironmentVariable("DbType")); } }
         public static string ConnectionString { get { return GetEnvironmentVariable("MyDbConnection"); } }
 
+        public static string SendGridApiKey { get { return GetEnvironmentVariable("SENDGRID_API_KEY"); } }
+
         public static string GetEnvironmentVariable(string variable)
         {
             return Environment.GetEnvironmentVariable(variable, EnvironmentVariableTarget.User);

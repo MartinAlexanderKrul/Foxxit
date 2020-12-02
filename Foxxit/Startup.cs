@@ -1,9 +1,11 @@
 using Foxxit.Database;
+using Foxxit.Models.Entities;
 using Foxxit.Services;
 using Foxxit.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,6 +48,10 @@ namespace Foxxit
                     services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Configuration.ConnectionString));
                     break;
             }
+
+            services.AddTransient<MailService>();
+            services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = true)
+                .AddDefaultTokenProviders();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
