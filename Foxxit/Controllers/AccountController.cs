@@ -40,9 +40,9 @@ namespace Foxxit.Controllers
             var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
             var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token }, Request.Scheme);
 
-            var dynamicTemplateData = new RegistrationEmailData(confirmationLink, user.UserName);
+            var data = new RegistrationEmailData(confirmationLink, user.UserName);
 
-            await mailService.SendEmailAsync(user.Email, dynamicTemplateData);
+            await mailService.SendEmailAsync(user.Email, data);
 
             return View("ConfirmRegistration");
         }
