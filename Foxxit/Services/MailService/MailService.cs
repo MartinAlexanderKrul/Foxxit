@@ -15,7 +15,7 @@ namespace Foxxit.Services
 
         public async Task SendEmailAsync(string mailTo, object data)
         {
-            var apiKey = Configuration.GetEnvironmentVariable("SENDGRID_API_KEY");
+            var apiKey = Configuration.SendGridApiKey;
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress(email, name);
             var to = new EmailAddress(mailTo);
