@@ -7,8 +7,8 @@ namespace Foxxit.Models
 {
     public class RegistrationEmailData
     {
-        public string ConfirmationLink { get; set; }
-        public string UserName { get; set; }
+        public string ConfirmationLink { get; protected set; }
+        public string UserName { get; protected set; }
         public RegistrationEmailData(string confirmationLink, string userName)
         {
             ConfirmationLink = confirmationLink;
