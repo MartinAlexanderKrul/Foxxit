@@ -1,31 +1,36 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Foxxit.Models.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Foxxit.Database
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<Post> Posts { get; set; }
-        public DbSet<SubReddit> SubReddits { get; set; }
-        public DbSet<Vote> Votes { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-
-        //backing DbSet, maybe it is not necessary to access directly
-        public DbSet<UserSubReddit> UserSubReddits { get; set; }
-
-        public ApplicationDbContext(DbContextOptions options) : base(options)
+        public ApplicationDbContext(DbContextOptions options)
+            : base(options)
         {
         }
 
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Post> Posts { get; set; }
+
+        public DbSet<SubReddit> SubReddits { get; set; }
+
+        public DbSet<Vote> Votes { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
+
+        // backing DbSet, maybe it is not necessary to access directly
+        public DbSet<UserSubReddit> UserSubReddits { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Generate Timestamps on first save
+            // Generate Timestamps on first save
             modelBuilder.Entity<User>()
                 .Property(e => e.CreatedAt)
                 .ValueGeneratedOnAdd();
@@ -36,13 +41,13 @@ namespace Foxxit.Database
                 .Property(s => s.CreatedAt)
                 .ValueGeneratedOnAdd();
 
-            //Relations setup
+            // Relations setup
 
-            //Join table for User/Subreddit
+            // Join table for User/Subreddit
             modelBuilder.Entity<UserSubReddit>()
                 .HasKey(fs => new { fs.UserId, fs.SubRedditId });
 
-            //Vote
+            // Vote
             modelBuilder.Entity<Vote>()
                 .HasOne(u => u.Owner)
                 .WithMany(v => v.Votes)
@@ -56,7 +61,7 @@ namespace Foxxit.Database
                 .IsRequired()
                 .OnDelete(DeleteBehavior.SetNull);
 
-            //Comment
+            // Comment
             modelBuilder.Entity<Comment>()
                 .HasOne(u => u.User)
                 .WithMany(c => c.Comments)
@@ -64,7 +69,7 @@ namespace Foxxit.Database
                 .IsRequired()
                 .OnDelete(DeleteBehavior.SetNull);
 
-            //Post
+            // Post
             modelBuilder.Entity<Post>()
                 .HasMany(c => c.Comments)
                 .WithOne(p => p.Post)
