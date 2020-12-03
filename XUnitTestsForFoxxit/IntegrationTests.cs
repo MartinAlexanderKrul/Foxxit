@@ -19,28 +19,25 @@ namespace XUnitTestsForFoxxit
             this.factory = factory;
         }
 
-        [Fact]
-        public async Task MainPageLoadsSuccessfully()
-        {
-            var responseMessage = await factory.CreateClient().GetAsync("/");
-
-            responseMessage.EnsureSuccessStatusCode();
-        }
-
+        #region Sample Test
         [Fact]
         public async Task Doubling_ReturnsResult()
         {
+            //Arrange
             var expected = 10;
-
             var response = await factory.CreateClient().GetAsync("doubling?input=5");
             var data = await response.Content.ReadAsStringAsync();
 
+            //Act
             var result = JsonConvert.DeserializeObject<Dictionary<string, int>>(data);
             result.TryGetValue("result", out int actual);
 
+            //Assert
             response.EnsureSuccessStatusCode();
             Assert.Equal(expected, actual);
         }
+        #endregion
+
 
     }
 }
