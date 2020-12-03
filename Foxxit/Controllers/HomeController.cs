@@ -22,5 +22,22 @@ namespace Foxxit.Controllers
             return View();
         }
 
+        [HttpGet("doubling")]
+        public ActionResult Doubling(int? input)
+        {
+            if (input != null)
+            {
+                var result = Json(new { received = input, result = input * 2 });
+                
+                return result;
+            }
+            else
+            {
+                var result = Json(new { error = "Please provide an input!" });
+                
+                return result;
+            }
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Foxxit;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,5 +26,22 @@ namespace XUnitTestsForFoxxit
 
             responseMessage.EnsureSuccessStatusCode();
         }
+
+        [Fact]
+        public async Task Doubling_ReturnsResult()
+        {
+            var expected = 10;
+
+            var response = await factory.CreateClient().GetAsync("doubling?input=5");
+            var data = await response.Content.ReadAsStringAsync();
+
+            var result = JsonConvert.DeserializeObject<Dictionary<string, int>>(data);
+            result.TryGetValue("result", out int actual);
+
+            response.EnsureSuccessStatusCode();
+            Assert.Equal(expected, actual);
+        }
+
+
     }
 }
