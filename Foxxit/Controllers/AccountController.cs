@@ -5,11 +5,14 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using SendGrid.Helpers.Mail;
+using Foxxit.Models;
 
 namespace Foxxit.Controllers
 {
@@ -129,7 +132,7 @@ namespace Foxxit.Controllers
             {
                 model.Message = "Something went wrong while external information loading!";
                 return View("Login", model);
-            }
+        }
 
             var signInResult = await signInManager.ExternalLoginSignInAsync(externalInfo.LoginProvider, externalInfo.ProviderKey, isPersistent: false, bypassTwoFactor: true);
 
@@ -145,9 +148,9 @@ namespace Foxxit.Controllers
                         : await userManager.FindByEmailAsync(email);
 
                     if (user is null)
-                    {
+        {
                         user = new UserModelxxx
-                        {
+            {
                             UserName = username ?? email,
                             Email = email
                         };
@@ -173,9 +176,9 @@ namespace Foxxit.Controllers
         [Authorize]
         [HttpGet("passwordchange")]
         public IActionResult PasswordChange()
-        {
+            {
             return View();
-        }
+            }
 
         [Authorize]
         [HttpPost("passwordchange")]
@@ -198,7 +201,7 @@ namespace Foxxit.Controllers
             }
 
             return View(model);
-        }
+            }
 
         [Authorize]
         [HttpGet("logout")]
