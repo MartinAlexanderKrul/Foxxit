@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SendGrid.Helpers.Mail;
+using Foxxit.Models;
 
 namespace Foxxit.Controllers
 {
@@ -36,12 +37,12 @@ namespace Foxxit.Controllers
 
         public async Task<IActionResult> SendEmailConfirmation(User user)
         {
-            var token = await userManager.GenerateChangeEmailTokenAsync(user, user.Email);
+            var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
             var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token }, Request.Scheme);
 
-            string content = confirmationLink;
+            var data = new RegistrationEmailData(confirmationLink, user.UserName);
 
-            await mailService.SendEmailAsync(user.Email, "Please confim your email.", content);
+            await mailService.SendEmailAsync(user.Email, data);
 
             return View("ConfirmRegistration");
         }
