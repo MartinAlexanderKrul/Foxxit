@@ -31,6 +31,17 @@
 
   <ItemGroup>
     <Folder Include="Email\" />
+
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Entities\" />
+    <Folder Include="Views\Home\" />
+    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
 
 </Project>

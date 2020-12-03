@@ -12,10 +12,10 @@ namespace Foxxit.Database
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<SubReddit> SubReddits { get;set; }
+        public DbSet<SubReddit> SubReddits { get; set; }
         public DbSet<Vote> Votes { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        
+
         //backing DbSet, maybe it is not necessary to access directly
         public DbSet<UserSubReddit> UserSubReddits { get; set; }
 
@@ -40,7 +40,7 @@ namespace Foxxit.Database
 
             //Join table for User/Subreddit
             modelBuilder.Entity<UserSubReddit>()
-                .HasKey(fs => new {fs.UserId, fs.SubRedditId});
+                .HasKey(fs => new { fs.UserId, fs.SubRedditId });
 
             //Vote
             modelBuilder.Entity<Vote>()
@@ -84,5 +84,4 @@ namespace Foxxit.Database
                 .OnDelete(DeleteBehavior.SetNull);
         }
     }
-    
 }

@@ -37,19 +37,18 @@ namespace Foxxit
             switch (Configuration.DbType)
             {
                 case DatabaseType.MSSQL:
-                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Config.GetConnectionString(Configuration.ConnectionString)));
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.ConnectionString));
                     break;
 
                 case DatabaseType.SQLite:
-                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Config.GetConnectionString(Configuration.ConnectionString)));
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Configuration.ConnectionString));
                     break;
 
                 case DatabaseType.Heroku:
-                    services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Config.GetConnectionString(Configuration.ConnectionString)));
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Configuration.ConnectionString));
                     break;
             }
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Config.GetConnectionString("Main")));
             services.AddTransient<MailService>();
             services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = true)
             .AddEntityFrameworkStores<ApplicationDbContext>()
