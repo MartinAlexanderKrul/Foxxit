@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using Foxxit.Controllers;
 
 namespace XUnitTestsForFoxxit
 {
@@ -8,7 +9,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void Test1()
         {
-
+            
         }
     }
 }
