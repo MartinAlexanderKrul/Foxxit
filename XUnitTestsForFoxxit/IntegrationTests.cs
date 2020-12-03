@@ -42,6 +42,5 @@ namespace XUnitTestsForFoxxit
             Assert.Equal(expected, actual);
         }
 
-
     }
 }
