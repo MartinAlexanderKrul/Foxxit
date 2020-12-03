@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,8 @@ namespace Foxxit
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSerilogRequestLogging();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }

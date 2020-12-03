@@ -15,9 +15,11 @@ namespace Foxxit.Controllers
             // Service = service;
         }
 
+        [HttpGet("index")]
+        [HttpGet("")]
         public IActionResult Index()
         {
-            return View();
+            return View("index");
         }
     }
 }
