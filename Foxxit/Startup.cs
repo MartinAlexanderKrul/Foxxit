@@ -52,7 +52,8 @@ namespace Foxxit
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Config.GetConnectionString("Main")));
             services.AddTransient<MailService>();
             services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = true)
-                .AddDefaultTokenProviders();
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
