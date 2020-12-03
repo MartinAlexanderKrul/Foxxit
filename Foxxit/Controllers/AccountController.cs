@@ -67,15 +67,15 @@ namespace Foxxit.Controllers
                 }
                 else
                 {
-                    model.Message = "Something went wrong!";
+                    ModelState.AddModelError(string.Empty, "Something went wrong!");
                 }
             }
             else
             {
-                model.Message = "Username already exists!";
+                ModelState.AddModelError(string.Empty, "Username already exists!");
             }
 
-            return View("Register", model);
+            return View(model);
         }
 
         [HttpGet("login")]
@@ -98,16 +98,16 @@ namespace Foxxit.Controllers
 
                 if (passwordCheck.Succeeded)
                 {
-                    return RedirectToAction("PasswordChange", "Account");
+                    return RedirectToAction("Index", "Account");
                 }
                 else
                 {
-                    model.Message = "Try to type your password again!";
+                    ModelState.AddModelError(string.Empty, "Try to type your password again!");
                 }
             }
             else
             {
-                model.Message = "Username is not in database! Do you want to Sign Up?";
+                ModelState.AddModelError(string.Empty, "Username is not in database! Do you want to Sign Up?");
             }
 
             return View(model);
@@ -123,16 +123,16 @@ namespace Foxxit.Controllers
         }
 
         [HttpGet("external-login")]
-        public async Task<IActionResult> ExternalLoginCallback(UserModelxxx user, LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null)
         {
             returnUrl ??= "/account/index";
             var externalInfo = await signInManager.GetExternalLoginInfoAsync();
 
             if (externalInfo is null)
             {
-                model.Message = "Something went wrong while external information loading!";
-                return View("Login", model);
-        }
+                ModelState.AddModelError(string.Empty, "Something went wrong while external information loading!");
+                return View("Login");
+            }
 
             var signInResult = await signInManager.ExternalLoginSignInAsync(externalInfo.LoginProvider, externalInfo.ProviderKey, isPersistent: false, bypassTwoFactor: true);
 
@@ -143,14 +143,14 @@ namespace Foxxit.Controllers
 
                 if (email != null || username != null)
                 {
-                    user = username != null
+                    var user = username != null
                         ? await userManager.FindByNameAsync(username)
                         : await userManager.FindByEmailAsync(email);
 
                     if (user is null)
-        {
+                    {
                         user = new UserModelxxx
-            {
+                        {
                             UserName = username ?? email,
                             Email = email
                         };
@@ -166,8 +166,8 @@ namespace Foxxit.Controllers
                     return LocalRedirect(returnUrl);
                 }
 
-                model.Message = "Email or username claim not received!";
-                return View("Login", model);
+                ModelState.AddModelError(string.Empty, "Email or username claim not received!");
+                return View("Login");
             }
 
             return LocalRedirect(returnUrl);
@@ -176,9 +176,9 @@ namespace Foxxit.Controllers
         [Authorize]
         [HttpGet("passwordchange")]
         public IActionResult PasswordChange()
-            {
+        {
             return View();
-            }
+        }
 
         [Authorize]
         [HttpPost("passwordchange")]
@@ -197,11 +197,11 @@ namespace Foxxit.Controllers
             }
             else
             {
-                model.Message = "Something went wrong!";
+                ModelState.AddModelError(string.Empty, "Password was not changed!");
             }
 
             return View(model);
-            }
+        }
 
         [Authorize]
         [HttpGet("logout")]
