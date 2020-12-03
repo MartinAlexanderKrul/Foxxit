@@ -22,7 +22,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public async Task MainPageLoadsSuccessfully()
         {
-            var responseMessage = await factory.CreateClient().GetAsync("");
+            var responseMessage = await factory.CreateClient().GetAsync("/");
 
             responseMessage.EnsureSuccessStatusCode();
         }
