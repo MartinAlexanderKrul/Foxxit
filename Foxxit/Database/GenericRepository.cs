@@ -1,22 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-//Exception handling is to be made on the service layer
 namespace Foxxit.Database
 {
-    public class GenericRepository<T> where T : class
+    public class GenericRepository<T> where T : IEntity
     {
-        //dependency injection
-        private readonly ApplicationDbContext dbContext = null;
-        //for being able to define which table to modify or get data from
-        private readonly DbSet<T> table = null;
-
-        public GenericRepository()
-        {
-            dbContext = new ApplicationDbContext();
-            table = dbContext.Set<T>();
-        }
+        private readonly ApplicationDbContext dbContext;
+        private readonly DbSet<T> table;
 
         public GenericRepository(ApplicationDbContext dbContext)
         {
@@ -26,11 +16,10 @@ namespace Foxxit.Database
 
         public IEnumerable<T> GetAll()
         {
-            return table.ToList();
+            return table;
         }
 
-        //object id lets us use different id types
-        public T GetById(object id)
+        public T GetById(long id)
         {
             return table.Find(id);
         }
@@ -40,17 +29,14 @@ namespace Foxxit.Database
             table.Add(obj);
         }
 
-        //!!WARNING this one seems a bit different I've used in Java
         public void Update(T obj)
         {
-            table.Attach(obj);
-            dbContext.Entry(obj).State = EntityState.Modified;
+            table.Update(obj);
         }
 
-        public void Delete(object id)
+        public void Delete(T obj)
         {
-            T existing = table.Find(id);
-            table.Remove(existing);
+            table.Remove(obj);
         }
 
         public void Save()

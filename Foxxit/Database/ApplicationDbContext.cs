@@ -7,9 +7,10 @@ using Foxxit.Models.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Foxxit.Database
-{
+{ 
     public class ApplicationDbContext : IdentityDbContext<User>
     {
+        
         public DbSet<User> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<SubReddit> SubReddits { get;set; }
@@ -19,7 +20,9 @@ namespace Foxxit.Database
         //backing DbSet, maybe it is not necessary to access directly
         public DbSet<UserSubReddit> UserSubReddits { get; set; }
 
-
+        public ApplicationDbContext()
+        {
+        }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {

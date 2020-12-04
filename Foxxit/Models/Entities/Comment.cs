@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Foxxit.Models.Entities
 {
-    public class Comment:PostBase
+    public class Comment : PostBase
     {
         //For comments hierarchy
         public long OriginalCommentId { get; set; }

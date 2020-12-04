@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Foxxit.Models.Entities
 {
-    public class Post:PostBase
+    public class Post : PostBase
     {
         public string Title { get; set; }
         public string URL { get; set; }
