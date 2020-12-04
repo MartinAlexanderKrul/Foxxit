@@ -18,17 +18,14 @@ namespace Foxxit.Controllers
             this.mailService = mailService;
         }
 
-        //public async Task<IActionResult> Register(RegisterViewModel model)
-        //{
+        // public async Task<IActionResult> Register(RegisterViewModel model)
+        // {
         //    var user = new User { };
-
-        //    // ...
         //    // if (result.Succeeded)
-        //    //{
+        //    // {
         //    await SendEmailConfirmation(user);
-        //    //}
-        //}
-
+        //    // }
+        // }
         public async Task<IActionResult> SendEmailConfirmation(User user)
         {
             var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
