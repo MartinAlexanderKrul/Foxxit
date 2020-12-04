@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using Foxxit.Database;
 using Foxxit.Models.Entities;
 using Foxxit.Services;
@@ -10,22 +15,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Foxxit
 {
     public class Startup
     {
-        public IConfiguration Config { get; set; }
-
         public Startup(IConfiguration config)
         {
-            Config = config;
+            this.Config = config;
         }
+
+        public IConfiguration Config { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
