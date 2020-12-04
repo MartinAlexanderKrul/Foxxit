@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using Foxxit.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Foxxit.Database
 {
-    public class GenericRepository<T> where T : IEntity
+    public class GenericRepository<T> where T : class, IIdentityEntity
     {
         private readonly ApplicationDbContext dbContext;
         private readonly DbSet<T> table;

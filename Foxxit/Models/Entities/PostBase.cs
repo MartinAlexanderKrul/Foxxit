@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Foxxit.Models.Entities
 {
@@ -16,7 +17,7 @@ namespace Foxxit.Models.Entities
         public ICollection<Comment> Comments { get; set; }
         public PostBase()
         {
-            Votes=new List<Vote>();
+            Votes=new Collection<Vote>();
         }
         
     }

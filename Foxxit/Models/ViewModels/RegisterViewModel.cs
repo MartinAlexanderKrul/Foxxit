@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace Foxxit.Models.ViewModels
 {
-    public class ViewModel
+    public class RegisterViewModel
     {
+        public string Email { get; set; }
     }
 }
