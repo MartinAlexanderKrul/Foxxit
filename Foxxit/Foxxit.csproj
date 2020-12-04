@@ -6,11 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+
+    <Compile Remove="Email\**" />
+    <Content Remove="Email\**" />
+    <EmbeddedResource Remove="Email\**" />
+    <None Remove="Email\**" />
+
     <Content Remove="stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
+
   </ItemGroup>
 
   <ItemGroup>
@@ -38,7 +45,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Email\" />
 
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
