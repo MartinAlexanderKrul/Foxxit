@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Foxxit.Models.Entities;
+﻿using Foxxit.Models.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,8 +10,6 @@ namespace Foxxit.Database
             : base(options)
         {
         }
-
-        public DbSet<User> Users { get; set; }
 
         public DbSet<Post> Posts { get; set; }
 
