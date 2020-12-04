@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace Foxxit.Models.Entities
 {
     public class Post:PostBase
