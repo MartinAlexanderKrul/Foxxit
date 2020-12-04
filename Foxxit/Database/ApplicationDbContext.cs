@@ -11,8 +11,6 @@ namespace Foxxit.Database
         {
         }
 
-        public DbSet<User> Users { get; set; }
-
         public DbSet<Post> Posts { get; set; }
 
         public DbSet<SubReddit> SubReddits { get; set; }
