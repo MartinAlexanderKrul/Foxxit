@@ -9,7 +9,7 @@ namespace Foxxit.Services
 {
     public class MailService
     {
-        private const string email = "foxxit2020@gmail.com";
+        private const string mail = "foxxit2020@gmail.com";
         private const string name = "Foxxit Team";
         private const string registrationTemplateId = "d-eda73c0ba07a49d1bac1921215adda45";
 

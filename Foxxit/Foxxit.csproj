@@ -6,10 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+
     <Compile Remove="Email\**" />
     <Content Remove="Email\**" />
     <EmbeddedResource Remove="Email\**" />
     <None Remove="Email\**" />
+
+    <Content Remove="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +49,11 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+
+    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.261">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 
