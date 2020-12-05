@@ -1,4 +1,5 @@
 ﻿using Foxxit.Models.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,8 +16,6 @@ namespace Foxxit.Database
         public DbSet<SubReddit> SubReddits { get; set; }
         public DbSet<Vote> Votes { get; set; }
         public DbSet<Comment> Comments { get; set; }
-
-        //backing DbSet, maybe it is not necessary to access directly
         public DbSet<UserSubReddit> UserSubReddits { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
@@ -25,7 +24,6 @@ namespace Foxxit.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Generate Timestamps on first save
             modelBuilder.Entity<User>()
                 .Property(e => e.CreatedAt)
                 .ValueGeneratedOnAdd();
@@ -36,13 +34,9 @@ namespace Foxxit.Database
                 .Property(s => s.CreatedAt)
                 .ValueGeneratedOnAdd();
 
-            //Relations setup
-
-            //Join table for User/Subreddit
             modelBuilder.Entity<UserSubReddit>()
                 .HasKey(fs => new { fs.UserId, fs.SubRedditId });
 
-            //Vote
             modelBuilder.Entity<Vote>()
                 .HasOne(u => u.Owner)
                 .WithMany(v => v.Votes)
@@ -56,7 +50,6 @@ namespace Foxxit.Database
                 .IsRequired()
                 .OnDelete(DeleteBehavior.SetNull);
 
-            //Comment
             modelBuilder.Entity<Comment>()
                 .HasOne(u => u.User)
                 .WithMany(c => c.Comments)
@@ -64,7 +57,6 @@ namespace Foxxit.Database
                 .IsRequired()
                 .OnDelete(DeleteBehavior.SetNull);
 
-            //Post
             modelBuilder.Entity<Post>()
                 .HasMany(c => c.Comments)
                 .WithOne(p => p.Post)
@@ -82,6 +74,11 @@ namespace Foxxit.Database
                 .HasForeignKey(p => p.SubRedditId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<User>()
+                .HasData(new IdentityRole("Admin"));
+            modelBuilder.Entity<User>()
+                .HasData(new IdentityRole("User"));
         }
     }
 }

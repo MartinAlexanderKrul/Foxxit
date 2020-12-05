@@ -17,17 +17,10 @@ using Foxxit.Models;
 namespace Foxxit.Controllers
 {
     [Route("[controller]")]
-    public class AccountController : Controller
+    public class AccountController : GeneralController
     {
-        private readonly SignInManager<UserModelxxx> signInManager;
-        private readonly UserManager<UserModelxxx> userManager;
-        private readonly RoleManager<IdentityRole> roleManager;
-
-        public AccountController(SignInManager<UserModelxxx> signInManager, UserManager<UserModelxxx> userManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager) : base(userManager, signInManager)
         {
-            this.signInManager = signInManager;
-            this.userManager = userManager;
-            this.roleManager = roleManager;
         }
 
         [Authorize]
@@ -53,21 +46,19 @@ namespace Foxxit.Controllers
 
             var existingUser = await userManager.FindByNameAsync(model.UserName);
 
-            if (existingUser == null)
+            if (existingUser is null)
             {
-                var user = new UserModelxxx(model.UserName);
-                var result = await userManager.CreateAsync(user, model.Password);
+                var user = new User(model.UserName);
+                var registerResult = await userManager.CreateAsync(user, model.Password);
 
-                if (result.Succeeded)
+                if (registerResult.Succeeded)
                 {
-                    await roleManager.CreateAsync(new IdentityRole("User"));
                     await userManager.AddToRoleAsync(user, "User");
-
                     return RedirectToAction("Login");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Something went wrong!");
+                    ModelState.AddModelError(string.Empty, "Registration went wrong!");
                 }
             }
             else
@@ -88,15 +79,17 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
+            {
                 return View(model);
+            }
 
             var existingUser = await userManager.FindByNameAsync(model.UserName);
 
             if (existingUser != null)
             {
-                var passwordCheck = await signInManager.PasswordSignInAsync(existingUser, model.Password, model.RememberMe, false);
+                var signInResult = await signInManager.PasswordSignInAsync(existingUser, model.Password, model.RememberMe, false);
 
-                if (passwordCheck.Succeeded)
+                if (signInResult.Succeeded)
                 {
                     return RedirectToAction("Index", "Account");
                 }
@@ -149,15 +142,24 @@ namespace Foxxit.Controllers
 
                     if (user is null)
                     {
-                        user = new UserModelxxx
+                        user = new User
                         {
                             UserName = username ?? email,
                             Email = email
                         };
 
-                        await userManager.CreateAsync(user);
-                        await roleManager.CreateAsync(new IdentityRole("User"));
-                        await userManager.AddToRoleAsync(user, "User");
+                        var registerResult = await userManager.CreateAsync(user);
+
+                        if (registerResult.Succeeded)
+                        {
+                            await userManager.AddToRoleAsync(user, "User");
+
+                            return RedirectToAction("Login");
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "External registration went wrong!");
+                        }
                     }
 
                     await userManager.AddLoginAsync(user, externalInfo);
@@ -187,11 +189,10 @@ namespace Foxxit.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var userId = userManager.GetUserId(User);
-            var user = await userManager.FindByIdAsync(userId);
-            var result = await userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+            var user = await GetActiveUserAsync();
+            var changePasswordResult = await userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
 
-            if (result.Succeeded)
+            if (changePasswordResult.Succeeded)
             {
                 return RedirectToAction("Login");
             }

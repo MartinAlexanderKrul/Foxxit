@@ -9,10 +9,10 @@ namespace Foxxit.Models.ViewModels
 {
     public class LoginViewModel
     {
-        [Required]
+        [Required, StringLength(50, ErrorMessage = "Must be between 3 and 50 characters", MinimumLength = 3)]
         public string UserName { get; set; }
 
-        [Required, StringLength(255, ErrorMessage = "Must be between 6 and 255 characters", MinimumLength = 6), DataType(DataType.Password)]
+        [Required, StringLength(50, ErrorMessage = "Must be between 6 and 50 characters", MinimumLength = 6), DataType(DataType.Password)]
         public string Password { get; set; }
 
         public bool RememberMe { get; set; }

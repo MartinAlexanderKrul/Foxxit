@@ -3,17 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Foxxit.Models.ViewModels
 {
     public class ExternalLoginModel
     {
-        [Required]
-        [EmailAddress]
+        [Required, StringLength(50, ErrorMessage = "Must be between 5 and 50 characters", MinimumLength = 5)]
         public string Email { get; set; }
 
-        public ClaimsPrincipal Principal { get; set; }
+        public ExternalLoginModel()
+        {
+        }
     }
 }

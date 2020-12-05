@@ -20,6 +20,5 @@ namespace Foxxit.Controllers
         {
             return View();
         }
-
     }
 }

@@ -9,13 +9,13 @@ namespace Foxxit.Models.ViewModels
 {
     public class RegisterViewModel
     {
-        [Required]
+        [Required, StringLength(50, ErrorMessage = "Must be between 3 and 50 characters", MinimumLength = 3)]
         public string UserName { get; set; }
 
-        [Required, StringLength(255, ErrorMessage = "Must be between 6 and 255 characters", MinimumLength = 6), DataType(DataType.Password)]
+        [Required, StringLength(50, ErrorMessage = "Must be between 6 and 50 characters", MinimumLength = 6), DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required, DataType(DataType.Password), Compare("Password", ErrorMessage = "The password does not match the confirmation password!")]
+        [Required, StringLength(50, ErrorMessage = "Must be between 6 and 50 characters", MinimumLength = 6), DataType(DataType.Password), Compare("Password", ErrorMessage = "The password does not match the confirmation password!")]
         public string ConfirmPassword { get; set; }
 
         public string DisplayName { get; set; }
