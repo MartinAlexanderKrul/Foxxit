@@ -2,30 +2,34 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foxxit.Database
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<Post> Posts { get; set; }
-        public DbSet<SubReddit> SubReddits { get; set; }
-        public DbSet<Vote> Votes { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<UserSubReddit> UserSubReddits { get; set; }
-
-        public ApplicationDbContext(DbContextOptions options) : base(options)
+        public ApplicationDbContext(DbContextOptions options)
+            : base(options)
         {
         }
 
+        public DbSet<Post> Posts { get; set; }
+
+        public DbSet<SubReddit> SubReddits { get; set; }
+
+        public DbSet<Vote> Votes { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
+
+        // backing DbSet, maybe it is not necessary to access directly
+        public DbSet<UserSubReddit> UserSubReddits { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            // Generate Timestamps on first save
             modelBuilder.Entity<User>()
-                .Property(e => e.CreatedAt)
+                .Property(u => u.CreatedAt)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<PostBase>()
                 .Property(p => p.CreatedAt)
@@ -34,43 +38,49 @@ namespace Foxxit.Database
                 .Property(s => s.CreatedAt)
                 .ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<UserSubReddit>()
-                .HasKey(fs => new { fs.UserId, fs.SubRedditId });
+            // Relations setup
 
+            // Join table for User/Subreddit
+            modelBuilder.Entity<UserSubReddit>()
+                .HasKey(us => new { us.UserId, us.SubRedditId });
+
+            // Vote
             modelBuilder.Entity<Vote>()
-                .HasOne(u => u.Owner)
-                .WithMany(v => v.Votes)
-                .HasForeignKey(u => u.FoxxitUserId)
+                .HasOne(v => v.Owner)
+                .WithMany(u => u.Votes)
+                .HasForeignKey(v => v.FoxxitUserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<Vote>()
                 .HasOne(p => p.Postbase)
-                .WithMany(v => v.Votes)
-                .HasForeignKey(p => p.PostBaseId)
+                .WithMany(pb => pb.Votes)
+                .HasForeignKey(v => v.PostBaseId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.SetNull);
 
+            // Comment
             modelBuilder.Entity<Comment>()
-                .HasOne(u => u.User)
-                .WithMany(c => c.Comments)
-                .HasForeignKey(u => u.UserId)
+                .HasOne(c => c.User)
+                .WithMany(u => u.Comments)
+                .HasForeignKey(c => c.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.SetNull);
 
+            // Post
             modelBuilder.Entity<Post>()
-                .HasMany(c => c.Comments)
-                .WithOne(p => p.Post)
-                .HasForeignKey(p => p.PostId)
+                .HasMany(p => p.Comments)
+                .WithOne(c => c.Post)
+                .HasForeignKey(c => c.PostId)
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Post>()
-                .HasOne(u => u.User)
-                .WithMany(p => p.Posts)
+                .HasOne(p => p.User)
+                .WithMany(u => u.Posts)
                 .HasForeignKey(p => p.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<Post>()
-                .HasOne(s => s.SubReddit)
-                .WithMany(p => p.Posts)
+                .HasOne(p => p.SubReddit)
+                .WithMany(s => s.Posts)
                 .HasForeignKey(p => p.SubRedditId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.SetNull);

@@ -1,26 +1,24 @@
-﻿using Foxxit.Models.Entities;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
+using Foxxit.Models;
+using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using SendGrid.Helpers.Mail;
-using Foxxit.Models;
 
 namespace Foxxit.Controllers
 {
     [Route("[controller]")]
     public class AccountController : GeneralController
     {
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager) : base(userManager, signInManager)
+        private readonly MailService mailService;
+
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, MailService mailService)
+            : base(userManager, signInManager)
         {
+            this.mailService = mailService;
         }
 
         [Authorize]
@@ -30,10 +28,43 @@ namespace Foxxit.Controllers
             return View();
         }
 
-        [HttpGet("register")]
-        public IActionResult Register()
+        public async Task<IActionResult> SendEmailConfirmation(User user)
         {
-            return View();
+            var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
+            var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token }, Request.Scheme);
+
+            var data = new RegistrationEmailData(confirmationLink, user.UserName);
+
+            await mailService.SendEmailAsync(user.Email, data);
+
+            return View("ConfirmRegistration");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (userId == null || token == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+
+            var user = userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"The user ID {userId} is invalid";
+                return View("Error");
+            }
+
+            var result = await userManager.ConfirmEmailAsync(user.Result, token);
+
+            if (!result.Succeeded)
+            {
+                ViewBag.ErrorMessage = "Email cannot be confirmed.";
+                return View("Error");
+            }
+
+            return View("EmailConfirmationSuccessful");
         }
 
         [HttpPost("register")]
@@ -54,6 +85,7 @@ namespace Foxxit.Controllers
                 if (registerResult.Succeeded)
                 {
                     await userManager.AddToRoleAsync(user, "User");
+                    await SendEmailConfirmation(user);
                     return RedirectToAction("Login");
                 }
                 else
@@ -145,7 +177,7 @@ namespace Foxxit.Controllers
                         user = new User
                         {
                             UserName = username ?? email,
-                            Email = email
+                            Email = email,
                         };
 
                         var registerResult = await userManager.CreateAsync(user);
@@ -187,7 +219,9 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> PasswordChange(PasswordChangeViewModel model)
         {
             if (!ModelState.IsValid)
+            {
                 return View(model);
+            }
 
             var user = await GetActiveUserAsync();
             var changePasswordResult = await userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
