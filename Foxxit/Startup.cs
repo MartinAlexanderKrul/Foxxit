@@ -1,33 +1,26 @@
+using System;
+using System.Text.Json.Serialization;
 using Foxxit.Database;
 using Foxxit.Models.Entities;
 using Foxxit.Services;
-using Foxxit.Services.Interfaces;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Foxxit
 {
     public class Startup
     {
-        public IConfiguration Config { get; set; }
-
         public Startup(IConfiguration config)
         {
-            Config = config;
+            this.Config = config;
         }
+
+        public IConfiguration Config { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -35,9 +28,26 @@ namespace Foxxit
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Config.GetConnectionString("Main")));
 
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            switch (Configuration.DbType)
+            {
+                case DatabaseType.MSSQL:
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.ConnectionString));
+                    break;
+
+                case DatabaseType.SQLite:
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Configuration.ConnectionString));
+                    break;
+
+                case DatabaseType.Heroku:
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Configuration.ConnectionString));
+                    break;
+            }
+
+            services.AddTransient<MailService>();
+            services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = true)
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
 
             services.AddAuthentication()
                 .AddGoogle("google", options =>
@@ -75,6 +85,11 @@ namespace Foxxit
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
+
+                services.AddTransient<MailService>();
+                services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = true)
+                        .AddEntityFrameworkStores<ApplicationDbContext>()
+                        .AddDefaultTokenProviders();
 
                 // User settings.
                 options.User.AllowedUserNameCharacters =

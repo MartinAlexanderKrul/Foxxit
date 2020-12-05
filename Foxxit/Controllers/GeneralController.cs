@@ -1,24 +1,15 @@
-﻿using Foxxit.Models.Entities;
-using Foxxit.Models.ViewModels;
-using Foxxit.Services;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
+﻿using System.Threading.Tasks;
+using Foxxit.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using SendGrid.Helpers.Mail;
-using Foxxit.Models;
 
 namespace Foxxit.Controllers
 {
     public class GeneralController : Controller
     {
+#pragma warning disable SA1401 // Fields should be private
         protected readonly UserManager<User> userManager;
+#pragma warning restore SA1401 // Fields should be private
         protected readonly SignInManager<User> signInManager;
 
         public GeneralController(UserManager<User> userManager, SignInManager<User> signInManager)

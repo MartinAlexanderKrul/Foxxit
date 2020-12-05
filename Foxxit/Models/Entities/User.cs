@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
 
 namespace Foxxit.Models.Entities
 {
@@ -15,17 +13,17 @@ namespace Foxxit.Models.Entities
         public int Karma { get; set; }
         public string About { get; set; }
         public DateTime CreatedAt { get; set; }
-
-        //each user has many Posts
+       
+        // each user has many Posts
         public ICollection<Post> Posts { get; set; }
-
-        //each user has many SubReddits
+        
+        // each user has many SubReddits
         public ICollection<SubReddit> SubReddits { get; set; }
 
-        //each user has given many Votes
+        // each user has given many Votes
         public ICollection<Vote> Votes { get; set; }
-
-        //each user has many comments
+        
+        // each user has many comments
         public ICollection<Comment> Comments { get; set; }
 
         public User(string userName)
