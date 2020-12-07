@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using Foxxit.Database;
 using Foxxit.Models.Entities;
 using Foxxit.Services;
-using Foxxit.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -50,7 +44,7 @@ namespace Foxxit
             }
 
             services.AddTransient<MailService>();
-            services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedEmail = true)
+            services.AddIdentity<User, UserRole>(options => options.SignIn.RequireConfirmedEmail = true)
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
         }

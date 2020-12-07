@@ -1,11 +1,9 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+
 namespace Foxxit.Models.Entities
 {
-    public class UserRole
+    public class UserRole : IdentityRole<long>
     {
-        public UserRole()
-        {
-
-        }
     }
 }
