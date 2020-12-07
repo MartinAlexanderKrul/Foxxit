@@ -14,5 +14,12 @@ namespace Foxxit.Controllers
         {
             return View("index");
         }
+
+        //[HttpGet("subreddit")]
+        //public async IActionResult Subreddit()
+        //{
+
+        //}
+
     }
 }

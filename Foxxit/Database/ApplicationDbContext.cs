@@ -28,6 +28,8 @@ namespace Foxxit.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             // Generate Timestamps on first save
             modelBuilder.Entity<User>()
                 .Property(e => e.CreatedAt)
