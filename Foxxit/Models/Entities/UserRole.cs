@@ -5,7 +5,6 @@ namespace Foxxit.Models.Entities
     {
         public UserRole()
         {
-
         }
     }
 }
