@@ -1,13 +1,10 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Foxxit.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Foxxit.Database
-{ 
+{
     public class ApplicationDbContext : IdentityDbContext<IdentityUser<long>, IdentityRole<long>, long>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -28,63 +25,65 @@ namespace Foxxit.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             // Generate Timestamps on first save
             modelBuilder.Entity<User>()
-                .Property(e => e.CreatedAt)
+                .Property(u => u.CreatedAt)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<PostBase>()
-                .Property(p => p.CreatedAt)
+                .Property(pb => pb.CreatedAt)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<SubReddit>()
-                .Property(s => s.CreatedAt)
+                .Property(sr => sr.CreatedAt)
                 .ValueGeneratedOnAdd();
 
             // Relations setup
 
             // Join table for User/Subreddit
             modelBuilder.Entity<UserSubReddit>()
-                .HasKey(fs => new { fs.UserId, fs.SubRedditId });
+                .HasKey(usr => new { usr.UserId, usr.SubRedditId });
 
             // Vote
             modelBuilder.Entity<Vote>()
-                .HasOne(u => u.Owner)
-                .WithMany(v => v.Votes)
-                .HasForeignKey(u => u.FoxxitUserId)
+                .HasOne(v => v.Owner)
+                .WithMany(u => u.Votes)
+                .HasForeignKey(v => v.FoxxitUserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Vote>()
-                .HasOne(p => p.Postbase)
-                .WithMany(v => v.Votes)
-                .HasForeignKey(p => p.PostBaseId)
+                .HasOne(v => v.Postbase)
+                .WithMany(pb => pb.Votes)
+                .HasForeignKey(v => v.PostBaseId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.NoAction);
 
             // Comment
             modelBuilder.Entity<Comment>()
-                .HasOne(u => u.User)
-                .WithMany(c => c.Comments)
-                .HasForeignKey(u => u.UserId)
+                .HasOne(c => c.User)
+                .WithMany(u => u.Comments)
+                .HasForeignKey(c => c.UserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.NoAction);
 
             // Post
             modelBuilder.Entity<Post>()
-                .HasMany(c => c.Comments)
-                .WithOne(p => p.Post)
-                .HasForeignKey(p => p.PostId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasMany(p => p.Comments)
+                .WithOne(c => c.Post)
+                .HasForeignKey(c => c.PostId)
+                .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Post>()
-                .HasOne(u => u.User)
-                .WithMany(p => p.Posts)
+                .HasOne(p => p.User)
+                .WithMany(u => u.Posts)
                 .HasForeignKey(p => p.UserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Post>()
-                .HasOne(s => s.SubReddit)
-                .WithMany(p => p.Posts)
+                .HasOne(p => p.SubReddit)
+                .WithMany(sr => sr.Posts)
                 .HasForeignKey(p => p.SubRedditId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
