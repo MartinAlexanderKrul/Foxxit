@@ -31,7 +31,7 @@ namespace Foxxit
 
         public static string GetEnvironmentVariable(string variable)
         {
-            return Environment.GetEnvironmentVariable(variable, EnvironmentVariableTarget.User);
+            return Environment.GetEnvironmentVariable(variable, EnvironmentVariableTarget.Process);
         }
     }
 }
