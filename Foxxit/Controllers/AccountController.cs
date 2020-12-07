@@ -1,15 +1,9 @@
-﻿using Foxxit.Models.Entities;
-using Foxxit.Models.ViewModels;
+﻿using System.Threading.Tasks;
+using Foxxit.Models;
+using Foxxit.Models.Entities;
 using Foxxit.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using SendGrid.Helpers.Mail;
-using Foxxit.Models;
 
 namespace Foxxit.Controllers
 {
@@ -24,17 +18,14 @@ namespace Foxxit.Controllers
             this.mailService = mailService;
         }
 
-        //public async Task<IActionResult> Register(RegisterViewModel model)
-        //{
+        // public async Task<IActionResult> Register(RegisterViewModel model)
+        // {
         //    var user = new User { };
-
-        //    // ...
         //    // if (result.Succeeded)
-        //    //{
+        //    // {
         //    await SendEmailConfirmation(user);
-        //    //}
-        //}
-
+        //    // }
+        // }
         public async Task<IActionResult> SendEmailConfirmation(User user)
         {
             var token = await userManager.GenerateEmailConfirmationTokenAsync(user);

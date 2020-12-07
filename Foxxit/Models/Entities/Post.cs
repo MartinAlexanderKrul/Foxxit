@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace Foxxit.Models.Entities
 {
     public class Post : PostBase
@@ -9,7 +6,7 @@ namespace Foxxit.Models.Entities
         public string URL { get; set; }
         public string ImageURL { get; set; }
 
-        //each post belong to one SubReddit
+        // each post belong to one SubReddit
         public SubReddit SubReddit { get; set; }
         public long SubRedditId { get; set; }
     }

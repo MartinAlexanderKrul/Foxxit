@@ -1,6 +1,4 @@
-using System;
 using Xunit;
-using Foxxit.Controllers;
 
 namespace XUnitTestsForFoxxit
 {
