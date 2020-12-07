@@ -30,10 +30,8 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> Subreddit(long subredId)
         {
             var subreddit = await subredditService.FindById(subredId);
-            var viewModel = new SubredditViewModel() { Subreddit = subreddit};
+            var viewModel = new SubredditViewModel() { Subreddit = subreddit };
             return View(viewModel);
         }
-
-
     }
 }

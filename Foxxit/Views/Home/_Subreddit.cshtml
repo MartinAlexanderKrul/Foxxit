@@ -1,0 +1,46 @@
+﻿@{ Layout = "_Layout"; }
+@model Foxxit.Models.ViewModels.SubredditViewModel
+
+<div class="subreddit_header">
+    <div>
+        <div><h1>@Model.Subreddit.Name</h1></div>
+        <div class="subreddit_sorting">
+            <div>HOT</div>
+            <div>NEW</div>
+            <div>TOP</div>
+        </div>
+    </div>
+    <div>
+        <form action="createPost" method="post">
+            <button type="submit">CREATE POST</button>
+        </form>
+    </div>
+</div>
+
+<div class="posts_list">
+    @foreach (var post in Model.Subreddit.Posts)
+    {
+        //TODO add a function to count days since created (created 25 days ago / created yesterday)
+<a asp-action="">
+    <div class="posts_list_row">
+        <div class="votes">
+            <div><img src="UPVOTE IMG" alt="Upvote" /></div>
+            <div>@post.Votes.Count</div>
+            <div><img src="DOWNVOTE IMG" alt="Downvote" /></div>
+        </div>
+        <div class="posts_lists_row_main">
+            <div class="posts_lists_row_main_top">
+                <div><img src="POST ICON" alt="Icon" /></div>
+                <div>@post.Title</div>
+            </div>
+            <div class="posts_lists_row_main_bottom">
+                Posted by @post.User.DisplayName on @post.CreatedAt
+            </div>
+        </div>
+        <div class="posts_list_row_right">
+            <div><img src="COMMENTS ICON" alt="@post.Comments.Count" /></div>
+            <div>@post.Comments.Count</div>
+        </div>
+    </div>
+</a>}
+</div>
