@@ -50,7 +50,7 @@ namespace Foxxit
             }
 
             services.AddTransient<MailService>();
-            services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = true)
+            services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedEmail = true)
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
         }

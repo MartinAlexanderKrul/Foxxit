@@ -1,6 +1,6 @@
 namespace Foxxit.Models.Entities
 {
-    public class Vote
+    public class Vote : IIdentityEntity
     {
         public long Id { get; set; }
         public bool IsNegative { get; set; }
