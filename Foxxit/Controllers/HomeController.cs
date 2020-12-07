@@ -16,10 +16,6 @@ namespace Foxxit.Controllers
             this.subredditService = subredditService;
         }
 
-        public HomeController()
-        {
-        }
-
         [HttpGet("index")]
         public IActionResult Index()
         {

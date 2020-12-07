@@ -50,6 +50,7 @@ namespace Foxxit
             }
 
             services.AddTransient<MailService>();
+            services.AddTransient<SubredditService>();
             services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedEmail = true)
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();

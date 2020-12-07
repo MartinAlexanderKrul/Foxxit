@@ -7,7 +7,6 @@ namespace Foxxit.Models.Entities
 {
     public class User : IdentityUser<long>, IIdentityEntity
     {
-
         public string AvatarURL { get; set; }
         public string DisplayName { get; set; }
         

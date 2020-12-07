@@ -10,6 +10,5 @@ namespace Foxxit.Models.ViewModels
     {
         public SubReddit Subreddit { get; set; }
         public User User { get; set; }
-
     }
 }

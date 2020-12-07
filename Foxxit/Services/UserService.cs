@@ -15,10 +15,10 @@ namespace Foxxit.Services
             this.signinManager = signinManager;
         }
 
-        //public async Task<User> GetCurrentUser()
-        //{
+        // public async Task<User> GetCurrentUser()
+        // {
         //    var user = await signinManager.GetExternalLoginInfoAsync();
         //    return user;
-        //}
+        // }
     }
 }
