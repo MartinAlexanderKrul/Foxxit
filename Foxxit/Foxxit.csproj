@@ -58,7 +58,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Entities\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Models\ViewModels\" />
   </ItemGroup>

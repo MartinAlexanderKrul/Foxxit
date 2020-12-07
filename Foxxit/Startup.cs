@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Foxxit.Database;
 using Foxxit.Models.Entities;
+using Foxxit.Repositories;
 using Foxxit.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +45,10 @@ namespace Foxxit
             }
 
             services.AddTransient<MailService>();
+            services.AddTransient<UserRepository>();
+            services.AddTransient<SubRedditRepository>();
+            services.AddTransient<PostRepository>();
+
             services.AddIdentity<User, UserRole>(options => options.SignIn.RequireConfirmedEmail = true)
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
