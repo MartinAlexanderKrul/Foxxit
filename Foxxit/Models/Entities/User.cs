@@ -26,8 +26,13 @@ namespace Foxxit.Models.Entities
         
         // each user has many comments
         public ICollection<Comment> Comments { get; set; }
-
+      
         public bool IsDeleted { get; set; }
+        
+        public User(string userName)
+        {
+            UserName = userName;
+        }
 
         public User()
         {

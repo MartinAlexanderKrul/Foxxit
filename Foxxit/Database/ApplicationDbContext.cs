@@ -68,12 +68,15 @@ namespace Foxxit.Database
             // Generate Timestamps on first save
             modelBuilder.Entity<User>()
                 .Property(u => u.CreatedAt)
+                .HasDefaultValueSql("GETDATE()")
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<PostBase>()
                 .Property(pb => pb.CreatedAt)
+                .HasDefaultValueSql("GETDATE()")
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<SubReddit>()
                 .Property(sr => sr.CreatedAt)
+                .HasDefaultValueSql("GETDATE()")
                 .ValueGeneratedOnAdd();
 
             // Relations setup
@@ -122,6 +125,21 @@ namespace Foxxit.Database
                 .HasForeignKey(p => p.SubRedditId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<UserRole>()
+                .HasData(new UserRole
+                {
+                    Id = 1,
+                    Name = "Admin",
+                    NormalizedName = "ADMIN",
+                });
+            modelBuilder.Entity<UserRole>()
+                .HasData(new UserRole
+                {
+                    Id = 2,
+                    Name = "User",
+                    NormalizedName = "USER",
+                });
         }
 
         private static void SoftDelete(IEnumerable<EntityEntry> entities)

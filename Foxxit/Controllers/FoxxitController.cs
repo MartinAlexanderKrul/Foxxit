@@ -2,10 +2,10 @@
 
 namespace Foxxit.Controllers
 {
-    [Route("")]
-    public class HomeController : Controller
+    public class FoxxitController : Controller
     {
-        public HomeController()
+        // public Service Service { get; private set; }
+        public FoxxitController(/*Service service*/)
         {
         }
 
