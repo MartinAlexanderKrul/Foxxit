@@ -7,7 +7,7 @@ using Foxxit.Repositories;
 
 namespace Foxxit.Services
 {
-    public class PostService
+    public class PostService : IPostService
     {
         public PostService(PostRepository postRepository)
         {

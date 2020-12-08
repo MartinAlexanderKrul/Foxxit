@@ -7,7 +7,7 @@ using Foxxit.Repositories;
 
 namespace Foxxit.Services
 {
-    public class SubRedditService
+    public class SubRedditService : ISubRedditService
     {
         public SubRedditService(SubRedditRepository subRedditRepository)
         {

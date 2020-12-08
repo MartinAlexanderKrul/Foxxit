@@ -6,7 +6,7 @@ using Foxxit.Repositories;
 
 namespace Foxxit.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         public UserService(UserRepository userRepository)
         {
