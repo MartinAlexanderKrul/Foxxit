@@ -1,7 +1,14 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Foxxit.Extensions;
 using Foxxit.Models.Entities;
+using Foxxit.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Foxxit.Database
 {
@@ -23,9 +30,40 @@ namespace Foxxit.Database
         // backing DbSet, maybe it is not necessary to access directly
         public DbSet<UserSubReddit> UserSubReddits { get; set; }
 
+        public override int SaveChanges()
+        {
+            ChangeTracker.DetectChanges();
+
+            var markedAsDeleted = ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted);
+
+            SoftDelete(markedAsDeleted);
+
+            return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            ChangeTracker.DetectChanges();
+
+            var markedAsDeleted = ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted);
+
+            SoftDelete(markedAsDeleted);
+
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            // filters out Soft Deleted entities so they are acting as if they're deleted
+            foreach (var type in modelBuilder.Model.GetEntityTypes())
+            {
+                if (typeof(ISoftDeletable).IsAssignableFrom(type.ClrType))
+                {
+                    modelBuilder.SetSoftDeleteFilter(type.ClrType);
+                }
+            }
 
             // Generate Timestamps on first save
             modelBuilder.Entity<User>()
@@ -84,6 +122,21 @@ namespace Foxxit.Database
                 .HasForeignKey(p => p.SubRedditId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
+        }
+
+        private static void SoftDelete(IEnumerable<EntityEntry> entities)
+        {
+            if (entities != null)
+            {
+                foreach (var item in entities)
+                {
+                    if (item.Entity is ISoftDeletable entity)
+                    {
+                        item.State = EntityState.Unchanged;
+                        entity.IsDeleted = true;
+                    }
+                }
+            }
         }
     }
 }
