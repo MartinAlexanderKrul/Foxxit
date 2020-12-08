@@ -5,14 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Foxxit.Controllers
 {
-    public class GeneralController : Controller
+    public class MainController : Controller
     {
 #pragma warning disable SA1401 // Fields should be private
         protected readonly UserManager<User> userManager;
 #pragma warning restore SA1401 // Fields should be private
         protected readonly SignInManager<User> signInManager;
 
-        public GeneralController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public MainController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;

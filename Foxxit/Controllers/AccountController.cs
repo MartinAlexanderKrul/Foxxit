@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Foxxit.Controllers
 {
     [Route("[controller]")]
-    public class AccountController : GeneralController
+    public class AccountController : MainController
     {
         private readonly MailService mailService;
 
