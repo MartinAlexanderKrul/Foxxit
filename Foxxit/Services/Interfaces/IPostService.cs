@@ -6,9 +6,9 @@ namespace Foxxit.Services
 {
     public interface IPostService
     {
-        void Add(Post obj);
+        void Add(Post entity);
 
-        void Delete(Post obj);
+        void Delete(Post entity);
 
         Task<IEnumerable<Post>> GetAllAsync();
 
@@ -16,6 +16,6 @@ namespace Foxxit.Services
 
         void Save();
 
-        void Update(Post obj);
+        void Update(Post entity);
     }
 }

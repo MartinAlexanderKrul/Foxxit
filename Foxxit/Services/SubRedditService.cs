@@ -26,19 +26,19 @@ namespace Foxxit.Services
             return await SubRedditRepository.GetByIdAsync(id);
         }
 
-        public void Add(SubReddit obj)
+        public void Add(SubReddit entity)
         {
-            SubRedditRepository.AddAsync(obj);
+            SubRedditRepository.AddAsync(entity);
         }
 
-        public void Update(SubReddit obj)
+        public void Update(SubReddit entity)
         {
-            SubRedditRepository.Update(obj);
+            SubRedditRepository.Update(entity);
         }
 
-        public void Delete(SubReddit obj)
+        public void Delete(SubReddit entity)
         {
-            SubRedditRepository.Delete(obj);
+            SubRedditRepository.Delete(entity);
         }
 
         public void Save()

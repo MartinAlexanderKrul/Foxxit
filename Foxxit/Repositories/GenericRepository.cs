@@ -28,19 +28,19 @@ namespace Foxxit.Repositories
             return await table.FindAsync(id);
         }
 
-        public async void AddAsync(T obj)
+        public async void AddAsync(T entity)
         {
-            await table.AddAsync(obj);
+            await table.AddAsync(entity);
         }
 
-        public void Update(T obj)
+        public void Update(T entity)
         {
-            table.Update(obj);
+            table.Update(entity);
         }
 
-        public void Delete(T obj)
+        public void Delete(T entity)
         {
-            table.Remove(obj);
+            table.Remove(entity);
         }
 
         public async void SaveAsync()

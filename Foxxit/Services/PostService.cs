@@ -26,19 +26,19 @@ namespace Foxxit.Services
             return await PostRepository.GetByIdAsync(id);
         }
 
-        public void Add(Post obj)
+        public void Add(Post entity)
         {
-            PostRepository.AddAsync(obj);
+            PostRepository.AddAsync(entity);
         }
 
-        public void Update(Post obj)
+        public void Update(Post entity)
         {
-            PostRepository.Update(obj);
+            PostRepository.Update(entity);
         }
 
-        public void Delete(Post obj)
+        public void Delete(Post entity)
         {
-            PostRepository.Delete(obj);
+            PostRepository.Delete(entity);
         }
 
         public void Save()

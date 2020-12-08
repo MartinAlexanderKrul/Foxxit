@@ -6,9 +6,9 @@ namespace Foxxit.Services
 {
     public interface ISubRedditService
     {
-        void Add(SubReddit obj);
+        void Add(SubReddit entity);
 
-        void Delete(SubReddit obj);
+        void Delete(SubReddit entity);
 
         Task<IEnumerable<SubReddit>> GetAllAsync();
 
@@ -16,6 +16,6 @@ namespace Foxxit.Services
 
         void Save();
 
-        void Update(SubReddit obj);
+        void Update(SubReddit entity);
     }
 }
