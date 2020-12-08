@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace Foxxit.Models.Entities
 {
-    public class SubReddit
+    public class SubReddit : IIdentityEntity
     {
         public long Id { get; set; }
         public string Name { get; set; }

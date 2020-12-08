@@ -1,14 +1,14 @@
-﻿using Foxxit.Models.Entities;
+using Foxxit.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Foxxit.Database
 {
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser<long>, IdentityRole<long>, long>
     {
-        public ApplicationDbContext(DbContextOptions options)
-            : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
         {
         }
 
@@ -32,17 +32,17 @@ namespace Foxxit.Database
                 .Property(u => u.CreatedAt)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<PostBase>()
-                .Property(p => p.CreatedAt)
+                .Property(pb => pb.CreatedAt)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<SubReddit>()
-                .Property(s => s.CreatedAt)
+                .Property(sr => sr.CreatedAt)
                 .ValueGeneratedOnAdd();
 
             // Relations setup
 
             // Join table for User/Subreddit
             modelBuilder.Entity<UserSubReddit>()
-                .HasKey(us => new { us.UserId, us.SubRedditId });
+                .HasKey(usr => new { usr.UserId, usr.SubRedditId });
 
             // Vote
             modelBuilder.Entity<Vote>()
@@ -50,13 +50,13 @@ namespace Foxxit.Database
                 .WithMany(u => u.Votes)
                 .HasForeignKey(v => v.FoxxitUserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Vote>()
-                .HasOne(p => p.Postbase)
+                .HasOne(v => v.Postbase)
                 .WithMany(pb => pb.Votes)
                 .HasForeignKey(v => v.PostBaseId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.NoAction);
 
             // Comment
             modelBuilder.Entity<Comment>()
@@ -64,23 +64,23 @@ namespace Foxxit.Database
                 .WithMany(u => u.Comments)
                 .HasForeignKey(c => c.UserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.NoAction);
 
             // Post
             modelBuilder.Entity<Post>()
                 .HasMany(p => p.Comments)
                 .WithOne(c => c.Post)
                 .HasForeignKey(c => c.PostId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Post>()
                 .HasOne(p => p.User)
                 .WithMany(u => u.Posts)
                 .HasForeignKey(p => p.UserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Post>()
                 .HasOne(p => p.SubReddit)
-                .WithMany(s => s.Posts)
+                .WithMany(sr => sr.Posts)
                 .HasForeignKey(p => p.SubRedditId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.SetNull);
