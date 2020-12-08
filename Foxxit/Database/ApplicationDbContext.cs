@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Foxxit.Database
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser<long>, IdentityRole<long>, long>
+    public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<long>, long>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -59,7 +59,7 @@ namespace Foxxit.Database
             // filters out Soft Deleted entities so they are acting as if they're deleted
             foreach (var type in modelBuilder.Model.GetEntityTypes())
             {
-                if (typeof(ISoftDeletable).IsAssignableFrom(type.ClrType))
+                if (typeof(ISoftDeletable).IsAssignableFrom(type.ClrType) && type.BaseType == null)
                 {
                     modelBuilder.SetSoftDeleteFilter(type.ClrType);
                 }
