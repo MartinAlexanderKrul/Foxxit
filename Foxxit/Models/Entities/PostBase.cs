@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace Foxxit.Models.Entities
 {
-    public class PostBase
+    public class PostBase : IIdentityEntity
     {
         public long Id { get; set; }
         public string Text { get; set; }

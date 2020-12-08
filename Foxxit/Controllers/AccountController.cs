@@ -176,7 +176,7 @@ namespace Foxxit.Controllers
                     {
                         user = new User
                         {
-                            UserName = username ?? email,
+                            UserName = email ?? username,
                             Email = email,
                         };
 

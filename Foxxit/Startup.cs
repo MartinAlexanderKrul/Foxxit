@@ -45,7 +45,7 @@ namespace Foxxit
             }
 
             services.AddTransient<MailService>();
-            services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = true)
+            services.AddIdentity<User, UserRole>(options => options.SignIn.RequireConfirmedEmail = true)
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
@@ -87,7 +87,7 @@ namespace Foxxit
                 options.Lockout.AllowedForNewUsers = true;
 
                 services.AddTransient<MailService>();
-                services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = true)
+                services.AddIdentity<User, UserRole>(options => options.SignIn.RequireConfirmedEmail = true)
                         .AddEntityFrameworkStores<ApplicationDbContext>()
                         .AddDefaultTokenProviders();
 
