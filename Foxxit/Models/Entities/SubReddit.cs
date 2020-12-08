@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Foxxit.Services.Interfaces;
 
 namespace Foxxit.Models.Entities
 {
-    public class SubReddit : IIdentityEntity
+    public class SubReddit : IIdentityEntity, ISoftDeletable
     {
         public long Id { get; set; }
         public string Name { get; set; }
@@ -19,6 +20,8 @@ namespace Foxxit.Models.Entities
         
         // each SubReddit has many members
         public ICollection<User> Members { get; set; }
+
+        public bool IsDeleted { get; set; }
 
         public SubReddit()
         {
