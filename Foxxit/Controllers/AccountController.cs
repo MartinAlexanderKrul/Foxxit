@@ -148,7 +148,7 @@ namespace Foxxit.Controllers
         }
 
         [HttpGet("external-login")]
-        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null)
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
             returnUrl ??= "/account/index";
             var externalInfo = await signInManager.GetExternalLoginInfoAsync();
@@ -179,6 +179,12 @@ namespace Foxxit.Controllers
                             UserName = email ?? username,
                             Email = email,
                         };
+
+                        if (remoteError != null)
+                        {
+                            ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
+                            return View("Login");
+                        }
 
                         var registerResult = await userManager.CreateAsync(user);
 
