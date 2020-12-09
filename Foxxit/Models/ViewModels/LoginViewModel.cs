@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Foxxit.Models.ViewModels
 {
-    public class RegisterViewModel
+    public class LoginViewModel
     {
         [Required, StringLength(50, ErrorMessage = "Must be between 3 and 50 characters", MinimumLength = 3)]
         public string UserName { get; set; }
@@ -15,15 +15,22 @@ namespace Foxxit.Models.ViewModels
         [Required, StringLength(50, ErrorMessage = "Must be between 6 and 50 characters", MinimumLength = 6), DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required, StringLength(50, ErrorMessage = "Must be between 6 and 50 characters", MinimumLength = 6), DataType(DataType.Password), Compare("Password", ErrorMessage = "The password does not match the confirmation password!")]
-        public string ConfirmPassword { get; set; }
+        public bool RememberMe { get; set; }
 
         public string DisplayName { get; set; }
         public string AvatarUrl { get; set; }
         public string Message { get; set; }
+        public string ReturnUrl { get; set; }
+        public ICollection<AuthenticationScheme> ExternalLogins { get; set; }
 
-        public RegisterViewModel()
+        public LoginViewModel()
         {
+        }
+
+        public LoginViewModel(string returnUrl, ICollection<AuthenticationScheme> externalLogins)
+        {
+            ReturnUrl = returnUrl;
+            ExternalLogins = externalLogins;
         }
     }
 }

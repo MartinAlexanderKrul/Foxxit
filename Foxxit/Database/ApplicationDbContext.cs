@@ -1,21 +1,23 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Foxxit.Extensions;
 using Foxxit.Models.Entities;
+using Foxxit.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Foxxit.Database
 {
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<long>, long>
     {
-        public ApplicationDbContext(DbContextOptions options)
-            : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
         {
         }
-
-        public DbSet<User> Users { get; set; }
 
         public DbSet<Post> Posts { get; set; }
 
@@ -28,65 +30,131 @@ namespace Foxxit.Database
         // backing DbSet, maybe it is not necessary to access directly
         public DbSet<UserSubReddit> UserSubReddits { get; set; }
 
+        public override int SaveChanges()
+        {
+            ChangeTracker.DetectChanges();
+
+            var markedAsDeleted = ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted);
+
+            SoftDelete(markedAsDeleted);
+
+            return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            ChangeTracker.DetectChanges();
+
+            var markedAsDeleted = ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted);
+
+            SoftDelete(markedAsDeleted);
+
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            // filters out Soft Deleted entities so they are acting as if they're deleted
+            foreach (var type in modelBuilder.Model.GetEntityTypes())
+            {
+                if (typeof(ISoftDeletable).IsAssignableFrom(type.ClrType) && type.BaseType == null)
+                {
+                    modelBuilder.SetSoftDeleteFilter(type.ClrType);
+                }
+            }
+
             // Generate Timestamps on first save
             modelBuilder.Entity<User>()
-                .Property(e => e.CreatedAt)
+                .Property(u => u.CreatedAt)
+                .HasDefaultValueSql("GETDATE()")
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<PostBase>()
-                .Property(p => p.CreatedAt)
+                .Property(pb => pb.CreatedAt)
+                .HasDefaultValueSql("GETDATE()")
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<SubReddit>()
-                .Property(s => s.CreatedAt)
+                .Property(sr => sr.CreatedAt)
+                .HasDefaultValueSql("GETDATE()")
                 .ValueGeneratedOnAdd();
 
             // Relations setup
 
             // Join table for User/Subreddit
             modelBuilder.Entity<UserSubReddit>()
-                .HasKey(fs => new { fs.UserId, fs.SubRedditId });
+                .HasKey(usr => new { usr.UserId, usr.SubRedditId });
 
             // Vote
             modelBuilder.Entity<Vote>()
-                .HasOne(u => u.Owner)
-                .WithMany(v => v.Votes)
-                .HasForeignKey(u => u.FoxxitUserId)
+                .HasOne(v => v.Owner)
+                .WithMany(u => u.Votes)
+                .HasForeignKey(v => v.FoxxitUserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Vote>()
-                .HasOne(p => p.Postbase)
-                .WithMany(v => v.Votes)
-                .HasForeignKey(p => p.PostBaseId)
+                .HasOne(v => v.Postbase)
+                .WithMany(pb => pb.Votes)
+                .HasForeignKey(v => v.PostBaseId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.NoAction);
 
             // Comment
             modelBuilder.Entity<Comment>()
-                .HasOne(u => u.User)
-                .WithMany(c => c.Comments)
-                .HasForeignKey(u => u.UserId)
+                .HasOne(c => c.User)
+                .WithMany(u => u.Comments)
+                .HasForeignKey(c => c.UserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.NoAction);
 
             // Post
             modelBuilder.Entity<Post>()
-                .HasMany(c => c.Comments)
-                .WithOne(p => p.Post)
-                .HasForeignKey(p => p.PostId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasMany(p => p.Comments)
+                .WithOne(c => c.Post)
+                .HasForeignKey(c => c.PostId)
+                .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Post>()
-                .HasOne(u => u.User)
-                .WithMany(p => p.Posts)
+                .HasOne(p => p.User)
+                .WithMany(u => u.Posts)
                 .HasForeignKey(p => p.UserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Post>()
-                .HasOne(s => s.SubReddit)
-                .WithMany(p => p.Posts)
+                .HasOne(p => p.SubReddit)
+                .WithMany(sr => sr.Posts)
                 .HasForeignKey(p => p.SubRedditId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<UserRole>()
+                .HasData(new UserRole
+                {
+                    Id = 1,
+                    Name = "Admin",
+                    NormalizedName = "ADMIN",
+                });
+            modelBuilder.Entity<UserRole>()
+                .HasData(new UserRole
+                {
+                    Id = 2,
+                    Name = "User",
+                    NormalizedName = "USER",
+                });
+        }
+
+        private static void SoftDelete(IEnumerable<EntityEntry> entities)
+        {
+            if (entities != null)
+            {
+                foreach (var item in entities)
+                {
+                    if (item.Entity is ISoftDeletable entity)
+                    {
+                        item.State = EntityState.Unchanged;
+                        entity.IsDeleted = true;
+                    }
+                }
+            }
         }
     }
 }

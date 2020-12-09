@@ -1,15 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using Foxxit.Database;
 using Foxxit.Models.Entities;
+using Foxxit.Repositories;
 using Foxxit.Services;
-using Foxxit.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -51,9 +47,61 @@ namespace Foxxit
             }
 
             services.AddTransient<MailService>();
-            services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = true)
+            services.AddTransient<UserRepository>();
+            services.AddTransient<SubRedditRepository>();
+            services.AddTransient<PostRepository>();
+
+            services.AddIdentity<User, UserRole>(options => options.SignIn.RequireConfirmedEmail = true)
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
+
+            services.AddAuthentication()
+                .AddGoogle("google", options =>
+                {
+                    options.ClientId = Configuration.GoogleClientId;
+                    options.ClientSecret = Configuration.GoogleClientSecret;
+                    options.SignInScheme = IdentityConstants.ExternalScheme;
+                })
+                .AddFacebook("facebook", options =>
+                {
+                    options.ClientId = Configuration.FacebookClientId;
+                    options.ClientSecret = Configuration.FacebookClientSecret;
+                    options.SignInScheme = IdentityConstants.ExternalScheme;
+                })
+                .AddTwitter("twitter", options =>
+                {
+                    var twitterAuth = Config.GetSection("Authentication:Twitter");
+
+                    options.ConsumerKey = Configuration.TwitterClientId;
+                    options.ConsumerSecret = Configuration.TwitterClientSecret;
+                    options.SignInScheme = IdentityConstants.ExternalScheme;
+                });
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                services.AddTransient<MailService>();
+                services.AddIdentity<User, UserRole>(options => options.SignIn.RequireConfirmedEmail = true)
+                        .AddEntityFrameworkStores<ApplicationDbContext>()
+                        .AddDefaultTokenProviders();
+
+                // User settings.
+                options.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = false;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
