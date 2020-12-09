@@ -30,7 +30,7 @@ namespace Foxxit.Controllers
 
         public async Task<IActionResult> SendEmailConfirmation(User user)
         {
-            var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
+            var token = await UserManager.GenerateEmailConfirmationTokenAsync(user);
             var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token }, Request.Scheme);
 
             var data = new RegistrationEmailData(confirmationLink, user.UserName);
@@ -48,7 +48,7 @@ namespace Foxxit.Controllers
                 return RedirectToAction("index", "home");
             }
 
-            var user = userManager.FindByIdAsync(userId);
+            var user = UserManager.FindByIdAsync(userId);
 
             if (user == null)
             {
@@ -56,7 +56,7 @@ namespace Foxxit.Controllers
                 return View("Error");
             }
 
-            var result = await userManager.ConfirmEmailAsync(user.Result, token);
+            var result = await UserManager.ConfirmEmailAsync(user.Result, token);
 
             if (!result.Succeeded)
             {
@@ -75,16 +75,16 @@ namespace Foxxit.Controllers
                 return View(model);
             }
 
-            var existingUser = await userManager.FindByNameAsync(model.UserName);
+            var existingUser = await UserManager.FindByNameAsync(model.UserName);
 
             if (existingUser is null)
             {
                 var user = new User(model.UserName);
-                var registerResult = await userManager.CreateAsync(user, model.Password);
+                var registerResult = await UserManager.CreateAsync(user, model.Password);
 
                 if (registerResult.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(user, "User");
+                    await UserManager.AddToRoleAsync(user, "User");
                     await SendEmailConfirmation(user);
                     return RedirectToAction("Login");
                 }
@@ -115,11 +115,11 @@ namespace Foxxit.Controllers
                 return View(model);
             }
 
-            var existingUser = await userManager.FindByNameAsync(model.UserName);
+            var existingUser = await UserManager.FindByNameAsync(model.UserName);
 
             if (existingUser != null)
             {
-                var signInResult = await signInManager.PasswordSignInAsync(existingUser, model.Password, model.RememberMe, false);
+                var signInResult = await SignInManager.PasswordSignInAsync(existingUser, model.Password, model.RememberMe, false);
 
                 if (signInResult.Succeeded)
                 {
@@ -142,7 +142,7 @@ namespace Foxxit.Controllers
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
             var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { returnUrl });
-            var properties = signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+            var properties = SignInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
 
             return Challenge(properties, provider);
         }
@@ -151,7 +151,7 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
             returnUrl ??= "/account/index";
-            var externalInfo = await signInManager.GetExternalLoginInfoAsync();
+            var externalInfo = await SignInManager.GetExternalLoginInfoAsync();
 
             if (externalInfo is null)
             {
@@ -159,7 +159,7 @@ namespace Foxxit.Controllers
                 return View("Login");
             }
 
-            var signInResult = await signInManager.ExternalLoginSignInAsync(externalInfo.LoginProvider, externalInfo.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+            var signInResult = await SignInManager.ExternalLoginSignInAsync(externalInfo.LoginProvider, externalInfo.ProviderKey, isPersistent: false, bypassTwoFactor: true);
 
             if (!signInResult.Succeeded)
             {
@@ -169,8 +169,8 @@ namespace Foxxit.Controllers
                 if (email != null || username != null)
                 {
                     var user = username != null
-                        ? await userManager.FindByNameAsync(username)
-                        : await userManager.FindByEmailAsync(email);
+                        ? await UserManager.FindByNameAsync(username)
+                        : await UserManager.FindByEmailAsync(email);
 
                     if (user is null)
                     {
@@ -186,11 +186,11 @@ namespace Foxxit.Controllers
                             return View("Login");
                         }
 
-                        var registerResult = await userManager.CreateAsync(user);
+                        var registerResult = await UserManager.CreateAsync(user);
 
                         if (registerResult.Succeeded)
                         {
-                            await userManager.AddToRoleAsync(user, "User");
+                            await UserManager.AddToRoleAsync(user, "User");
 
                             return RedirectToAction("Login");
                         }
@@ -200,8 +200,8 @@ namespace Foxxit.Controllers
                         }
                     }
 
-                    await userManager.AddLoginAsync(user, externalInfo);
-                    await signInManager.SignInAsync(user, isPersistent: false);
+                    await UserManager.AddLoginAsync(user, externalInfo);
+                    await SignInManager.SignInAsync(user, isPersistent: false);
 
                     return LocalRedirect(returnUrl);
                 }
@@ -230,7 +230,7 @@ namespace Foxxit.Controllers
             }
 
             var user = await GetActiveUserAsync();
-            var changePasswordResult = await userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+            var changePasswordResult = await UserManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
 
             if (changePasswordResult.Succeeded)
             {
@@ -248,7 +248,7 @@ namespace Foxxit.Controllers
         [HttpGet("logout")]
         public IActionResult Logout()
         {
-            signInManager.SignOutAsync();
+            SignInManager.SignOutAsync();
             return RedirectToAction("Login");
         }
     }
