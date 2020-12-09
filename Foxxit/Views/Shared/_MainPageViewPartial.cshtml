@@ -1,9 +1,6 @@
 ﻿@using Foxxit.Models.ViewModels
 @model MainPageViewModel
-
-<aside>
-    @await Html.PartialAsync("_SiderBar_SubRedditsViewPartial")
-</aside>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <section>
     <div class="section_intro">
@@ -20,9 +17,22 @@
         @foreach (var post in Model.Posts)
         {
             <div class="article_left">
-                <div class="post_vote">@Html.ActionLink("↑", "UpVote", "Home", new { postId = post.Id })</div>
+                <div class="post_vote">
+                    <form asp-action="Vote" asp-controller="Home">
+                        <input type="hidden" value="up" name="voteType" />
+                        <input type="hidden" value="post.Id" name="postId" />
+                        <button type="submit"><i asp-for class="fa fa-thumbs-up fa-lg"></i></button>
+                    </form>
+                </div>
                 <div class="post_vote">@post.Votes.Count()</div>
-                <div class="post_vote">@Html.ActionLink("↓", "DownVote", "Home", new { postId = post.Id })</div>
+
+                <div class="post_vote">
+                    <form asp-action="Vote" asp-controller="Home">
+                        <input type="hidden" value="down" name="voteType" />
+                        <input type="hidden" value="post.Id" name="postId" />
+                        <button type="submit"><i class="fa fa-thumbs-down fa-lg"></i></button>
+                    </form>
+                </div>
             </div>
 
             <div class="article_middle">

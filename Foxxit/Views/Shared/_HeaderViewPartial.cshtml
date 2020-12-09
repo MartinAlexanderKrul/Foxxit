@@ -1,14 +1,38 @@
-﻿<h3 class="side_bar_header">Trending SubReddits</h3>
+﻿@using Foxxit.Models.ViewModels
+@model MainPageViewModel
 
-@foreach (var subReddit in Model.SubReddits)
-{
-    <div class="side_bar">
-        <div class="side_bar_left">
-            @subReddit.Name
-        </div>
-
-        <div class="side_bar_right">
-            <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Home", new { subRedditId = subReddit.Id })</div>
-        </div>
+<div class="header_left">
+    <div class="header_logo header_sections">
+        <img src="~/assets/logo.png" alt="Foxxit logo" width="44px">
     </div>
-}
+
+    <select class="header_inputs header_sections" name="SubReddits" id="header_subReddits">
+        <option class="header_options">SubReddits</option>
+        @foreach (var subReddit in Model.SubReddits)
+        {
+            <option class="header_options" value="@subReddit.Id">@subReddit.Name</option>
+        }
+    </select>
+    <div class="header_search_container header_sections">
+        <img src="~/assets/search.png" alt="Search button" width="18px" id="header_search_icon">
+        <input class="header_inputs" type="text" id="header_search">
+    </div>
+</div>
+<div class="header_right">
+    <div class="header_right_one">
+        <!-- CHAT -->
+        <i class="fa fa-comments fa-lg header_icons"></i>
+
+        <!-- MESSAGE BOX (empty + new message) -->
+        <i class="fa fa-envelope-open fa-lg header_icons"></i>
+        <!-- <i class="fa fa-envelope fa-lg"></i> -->
+    </div>
+
+    <div class="header_right_two">
+        Username
+    </div>
+
+    <div class="header_right_three">
+        <i class="fa fa-cog fa-lg"></i>
+    </div>
+</div>

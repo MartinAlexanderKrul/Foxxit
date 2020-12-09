@@ -14,7 +14,22 @@
     --right-side-size: 20%; /* 242px */
 }
 
+/* GENERAL */
+
 * {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: var(--font-color);
+    text-decoration: none;
+}
+
+button {
+    outline: none;
+    border: none;
+    background: none;
     margin: 0;
     padding: 0;
 }
@@ -24,6 +39,8 @@ html, body {
     font-family: var(--font-main);
     color: var(--font-color)
 }
+
+/* HEADER */
 
 header {
     background-color: var(--section-color);
@@ -71,7 +88,7 @@ header {
 
 #header_search {
     padding-left: 30px;
-    width: 100%;
+    width: 99%;
 }
 
 .header_search_container {
@@ -94,7 +111,7 @@ header {
 
 .header_right_one {
     width: 30%;
-    margin-left: 2%;
+    margin-left: 3%;
     flex-grow: 1;
 }
 
@@ -118,6 +135,8 @@ header {
     margin-right: 10%;
 }
 
+/* MAIN CONTENT */
+
 main {
     position: absolute;
     width: var(--main-page-size);
@@ -129,6 +148,8 @@ main {
     flex-direction: row-reverse;
     justify-content: space-between;
 }
+
+/* SIDEBAR */
 
 aside {
     background-color: var(--section-color);
@@ -152,6 +173,8 @@ aside {
     margin-bottom: 30px;
 }
 
+/* POSTS */
+
 section {
     width: var(--left-side-size);
     height: 100%;
@@ -163,6 +186,10 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.side_bar_left {
+    margin-left: 5%;
 }
 
 .not_button {
@@ -197,8 +224,6 @@ article {
     display: flex;
     justify-content: space-between;
 }
-
-/* PAUSE */
 
 .article_text {
     margin-left: 2.5%;

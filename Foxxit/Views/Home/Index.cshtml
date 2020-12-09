@@ -1,3 +1,9 @@
-
 ﻿@{Layout = "_Layout";}
-@await Html.PartialAsync("_ContentViewPartial")
+@using Foxxit.Models.ViewModels
+@model MainPageViewModel
+
+<aside>
+    @await Html.PartialAsync("_SideBar_SubRedditsViewPartial", Model)
+</aside>
+
+@await Html.PartialAsync("_MainPageViewPartial")

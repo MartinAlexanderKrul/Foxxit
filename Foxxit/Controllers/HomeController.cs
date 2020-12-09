@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Foxxit.Models.Entities;
+using Foxxit.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foxxit.Controllers
 {
@@ -10,9 +13,11 @@ namespace Foxxit.Controllers
         }
 
         [HttpGet("index")]
+        [HttpGet("")]
         public IActionResult Index()
         {
-            return View("index");
+            var model = new MainPageViewModel();
+            return View("Index", model);
         }
     }
 }

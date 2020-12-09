@@ -59,6 +59,7 @@
 
   <ItemGroup>
     <Folder Include="Models\Entities\" />
+    <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 
 </Project>
