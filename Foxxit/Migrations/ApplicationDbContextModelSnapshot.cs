@@ -28,7 +28,8 @@ namespace Foxxit.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
@@ -62,7 +63,8 @@ namespace Foxxit.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<long>("CreatedById")
                         .HasColumnType("bigint");
@@ -100,7 +102,8 @@ namespace Foxxit.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("DisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -410,41 +413,17 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "1924ed47-114b-4637-9bf1-9a037f3b8486",
+                            ConcurrencyStamp = "4a518f96-4d06-49ea-8060-d2e756791025",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "265863a9-b1c2-4333-a3ec-1de12818ad74",
+                            ConcurrencyStamp = "ac016d81-b09c-4aff-8726-1f11c0545236",
                             Name = "User",
                             NormalizedName = "USER"
                         });
-                });
-
-            modelBuilder.Entity("Foxxit.Models.Entities.User", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser<long>");
-
-                    b.Property<string>("About")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AvatarURL")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
-
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Karma")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("Foxxit.Models.Entities.UserSubReddit", b =>
