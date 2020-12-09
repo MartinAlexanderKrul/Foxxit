@@ -21,6 +21,11 @@ namespace Foxxit.Services
             return await PostRepository.GetAllAsync();
         }
 
+        public async Task<IEnumerable<Post>> Filter(Func<Post, bool> condition)
+        {
+            return await PostRepository.Filter(condition);
+        }
+
         public async Task<Post> GetByIdAsync(long id)
         {
             return await PostRepository.GetByIdAsync(id);

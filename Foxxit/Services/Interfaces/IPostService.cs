@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Foxxit.Models.Entities;
 
@@ -11,6 +12,8 @@ namespace Foxxit.Services
         void Delete(Post entity);
 
         Task<IEnumerable<Post>> GetAllAsync();
+
+        Task<IEnumerable<Post>> Filter(Func<Post, bool> condition);
 
         Task<Post> GetByIdAsync(long id);
 

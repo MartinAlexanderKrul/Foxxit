@@ -9,7 +9,6 @@ namespace Foxxit.Models.Entities
     {
         public string AvatarURL { get; set; }
         public string DisplayName { get; set; }
-
         public int Karma { get; set; }
         public string About { get; set; }
         public DateTime CreatedAt { get; set; }

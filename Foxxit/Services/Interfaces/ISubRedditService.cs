@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Foxxit.Models.Entities;
 
@@ -11,6 +12,8 @@ namespace Foxxit.Services
         void Delete(SubReddit entity);
 
         Task<IEnumerable<SubReddit>> GetAllAsync();
+
+        Task<IEnumerable<SubReddit>> Filter(Func<SubReddit, bool> condition);
 
         Task<SubReddit> GetByIdAsync(long id);
 

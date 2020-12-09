@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Foxxit.Database;
 using Foxxit.Models.Entities;
@@ -21,6 +23,11 @@ namespace Foxxit.Repositories
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await table.ToListAsync();
+        }
+
+        public async Task<IEnumerable<T>> Filter(Func<T, bool> condition)
+        {
+            return await table.Where(condition).AsQueryable().ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(long id)
