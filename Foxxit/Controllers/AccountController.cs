@@ -168,10 +168,10 @@ namespace Foxxit.Controllers
 
                 if (email != null || username != null)
                 {
-                    var user = username != null
-                        ? await UserManager.FindByNameAsync(username)
-                        : await UserManager.FindByEmailAsync(email);
-
+                    var user = email != null
+                        ? await userManager.FindByEmailAsync(email)
+                        : await userManager.FindByNameAsync(username);
+                        
                     if (user is null)
                     {
                         user = new User
@@ -196,7 +196,12 @@ namespace Foxxit.Controllers
                         }
                         else
                         {
-                            ModelState.AddModelError(string.Empty, "External registration went wrong!");
+                            foreach (var error in registerResult.Errors)
+                            {
+                                ModelState.AddModelError(string.Empty, error.Description);
+                            }
+
+                            return View("Login");
                         }
                     }
 
