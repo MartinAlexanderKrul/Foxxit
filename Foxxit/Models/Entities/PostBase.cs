@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Foxxit.Services.Interfaces;
 
 namespace Foxxit.Models.Entities
 {
-    public class PostBase : IIdentityEntity
+    public class PostBase : IIdentityEntity, ISoftDeletable
     {
         public long Id { get; set; }
         public string Text { get; set; }
@@ -13,6 +14,7 @@ namespace Foxxit.Models.Entities
         public User User { get; set; }
         public long UserId { get; set; }
         public ICollection<Comment> Comments { get; set; }
+        public bool IsDeleted { get; set; }
 
         public PostBase()
         {
