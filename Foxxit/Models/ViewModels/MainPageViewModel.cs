@@ -6,12 +6,15 @@ using Foxxit.Models.Entities;
 
 namespace Foxxit.Models.ViewModels
 {
-    public class MainViewModel
+    public class MainPageViewModel
     {
-        public MainViewModel()
+        public MainPageViewModel()
         {
+            Posts = new List<Post>();
+            SubReddits = new List<SubReddit>();
         }
 
         public List<Post> Posts { get; set; }
+        public List<SubReddit> SubReddits { get; set; }
     }
 }

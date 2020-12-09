@@ -1,0 +1,58 @@
+﻿@using Foxxit.Models.ViewModels
+@model MainPageViewModel
+
+<aside>
+    @await Html.PartialAsync("_SiderBar_SubRedditsViewPartial")
+</aside>
+
+<section>
+    <div class="section_intro">
+        <h2>Welcome to Foxxit</h2>
+        <div class="section_intro_buttons">
+            <div class="not_button section_intro_button">@Html.ActionLink("HOT", "ListHotTopics", "Home")</div>
+            <div class="not_button section_intro_button">@Html.ActionLink("NEW", "ListNewTopics", "Home")</div>
+            <div class="not_button section_intro_button">@Html.ActionLink("TOP", "ListTopTopics", "Home")</div>
+        </div>
+    </div>
+
+    <article>
+
+        @foreach (var post in Model.Posts)
+        {
+            <div class="article_left">
+                <div class="post_vote">@Html.ActionLink("↑", "UpVote", "Home", new { postId = post.Id })</div>
+                <div class="post_vote">@post.Votes.Count()</div>
+                <div class="post_vote">@Html.ActionLink("↓", "DownVote", "Home", new { postId = post.Id })</div>
+            </div>
+
+            <div class="article_middle">
+                <div class="article_header">
+                    <div class="article_text">
+                        <h4>@post.Title</h4>
+                        <p class="article_text_info">Posted by @post.User.UserName @((DateTime.Now - @post.CreatedAt).TotalDays) ago in @post.SubReddit.Name</p>
+                    </div>
+                    <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Home", new { subRedditId = post.SubRedditId })</div>
+                </div>
+
+                <div class="article_content">
+                    @if (post.Text is null)
+                    {
+                        <img width="100%" src="@post.ImageURL" alt="@post.Title" />
+                    }
+                    else
+                    {
+                        <p>@post.Text</p>
+                    }
+                </div>
+
+                <div class="article_footer">
+                    <i class="fa fa-comment"></i>
+                    <div class="vote">@Html.ActionLink($"{post.Comments.Count()} COMMENTS", "Comments", "Home", new { postId = post.Id })</div>
+                </div>
+            </div>
+        }
+
+        <div class="article_right">
+        </div>
+    </article>
+</section>

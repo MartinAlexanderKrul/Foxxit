@@ -1,4 +1,7 @@
-﻿<h3 class="side_bar_header">Trending SubReddits</h3>
+﻿@using Foxxit.Models.ViewModels
+@model MainPageViewModel
+
+<h3 class="side_bar_header">Trending SubReddits</h3>
 
 @foreach (var subReddit in Model.SubReddits)
 {

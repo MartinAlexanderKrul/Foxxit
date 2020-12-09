@@ -1,0 +1,243 @@
+﻿:root {
+    /* COLORS */
+    --font-color: #3C3C3B; /* Fox legs dark grey */
+    --background-color: #E3E3E3; /* Grey */
+    --section-color: #F5F5F5; /* White */
+    --button-color: #f6f3cf; /* Fox tail cream */
+    --green-fox-light-green: #3CB878;
+    --green-fox-dark-green: #007335;
+    /* FONTS */
+    --font-main: 'Roboto', sans-serif;
+    /* SIZING */
+    --main-page-size: 70%; /* 1024px */
+    --left-side-size: 77.5%; /* 764px */
+    --right-side-size: 20%; /* 242px */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    background-color: var(--background-color);
+    font-family: var(--font-main);
+    color: var(--font-color)
+}
+
+header {
+    background-color: var(--section-color);
+    position: absolute;
+    width: var(--main-page-size);
+    height: 64px;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header_left {
+    width: var(--left-side-size);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header_sections {
+    margin-left: 1.5%;
+}
+
+.headers_logo {
+    width: 10%;
+}
+
+.header_inputs {
+    background-color: var(--background-color);
+    font-family: var(--font-main);
+    border: none;
+    border-radius: 10px;
+    height: 32px;
+    padding-left: 10px;
+}
+
+    .header_inputs:focus {
+        outline: none;
+    }
+
+#header_subReddits {
+    width: 30%;
+}
+
+#header_search {
+    padding-left: 30px;
+    width: 100%;
+}
+
+.header_search_container {
+    position: relative;
+    width: 60%;
+}
+
+#header_search_icon {
+    position: absolute;
+    left: 7px;
+    top: 7px;
+}
+
+.header_right {
+    width: var(--right-side-size);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header_right_one {
+    width: 30%;
+    margin-left: 2%;
+    flex-grow: 1;
+}
+
+.header_right_two {
+    flex-shrink: 2;
+    width: 40%;
+}
+
+.header_right_three {
+    width: 10%;
+    margin-right: 5%;
+    text-align: right;
+    flex-grow: 1;
+}
+
+.header_right_content {
+    width: 25%;
+}
+
+.header_icons {
+    margin-right: 10%;
+}
+
+main {
+    position: absolute;
+    width: var(--main-page-size);
+    height: 100%;
+    left: 50%;
+    transform: translate(-50%);
+    top: 85px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+aside {
+    background-color: var(--section-color);
+    width: var(--right-side-size);
+    height: 631px;
+    padding-top: 32px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.side_bar {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.side_bar_header {
+    margin-bottom: 30px;
+}
+
+section {
+    width: var(--left-side-size);
+    height: 100%;
+}
+
+.not_button, .side_bar_left {
+    width: 60px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.not_button {
+    background-color: var(--button-color);
+    border-radius: 10px;
+}
+
+.section_intro {
+    background-color: var(--section-color);
+    height: 71px;
+    margin-bottom: 20px;
+    padding: 10px;
+    padding-left: 15px;
+}
+
+.section_intro_buttons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.section_intro_button {
+    margin-right: 20px;
+}
+
+article {
+    background-color: var(--section-color);
+    padding: 10px;
+    padding-left: 15px;
+    height: auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* PAUSE */
+
+.article_text {
+    margin-left: 2.5%;
+}
+
+.article_text_info {
+    font-size: small;
+}
+
+.article_left {
+    width: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.article_middle {
+    width: 80%;
+}
+
+.article_right {
+    width: 5%;
+}
+
+.article_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.article_content {
+    margin-top: 10px;
+}
+
+.article_footer {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+.vote {
+    margin-left: 5px;
+}
