@@ -169,9 +169,9 @@ namespace Foxxit.Controllers
                 if (email != null || username != null)
                 {
                     var user = email != null
-                        ? await userManager.FindByEmailAsync(email)
-                        : await userManager.FindByNameAsync(username);
-                        
+                        ? await UserManager.FindByEmailAsync(email)
+                        : await UserManager.FindByNameAsync(username);
+
                     if (user is null)
                     {
                         user = new User
