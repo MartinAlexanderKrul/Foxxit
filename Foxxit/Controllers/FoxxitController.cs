@@ -17,7 +17,7 @@ namespace Foxxit.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            var model = new MainPageViewModel() { ActualUser = new User() { UserName = "Nicolburg", Id = 1 } };
+            var model = new MainPageViewModel() { CurrentUser = new User() { UserName = "Nicolburg", Id = 1 } };
             return View("Index", model);
         }
     }
