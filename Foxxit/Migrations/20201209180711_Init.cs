@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Foxxit.Migrations
 {
-    public partial class test : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -299,12 +299,12 @@ namespace Foxxit.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
-                values: new object[] { 1L, "4a518f96-4d06-49ea-8060-d2e756791025", "UserRole", "Admin", "ADMIN" });
+                values: new object[] { 1L, "84d9bf82-def2-4e7d-8d88-77f27230e46f", "UserRole", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
-                values: new object[] { 2L, "ac016d81-b09c-4aff-8726-1f11c0545236", "UserRole", "User", "USER" });
+                values: new object[] { 2L, "f1f0bce7-55ee-488a-a02d-9b0ac8213c77", "UserRole", "User", "USER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
