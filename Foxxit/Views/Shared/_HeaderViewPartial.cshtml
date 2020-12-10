@@ -21,8 +21,17 @@
 
     <div class="header_search_container">
         <form asp-action="Search" asp-controller="Home">
-            <img src="~/assets/search.png" alt="Search button" width="18px" id="header_search_icon">
-            <input class="header_inputs" type="text" id="header_search">
+            <input class="header_inputs" type="text" id="header_search" placeholder="search for...">
+            <img src="~/assets/search.png" alt="Search" width="18px" id="header_search_icon">
+
+            <select class="header_inputs header_sections" name="category" id="header_search_category">
+                <option value="all">in all</option>
+                <option value="subReddit">in subReddits</option>
+                <option value="post">in posts</option>
+                <option value="comment">in comments</option>
+                <option value="comment">in users</option>
+            </select>
+            <input type="submit" hidden />
         </form>
     </div>
 </div>
@@ -43,7 +52,7 @@
         }
         else
         {
-            @Model.ActualUser.UserName
+            @Model.CurrentUser.UserName
         }
     </div>
 

@@ -16,13 +16,12 @@ namespace Foxxit.Models.ViewModels
 
         public MainPageViewModel(User actualUser, List<Post> posts, List<SubReddit> subReddits)
         {
-            ActualUser = actualUser;
+            CurrentUser = actualUser;
             Posts = posts;
             SubReddits = subReddits;
         }
 
-        public User ActualUser { get; set; }
-
+        public User CurrentUser { get; set; }
         public List<Post> Posts { get; set; }
         public List<SubReddit> SubReddits { get; set; }
     }
