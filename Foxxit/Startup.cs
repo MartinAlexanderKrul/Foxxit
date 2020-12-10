@@ -45,7 +45,11 @@ namespace Foxxit
             }
 
             services.AddTransient<MailService>();
-            services.AddIdentity<User, UserRole>(options => options.SignIn.RequireConfirmedEmail = true)
+            services.AddIdentity<User, UserRole>(options =>
+            {
+                options.SignIn.RequireConfirmedEmail = true;
+                options.User.RequireUniqueEmail = true;
+            })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
@@ -74,10 +78,10 @@ namespace Foxxit
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
-                options.Password.RequireDigit = true;
+                options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = true;
+                options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
 

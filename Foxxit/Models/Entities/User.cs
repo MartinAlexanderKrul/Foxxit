@@ -29,9 +29,10 @@ namespace Foxxit.Models.Entities
       
         public bool IsDeleted { get; set; }
         
-        public User(string userName)
+        public User(string userName, string email)
         {
             UserName = userName;
+            Email = email;
         }
 
         public User()

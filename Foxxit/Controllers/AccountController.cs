@@ -45,26 +45,32 @@ namespace Foxxit.Controllers
         {
             if (userId == null || token == null)
             {
-                return RedirectToAction("index", "home");
+                return RedirectToAction("index", "account");
             }
 
             var user = userManager.FindByIdAsync(userId);
 
             if (user == null)
             {
-                ViewBag.ErrorMessage = $"The user ID {userId} is invalid";
-                return View("Error");
+                ModelState.AddModelError(string.Empty, "The user ID {userId} is invalid");
+                return View("Register");
             }
 
             var result = await userManager.ConfirmEmailAsync(user.Result, token);
 
             if (!result.Succeeded)
             {
-                ViewBag.ErrorMessage = "Email cannot be confirmed.";
-                return View("Error");
+                ModelState.AddModelError(string.Empty, "Email cannot be confirmed.");
+                return View("Register");
             }
 
             return View("EmailConfirmationSuccessful");
+        }
+
+        [HttpGet("register")]
+        public IActionResult Register()
+        {
+            return View();
         }
 
         [HttpPost("register")]
@@ -75,11 +81,11 @@ namespace Foxxit.Controllers
                 return View(model);
             }
 
-            var existingUser = await userManager.FindByNameAsync(model.UserName);
+            var existingUser = await userManager.FindByEmailAsync(model.Email);
 
             if (existingUser is null)
             {
-                var user = new User(model.UserName);
+                var user = new User(model.UserName, model.Email);
                 var registerResult = await userManager.CreateAsync(user, model.Password);
 
                 if (registerResult.Succeeded)
