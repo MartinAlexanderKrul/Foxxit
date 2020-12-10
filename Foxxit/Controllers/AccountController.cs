@@ -1,5 +1,9 @@
-﻿using System.Security.Claims;
+﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Foxxit.Attributes.RoleServices;
+using Foxxit.Database;
+using Foxxit.Enums;
 using Foxxit.Models;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
@@ -14,17 +18,22 @@ namespace Foxxit.Controllers
     public class AccountController : MainController
     {
         private readonly MailService mailService;
+        private readonly ApplicationDbContext context;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, MailService mailService)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, MailService mailService, ApplicationDbContext context)
             : base(userManager, signInManager)
         {
             this.mailService = mailService;
+            this.context = context;
         }
 
-        [Authorize]
+        // Here - defaultly set as first login, then Index page. So must be set Login/Registration page as first now.
+        [AuthorizedRoles(Role.Admin, Role.User)] // Taking only Enums from Foxxit.Enums.Role.cs
         [HttpGet("index")]
         public IActionResult Index()
         {
+
+
             return View();
         }
 
@@ -104,6 +113,10 @@ namespace Foxxit.Controllers
         [HttpGet("login")]
         public IActionResult Login()
         {
+            User user = new User("Srandista");
+            UserManager.CreateAsync(user, "Aa1234");
+
+
             return View();
         }
 

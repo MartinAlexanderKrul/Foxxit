@@ -9,7 +9,7 @@ namespace Foxxit.Controllers
         {
         }
 
-        [HttpGet("index")]
+        // [HttpGet("index")]
         public IActionResult Index()
         {
             return View("index");
