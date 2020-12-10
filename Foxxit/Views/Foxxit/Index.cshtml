@@ -2,8 +2,16 @@
 @using Foxxit.Models.ViewModels
 @model MainPageViewModel
 
-<aside>
-    @await Html.PartialAsync("_SideBar_SubRedditsViewPartial", Model)
-</aside>
+<header>
+    @await Html.PartialAsync("_HeaderViewPartial")
+</header>
 
-@await Html.PartialAsync("_MainPageViewPartial")
+<main>
+    <aside>
+        @await Html.PartialAsync("_SideBar_SubRedditsViewPartial", Model)
+    </aside>
+
+    <section>
+        @await Html.PartialAsync("_MainPageViewPartial")
+    </section>
+</main>
