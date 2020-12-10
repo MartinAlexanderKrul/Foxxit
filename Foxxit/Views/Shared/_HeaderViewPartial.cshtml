@@ -8,7 +8,7 @@
     </div>
 
     <div class="header_subReddits_container">
-        <form asp-action="ViewSubReddit" asp-controller="Home">
+        <form asp-action="ViewSubReddit" asp-controller="Foxxit">
             <select class="header_inputs" name="SubReddits" id="header_subReddits" onchange="this.form.submit()">
                 <option class="header_options">SubReddits</option>
                 @foreach (var subReddit in Model.SubReddits)
@@ -20,7 +20,7 @@
     </div>
 
     <div class="header_search_container">
-        <form asp-action="Search" asp-controller="Home">
+        <form asp-action="Search" asp-controller="Foxxit">
             <input class="header_inputs" type="text" id="header_search" placeholder="search for...">
             <img src="~/assets/search.png" alt="Search" width="18px" id="header_search_icon">
 
