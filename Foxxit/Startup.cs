@@ -47,7 +47,7 @@ namespace Foxxit
             services.AddTransient<MailService>();
             services.AddIdentity<User, UserRole>(options =>
             {
-                options.SignIn.RequireConfirmedEmail = true;
+                options.SignIn.RequireConfirmedEmail = false;
                 options.User.RequireUniqueEmail = true;
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()

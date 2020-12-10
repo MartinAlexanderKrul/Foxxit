@@ -91,7 +91,7 @@ namespace Foxxit.Controllers
                 if (registerResult.Succeeded)
                 {
                     await userManager.AddToRoleAsync(user, "User");
-                    await SendEmailConfirmation(user);
+                    // await SendEmailConfirmation(user);
                     return RedirectToAction("Login");
                 }
                 else
@@ -101,7 +101,7 @@ namespace Foxxit.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Username already exists!");
+                ModelState.AddModelError(string.Empty, "Email is already taken!");
             }
 
             return View(model);
@@ -133,6 +133,7 @@ namespace Foxxit.Controllers
                 }
                 else
                 {
+                    // ModelState.AddModelError(string.Empty, "Your email was not approved!");
                     ModelState.AddModelError(string.Empty, "Try to type your password again!");
                 }
             }
