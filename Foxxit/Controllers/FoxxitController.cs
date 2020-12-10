@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Foxxit.Controllers
 {
-    public class FoxxitController : Controller
+    public class FoxxitController : MainController
     {
-        // public Service Service { get; private set; }
-        public FoxxitController(/*Service service*/)
+        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager)
+            : base(userManager, signInManager)
         {
         }
 
@@ -16,7 +17,7 @@ namespace Foxxit.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            var model = new MainPageViewModel();
+            var model = new MainPageViewModel() { ActualUser = new User() { UserName = "Nicolburg", Id = 1 } };
             return View("Index", model);
         }
     }
