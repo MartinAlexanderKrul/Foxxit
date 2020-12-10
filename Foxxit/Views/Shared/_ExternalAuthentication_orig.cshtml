@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Foxxit.Models.Entities
+
+@inject SignInManager<User> SignInManager
+
+<div class="col-md-4 offset-2">
+    <section>
+        @{
+            var providers = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            if (!providers.Any())
+            {
+                <div>
+                    <p>
+                        We couldn't find any external provider
+                    </p>
+                </div>
+            }
+            else
+            {@using (Html.BeginForm("ExternalLogin", "Account", FormMethod.Post, new { returnurl = @ViewData["ReturnUrl"] }))
+                {
+                    <div class="form-horizontal">
+                        <p>
+                            @foreach (var provider in providers)
+                            {
+                                <input type="submit" class="btn btn-info" value="@provider.Name" name="provider" />
+                            }
+                        </p>
+                    </div>
+                }
+            }
+    }
+    </section>
+</div>
