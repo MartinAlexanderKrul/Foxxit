@@ -129,14 +129,22 @@ header {
     width: 100%;
 }
 
-#header_search {
-    position: relative;
-    width: 97%;
-}
-
 .header_search_container {
     position: relative;
     width: 60%;
+}
+
+#header_search {
+    position: relative;
+    width: 92.5%;
+    padding-left: 7.5%;
+}
+
+#header_search_category {
+    width: 25%;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 #header_search_icon {
