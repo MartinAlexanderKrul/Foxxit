@@ -46,7 +46,7 @@
     </div>
 
     <div class="header_right_two">
-        @if (false)
+        @if (Model.CurrentUser is null)
         {
             <a href="/account/login">Login</a>
         }
