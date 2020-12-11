@@ -6,16 +6,16 @@ using Foxxit.Models.Entities;
 
 namespace Foxxit.Models.DTO
 {
-    public class SearchReturnType
+    public class SearchReturnModel
     {
-        public SearchReturnType(IEnumerable<Post> posts, IEnumerable<SubReddit> subReddits, IEnumerable<Comment> comments)
+        public SearchReturnModel(IEnumerable<Post> posts, IEnumerable<SubReddit> subReddits, IEnumerable<Comment> comments)
         {
             Posts = posts;
             SubReddits = subReddits;
             Comments = comments;
         }
 
-        public SearchReturnType()
+        public SearchReturnModel()
         {
         }
 

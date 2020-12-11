@@ -23,7 +23,7 @@ namespace Foxxit.Services
 
         public dynamic Search(string category, string keyword)
         {
-            var result = new SearchReturnType();
+            var result = new SearchReturnModel();
 
             switch (category)
             {
@@ -40,7 +40,7 @@ namespace Foxxit.Services
                     break;
 
                 default:
-                    result = new SearchReturnType(SearchInPosts(keyword), SearchInSubReddits(keyword), SearchInComments(keyword));
+                    result = new SearchReturnModel(SearchInPosts(keyword), SearchInSubReddits(keyword), SearchInComments(keyword));
                     break;
             }
 
