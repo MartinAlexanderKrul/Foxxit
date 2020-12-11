@@ -1,0 +1,17 @@
+﻿
+@using (Html.BeginForm("ExternalLogin", "Account", FormMethod.Post, new { returnurl = @ViewData["ReturnUrl"], @class = "img_button" }))
+{
+
+    <input type="hidden" value="google" name="provider" />
+    <button class="img_button" type="submit"><img class="img_button" value="google" name="provider" src="~/css/google_logo.png" alt="google" /></button>
+}
+@using (Html.BeginForm("ExternalLogin", "Account", FormMethod.Post, new { returnurl = @ViewData["ReturnUrl"], @class = "img_button" }))
+{
+    <input type="hidden" value="facebook" name="provider" />
+    <button class="img_button" type="submit"><img class="img_button" value="facebook" name="provider" src="~/css/fb_logo.png" alt="facebook" /></button>
+}
+@using (Html.BeginForm("ExternalLogin", "Account", FormMethod.Post, new { returnurl = @ViewData["ReturnUrl"], @class = "img_button" }))
+{
+    <input type="hidden" value="twitter" name="provider" />
+    <button class="img_button" type="submit"><img class="img_button" value="twitter" name="provider" src="~/css/twitter_logo.png" alt="twitter" /></button>
+}

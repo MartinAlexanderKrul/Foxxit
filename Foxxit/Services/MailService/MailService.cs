@@ -9,7 +9,7 @@ namespace Foxxit.Services
         private const string Email = "foxxit2020@gmail.com";
         private const string Name = "Foxxit Team";
         private const string RegistrationTemplateId = "d-eda73c0ba07a49d1bac1921215adda45";
-      
+
         public async Task SendEmailAsync(string mailTo, object data)
         {
             var apiKey = Configuration.SendGridApiKey;

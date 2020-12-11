@@ -2,23 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Foxxit.Models.Entities;
-using Microsoft.AspNetCore.Identity;
+using Foxxit.Repositories;
 
 namespace Foxxit.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        private readonly SignInManager<User> signinManager;
-        public UserService(SignInManager<User> signinManager)
+        public UserService(UserRepository userRepository)
         {
-            this.signinManager = signinManager;
+            UserRepository = userRepository;
         }
 
-        // public async Task<User> GetCurrentUser()
-        // {
-        //    var user = await signinManager.GetExternalLoginInfoAsync();
-        //    return user;
-        // }
+        public UserRepository UserRepository { get; set; }
     }
 }

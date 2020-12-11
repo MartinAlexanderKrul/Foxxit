@@ -1,0 +1,25 @@
+﻿@{ Layout = "_Layout";}
+@using Foxxit.Models.ViewModels
+@model RegisterViewModel
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    <div>
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "username" })
+    </div>
+    <p>@Html.ValidationMessageFor(m => m.UserName, null, new { @class = "text-danger" })</p>
+    <br>
+
+    <div>
+    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "password" })
+    </div>
+    <p>@Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })</p>
+   
+    <div>
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "confirm password" })
+    </div>
+
+    <p>@Html.ValidationMessageFor(m => m.ConfirmPassword, null, new { @class = "text-danger" })</p>
+    <br>
+    <input class="button" type="submit" name="REGISTER" />
+}

@@ -352,3 +352,6 @@ MigrationBackup/
 .DS_Store
 Foxxit/.DS_Store
 Foxxit/Models/.DS_Store
+
+# Launchsettings
+**/Properties/launchSettings.json

@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Foxxit.Models.Entities;
+﻿using System.Threading.Tasks;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Foxxit.Controllers
 {
-    [Route("")]
-    public class HomeController : Controller
+    public class FoxxitController : Controller
     {
-        private readonly SubredditService subredditService;
-        public HomeController(SubredditService subredditService)
+        private readonly SubRedditService subredditService;
+
+        public FoxxitController(SubRedditService subredditService)
         {
             this.subredditService = subredditService;
         }
@@ -25,7 +23,7 @@ namespace Foxxit.Controllers
         [HttpGet("subreddit")]
         public async Task<IActionResult> Subreddit(long subredId)
         {
-            var subreddit = await subredditService.FindById(subredId);
+            var subreddit = await subredditService.GetByIdAsync(subredId);
             var viewModel = new SubredditViewModel() { Subreddit = subreddit };
             return View(viewModel);
         }
