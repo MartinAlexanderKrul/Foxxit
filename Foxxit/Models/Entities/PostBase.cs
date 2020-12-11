@@ -19,6 +19,7 @@ namespace Foxxit.Models.Entities
         public PostBase()
         {
             Votes = new Collection<Vote>();
+            Comments = new Collection<Comment>();
         }
     }
 }
