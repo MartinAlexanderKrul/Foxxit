@@ -50,6 +50,7 @@ namespace Foxxit
             services.AddTransient<UserRepository>();
             services.AddTransient<SubRedditRepository>();
             services.AddTransient<PostRepository>();
+            services.AddTransient<SearchService>();
 
             services.AddIdentity<User, UserRole>(options => options.SignIn.RequireConfirmedEmail = true)
             .AddEntityFrameworkStores<ApplicationDbContext>()
