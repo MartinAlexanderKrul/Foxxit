@@ -12,9 +12,14 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="5.0.0" />
 
     <Compile Remove="Email\**" />
+
+    <Compile Remove="Views\Home\**" />
     <Content Remove="Email\**" />
+    <Content Remove="Views\Home\**" />
     <EmbeddedResource Remove="Email\**" />
+    <EmbeddedResource Remove="Views\Home\**" />
     <None Remove="Email\**" />
+    <None Remove="Views\Home\**" />
 
     <Content Remove="stylecop.json" />
   </ItemGroup>
@@ -44,12 +49,14 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.DotNetAppHost" Version="5.0.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+    <PackageReference Include="Serilog.Sinks.Email" Version="2.4.0" />
+    <PackageReference Include="Serilog.Sinks.PostgreSQL" Version="2.1.0" />
     <PackageReference Include="SendGrid" Version="9.21.2" />
     <PackageReference Include="SendGrid.Extensions.DependencyInjection" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -60,5 +67,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Entities\" />
+    <Folder Include="Models\ViewModels\" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

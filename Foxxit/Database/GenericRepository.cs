@@ -25,19 +25,19 @@ namespace Foxxit.Database
             return table.Find(id);
         }
 
-        public void Insert(T obj)
+        public void Insert(T entity)
         {
-            table.Add(obj);
+            table.Add(entity);
         }
 
-        public void Update(T obj)
+        public void Update(T entity)
         {
-            table.Update(obj);
+            table.Update(entity);
         }
 
-        public void Delete(T obj)
+        public void Delete(T entity)
         {
-            table.Remove(obj);
+            table.Remove(entity);
         }
 
         public void Save()

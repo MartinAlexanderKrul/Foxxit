@@ -9,21 +9,19 @@ namespace Foxxit.Controllers
 {
     public class MainController : Controller
     {
-#pragma warning disable SA1401 // Fields should be private
-        protected readonly UserManager<User> userManager;
-#pragma warning restore SA1401 // Fields should be private
-        protected readonly SignInManager<User> signInManager;
+        public UserManager<User> UserManager { get; protected set; }
+        public SignInManager<User> SignInManager { get; protected set; }
 
         public MainController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
-            this.userManager = userManager;
-            this.signInManager = signInManager;
+            UserManager = userManager;
+            SignInManager = signInManager;
         }
 
         protected virtual async Task<User> GetActiveUserAsync()
         {
-            var userId = userManager.GetUserId(User);
-            return await userManager.FindByIdAsync(userId);
+            var userId = UserManager.GetUserId(User);
+            return await UserManager.FindByIdAsync(userId);
         }
     }
 }

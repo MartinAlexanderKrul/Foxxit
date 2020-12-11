@@ -2,6 +2,7 @@ using System;
 using System.Text.Json.Serialization;
 using Foxxit.Database;
 using Foxxit.Models.Entities;
+using Foxxit.Repositories;
 using Foxxit.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace Foxxit
 {
@@ -43,13 +45,18 @@ namespace Foxxit
                     services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Configuration.ConnectionString));
                     break;
             }
-
-            services.AddTransient<MailService>();
+          
             services.AddIdentity<User, UserRole>(options =>
             {
                 options.SignIn.RequireConfirmedEmail = false;
                 options.User.RequireUniqueEmail = true;
             })
+              
+            services.AddTransient<MailService>();
+            services.AddTransient<UserRepository>();
+            services.AddTransient<SubRedditRepository>();
+            services.AddTransient<PostRepository>();
+
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
@@ -113,6 +120,8 @@ namespace Foxxit
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSerilogRequestLogging();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
