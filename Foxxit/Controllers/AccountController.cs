@@ -81,16 +81,17 @@ namespace Foxxit.Controllers
                 return View(model);
             }
 
-            var existingUser = await userManager.FindByEmailAsync(model.Email);
+            var existingUser = await UserManager.FindByEmailAsync(model.Email);
 
             if (existingUser is null)
             {
                 var user = new User(model.UserName, model.Email);
-                var registerResult = await userManager.CreateAsync(user, model.Password);
+                var registerResult = await UserManager.CreateAsync(user, model.Password);
 
                 if (registerResult.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(user, "User");
+                    await UserManager.AddToRoleAsync(user, "User");
+
                     // await SendEmailConfirmation(user);
                     
                     return RedirectToAction("Login");
@@ -178,8 +179,8 @@ namespace Foxxit.Controllers
                 {
                     var user = email != null
 
-                        ? await userManager.FindByEmailAsync(email)
-                        : await userManager.FindByNameAsync(username);
+                        ? await UserManager.FindByEmailAsync(email)
+                        : await UserManager.FindByNameAsync(username);
 
                     if (user is null)
                     {
