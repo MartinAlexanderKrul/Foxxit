@@ -20,20 +20,17 @@ namespace Foxxit.Controllers
         private readonly MailService mailService;
         private readonly ApplicationDbContext context;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, MailService mailService, ApplicationDbContext context)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, MailService mailService)
             : base(userManager, signInManager)
         {
             this.mailService = mailService;
-            this.context = context;
         }
 
         // Here - defaultly set as first login, then Index page. So must be set Login/Registration page as first now.
-        [AuthorizedRoles(Role.Admin, Role.User)] // Taking only Enums from Foxxit.Enums.Role.cs
+        [AuthorizedRoles(Enums.UserRole.Admin, Enums.UserRole.User)] // Taking only Enums from Foxxit.Enums.Role.cs
         [HttpGet("index")]
         public IActionResult Index()
         {
-
-
             return View();
         }
 
@@ -113,10 +110,6 @@ namespace Foxxit.Controllers
         [HttpGet("login")]
         public IActionResult Login()
         {
-            User user = new User("Srandista");
-            UserManager.CreateAsync(user, "Aa1234");
-
-
             return View();
         }
 

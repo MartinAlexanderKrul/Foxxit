@@ -10,9 +10,9 @@ namespace Foxxit.Attributes.RoleServices
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, Inherited = true, AllowMultiple = true)]
     public class AuthorizedRoles : AuthorizeAttribute
     {
-        public AuthorizedRoles(params Role[] allowedRoles)
+        public AuthorizedRoles(params UserRole[] roles)
         {
-            var allowedRolesAsStrings = allowedRoles.Select(x => Role.GetName(typeof(Role), x));
+            var allowedRolesAsStrings = roles.Select(r => UserRole.GetName(typeof(UserRole), r));
             Roles = string.Join(",", allowedRolesAsStrings);
         }
     }

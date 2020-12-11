@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Foxxit.Enums
 {
-    public enum Role
+    public enum UserRole
     {
         Admin,
         User,
