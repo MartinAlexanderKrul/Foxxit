@@ -21,17 +21,17 @@ namespace Foxxit.Services.ViewModelServices
 
                 case var expression when totalMinutes < 60 && totalMinutes >= 1:
                     var minutes = Math.Round(totalMinutes, MidpointRounding.AwayFromZero);
-                    result = minutes > 1 ? $"{minutes} minutes ago" : $"{minutes} minute ago";
+                    result = minutes > 1 ? $"{minutes} minutes ago" : $"{minutes} minute";
                     break;
 
                 case var expression when totalMinutes < 1440 && totalMinutes >= 60:
                     var hours = Math.Round(totalMinutes / 60, MidpointRounding.AwayFromZero);
-                    result = hours > 1 ? $"{hours} hours ago" : $"{hours} hour ago";
+                    result = hours > 1 ? $"{hours} hours ago" : $"{hours} hour";
                     break;
 
                 case var expression when totalMinutes >= 1440:
                     var days = Math.Round(totalMinutes / 60 / 60, MidpointRounding.AwayFromZero);
-                    result = days > 0 ? $"{days + 1} days ago" : $"{days + 1} day ago";
+                    result = days > 0 ? $"{days + 1} days ago" : $"{days + 1} day";
                     break;
             }
 
