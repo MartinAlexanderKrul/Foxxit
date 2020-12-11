@@ -1,9 +1,9 @@
-﻿using Foxxit.Enums;
-using Microsoft.AspNetCore.Authorization;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Foxxit.Enums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Foxxit.Attributes.RoleServices
 {
