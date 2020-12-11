@@ -93,7 +93,6 @@ namespace Foxxit.Controllers
                     await UserManager.AddToRoleAsync(user, "User");
 
                     // await SendEmailConfirmation(user);
-                    
                     return RedirectToAction("Login");
                 }
                 else
