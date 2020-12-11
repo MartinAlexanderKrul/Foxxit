@@ -6,7 +6,7 @@ using Foxxit.Models.Entities;
 
 namespace Foxxit.Services.ViewModelServices
 {
-    public class MainPageViewModelService
+    public class MainPageViewModelService : IMainPageViewModelService
     {
         public string GetTimeStamp(Post post)
         {
