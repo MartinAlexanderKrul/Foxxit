@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -15,10 +16,10 @@ namespace Foxxit.Controllers
 
         [HttpGet("index")]
         [HttpGet("")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var model = new MainPageViewModel();
-            return View("Index", model);
+            return await Task.Run(() => View("Index", model));
         }
     }
 }
