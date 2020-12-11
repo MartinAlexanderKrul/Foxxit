@@ -21,9 +21,9 @@ namespace Foxxit.Services
         public SubRedditRepository SubRedditRepository { get; private set; }
         public CommentRepository CommentRepository { get; private set; }
 
-        public dynamic Search(string category, string keyword)
+        public SearchReturnModel Search(string category, string keyword)
         {
-            var result = new SearchReturnModel();
+            var result = new SearchReturnModel() { SearchedCategory = category };
 
             switch (category)
             {
@@ -39,8 +39,8 @@ namespace Foxxit.Services
                     result.Comments = SearchInComments(keyword);
                     break;
 
-                default:
-                    result = new SearchReturnModel(SearchInPosts(keyword), SearchInSubReddits(keyword), SearchInComments(keyword));
+                case "all":
+                    result = new SearchReturnModel(SearchInPosts(keyword), SearchInSubReddits(keyword), SearchInComments(keyword), category);
                     break;
             }
 

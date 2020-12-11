@@ -10,13 +10,17 @@ namespace Foxxit.Controllers
 {
     public class FoxxitController : MainController
     {
-        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, SearchService searchService)
+        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, SearchService searchService, PostService postService, SubRedditService subRedditService)
             : base(userManager, signInManager)
         {
             SearchService = searchService;
+            PostService = postService;
+            SubRedditService = subRedditService;
         }
 
         public SearchService SearchService { get; set; }
+        public PostService PostService { get; set; }
+        public SubRedditService SubRedditService { get; set; }
 
         [HttpGet("index")]
         [HttpGet("")]
@@ -29,7 +33,13 @@ namespace Foxxit.Controllers
         [HttpPost("search")]
         public async Task<IActionResult> Search(string category, string keyword)
         {
-            var model = new MainPageViewModel() { CurrentUser = GetActiveUserAsync().Result };
+            var model = new MainPageViewModel()
+            {
+                CurrentUser = GetActiveUserAsync().Result,
+                Posts = PostService.GetAllAsync().Result,
+                SubReddits = SubRedditService.GetAllAsync().Result,
+                SearchReturnModel = SearchService.Search(category, keyword),
+            };
             return await Task.Run(() => View("Filter", model));
         }
     }
