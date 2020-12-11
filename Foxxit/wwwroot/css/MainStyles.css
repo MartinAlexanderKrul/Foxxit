@@ -232,16 +232,12 @@ section {
     height: 100%;
 }
 
-.not_button, .side_bar_left {
+.not_button {
     width: 60px;
     height: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.side_bar_left {
-    margin-left: 5%;
 }
 
 .not_button {

@@ -13,10 +13,10 @@
     </div>
 </div>
 
-<article>
+@foreach (var post in Model.Posts)
+{
+    <article>
 
-    @foreach (var post in Model.Posts)
-    {
         <div class="article_left">
             <div class="post_vote">
                 <form asp-action="Vote" asp-controller="Home">
@@ -61,8 +61,8 @@
                 <div class="vote">@Html.ActionLink($"{post.Comments.Count()} COMMENTS", "Comments", "Home", new { postId = post.Id })</div>
             </div>
         </div>
-    }
 
-    <div class="article_right">
-    </div>
-</article>
+        <div class="article_right">
+        </div>
+    </article>
+}

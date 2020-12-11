@@ -1,6 +1,9 @@
-﻿@{Layout = "_Layout";}
-@using Foxxit.Models.ViewModels
+﻿@using Foxxit.Models.ViewModels
+@using Foxxit.Services.ViewModelServices
 @model MainPageViewModel
+@inject MainPageViewModelService service
+
+@{Layout = "_Layout";}
 
 <header>
     @await Html.PartialAsync("_HeaderViewPartial")
