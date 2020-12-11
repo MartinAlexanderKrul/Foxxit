@@ -11,11 +11,11 @@ namespace XUnitTestsForFoxxit
         public void MinutesTest()
         {
             var service = new MainPageViewModelService();
-            var twoDaysAgo = new DateTime(2020, 12, 11, 10, 00, 00);
-            var post = new Post() { CreatedAt = twoDaysAgo };
+            var date = DateTime.Now.AddMinutes(-15);
+            var post = new Post() { CreatedAt = date };
 
             var actualOutput = service.GetTimeStamp(post);
-            var expectedOutput = "15 minutes ago";
+            var expectedOutput = "15 minutes";
 
             Assert.Equal(expectedOutput, actualOutput);
         }
@@ -24,11 +24,11 @@ namespace XUnitTestsForFoxxit
         public void HoursTest()
         {
             var service = new MainPageViewModelService();
-            var twoDaysAgo = new DateTime(2020, 12, 11, 8, 45, 00);
-            var post = new Post() { CreatedAt = twoDaysAgo };
+            var date = DateTime.Now.AddHours(-1);
+            var post = new Post() { CreatedAt = date };
 
             var actualOutput = service.GetTimeStamp(post);
-            var expectedOutput = "1 hour ago";
+            var expectedOutput = "1 hour";
 
             Assert.Equal(expectedOutput, actualOutput);
         }
@@ -37,11 +37,11 @@ namespace XUnitTestsForFoxxit
         public void DaysTest()
         {
             var service = new MainPageViewModelService();
-            var twoDaysAgo = new DateTime(2020, 12, 9, 8, 00, 00);
-            var post = new Post() { CreatedAt = twoDaysAgo };
+            var date = DateTime.Now.AddDays(-12);
+            var post = new Post() { CreatedAt = date };
 
             var actualOutput = service.GetTimeStamp(post);
-            var expectedOutput = "2 days ago";
+            var expectedOutput = "12 days";
 
             Assert.Equal(expectedOutput, actualOutput);
         }
