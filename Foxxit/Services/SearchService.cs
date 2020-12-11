@@ -49,17 +49,17 @@ namespace Foxxit.Services
 
         public List<Post> SearchInPosts(string keyword)
         {
-            return PostRepository.Filter(p => p.Title.Contains(keyword) || p.Text.Contains(keyword)).Result.ToList();
+            return PostRepository.Filter(p => p.Title.Contains(keyword) || p.Text.Contains(keyword)).ToList();
         }
 
         public List<SubReddit> SearchInSubReddits(string keyword)
         {
-            return SubRedditRepository.Filter(s => s.Name.Contains(keyword) || s.About.Contains(keyword)).Result.ToList();
+            return SubRedditRepository.Filter(s => s.Name.Contains(keyword) || s.About.Contains(keyword)).ToList();
         }
 
         public List<Comment> SearchInComments(string keyword)
         {
-            return CommentRepository.Filter(c => c.Text.Contains(keyword)).Result.ToList();
+            return CommentRepository.Filter(c => c.Text.Contains(keyword)).ToList();
         }
     }
 }

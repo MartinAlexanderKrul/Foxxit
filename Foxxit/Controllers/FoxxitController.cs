@@ -40,6 +40,7 @@ namespace Foxxit.Controllers
                 SubReddits = SubRedditService.GetAllAsync().Result,
                 SearchReturnModel = SearchService.Search(category, keyword),
             };
+
             return await Task.Run(() => View("Filter", model));
         }
     }

@@ -25,9 +25,9 @@ namespace Foxxit.Repositories
             return await table.ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> Filter(Func<T, bool> condition)
+        public IEnumerable<T> Filter(Func<T, bool> condition)
         {
-            return await table.Where(condition).AsQueryable().ToListAsync();
+            return table.Where(condition).ToList();
         }
 
         public async Task<T> GetByIdAsync(long id)
