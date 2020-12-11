@@ -1,6 +1,8 @@
 ﻿@using Foxxit.Models.ViewModels
+@using Foxxit.Services.ViewModelServices
 @model MainPageViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject MainPageViewModelService service
 
 <div class="section_intro">
     <h2>Welcome to Foxxit</h2>
@@ -38,7 +40,7 @@
             <div class="article_header">
                 <div class="article_text">
                     <h4>@post.Title</h4>
-                    <p class="article_text_info">Posted by @post.User.UserName @((DateTime.Now - @post.CreatedAt).TotalDays) ago in @post.SubReddit.Name</p>
+                    <p class="article_text_info">Posted by @post.User.UserName @service.GetTimeStamp(post) ago in @post.SubReddit.Name</p>
                 </div>
                 <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Home", new { subRedditId = post.SubRedditId })</div>
             </div>

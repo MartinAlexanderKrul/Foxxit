@@ -1,9 +1,9 @@
-﻿@using Foxxit.Models.ViewModels
-@model MainPageViewModel
+﻿@using Foxxit.Models.Entities
+@model IEnumerable<SubReddit>
 
 <h3 class="side_bar_header">Trending SubReddits</h3>
 
-@foreach (var subReddit in Model.SubReddits)
+@foreach (var subReddit in Model)
 {
     <div class="side_bar">
         <div class="side_bar_left">
