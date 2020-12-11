@@ -45,26 +45,32 @@ namespace Foxxit.Controllers
         {
             if (userId == null || token == null)
             {
-                return RedirectToAction("index", "home");
+                return RedirectToAction("index", "account");
             }
 
             var user = UserManager.FindByIdAsync(userId);
 
             if (user == null)
             {
-                ViewBag.ErrorMessage = $"The user ID {userId} is invalid";
-                return View("Error");
+                ModelState.AddModelError(string.Empty, "The user ID {userId} is invalid");
+                return View("Register");
             }
 
             var result = await UserManager.ConfirmEmailAsync(user.Result, token);
 
             if (!result.Succeeded)
             {
-                ViewBag.ErrorMessage = "Email cannot be confirmed.";
-                return View("Error");
+                ModelState.AddModelError(string.Empty, "Email cannot be confirmed.");
+                return View("Register");
             }
 
             return View("EmailConfirmationSuccessful");
+        }
+
+        [HttpGet("register")]
+        public IActionResult Register()
+        {
+            return View();
         }
 
         [HttpPost("register")]
@@ -75,17 +81,18 @@ namespace Foxxit.Controllers
                 return View(model);
             }
 
-            var existingUser = await UserManager.FindByNameAsync(model.UserName);
+            var existingUser = await UserManager.FindByEmailAsync(model.Email);
 
             if (existingUser is null)
             {
-                var user = new User(model.UserName);
+                var user = new User(model.UserName, model.Email);
                 var registerResult = await UserManager.CreateAsync(user, model.Password);
 
                 if (registerResult.Succeeded)
                 {
                     await UserManager.AddToRoleAsync(user, "User");
-                    await SendEmailConfirmation(user);
+
+                    // await SendEmailConfirmation(user);
                     return RedirectToAction("Login");
                 }
                 else
@@ -95,7 +102,7 @@ namespace Foxxit.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Username already exists!");
+                ModelState.AddModelError(string.Empty, "Email is already taken!");
             }
 
             return View(model);
@@ -127,6 +134,7 @@ namespace Foxxit.Controllers
                 }
                 else
                 {
+                    // ModelState.AddModelError(string.Empty, "Your email was not approved!");
                     ModelState.AddModelError(string.Empty, "Try to type your password again!");
                 }
             }
@@ -169,6 +177,7 @@ namespace Foxxit.Controllers
                 if (email != null || username != null)
                 {
                     var user = email != null
+
                         ? await UserManager.FindByEmailAsync(email)
                         : await UserManager.FindByNameAsync(username);
 

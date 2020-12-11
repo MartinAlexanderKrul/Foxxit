@@ -4,14 +4,16 @@ using Foxxit.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Foxxit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201210132624_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -413,7 +415,6 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-
                             ConcurrencyStamp = "16f591f9-0168-4966-b7e1-49b02cdefd0a",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
@@ -421,7 +422,6 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 2L,
-
                             ConcurrencyStamp = "04e21bb6-2d7d-4def-ad7f-fcccdb8de702",
                             Name = "User",
                             NormalizedName = "USER"
