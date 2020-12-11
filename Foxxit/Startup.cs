@@ -4,6 +4,7 @@ using Foxxit.Database;
 using Foxxit.Models.Entities;
 using Foxxit.Repositories;
 using Foxxit.Services;
+using Foxxit.Services.ViewModelServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -50,6 +51,7 @@ namespace Foxxit
             services.AddTransient<UserRepository>();
             services.AddTransient<SubRedditRepository>();
             services.AddTransient<PostRepository>();
+            services.AddTransient<MainPageViewModelService>();
             services.AddTransient<SearchService>();
 
             services.AddIdentity<User, UserRole>(options => options.SignIn.RequireConfirmedEmail = true)

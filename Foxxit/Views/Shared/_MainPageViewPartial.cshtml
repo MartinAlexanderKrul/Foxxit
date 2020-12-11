@@ -1,5 +1,7 @@
 ﻿@using Foxxit.Models.ViewModels
+@using Foxxit.Services.ViewModelServices
 @model MainPageViewModel
+@inject MainPageViewModelService service
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <div class="section_intro">
@@ -11,16 +13,16 @@
     </div>
 </div>
 
-<article>
+@foreach (var post in Model.Posts)
+{
+    <article>
 
-    @foreach (var post in Model.Posts)
-    {
         <div class="article_left">
             <div class="post_vote">
                 <form asp-action="Vote" asp-controller="Home">
                     <input type="hidden" value="up" name="voteType" />
                     <input type="hidden" value="post.Id" name="postId" />
-                    <button type="submit"><i asp-for class="fa fa-thumbs-up fa-lg"></i></button>
+                    <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
                 </form>
             </div>
             <div class="post_vote">@post.Votes.Count()</div>
@@ -29,7 +31,7 @@
                 <form asp-action="Vote" asp-controller="Home">
                     <input type="hidden" value="down" name="voteType" />
                     <input type="hidden" value="post.Id" name="postId" />
-                    <button type="submit"><i class="fa fa-thumbs-down fa-lg"></i></button>
+                    <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
                 </form>
             </div>
         </div>
@@ -38,7 +40,7 @@
             <div class="article_header">
                 <div class="article_text">
                     <h4>@post.Title</h4>
-                    <p class="article_text_info">Posted by @post.User.UserName @((DateTime.Now - @post.CreatedAt).TotalDays) ago in @post.SubReddit.Name</p>
+                    <p class="article_text_info">Posted by @post.User.UserName @service.GetTimeStamp(post) ago in @post.SubReddit.Name</p>
                 </div>
                 <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Home", new { subRedditId = post.SubRedditId })</div>
             </div>
@@ -59,8 +61,8 @@
                 <div class="vote">@Html.ActionLink($"{post.Comments.Count()} COMMENTS", "Comments", "Home", new { postId = post.Id })</div>
             </div>
         </div>
-    }
 
-    <div class="article_right">
-    </div>
-</article>
+        <div class="article_right">
+        </div>
+    </article>
+}
