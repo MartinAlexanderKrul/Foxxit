@@ -47,10 +47,14 @@ namespace Foxxit
                     break;
             }
 
-            services.AddTransient<MailService>();
             services.AddTransient<UserRepository>();
             services.AddTransient<SubRedditRepository>();
             services.AddTransient<PostRepository>();
+            services.AddTransient<CommentRepository>();
+
+            services.AddTransient<SubRedditService>();
+            services.AddTransient<PostService>();
+            services.AddTransient<MailService>();
             services.AddTransient<MainPageViewModelService>();
             services.AddTransient<SearchService>();
 

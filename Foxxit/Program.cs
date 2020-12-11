@@ -17,7 +17,7 @@ namespace Foxxit
     {
         public static int Main(string[] args)
         {
-            if (!Configuration.DbType.Equals(DatabaseType.Heroku))
+            if (Configuration.DbType.Equals(DatabaseType.Heroku))
             {
                 Log.Logger = new LoggerConfiguration()
                            .MinimumLevel.Information()
