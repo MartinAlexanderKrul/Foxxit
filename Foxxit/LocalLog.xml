@@ -1749,3 +1749,819 @@ WHERE ([p].[Discriminator] = N'Comment') AND ([p].[IsDeleted] <> CAST(1 AS bit))
 2020-12-11 17:17:39.552 +01:00 [INF] Executed endpoint '405 HTTP Method Not Supported'
 2020-12-11 17:17:39.552 +01:00 [INF] HTTP POST / responded 405 in 0.2756 ms
 2020-12-11 17:17:39.554 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44314/ application/x-www-form-urlencoded 209 - 405 - - 2.3962ms
+2020-12-11 17:29:22.973 +01:00 [INF] Starting web host
+2020-12-11 17:29:25.304 +01:00 [DBG] Hosting starting
+2020-12-11 17:29:25.375 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-11 17:29:25.943 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-11 17:29:25.943 +01:00 [INF] Hosting environment: Development
+2020-12-11 17:29:25.944 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-11 17:29:25.944 +01:00 [DBG] Hosting started
+2020-12-11 17:29:26.063 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-11 17:29:26.237 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-11 17:29:26.333 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-11 17:29:26.574 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-11 17:29:27.879 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-11 17:29:27.879 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-11 17:29:27.880 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-11 17:29:27.880 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-11 17:29:28.041 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-11 17:29:28.042 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-11 17:29:28.042 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-11 17:29:28.042 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-11 17:29:28.134 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:29:28.134 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:29:28.135 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:29:28.135 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:29:28.135 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:29:28.432 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-11 17:29:28.502 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-11 17:29:28.791 +01:00 [INF] Executed ViewResult - view Index executed in 290.3097ms.
+2020-12-11 17:29:28.797 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 2463.4775ms
+2020-12-11 17:29:28.799 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-11 17:29:28.803 +01:00 [INF] HTTP GET / responded 200 in 2564.8246 ms
+2020-12-11 17:29:28.824 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-11 17:29:28.835 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 200 - text/html;+charset=utf-8 2779.1163ms
+2020-12-11 17:29:28.948 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/css/MainStyles.css - -
+2020-12-11 17:29:28.960 +01:00 [INF] The file /css/MainStyles.css was not modified
+2020-12-11 17:29:28.967 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/css/MainStyles.css - - - 304 - text/css 18.3746ms
+2020-12-11 17:29:32.452 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 195
+2020-12-11 17:29:32.460 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-11 17:29:32.483 +01:00 [INF] Route matched with {action = "Search", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Search(System.String, System.String) on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-11 17:29:32.520 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-11 17:29:32.701 +01:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(e => EF.Property<long>(e, "Id") == __p_0)'
+2020-12-11 17:29:32.959 +01:00 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<User>(
+    asyncEnumerable: new SingleQueryingEnumerable<User>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.SelectExpression(
+            Projection Mapping:
+                EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.About (string), 1], [Property: User.AccessFailedCount (int) Required, 2], [Property: User.AvatarURL (string), 3], [Property: User.ConcurrencyStamp (string) Concurrency, 4], [Property: User.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 5], [Property: User.DisplayName (string), 6], [Property: User.Email (string) MaxLength(256), 7], [Property: User.EmailConfirmed (bool) Required, 8], [Property: User.IsDeleted (bool) Required, 9], [Property: User.Karma (int) Required, 10], [Property: User.LockoutEnabled (bool) Required, 11], [Property: User.LockoutEnd (Nullable<DateTimeOffset>), 12], [Property: User.NormalizedEmail (string) Index MaxLength(256), 13], [Property: User.NormalizedUserName (string) Index MaxLength(256), 14], [Property: User.PasswordHash (string), 15], [Property: User.PhoneNumber (string), 16], [Property: User.PhoneNumberConfirmed (bool) Required, 17], [Property: User.SecurityStamp (string), 18], [Property: User.TwoFactorEnabled (bool) Required, 19], [Property: User.UserName (string) MaxLength(256), 20], }
+            SELECT TOP(1) a.Id, a.About, a.AccessFailedCount, a.AvatarURL, a.ConcurrencyStamp, a.CreatedAt, a.DisplayName, a.Email, a.EmailConfirmed, a.IsDeleted, a.Karma, a.LockoutEnabled, a.LockoutEnd, a.NormalizedEmail, a.NormalizedUserName, a.PasswordHash, a.PhoneNumber, a.PhoneNumberConfirmed, a.SecurityStamp, a.TwoFactorEnabled, a.UserName
+            FROM AspNetUsers AS a
+            WHERE Not(a.IsDeleted) && (a.Id == @__p_0)), 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+        Foxxit.Database.ApplicationDbContext, 
+        False, 
+        False
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2020-12-11 17:29:33.024 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:29:33.088 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (59ms).
+2020-12-11 17:29:33.116 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.569 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.584 +01:00 [DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[About], [a].[AccessFailedCount], [a].[AvatarURL], [a].[ConcurrencyStamp], [a].[CreatedAt], [a].[DisplayName], [a].[Email], [a].[EmailConfirmed], [a].[IsDeleted], [a].[Karma], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE ([a].[IsDeleted] <> CAST(1 AS bit)) AND ([a].[Id] = @__p_0)
+2020-12-11 17:29:34.674 +01:00 [INF] Executed DbCommand (94ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[About], [a].[AccessFailedCount], [a].[AvatarURL], [a].[ConcurrencyStamp], [a].[CreatedAt], [a].[DisplayName], [a].[Email], [a].[EmailConfirmed], [a].[IsDeleted], [a].[Karma], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE ([a].[IsDeleted] <> CAST(1 AS bit)) AND ([a].[Id] = @__p_0)
+2020-12-11 17:29:34.697 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:29:34.701 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.709 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.724 +01:00 [DBG] Compiling query expression: 
+'DbSet<Post>()'
+2020-12-11 17:29:34.741 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Post>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: PostBase.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: PostBase.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 1], [Property: PostBase.Discriminator (no field, string) Shadow Required AfterSave:Throw, 2], [Property: PostBase.IsDeleted (bool) Required, 3], [Property: PostBase.Text (string), 4], [Property: PostBase.UserId (long) Required FK Index, 5], [Property: Post.ImageURL (string), 6], [Property: Post.SubRedditId (long) Required FK Index, 7], [Property: Post.Title (string), 8], [Property: Post.URL (string), 9], }
+        SELECT p.Id, p.CreatedAt, p.Discriminator, p.IsDeleted, p.Text, p.UserId, p.ImageURL, p.SubRedditId, p.Title, p.URL
+        FROM PostBase AS p
+        WHERE (p.Discriminator == N'Post') && Not(p.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Post>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:29:34.742 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:29:34.742 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:29:34.742 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.743 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.743 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:29:34.751 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:29:34.752 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:29:34.753 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.753 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.754 +01:00 [DBG] Compiling query expression: 
+'DbSet<SubReddit>()'
+2020-12-11 17:29:34.759 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<SubReddit>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: SubReddit.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: SubReddit.About (string), 1], [Property: SubReddit.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 2], [Property: SubReddit.CreatedById (long) Required, 3], [Property: SubReddit.IsDeleted (bool) Required, 4], [Property: SubReddit.Name (string), 5], }
+        SELECT s.Id, s.About, s.CreatedAt, s.CreatedById, s.IsDeleted, s.Name
+        FROM SubReddits AS s
+        WHERE Not(s.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, SubReddit>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:29:34.759 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:29:34.759 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:29:34.759 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.759 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.759 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:29:34.762 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:29:34.763 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:29:34.763 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.763 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.766 +01:00 [DBG] Compiling query expression: 
+'DbSet<Post>()'
+2020-12-11 17:29:34.770 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Post>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: PostBase.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: PostBase.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 1], [Property: PostBase.Discriminator (no field, string) Shadow Required AfterSave:Throw, 2], [Property: PostBase.IsDeleted (bool) Required, 3], [Property: PostBase.Text (string), 4], [Property: PostBase.UserId (long) Required FK Index, 5], [Property: Post.ImageURL (string), 6], [Property: Post.SubRedditId (long) Required FK Index, 7], [Property: Post.Title (string), 8], [Property: Post.URL (string), 9], }
+        SELECT p.Id, p.CreatedAt, p.Discriminator, p.IsDeleted, p.Text, p.UserId, p.ImageURL, p.SubRedditId, p.Title, p.URL
+        FROM PostBase AS p
+        WHERE (p.Discriminator == N'Post') && Not(p.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Post>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:29:34.774 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:29:34.774 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:29:34.775 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.776 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.777 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:29:34.778 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:29:34.779 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:29:34.780 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.780 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.781 +01:00 [DBG] Compiling query expression: 
+'DbSet<SubReddit>()'
+2020-12-11 17:29:34.785 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<SubReddit>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: SubReddit.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: SubReddit.About (string), 1], [Property: SubReddit.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 2], [Property: SubReddit.CreatedById (long) Required, 3], [Property: SubReddit.IsDeleted (bool) Required, 4], [Property: SubReddit.Name (string), 5], }
+        SELECT s.Id, s.About, s.CreatedAt, s.CreatedById, s.IsDeleted, s.Name
+        FROM SubReddits AS s
+        WHERE Not(s.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, SubReddit>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:29:34.785 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:29:34.785 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:29:34.785 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.785 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.785 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:29:34.786 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:29:34.786 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:29:34.786 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.786 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.787 +01:00 [DBG] Compiling query expression: 
+'DbSet<Comment>()'
+2020-12-11 17:29:34.791 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Comment>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: PostBase.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: PostBase.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 1], [Property: PostBase.Discriminator (no field, string) Shadow Required AfterSave:Throw, 2], [Property: PostBase.IsDeleted (bool) Required, 3], [Property: PostBase.Text (string), 4], [Property: PostBase.UserId (long) Required FK Index, 5], [Property: Comment.CommentId (no field, Nullable<long>) Shadow FK Index, 6], [Property: Comment.OriginalCommentId (long) Required, 7], [Property: Comment.PostId (long) Required FK Index, 8], }
+        SELECT p.Id, p.CreatedAt, p.Discriminator, p.IsDeleted, p.Text, p.UserId, p.CommentId, p.OriginalCommentId, p.PostId
+        FROM PostBase AS p
+        WHERE (p.Discriminator == N'Comment') && Not(p.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Comment>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:29:34.792 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:29:34.792 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:29:34.792 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.792 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.792 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[CommentId], [p].[OriginalCommentId], [p].[PostId]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Comment') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:29:34.794 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[CommentId], [p].[OriginalCommentId], [p].[PostId]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Comment') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:29:34.794 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:29:34.794 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.794 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:29:34.798 +01:00 [INF] Executing ViewResult, running view Filter.
+2020-12-11 17:29:34.814 +01:00 [INF] Executed ViewResult - view Filter executed in 17.3347ms.
+2020-12-11 17:29:34.814 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Search (Foxxit) in 2330.5787ms
+2020-12-11 17:29:34.814 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-11 17:29:34.814 +01:00 [INF] HTTP POST /search responded 200 in 2354.6914 ms
+2020-12-11 17:29:34.815 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-11 17:29:34.816 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 195 - 200 - text/html;+charset=utf-8 2364.6185ms
+2020-12-11 17:33:14.860 +01:00 [INF] Starting web host
+2020-12-11 17:33:17.159 +01:00 [DBG] Hosting starting
+2020-12-11 17:33:17.237 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-11 17:33:17.702 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-11 17:33:17.702 +01:00 [INF] Hosting environment: Development
+2020-12-11 17:33:17.703 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-11 17:33:17.703 +01:00 [DBG] Hosting started
+2020-12-11 17:33:17.782 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-11 17:33:17.935 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-11 17:33:18.024 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-11 17:33:18.196 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-11 17:33:19.324 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-11 17:33:19.325 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-11 17:33:19.325 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-11 17:33:19.326 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-11 17:33:19.441 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-11 17:33:19.442 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-11 17:33:19.442 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-11 17:33:19.442 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-11 17:33:19.521 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:33:19.521 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:33:19.521 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:33:19.521 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:33:19.521 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:33:19.737 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-11 17:33:19.788 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-11 17:33:19.996 +01:00 [INF] Executed ViewResult - view Index executed in 209.6323ms.
+2020-12-11 17:33:20.001 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 1976.871ms
+2020-12-11 17:33:20.003 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-11 17:33:20.009 +01:00 [INF] HTTP GET / responded 200 in 2070.9690 ms
+2020-12-11 17:33:20.024 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-11 17:33:20.028 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 200 - text/html;+charset=utf-8 2254.2324ms
+2020-12-11 17:33:23.180 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 195
+2020-12-11 17:33:23.185 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-11 17:33:23.206 +01:00 [INF] Route matched with {action = "Search", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Search(System.String, System.String) on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-11 17:33:23.242 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-11 17:33:23.425 +01:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(e => EF.Property<long>(e, "Id") == __p_0)'
+2020-12-11 17:33:23.648 +01:00 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<User>(
+    asyncEnumerable: new SingleQueryingEnumerable<User>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.SelectExpression(
+            Projection Mapping:
+                EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.About (string), 1], [Property: User.AccessFailedCount (int) Required, 2], [Property: User.AvatarURL (string), 3], [Property: User.ConcurrencyStamp (string) Concurrency, 4], [Property: User.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 5], [Property: User.DisplayName (string), 6], [Property: User.Email (string) MaxLength(256), 7], [Property: User.EmailConfirmed (bool) Required, 8], [Property: User.IsDeleted (bool) Required, 9], [Property: User.Karma (int) Required, 10], [Property: User.LockoutEnabled (bool) Required, 11], [Property: User.LockoutEnd (Nullable<DateTimeOffset>), 12], [Property: User.NormalizedEmail (string) Index MaxLength(256), 13], [Property: User.NormalizedUserName (string) Index MaxLength(256), 14], [Property: User.PasswordHash (string), 15], [Property: User.PhoneNumber (string), 16], [Property: User.PhoneNumberConfirmed (bool) Required, 17], [Property: User.SecurityStamp (string), 18], [Property: User.TwoFactorEnabled (bool) Required, 19], [Property: User.UserName (string) MaxLength(256), 20], }
+            SELECT TOP(1) a.Id, a.About, a.AccessFailedCount, a.AvatarURL, a.ConcurrencyStamp, a.CreatedAt, a.DisplayName, a.Email, a.EmailConfirmed, a.IsDeleted, a.Karma, a.LockoutEnabled, a.LockoutEnd, a.NormalizedEmail, a.NormalizedUserName, a.PasswordHash, a.PhoneNumber, a.PhoneNumberConfirmed, a.SecurityStamp, a.TwoFactorEnabled, a.UserName
+            FROM AspNetUsers AS a
+            WHERE Not(a.IsDeleted) && (a.Id == @__p_0)), 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+        Foxxit.Database.ApplicationDbContext, 
+        False, 
+        False
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2020-12-11 17:33:23.707 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:33:23.768 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (56ms).
+2020-12-11 17:33:23.794 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.174 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.188 +01:00 [DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[About], [a].[AccessFailedCount], [a].[AvatarURL], [a].[ConcurrencyStamp], [a].[CreatedAt], [a].[DisplayName], [a].[Email], [a].[EmailConfirmed], [a].[IsDeleted], [a].[Karma], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE ([a].[IsDeleted] <> CAST(1 AS bit)) AND ([a].[Id] = @__p_0)
+2020-12-11 17:33:24.284 +01:00 [INF] Executed DbCommand (100ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[About], [a].[AccessFailedCount], [a].[AvatarURL], [a].[ConcurrencyStamp], [a].[CreatedAt], [a].[DisplayName], [a].[Email], [a].[EmailConfirmed], [a].[IsDeleted], [a].[Karma], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE ([a].[IsDeleted] <> CAST(1 AS bit)) AND ([a].[Id] = @__p_0)
+2020-12-11 17:33:24.305 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:33:24.309 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.317 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.327 +01:00 [DBG] Compiling query expression: 
+'DbSet<Post>()'
+2020-12-11 17:33:24.337 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Post>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: PostBase.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: PostBase.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 1], [Property: PostBase.Discriminator (no field, string) Shadow Required AfterSave:Throw, 2], [Property: PostBase.IsDeleted (bool) Required, 3], [Property: PostBase.Text (string), 4], [Property: PostBase.UserId (long) Required FK Index, 5], [Property: Post.ImageURL (string), 6], [Property: Post.SubRedditId (long) Required FK Index, 7], [Property: Post.Title (string), 8], [Property: Post.URL (string), 9], }
+        SELECT p.Id, p.CreatedAt, p.Discriminator, p.IsDeleted, p.Text, p.UserId, p.ImageURL, p.SubRedditId, p.Title, p.URL
+        FROM PostBase AS p
+        WHERE (p.Discriminator == N'Post') && Not(p.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Post>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:33:24.338 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:33:24.338 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:33:24.338 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.339 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.339 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:33:24.349 +01:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:33:24.351 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:33:24.351 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.351 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.353 +01:00 [DBG] Compiling query expression: 
+'DbSet<SubReddit>()'
+2020-12-11 17:33:24.356 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<SubReddit>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: SubReddit.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: SubReddit.About (string), 1], [Property: SubReddit.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 2], [Property: SubReddit.CreatedById (long) Required, 3], [Property: SubReddit.IsDeleted (bool) Required, 4], [Property: SubReddit.Name (string), 5], }
+        SELECT s.Id, s.About, s.CreatedAt, s.CreatedById, s.IsDeleted, s.Name
+        FROM SubReddits AS s
+        WHERE Not(s.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, SubReddit>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:33:24.357 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:33:24.357 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:33:24.357 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.357 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.357 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:33:24.360 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:33:24.360 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:33:24.360 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.360 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.365 +01:00 [DBG] Compiling query expression: 
+'DbSet<Post>()'
+2020-12-11 17:33:24.369 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Post>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: PostBase.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: PostBase.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 1], [Property: PostBase.Discriminator (no field, string) Shadow Required AfterSave:Throw, 2], [Property: PostBase.IsDeleted (bool) Required, 3], [Property: PostBase.Text (string), 4], [Property: PostBase.UserId (long) Required FK Index, 5], [Property: Post.ImageURL (string), 6], [Property: Post.SubRedditId (long) Required FK Index, 7], [Property: Post.Title (string), 8], [Property: Post.URL (string), 9], }
+        SELECT p.Id, p.CreatedAt, p.Discriminator, p.IsDeleted, p.Text, p.UserId, p.ImageURL, p.SubRedditId, p.Title, p.URL
+        FROM PostBase AS p
+        WHERE (p.Discriminator == N'Post') && Not(p.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Post>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:33:24.372 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:33:24.372 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:33:24.373 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.374 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.375 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:33:24.376 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:33:24.377 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:33:24.378 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.378 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.379 +01:00 [DBG] Compiling query expression: 
+'DbSet<SubReddit>()'
+2020-12-11 17:33:24.383 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<SubReddit>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: SubReddit.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: SubReddit.About (string), 1], [Property: SubReddit.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 2], [Property: SubReddit.CreatedById (long) Required, 3], [Property: SubReddit.IsDeleted (bool) Required, 4], [Property: SubReddit.Name (string), 5], }
+        SELECT s.Id, s.About, s.CreatedAt, s.CreatedById, s.IsDeleted, s.Name
+        FROM SubReddits AS s
+        WHERE Not(s.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, SubReddit>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:33:24.384 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:33:24.384 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:33:24.384 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.384 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.384 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:33:24.385 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:33:24.385 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:33:24.385 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.385 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.386 +01:00 [DBG] Compiling query expression: 
+'DbSet<Comment>()'
+2020-12-11 17:33:24.391 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Comment>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: PostBase.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: PostBase.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 1], [Property: PostBase.Discriminator (no field, string) Shadow Required AfterSave:Throw, 2], [Property: PostBase.IsDeleted (bool) Required, 3], [Property: PostBase.Text (string), 4], [Property: PostBase.UserId (long) Required FK Index, 5], [Property: Comment.CommentId (no field, Nullable<long>) Shadow FK Index, 6], [Property: Comment.OriginalCommentId (long) Required, 7], [Property: Comment.PostId (long) Required FK Index, 8], }
+        SELECT p.Id, p.CreatedAt, p.Discriminator, p.IsDeleted, p.Text, p.UserId, p.CommentId, p.OriginalCommentId, p.PostId
+        FROM PostBase AS p
+        WHERE (p.Discriminator == N'Comment') && Not(p.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Comment>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:33:24.391 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:33:24.391 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:33:24.391 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.391 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.391 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[CommentId], [p].[OriginalCommentId], [p].[PostId]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Comment') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:33:24.393 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[CommentId], [p].[OriginalCommentId], [p].[PostId]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Comment') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:33:24.393 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:33:24.393 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.393 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:24.397 +01:00 [INF] Executing ViewResult, running view Filter.
+2020-12-11 17:33:24.413 +01:00 [INF] Executed ViewResult - view Filter executed in 16.8925ms.
+2020-12-11 17:33:24.413 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Search (Foxxit) in 1206.5355ms
+2020-12-11 17:33:24.413 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-11 17:33:24.413 +01:00 [INF] HTTP POST /search responded 200 in 1228.6748 ms
+2020-12-11 17:33:24.414 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-11 17:33:24.415 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 195 - 200 - text/html;+charset=utf-8 1235.2804ms
+2020-12-11 17:33:46.755 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/search - -
+2020-12-11 17:33:46.764 +01:00 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2020-12-11 17:33:46.765 +01:00 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2020-12-11 17:33:46.765 +01:00 [INF] HTTP GET /search responded 405 in 0.2558 ms
+2020-12-11 17:33:46.768 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/search - - - 405 - - 12.7883ms
+2020-12-11 17:33:48.435 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-11 17:33:48.436 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-11 17:33:48.436 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-11 17:33:48.455 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-11 17:33:48.458 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-11 17:33:48.460 +01:00 [INF] Executed ViewResult - view Index executed in 2.2703ms.
+2020-12-11 17:33:48.460 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 24.1933ms
+2020-12-11 17:33:48.460 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-11 17:33:48.460 +01:00 [INF] HTTP GET / responded 200 in 24.5333 ms
+2020-12-11 17:33:48.460 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-11 17:33:48.460 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 200 - text/html;+charset=utf-8 25.0380ms
+2020-12-11 17:33:52.724 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 195
+2020-12-11 17:33:52.725 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-11 17:33:52.725 +01:00 [INF] Route matched with {action = "Search", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Search(System.String, System.String) on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-11 17:33:52.726 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-11 17:33:52.734 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:33:52.734 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:33:52.735 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.735 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.735 +01:00 [DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[About], [a].[AccessFailedCount], [a].[AvatarURL], [a].[ConcurrencyStamp], [a].[CreatedAt], [a].[DisplayName], [a].[Email], [a].[EmailConfirmed], [a].[IsDeleted], [a].[Karma], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE ([a].[IsDeleted] <> CAST(1 AS bit)) AND ([a].[Id] = @__p_0)
+2020-12-11 17:33:52.738 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[About], [a].[AccessFailedCount], [a].[AvatarURL], [a].[ConcurrencyStamp], [a].[CreatedAt], [a].[DisplayName], [a].[Email], [a].[EmailConfirmed], [a].[IsDeleted], [a].[Karma], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE ([a].[IsDeleted] <> CAST(1 AS bit)) AND ([a].[Id] = @__p_0)
+2020-12-11 17:33:52.738 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:33:52.738 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.738 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.738 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:33:52.738 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:33:52.738 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.739 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.739 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:33:52.740 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:33:52.740 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:33:52.740 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.740 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.740 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:33:52.740 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:33:52.741 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.741 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.741 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:33:52.742 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:33:52.742 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:33:52.742 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.742 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.742 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:33:52.742 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:33:52.742 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.743 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.743 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:33:52.743 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:33:52.743 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:33:52.743 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.743 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.743 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:33:52.743 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:33:52.743 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.744 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.744 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:33:52.744 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:33:52.744 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:33:52.744 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.744 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.744 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:33:52.744 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:33:52.744 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.744 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.744 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[CommentId], [p].[OriginalCommentId], [p].[PostId]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Comment') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:33:52.745 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[CommentId], [p].[OriginalCommentId], [p].[PostId]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Comment') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:33:52.745 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:33:52.745 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.745 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:33:52.746 +01:00 [INF] Executing ViewResult, running view Filter.
+2020-12-11 17:33:52.747 +01:00 [INF] Executed ViewResult - view Filter executed in 1.3363ms.
+2020-12-11 17:33:52.747 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Search (Foxxit) in 22.4672ms
+2020-12-11 17:33:52.747 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-11 17:33:52.747 +01:00 [INF] HTTP POST /search responded 200 in 22.7984 ms
+2020-12-11 17:33:52.748 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-11 17:33:52.748 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 195 - 200 - text/html;+charset=utf-8 23.5446ms
+2020-12-11 17:34:45.763 +01:00 [INF] Starting web host
+2020-12-11 17:34:47.702 +01:00 [DBG] Hosting starting
+2020-12-11 17:34:47.827 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-11 17:34:48.335 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-11 17:34:48.335 +01:00 [INF] Hosting environment: Development
+2020-12-11 17:34:48.335 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-11 17:34:48.335 +01:00 [DBG] Hosting started
+2020-12-11 17:34:48.394 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-11 17:34:48.518 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-11 17:34:48.592 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-11 17:34:48.734 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-11 17:34:49.717 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-11 17:34:49.717 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-11 17:34:49.717 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-11 17:34:49.717 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-11 17:34:49.847 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-11 17:34:49.847 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-11 17:34:49.848 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-11 17:34:49.848 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-11 17:34:49.921 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:34:49.921 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:34:49.921 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:34:49.921 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:34:49.921 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-11 17:34:50.157 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-11 17:34:50.202 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-11 17:34:50.401 +01:00 [INF] Executed ViewResult - view Index executed in 199.8803ms.
+2020-12-11 17:34:50.407 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 1814.2005ms
+2020-12-11 17:34:50.409 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-11 17:34:50.413 +01:00 [INF] HTTP GET / responded 200 in 1893.4877 ms
+2020-12-11 17:34:50.428 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-11 17:34:50.433 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 200 - text/html;+charset=utf-8 2042.6147ms
+2020-12-11 17:34:52.629 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 195
+2020-12-11 17:34:52.634 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-11 17:34:52.654 +01:00 [INF] Route matched with {action = "Search", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Search(System.String, System.String) on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-11 17:34:52.694 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-11 17:34:52.877 +01:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(e => EF.Property<long>(e, "Id") == __p_0)'
+2020-12-11 17:34:53.109 +01:00 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<User>(
+    asyncEnumerable: new SingleQueryingEnumerable<User>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.SelectExpression(
+            Projection Mapping:
+                EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.About (string), 1], [Property: User.AccessFailedCount (int) Required, 2], [Property: User.AvatarURL (string), 3], [Property: User.ConcurrencyStamp (string) Concurrency, 4], [Property: User.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 5], [Property: User.DisplayName (string), 6], [Property: User.Email (string) MaxLength(256), 7], [Property: User.EmailConfirmed (bool) Required, 8], [Property: User.IsDeleted (bool) Required, 9], [Property: User.Karma (int) Required, 10], [Property: User.LockoutEnabled (bool) Required, 11], [Property: User.LockoutEnd (Nullable<DateTimeOffset>), 12], [Property: User.NormalizedEmail (string) Index MaxLength(256), 13], [Property: User.NormalizedUserName (string) Index MaxLength(256), 14], [Property: User.PasswordHash (string), 15], [Property: User.PhoneNumber (string), 16], [Property: User.PhoneNumberConfirmed (bool) Required, 17], [Property: User.SecurityStamp (string), 18], [Property: User.TwoFactorEnabled (bool) Required, 19], [Property: User.UserName (string) MaxLength(256), 20], }
+            SELECT TOP(1) a.Id, a.About, a.AccessFailedCount, a.AvatarURL, a.ConcurrencyStamp, a.CreatedAt, a.DisplayName, a.Email, a.EmailConfirmed, a.IsDeleted, a.Karma, a.LockoutEnabled, a.LockoutEnd, a.NormalizedEmail, a.NormalizedUserName, a.PasswordHash, a.PhoneNumber, a.PhoneNumberConfirmed, a.SecurityStamp, a.TwoFactorEnabled, a.UserName
+            FROM AspNetUsers AS a
+            WHERE Not(a.IsDeleted) && (a.Id == @__p_0)), 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+        Foxxit.Database.ApplicationDbContext, 
+        False, 
+        False
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2020-12-11 17:34:53.166 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:34:53.230 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (57ms).
+2020-12-11 17:34:53.255 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.614 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.629 +01:00 [DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[About], [a].[AccessFailedCount], [a].[AvatarURL], [a].[ConcurrencyStamp], [a].[CreatedAt], [a].[DisplayName], [a].[Email], [a].[EmailConfirmed], [a].[IsDeleted], [a].[Karma], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE ([a].[IsDeleted] <> CAST(1 AS bit)) AND ([a].[Id] = @__p_0)
+2020-12-11 17:34:53.708 +01:00 [INF] Executed DbCommand (84ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[About], [a].[AccessFailedCount], [a].[AvatarURL], [a].[ConcurrencyStamp], [a].[CreatedAt], [a].[DisplayName], [a].[Email], [a].[EmailConfirmed], [a].[IsDeleted], [a].[Karma], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE ([a].[IsDeleted] <> CAST(1 AS bit)) AND ([a].[Id] = @__p_0)
+2020-12-11 17:34:53.729 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:34:53.734 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.743 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.751 +01:00 [DBG] Compiling query expression: 
+'DbSet<Post>()'
+2020-12-11 17:34:53.762 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Post>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: PostBase.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: PostBase.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 1], [Property: PostBase.Discriminator (no field, string) Shadow Required AfterSave:Throw, 2], [Property: PostBase.IsDeleted (bool) Required, 3], [Property: PostBase.Text (string), 4], [Property: PostBase.UserId (long) Required FK Index, 5], [Property: Post.ImageURL (string), 6], [Property: Post.SubRedditId (long) Required FK Index, 7], [Property: Post.Title (string), 8], [Property: Post.URL (string), 9], }
+        SELECT p.Id, p.CreatedAt, p.Discriminator, p.IsDeleted, p.Text, p.UserId, p.ImageURL, p.SubRedditId, p.Title, p.URL
+        FROM PostBase AS p
+        WHERE (p.Discriminator == N'Post') && Not(p.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Post>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:34:53.762 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:34:53.762 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:34:53.762 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.764 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.764 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:34:53.773 +01:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:34:53.774 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:34:53.774 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.775 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.776 +01:00 [DBG] Compiling query expression: 
+'DbSet<SubReddit>()'
+2020-12-11 17:34:53.780 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<SubReddit>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: SubReddit.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: SubReddit.About (string), 1], [Property: SubReddit.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 2], [Property: SubReddit.CreatedById (long) Required, 3], [Property: SubReddit.IsDeleted (bool) Required, 4], [Property: SubReddit.Name (string), 5], }
+        SELECT s.Id, s.About, s.CreatedAt, s.CreatedById, s.IsDeleted, s.Name
+        FROM SubReddits AS s
+        WHERE Not(s.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, SubReddit>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:34:53.781 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:34:53.781 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:34:53.781 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.781 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.781 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:34:53.784 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:34:53.785 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:34:53.785 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.785 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.788 +01:00 [DBG] Compiling query expression: 
+'DbSet<Post>()'
+2020-12-11 17:34:53.792 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Post>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: PostBase.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: PostBase.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 1], [Property: PostBase.Discriminator (no field, string) Shadow Required AfterSave:Throw, 2], [Property: PostBase.IsDeleted (bool) Required, 3], [Property: PostBase.Text (string), 4], [Property: PostBase.UserId (long) Required FK Index, 5], [Property: Post.ImageURL (string), 6], [Property: Post.SubRedditId (long) Required FK Index, 7], [Property: Post.Title (string), 8], [Property: Post.URL (string), 9], }
+        SELECT p.Id, p.CreatedAt, p.Discriminator, p.IsDeleted, p.Text, p.UserId, p.ImageURL, p.SubRedditId, p.Title, p.URL
+        FROM PostBase AS p
+        WHERE (p.Discriminator == N'Post') && Not(p.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Post>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:34:53.795 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:34:53.795 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:34:53.796 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.798 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.798 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:34:53.800 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:34:53.801 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:34:53.802 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.802 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.803 +01:00 [DBG] Compiling query expression: 
+'DbSet<SubReddit>()'
+2020-12-11 17:34:53.806 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<SubReddit>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: SubReddit.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: SubReddit.About (string), 1], [Property: SubReddit.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 2], [Property: SubReddit.CreatedById (long) Required, 3], [Property: SubReddit.IsDeleted (bool) Required, 4], [Property: SubReddit.Name (string), 5], }
+        SELECT s.Id, s.About, s.CreatedAt, s.CreatedById, s.IsDeleted, s.Name
+        FROM SubReddits AS s
+        WHERE Not(s.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, SubReddit>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:34:53.806 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:34:53.806 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:34:53.806 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.807 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.807 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:34:53.807 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-11 17:34:53.807 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:34:53.807 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.807 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.808 +01:00 [DBG] Compiling query expression: 
+'DbSet<Comment>()'
+2020-12-11 17:34:53.813 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Comment>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: PostBase.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: PostBase.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 1], [Property: PostBase.Discriminator (no field, string) Shadow Required AfterSave:Throw, 2], [Property: PostBase.IsDeleted (bool) Required, 3], [Property: PostBase.Text (string), 4], [Property: PostBase.UserId (long) Required FK Index, 5], [Property: Comment.CommentId (no field, Nullable<long>) Shadow FK Index, 6], [Property: Comment.OriginalCommentId (long) Required, 7], [Property: Comment.PostId (long) Required FK Index, 8], }
+        SELECT p.Id, p.CreatedAt, p.Discriminator, p.IsDeleted, p.Text, p.UserId, p.CommentId, p.OriginalCommentId, p.PostId
+        FROM PostBase AS p
+        WHERE (p.Discriminator == N'Comment') && Not(p.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Comment>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-11 17:34:53.814 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-11 17:34:53.814 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-11 17:34:53.814 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.814 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.814 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[CommentId], [p].[OriginalCommentId], [p].[PostId]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Comment') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:34:53.816 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[CommentId], [p].[OriginalCommentId], [p].[PostId]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Comment') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-11 17:34:53.816 +01:00 [DBG] A data reader was disposed.
+2020-12-11 17:34:53.816 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.816 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-11 17:34:53.821 +01:00 [INF] Executing ViewResult, running view Filter.
+2020-12-11 17:34:53.841 +01:00 [INF] Executed ViewResult - view Filter executed in 22.5052ms.
+2020-12-11 17:34:53.842 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Search (Foxxit) in 1187.2314ms
+2020-12-11 17:34:53.842 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-11 17:34:53.842 +01:00 [INF] HTTP POST /search responded 200 in 1207.9308 ms
+2020-12-11 17:34:53.842 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-11 17:34:53.844 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 195 - 200 - text/html;+charset=utf-8 1214.8658ms

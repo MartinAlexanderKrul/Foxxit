@@ -5,65 +5,77 @@
 @if (Model.SearchedCategory.Equals("all"))
 {
     <article>
+        <div class="filtered_container">
 
-        <h2>Found SubReddits</h2>
-        @foreach (var subReddit in Model.SubReddits)
-        {
-            <div class="article_item">@Html.ActionLink($"{subReddit.Name}", "ViewSubReddit", "Foxxit", new { subRedditId = subReddit.Id });</div>
-        }
+            <h2>Found SubReddits</h2>
+            @foreach (var subReddit in Model.SubReddits)
+            {
+                <div class="article_item">@Html.ActionLink($"{subReddit.Name}", "ViewSubReddit", "Foxxit", new { subRedditId = subReddit.Id })</div>
+            }
+        </div>
     </article>
 
     <article>
+        <div class="filtered_container">
 
-        <h2>Found Posts</h2>
-        @foreach (var post in Model.Posts)
-        {
-            <div class="article_item">@Html.ActionLink($"{post.Title} in {post.SubReddit.Name}", "ViewSubReddit", "Foxxit", new { subRedditId = post.SubReddit.Id });</div>
-        }
+            <h2>Found Posts</h2>
+            @foreach (var post in Model.Posts)
+            {
+                <div class="article_item">@Html.ActionLink($"{post.Title} in {post.SubReddit.Name}", "ViewSubReddit", "Foxxit", new { subRedditId = post.SubReddit.Id })</div>
+            }
+        </div>
     </article>
 
     <article>
+        <div class="filtered_container">
 
-        <h2>Found Comments</h2>
-        @foreach (var comment in Model.Comments)
-        {
-            <div class="article_item">@Html.ActionLink($"{comment.Text.Substring(0, 100)} on {comment.Post.Title}", "ViewSubReddit", "Foxxit", new { subRedditId = comment.Post.Id });</div>
-        }
+            <h2>Found Comments</h2>
+            @foreach (var comment in Model.Comments)
+            {
+                <div class="article_item">@Html.ActionLink($"{comment.Text.Substring(0, 100)} on {comment.Post.Title}", "ViewSubReddit", "Foxxit", new { subRedditId = comment.Post.Id })</div>
+            }
+        </div>
     </article>
 }
 
 @if (Model.SearchedCategory.Equals("subReddit"))
 {
     <article>
+        <div class="filtered_container">
 
-        <h2>Found SubReddits</h2>
-        @foreach (var subReddit in Model.SubReddits)
-        {
-            <div class="article_item">@Html.ActionLink($"{subReddit.Name}", "ViewSubReddit", "Foxxit", new { subRedditId = subReddit.Id });</div>
-        }
+            <h2>Found SubReddits</h2>
+            @foreach (var subReddit in Model.SubReddits)
+            {
+                <div class="article_item">@Html.ActionLink($"{subReddit.Name}", "ViewSubReddit", "Foxxit", new { subRedditId = subReddit.Id })</div>
+            }
+        </div>
     </article>
 }
 
 @if (Model.SearchedCategory.Equals("post"))
 {
     <article>
+        <div class="filtered_container">
 
-        <h2>Found Posts</h2>
-        @foreach (var post in Model.Posts)
-        {
-            <div class="article_item">@Html.ActionLink($"{post.Title} in {post.SubReddit.Name}", "ViewSubReddit", "Foxxit", new { subRedditId = post.SubReddit.Id });</div>
-        }
+            <h2>Found Posts</h2>
+            @foreach (var post in Model.Posts)
+            {
+                <div class="article_item">@Html.ActionLink($"{post.Title} in {post.SubReddit.Name}", "ViewSubReddit", "Foxxit", new { subRedditId = post.SubReddit.Id })</div>
+            }
+        </div>
     </article>
 }
 
 @if (Model.SearchedCategory.Equals("comment"))
 {
     <article>
+        <div class="filtered_container">
 
-        <h2>Found Comments</h2>
-        @foreach (var comment in Model.Comments)
-        {
-            <div class="article_item">@Html.ActionLink($"{comment.Text.Substring(0, 100)} on {comment.Post.Title}", "ViewSubReddit", "Foxxit", new { subRedditId = comment.Post.Id });</div>
-        }
+            <h2>Found Comments</h2>
+            @foreach (var comment in Model.Comments)
+            {
+                <div class="article_item">@Html.ActionLink($"{comment.Text.Substring(0, 100)} on {comment.Post.Title}", "ViewSubReddit", "Foxxit", new { subRedditId = comment.Post.Id })</div>
+            }
+        </div>
     </article>
 }
