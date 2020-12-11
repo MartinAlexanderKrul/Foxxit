@@ -12,8 +12,8 @@ namespace Foxxit.Attributes.RoleServices
     {
         public AuthorizedRoles(params UserRole[] roles)
         {
-            var allowedRolesAsStrings = roles.Select(r => UserRole.GetName(typeof(UserRole), r));
-            Roles = string.Join(",", allowedRolesAsStrings);
+            var allowedRoles = roles.Select(r => UserRole.GetName(typeof(UserRole), r));
+            Roles = string.Join(",", allowedRoles);
         }
     }
 }
