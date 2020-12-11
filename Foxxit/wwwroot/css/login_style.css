@@ -96,9 +96,9 @@ body {
 }
 
 .img_button {
-    display: inline-flex;
-    padding-left: 10%;
-    margin-left: 55px;
+    display: inline;
+    padding-left: 5%;
+    margin-left: 16px;
     margin-top: 4%;
     margin-bottom: 3%;
     width: 80px;
