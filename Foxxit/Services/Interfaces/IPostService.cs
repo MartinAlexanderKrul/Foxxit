@@ -13,7 +13,7 @@ namespace Foxxit.Services
 
         Task<IEnumerable<Post>> GetAllAsync();
 
-        Task<IEnumerable<Post>> Filter(Func<Post, bool> condition);
+        IEnumerable<Post> Filter(Func<Post, bool> condition);
 
         Task<Post> GetByIdAsync(long id);
 
