@@ -8,7 +8,7 @@ using Foxxit.Repositories;
 
 namespace Foxxit.Services
 {
-    public class SearchService
+    public class SearchService : ISearchService
     {
         public SearchService(PostRepository postRepository, SubRedditRepository subRedditRepository, CommentRepository commentRepository)
         {
