@@ -35,9 +35,9 @@ namespace Foxxit.Controllers
         {
             var model = new MainPageViewModel()
             {
-                CurrentUser = GetActiveUserAsync().Result,
-                Posts = PostService.GetAllAsync().Result,
-                SubReddits = SubRedditService.GetAllAsync().Result,
+                CurrentUser = await GetActiveUserAsync(),
+                Posts = await PostService.GetAllAsync(),
+                SubReddits = await SubRedditService.GetAllAsync(),
                 SearchReturnModel = SearchService.Search(category, keyword),
             };
 
