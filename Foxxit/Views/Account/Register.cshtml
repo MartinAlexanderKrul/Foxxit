@@ -1,25 +1,68 @@
-﻿@{ Layout = "_Layout";}
-@using Foxxit.Models.ViewModels
+﻿@using Foxxit.Models.ViewModels
 @model RegisterViewModel
+@{Layout = "_Layout";}
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post))
-{
-    <div>
-        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "username" })
-    </div>
-    <p>@Html.ValidationMessageFor(m => m.UserName, null, new { @class = "text-danger" })</p>
-    <br>
+<head>
+    <link rel="stylesheet" href="~/css/login_style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
 
-    <div>
-    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "password" })
-    </div>
-    <p>@Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })</p>
-   
-    <div>
-        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "confirm password" })
-    </div>
+<body>
+    @if (Html.ViewData.ModelState.Values.Count() > 0)
+    {
+        <div class="summary">
+            @Html.ValidationSummary(String.Empty, new { @class = "validation_summary" })
+        </div>
+    }
 
-    <p>@Html.ValidationMessageFor(m => m.ConfirmPassword, null, new { @class = "text-danger" })</p>
-    <br>
-    <input class="button" type="submit" name="REGISTER" />
-}
+<div class="login_form">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+    {
+        <div class="login_header">
+            <span> <img src="~/css/foxxit_logo.png" alt="logo" class="login_logo" /></span>
+            <span class="login_title">
+                <a>CREATE ACCOUNT</a>
+            </span>
+        </div>
+
+        <span>
+            @Html.TextBoxFor(m => m.UserName, new { @class = "login_field", @placeholder = "username" })
+        </span>
+
+        <span class="text-danger">
+            @Html.ValidationMessageFor(m => m.UserName, null)
+        </span>
+
+        <span>
+            @Html.TextBoxFor(m => m.Email, new { @class = "login_field", @placeholder = "email" })
+        </span>
+
+        <span class="text-danger">
+            @Html.ValidationMessageFor(m => m.Email, null)
+        </span>
+
+
+        <span>
+            @Html.PasswordFor(m => m.Password, new { @class = "login_field", @placeholder = "password" })
+        </span>
+
+        <span class="text-danger">
+            @Html.ValidationMessageFor(m => m.Password, null)
+        </span>
+
+        <span>
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "login_field", @placeholder = "confirm password" })
+        </span>
+
+        <span class="text-danger">
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, null)
+            <br>
+        </span>
+
+        <input class="login_button" type="submit" value="REGISTER" />
+    }
+
+    @await Html.PartialAsync("_ExternalAuthentication")
+</div>
+</body>
