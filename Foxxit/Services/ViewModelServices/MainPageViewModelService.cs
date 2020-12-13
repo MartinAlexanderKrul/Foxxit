@@ -16,7 +16,7 @@ namespace Foxxit.Services.ViewModelServices
             switch (totalMinutes)
             {
                 case var expression when totalMinutes < 1:
-                    result = $"{totalMinutes} less than a minute";
+                    result = "less than a minute";
                     break;
 
                 case var expression when totalMinutes < 60 && totalMinutes >= 1:
