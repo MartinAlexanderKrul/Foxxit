@@ -27,7 +27,7 @@ namespace Foxxit.Controllers
         }
 
         // Here - defaultly set as first login, then Index page. So must be set Login/Registration page as first now.
-        [AuthorizedRoles(Enums.UserRole.Admin, Enums.UserRole.User)] // Taking only Enums from Foxxit.Enums.Role.cs
+        [AuthorizedRoles(Enums.UserRole.Admin, Enums.UserRole.User)]
         [HttpGet("index")]
         public IActionResult Index()
         {
