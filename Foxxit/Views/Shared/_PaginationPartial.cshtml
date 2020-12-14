@@ -13,13 +13,13 @@
 {
     if (Model.CurrentPage == i)
     {
-        <a asp-action="PaginationTest" asp-route-pageNum="@Model.CurrentPage" class="btn btn-dark @prevDisabled @nextDisabled">current: @Model.CurrentPage </a> 
+        <a asp-action="PaginationTest" asp-route-pageNum="@Model.CurrentPage" class="btn btn-dark @prevDisabled @nextDisabled">current: @Model.CurrentPage</a> 
     }
     else
     {
         if (i > 0 || i <= Model.TotalPages)
         {
-            <a asp-action="PaginationTest" asp-route-pageNum="@i" class="btn btn-default @prevDisabled @nextDisabled">@i </a>
+            <a asp-action="PaginationTest" asp-route-pageNum="@i" class="btn btn-default @prevDisabled @nextDisabled">@i</a> 
         }
     }
 }
