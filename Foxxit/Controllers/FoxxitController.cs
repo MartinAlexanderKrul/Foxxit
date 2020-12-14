@@ -1,4 +1,5 @@
-﻿using Foxxit.Models.Entities;
+﻿using Foxxit.Models.DTO;
+using Foxxit.Models.Entities;
 using Foxxit.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
