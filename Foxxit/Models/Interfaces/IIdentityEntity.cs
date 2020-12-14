@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Foxxit.Models.Entities
+﻿namespace Foxxit.Models.Entities
 {
     public interface IIdentityEntity
     {

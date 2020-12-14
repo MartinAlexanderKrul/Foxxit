@@ -20,7 +20,7 @@
             <div class="post_vote">
                 <form asp-action="Vote" asp-controller="Home">
                     <input type="hidden" value="up" name="voteType" />
-                    <input type="hidden" value="post.Id" name="postId" />
+                    <input type="hidden" value="@post.Id" name="postId" />
                     <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
                 </form>
             </div>
@@ -29,7 +29,7 @@
             <div class="post_vote">
                 <form asp-action="Vote" asp-controller="Home">
                     <input type="hidden" value="down" name="voteType" />
-                    <input type="hidden" value="post.Id" name="postId" />
+                    <input type="hidden" value="@post.Id" name="postId" />
                     <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
                 </form>
             </div>
@@ -57,7 +57,7 @@
 
             <div class="article_footer">
                 <i class="fa fa-comment"></i>
-                <div class="vote">@Html.ActionLink($"{post.Comments.Count()} COMMENTS", "Comments", "Home", new { postId = post.Id })</div>
+                <div class="vote">@Html.ActionLink($"{post.Comments.Count()} COMMENTS", "Post", "Home", new { postId = post.Id })</div>
             </div>
         </div>
 

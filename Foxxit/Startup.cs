@@ -64,6 +64,7 @@ namespace Foxxit
             services.AddTransient<IPostService, PostService>();
             services.AddTransient<MailService>();
             services.AddTransient<ISearchService, SearchService>();
+            services.AddTransient<SubRedditService>();
 
             services.AddAuthentication()
                 .AddGoogle("google", options =>
