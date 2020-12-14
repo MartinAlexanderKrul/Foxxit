@@ -6,6 +6,16 @@ namespace Foxxit.Models.ViewModels
 {
     public class LoginViewModel
     {
+        public LoginViewModel()
+        {
+        }
+
+        public LoginViewModel(string returnUrl, ICollection<AuthenticationScheme> externalLogins)
+        {
+            ReturnUrl = returnUrl;
+            ExternalLogins = externalLogins;
+        }
+
         [Required]
         [StringLength(50, ErrorMessage = "Username must be between 3 and 50 characters!", MinimumLength = 3)]
         [RegularExpression("([0-9a-zA-Z._+@-])+", ErrorMessage = "Username cannot contain any special character!")]
@@ -23,15 +33,5 @@ namespace Foxxit.Models.ViewModels
         public string Message { get; set; }
         public string ReturnUrl { get; set; }
         public ICollection<AuthenticationScheme> ExternalLogins { get; set; }
-
-        public LoginViewModel()
-        {
-        }
-
-        public LoginViewModel(string returnUrl, ICollection<AuthenticationScheme> externalLogins)
-        {
-            ReturnUrl = returnUrl;
-            ExternalLogins = externalLogins;
-        }
     }
 }

@@ -7,6 +7,12 @@ namespace Foxxit.Models.Entities
 {
     public class SubReddit : IIdentityEntity, ISoftDeletable
     {
+        public SubReddit()
+        {
+            Posts = new Collection<Post>();
+            Members = new Collection<User>();
+        }
+
         public long Id { get; set; }
         public string Name { get; set; }
         public string About { get; set; }
@@ -22,11 +28,5 @@ namespace Foxxit.Models.Entities
         public ICollection<User> Members { get; set; }
 
         public bool IsDeleted { get; set; }
-
-        public SubReddit()
-        {
-            Posts = new Collection<Post>();
-            Members = new Collection<User>();
-        }
     }
 }

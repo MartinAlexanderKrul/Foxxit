@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Foxxit.Database
 {
-    public class GenericRepository<T> where T : class, IIdentityEntity
+    public class GenericRepository<T>
+        where T : class, IIdentityEntity
     {
         private readonly ApplicationDbContext dbContext;
         private readonly DbSet<T> table;

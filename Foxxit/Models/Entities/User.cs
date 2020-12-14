@@ -8,6 +8,20 @@ namespace Foxxit.Models.Entities
 {
     public class User : IdentityUser<long>, IIdentityEntity, ISoftDeletable
     {
+        public User(string userName, string email)
+        {
+            UserName = userName;
+            Email = email;
+        }
+
+        public User()
+        {
+            Posts = new Collection<Post>();
+            SubReddits = new Collection<SubReddit>();
+            Votes = new Collection<Vote>();
+            Comments = new Collection<Comment>();
+        }
+
         public string AvatarURL { get; set; }
         public string DisplayName { get; set; }
         public int Karma { get; set; }
@@ -25,21 +39,7 @@ namespace Foxxit.Models.Entities
 
         // each user has many comments
         public ICollection<Comment> Comments { get; set; }
-      
-        public bool IsDeleted { get; set; }
-        
-        public User(string userName, string email)
-        {
-            UserName = userName;
-            Email = email;
-        }
 
-        public User()
-        {
-            Posts = new Collection<Post>();
-            SubReddits = new Collection<SubReddit>();
-            Votes = new Collection<Vote>();
-            Comments = new Collection<Comment>();
-        }
+        public bool IsDeleted { get; set; }
     }
 }
