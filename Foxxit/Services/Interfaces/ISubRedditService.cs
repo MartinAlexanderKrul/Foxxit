@@ -13,7 +13,7 @@ namespace Foxxit.Services
 
         Task<IEnumerable<SubReddit>> GetAllAsync();
 
-        Task<IEnumerable<SubReddit>> Filter(Func<SubReddit, bool> condition);
+        IEnumerable<SubReddit> Filter(Func<SubReddit, bool> condition);
 
         Task<SubReddit> GetByIdAsync(long id);
 

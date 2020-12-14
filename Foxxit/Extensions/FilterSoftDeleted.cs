@@ -8,15 +8,15 @@ namespace Foxxit.Extensions
 {
     public static class FilterSoftDeleted
     {
+        private static readonly MethodInfo SetSoftDeleteFilterMethod = typeof(FilterSoftDeleted)
+           .GetMethods(BindingFlags.Public | BindingFlags.Static)
+           .Single(t => t.IsGenericMethod && t.Name == "SetSoftDeleteFilter");
+
         public static void SetSoftDeleteFilter(this ModelBuilder modelBuilder, Type entityType)
         {
             SetSoftDeleteFilterMethod.MakeGenericMethod(entityType)
                 .Invoke(null, new object[] { modelBuilder });
         }
-
-        private static readonly MethodInfo SetSoftDeleteFilterMethod = typeof(FilterSoftDeleted)
-                   .GetMethods(BindingFlags.Public | BindingFlags.Static)
-                   .Single(t => t.IsGenericMethod && t.Name == "SetSoftDeleteFilter");
 
         public static void SetSoftDeleteFilter<T>(this ModelBuilder modelBuilder)
             where T : class, ISoftDeletable

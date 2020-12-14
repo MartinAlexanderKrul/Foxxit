@@ -9,14 +9,14 @@ namespace Foxxit.Controllers
 {
     public class MainController : Controller
     {
-        public UserManager<User> UserManager { get; protected set; }
-        public SignInManager<User> SignInManager { get; protected set; }
-
         public MainController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
+
+        public UserManager<User> UserManager { get; protected set; }
+        public SignInManager<User> SignInManager { get; protected set; }
 
         protected virtual async Task<User> GetActiveUserAsync()
         {

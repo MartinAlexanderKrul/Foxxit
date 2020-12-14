@@ -18,7 +18,6 @@ namespace Foxxit.Controllers
     public class AccountController : MainController
     {
         private readonly MailService mailService;
-        private readonly ApplicationDbContext context;
 
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, MailService mailService)
             : base(userManager, signInManager)

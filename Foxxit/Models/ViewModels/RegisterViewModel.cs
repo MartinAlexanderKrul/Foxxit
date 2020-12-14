@@ -4,6 +4,10 @@ namespace Foxxit.Models.ViewModels
 {
     public class RegisterViewModel
     {
+        public RegisterViewModel()
+        {
+        }
+
         [Required]
         [StringLength(50, ErrorMessage = "Username must be between 3 and 50 characters!", MinimumLength = 3)]
         [RegularExpression("([0-9a-zA-Z._+@-])+", ErrorMessage = "Username cannot contain any special character!")]
@@ -27,9 +31,5 @@ namespace Foxxit.Models.ViewModels
         public string DisplayName { get; set; }
         public string AvatarUrl { get; set; }
         public string Message { get; set; }
-
-        public RegisterViewModel()
-        {
-        }
     }
 }

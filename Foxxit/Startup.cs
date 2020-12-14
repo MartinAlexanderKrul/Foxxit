@@ -1,10 +1,10 @@
 using System;
 using System.Text.Json.Serialization;
 using Foxxit.Database;
+using Foxxit.Enums;
 using Foxxit.Models.Entities;
 using Foxxit.Repositories;
 using Foxxit.Services;
-using Foxxit.Services.ViewModelServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using UserRole = Foxxit.Models.Entities.UserRole;
 
 namespace Foxxit
 {
@@ -55,11 +56,14 @@ namespace Foxxit
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
-            services.AddTransient<MailService>();
             services.AddTransient<UserRepository>();
             services.AddTransient<SubRedditRepository>();
             services.AddTransient<PostRepository>();
-            services.AddTransient<MainPageViewModelService>();
+            services.AddTransient<CommentRepository>();
+            services.AddTransient<ISubRedditService, SubRedditService>();
+            services.AddTransient<IPostService, PostService>();
+            services.AddTransient<MailService>();
+            services.AddTransient<ISearchService, SearchService>();
 
             services.AddAuthentication()
                 .AddGoogle("google", options =>
