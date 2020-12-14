@@ -26,8 +26,8 @@ namespace Foxxit.Controllers
             return await Task.Run(() => View("Index", model));
         }
 
-        [HttpGet("paginationTest")]
-        public async Task<IActionResult> PaginationTest(int? pageNum)
+        [HttpGet("paginationSample")]
+        public async Task<IActionResult> PaginationSample(int? pageNum)
         {
             var posts = await postService.GetAllAsync();
             int pageSize = 10;
