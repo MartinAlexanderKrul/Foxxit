@@ -1,0 +1,20 @@
+﻿@using Foxxit.Models.ViewModels
+@using Foxxit.Services.ViewModelServices
+@model MainPageViewModel
+@inject MainPageViewModelService service
+
+@{Layout = "_Layout";}
+
+<header>
+    @await Html.PartialAsync("_HeaderViewPartial")
+</header>
+
+<main>
+    <aside>
+        @await Html.PartialAsync("_SideBar_SubRedditsViewPartial", Model.SubReddits)
+    </aside>
+
+    <section>
+        @await Html.PartialAsync("_MainPageViewPartial")
+    </section>
+</main>
