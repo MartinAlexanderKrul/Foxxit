@@ -8,10 +8,10 @@ namespace Foxxit.Services
     {
         public SearchReturnModel Search(string category, string keyword);
 
-        public List<Post> SearchInPosts(string keyword);
+        public IEnumerable<Post> SearchInPosts(string keyword);
 
-        public List<SubReddit> SearchInSubReddits(string keyword);
+        public IEnumerable<SubReddit> SearchInSubReddits(string keyword);
 
-        public List<Comment> SearchInComments(string keyword);
+        public IEnumerable<Comment> SearchInComments(string keyword);
     }
 }

@@ -47,19 +47,19 @@ namespace Foxxit.Services
             return result;
         }
 
-        public List<Post> SearchInPosts(string keyword)
+        public IEnumerable<Post> SearchInPosts(string keyword)
         {
-            return PostRepository.Filter(p => p.Title.Contains(keyword) || p.Text.Contains(keyword)).ToList();
+            return PostRepository.Filter(p => p.Title.Contains(keyword) || p.Text.Contains(keyword));
         }
 
-        public List<SubReddit> SearchInSubReddits(string keyword)
+        public IEnumerable<SubReddit> SearchInSubReddits(string keyword)
         {
-            return SubRedditRepository.Filter(s => s.Name.Contains(keyword) || s.About.Contains(keyword)).ToList();
+            return SubRedditRepository.Filter(s => s.Name.Contains(keyword) || s.About.Contains(keyword));
         }
 
-        public List<Comment> SearchInComments(string keyword)
+        public IEnumerable<Comment> SearchInComments(string keyword)
         {
-            return CommentRepository.Filter(c => c.Text.Contains(keyword)).ToList();
+            return CommentRepository.Filter(c => c.Text.Contains(keyword));
         }
     }
 }

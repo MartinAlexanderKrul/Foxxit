@@ -2565,3 +2565,1211 @@ WHERE ([p].[Discriminator] = N'Comment') AND ([p].[IsDeleted] <> CAST(1 AS bit))
 2020-12-11 17:34:53.842 +01:00 [INF] HTTP POST /search responded 200 in 1207.9308 ms
 2020-12-11 17:34:53.842 +01:00 [DBG] 'ApplicationDbContext' disposed.
 2020-12-11 17:34:53.844 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 195 - 200 - text/html;+charset=utf-8 1214.8658ms
+2020-12-14 09:23:05.567 +01:00 [INF] Starting web host
+2020-12-14 09:23:08.216 +01:00 [DBG] Hosting starting
+2020-12-14 09:23:08.302 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:23:08.949 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:23:08.950 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:23:08.950 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:23:08.950 +01:00 [DBG] Hosting started
+2020-12-14 09:23:09.057 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:23:09.272 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:23:09.414 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:23:09.840 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:23:09.941 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 513.0455ms
+2020-12-14 09:23:09.948 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:23:09.953 +01:00 [ERR] HTTP GET / responded 500 in 682.5075 ms
+System.InvalidOperationException: Unable to resolve service for type 'Foxxit.Services.SearchService' while attempting to activate 'Foxxit.Controllers.FoxxitController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method8(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2020-12-14 09:23:10.069 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'Foxxit.Services.SearchService' while attempting to activate 'Foxxit.Controllers.FoxxitController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method8(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-12-14 09:23:10.212 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 500 - text/html;+charset=utf-8 1161.9942ms
+2020-12-14 09:23:10.989 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/favicon.ico - -
+2020-12-14 09:23:11.003 +01:00 [INF] HTTP GET /favicon.ico responded 404 in 4.9649 ms
+2020-12-14 09:23:11.013 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/favicon.ico - - - 404 - - 24.5899ms
+2020-12-14 09:23:45.277 +01:00 [INF] Starting web host
+2020-12-14 09:23:47.706 +01:00 [DBG] Hosting starting
+2020-12-14 09:23:47.781 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:23:48.249 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:23:48.249 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:23:48.249 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:23:48.249 +01:00 [DBG] Hosting started
+2020-12-14 09:23:48.315 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:23:48.426 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:23:48.494 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:23:48.636 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:23:48.698 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 195.8999ms
+2020-12-14 09:23:48.701 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:23:48.703 +01:00 [ERR] HTTP GET / responded 500 in 276.6280 ms
+System.InvalidOperationException: Unable to resolve service for type 'Foxxit.Services.SearchService' while attempting to activate 'Foxxit.Controllers.FoxxitController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method8(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2020-12-14 09:23:48.767 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'Foxxit.Services.SearchService' while attempting to activate 'Foxxit.Controllers.FoxxitController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method8(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-12-14 09:23:48.862 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 500 - text/html;+charset=utf-8 550.1720ms
+2020-12-14 09:24:46.835 +01:00 [INF] Starting web host
+2020-12-14 09:24:49.096 +01:00 [DBG] Hosting starting
+2020-12-14 09:24:49.189 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:24:49.696 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:24:49.696 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:24:49.696 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:24:49.697 +01:00 [DBG] Hosting started
+2020-12-14 09:24:49.778 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:24:49.926 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:24:50.006 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:24:50.157 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:24:50.223 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 209.0313ms
+2020-12-14 09:24:50.228 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:24:50.232 +01:00 [ERR] HTTP GET / responded 500 in 304.8068 ms
+System.InvalidOperationException: Unable to resolve service for type 'Foxxit.Services.SearchService' while attempting to activate 'Foxxit.Controllers.FoxxitController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method8(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2020-12-14 09:24:50.296 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'Foxxit.Services.SearchService' while attempting to activate 'Foxxit.Controllers.FoxxitController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method8(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-12-14 09:24:50.405 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 500 - text/html;+charset=utf-8 634.0921ms
+2020-12-14 09:25:41.016 +01:00 [INF] Starting web host
+2020-12-14 09:25:43.037 +01:00 [DBG] Hosting starting
+2020-12-14 09:25:43.148 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:25:43.842 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:25:43.842 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:25:43.842 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:25:43.843 +01:00 [DBG] Hosting started
+2020-12-14 09:25:43.923 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:25:44.102 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:25:44.224 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:25:44.415 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:25:44.476 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 241.2279ms
+2020-12-14 09:25:44.479 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:25:44.482 +01:00 [ERR] HTTP GET / responded 500 in 382.2629 ms
+System.InvalidOperationException: Unable to resolve service for type 'Foxxit.Services.SearchService' while attempting to activate 'Foxxit.Controllers.FoxxitController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method8(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2020-12-14 09:25:44.542 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'Foxxit.Services.SearchService' while attempting to activate 'Foxxit.Controllers.FoxxitController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method8(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-12-14 09:25:44.645 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 500 - text/html;+charset=utf-8 725.1388ms
+2020-12-14 09:27:51.164 +01:00 [INF] Starting web host
+2020-12-14 09:27:53.908 +01:00 [DBG] Hosting starting
+2020-12-14 09:27:53.980 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:27:54.550 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:27:54.550 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:27:54.550 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:27:54.550 +01:00 [DBG] Hosting started
+2020-12-14 09:27:54.629 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:27:54.805 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:27:54.872 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:27:55.058 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:27:55.126 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 247.1955ms
+2020-12-14 09:27:55.130 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:27:55.135 +01:00 [ERR] HTTP GET / responded 500 in 326.5937 ms
+System.InvalidOperationException: Unable to resolve service for type 'Foxxit.Services.SearchService' while attempting to activate 'Foxxit.Controllers.FoxxitController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method8(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2020-12-14 09:27:55.216 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'Foxxit.Services.SearchService' while attempting to activate 'Foxxit.Controllers.FoxxitController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method8(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-12-14 09:27:55.341 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 500 - text/html;+charset=utf-8 715.4262ms
+2020-12-14 09:29:04.652 +01:00 [INF] Starting web host
+2020-12-14 09:29:07.359 +01:00 [DBG] Hosting starting
+2020-12-14 09:29:07.447 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:29:07.996 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:29:07.996 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:29:07.996 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:29:07.996 +01:00 [DBG] Hosting started
+2020-12-14 09:29:08.085 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:29:08.279 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:29:08.425 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:29:08.655 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:29:10.112 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-14 09:29:10.112 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-14 09:29:10.112 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-14 09:29:10.112 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-14 09:29:10.279 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:29:10.279 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:29:10.280 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:29:10.280 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:29:10.381 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:29:10.381 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:29:10.381 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:29:10.381 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:29:10.381 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:29:10.656 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:29:10.676 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 2238.2727ms
+2020-12-14 09:29:10.682 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:29:10.685 +01:00 [ERR] HTTP GET / responded 500 in 2406.1493 ms
+System.InvalidOperationException: Unable to resolve service for type 'Foxxit.Services.PostService' while attempting to activate 'Foxxit.Controllers.FoxxitController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method8(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2020-12-14 09:29:10.746 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'Foxxit.Services.PostService' while attempting to activate 'Foxxit.Controllers.FoxxitController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method8(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-12-14 09:29:10.878 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:29:10.888 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 500 - text/html;+charset=utf-8 2804.6646ms
+2020-12-14 09:29:56.431 +01:00 [INF] Starting web host
+2020-12-14 09:29:59.285 +01:00 [DBG] Hosting starting
+2020-12-14 09:29:59.373 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:29:59.891 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:29:59.892 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:29:59.892 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:29:59.892 +01:00 [DBG] Hosting started
+2020-12-14 09:29:59.972 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:30:00.180 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:30:00.306 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:30:00.520 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:30:01.688 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-14 09:30:01.689 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-14 09:30:01.689 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-14 09:30:01.689 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-14 09:30:01.852 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:30:01.852 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:30:01.853 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:30:01.853 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:30:01.938 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:30:01.938 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:30:01.938 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:30:01.938 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:30:01.939 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:30:02.198 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:30:02.263 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-14 09:30:02.321 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 2007.944ms
+2020-12-14 09:30:02.324 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:30:02.327 +01:00 [ERR] HTTP GET / responded 500 in 2149.3721 ms
+System.InvalidOperationException: No service for type 'Foxxit.Services.ViewModelServices.MainPageViewModelService' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2020-12-14 09:30:02.380 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'Foxxit.Services.ViewModelServices.MainPageViewModelService' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-12-14 09:30:02.496 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:30:02.503 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 500 - text/html;+charset=utf-8 2535.2317ms
+2020-12-14 09:32:56.338 +01:00 [INF] Starting web host
+2020-12-14 09:32:59.079 +01:00 [DBG] Hosting starting
+2020-12-14 09:32:59.177 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:32:59.823 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:32:59.823 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:32:59.823 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:32:59.824 +01:00 [DBG] Hosting started
+2020-12-14 09:32:59.919 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:33:00.184 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:33:00.315 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:33:00.597 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:33:02.050 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-14 09:33:02.050 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-14 09:33:02.050 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-14 09:33:02.050 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-14 09:33:02.200 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:33:02.200 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:33:02.201 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:33:02.201 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:33:02.279 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:33:02.279 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:33:02.279 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:33:02.279 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:33:02.279 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:33:02.526 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:33:02.585 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-14 09:33:02.631 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 2309.8977ms
+2020-12-14 09:33:02.635 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:33:02.639 +01:00 [ERR] HTTP GET / responded 500 in 2455.1768 ms
+System.InvalidOperationException: No service for type 'Foxxit.Services.ViewModelServices.MainPageViewModelService' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2020-12-14 09:33:02.712 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'Foxxit.Services.ViewModelServices.MainPageViewModelService' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-12-14 09:33:02.815 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:33:02.821 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 500 - text/html;+charset=utf-8 2908.1360ms
+2020-12-14 09:33:25.295 +01:00 [INF] Starting web host
+2020-12-14 09:33:27.675 +01:00 [DBG] Hosting starting
+2020-12-14 09:33:27.752 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:33:28.213 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:33:28.213 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:33:28.213 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:33:28.213 +01:00 [DBG] Hosting started
+2020-12-14 09:33:28.280 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:33:28.424 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:33:28.520 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:33:28.707 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:33:29.892 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-14 09:33:29.892 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-14 09:33:29.892 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-14 09:33:29.892 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-14 09:33:30.046 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:33:30.046 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:33:30.046 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:33:30.046 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:33:30.132 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:33:30.132 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:33:30.132 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:33:30.132 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:33:30.132 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:33:30.394 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:33:30.442 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-14 09:33:30.489 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 1962.6232ms
+2020-12-14 09:33:30.495 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:33:30.498 +01:00 [ERR] HTTP GET / responded 500 in 2073.4374 ms
+System.InvalidOperationException: No service for type 'Foxxit.Services.ViewModelServices.MainPageViewModelService' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2020-12-14 09:33:30.557 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'Foxxit.Services.ViewModelServices.MainPageViewModelService' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-12-14 09:33:30.675 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:33:30.685 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 500 - text/html;+charset=utf-8 2407.2041ms
+2020-12-14 09:37:05.141 +01:00 [INF] Starting web host
+2020-12-14 09:37:07.891 +01:00 [DBG] Hosting starting
+2020-12-14 09:37:08.010 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:37:08.616 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:37:08.617 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:37:08.617 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:37:08.617 +01:00 [DBG] Hosting started
+2020-12-14 09:37:08.703 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:37:08.858 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:37:08.949 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:37:09.163 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:37:10.502 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-14 09:37:10.503 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-14 09:37:10.503 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-14 09:37:10.503 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-14 09:37:10.646 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:37:10.646 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:37:10.646 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:37:10.646 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:37:10.724 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:37:10.724 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:37:10.724 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:37:10.724 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:37:10.725 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:37:10.977 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:37:11.043 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-14 09:37:11.098 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 2141.6639ms
+2020-12-14 09:37:11.102 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:37:11.105 +01:00 [ERR] HTTP GET / responded 500 in 2246.8907 ms
+System.InvalidOperationException: No service for type 'Foxxit.Services.ViewModelServices.MainPageViewModelService' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2020-12-14 09:37:11.177 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'Foxxit.Services.ViewModelServices.MainPageViewModelService' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-12-14 09:37:11.287 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:37:11.293 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 500 - text/html;+charset=utf-8 2596.3559ms
+2020-12-14 09:37:41.573 +01:00 [INF] Starting web host
+2020-12-14 09:37:44.217 +01:00 [DBG] Hosting starting
+2020-12-14 09:37:44.307 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:37:44.875 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:37:44.876 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:37:44.876 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:37:44.876 +01:00 [DBG] Hosting started
+2020-12-14 09:37:44.961 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:37:45.126 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:37:45.233 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:37:45.485 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:37:47.008 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-14 09:37:47.009 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-14 09:37:47.009 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-14 09:37:47.009 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-14 09:37:47.207 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:37:47.207 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:37:47.208 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:37:47.208 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:37:47.317 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:37:47.317 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:37:47.317 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:37:47.317 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:37:47.317 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:37:47.590 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:37:47.649 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-14 09:37:47.937 +01:00 [INF] Executed ViewResult - view Index executed in 284.2456ms.
+2020-12-14 09:37:47.942 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 2708.3301ms
+2020-12-14 09:37:47.944 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:37:47.949 +01:00 [INF] HTTP GET / responded 200 in 2822.0998 ms
+2020-12-14 09:37:47.984 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:37:47.994 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 200 - text/html;+charset=utf-8 3035.4029ms
+2020-12-14 09:37:48.016 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/css/MainStyles.css - -
+2020-12-14 09:37:48.050 +01:00 [INF] Sending file. Request path: '/css/MainStyles.css'. Physical path: 'C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit\wwwroot\css\MainStyles.css'
+2020-12-14 09:37:48.051 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/css/MainStyles.css - - - 200 5630 text/css 35.8075ms
+2020-12-14 09:37:48.180 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/assets/logo.png - -
+2020-12-14 09:37:48.180 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/assets/search.png - -
+2020-12-14 09:37:48.194 +01:00 [INF] Sending file. Request path: '/assets/search.png'. Physical path: 'C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit\wwwroot\assets\search.png'
+2020-12-14 09:37:48.195 +01:00 [INF] Sending file. Request path: '/assets/logo.png'. Physical path: 'C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit\wwwroot\assets\logo.png'
+2020-12-14 09:37:48.195 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/assets/logo.png - - - 200 12191 image/png 15.6074ms
+2020-12-14 09:37:48.195 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/assets/search.png - - - 200 7131 image/png 14.4908ms
+2020-12-14 09:39:17.043 +01:00 [INF] Starting web host
+2020-12-14 09:39:19.399 +01:00 [DBG] Hosting starting
+2020-12-14 09:39:19.474 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:39:20.082 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:39:20.082 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:39:20.082 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:39:20.083 +01:00 [DBG] Hosting started
+2020-12-14 09:39:20.161 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:39:20.341 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:39:20.444 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:39:20.677 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:39:22.132 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-14 09:39:22.132 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-14 09:39:22.132 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-14 09:39:22.132 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-14 09:39:22.302 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:39:22.302 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:39:22.303 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:39:22.303 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:39:22.382 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:39:22.382 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:39:22.382 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:39:22.382 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:39:22.382 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:39:22.659 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:39:22.720 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-14 09:39:22.782 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 2331.7469ms
+2020-12-14 09:39:22.786 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:39:22.789 +01:00 [ERR] HTTP GET / responded 500 in 2447.3596 ms
+System.InvalidOperationException: No service for type 'Foxxit.Services.ViewModelServices.MainPageViewModelService' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2020-12-14 09:39:22.858 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'Foxxit.Services.ViewModelServices.MainPageViewModelService' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-12-14 09:39:22.962 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:39:22.968 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 500 - text/html;+charset=utf-8 2814.3126ms
+2020-12-14 09:41:51.729 +01:00 [INF] Starting web host
+2020-12-14 09:41:54.441 +01:00 [DBG] Hosting starting
+2020-12-14 09:41:54.517 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:41:55.174 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:41:55.174 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:41:55.174 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:41:55.174 +01:00 [DBG] Hosting started
+2020-12-14 09:41:55.251 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:41:55.445 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:41:55.536 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:41:55.794 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:41:57.249 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-14 09:41:57.249 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-14 09:41:57.249 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-14 09:41:57.249 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-14 09:41:57.436 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:41:57.436 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:41:57.436 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:41:57.437 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:41:57.539 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:41:57.539 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:41:57.540 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:41:57.540 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:41:57.540 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:41:57.852 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:41:57.938 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-14 09:41:58.280 +01:00 [INF] Executed ViewResult - view Index executed in 347.8831ms.
+2020-12-14 09:41:58.287 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 2750.0705ms
+2020-12-14 09:41:58.292 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:41:58.298 +01:00 [INF] HTTP GET / responded 200 in 2851.1755 ms
+2020-12-14 09:41:58.318 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:41:58.323 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 200 - text/html;+charset=utf-8 3077.4109ms
+2020-12-14 09:45:01.261 +01:00 [INF] Starting web host
+2020-12-14 09:45:03.884 +01:00 [DBG] Hosting starting
+2020-12-14 09:45:03.983 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:45:04.561 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:45:04.561 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:45:04.561 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:45:04.561 +01:00 [DBG] Hosting started
+2020-12-14 09:45:04.660 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:45:04.864 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:45:04.978 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:45:05.216 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:45:06.680 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-14 09:45:06.681 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-14 09:45:06.681 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-14 09:45:06.682 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-14 09:45:06.863 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:45:06.863 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:45:06.863 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:45:06.863 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:45:06.948 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:45:06.949 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:45:06.949 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:45:06.949 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:45:06.949 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:45:07.272 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:45:07.339 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-14 09:45:07.662 +01:00 [INF] Executed ViewResult - view Index executed in 323.9019ms.
+2020-12-14 09:45:07.666 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 2687.2399ms
+2020-12-14 09:45:07.668 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:45:07.672 +01:00 [INF] HTTP GET / responded 200 in 2806.5853 ms
+2020-12-14 09:45:07.696 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:45:07.706 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 200 - text/html;+charset=utf-8 3051.1959ms
+2020-12-14 09:45:15.384 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 195
+2020-12-14 09:45:15.403 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-14 09:45:15.426 +01:00 [INF] Route matched with {action = "Search", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Search(System.String, System.String) on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:45:15.474 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:45:15.534 +01:00 [INF] Executing ViewResult, running view Filter.
+2020-12-14 09:45:56.221 +01:00 [INF] Starting web host
+2020-12-14 09:45:59.331 +01:00 [DBG] Hosting starting
+2020-12-14 09:45:59.423 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:46:00.036 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:46:00.036 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:46:00.036 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:46:00.036 +01:00 [DBG] Hosting started
+2020-12-14 09:46:00.105 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:46:00.285 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:46:00.361 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:46:00.522 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:46:01.635 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-14 09:46:01.635 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-14 09:46:01.635 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-14 09:46:01.636 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-14 09:46:01.762 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:46:01.763 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:46:01.763 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:46:01.763 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:46:01.828 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:46:01.828 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:46:01.828 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:46:01.828 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:46:01.828 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:46:02.071 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:46:02.138 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-14 09:46:02.404 +01:00 [INF] Executed ViewResult - view Index executed in 267.8378ms.
+2020-12-14 09:46:02.408 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 2046.0226ms
+2020-12-14 09:46:02.410 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:46:02.414 +01:00 [INF] HTTP GET / responded 200 in 2128.5348 ms
+2020-12-14 09:46:02.438 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:46:02.445 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 200 - text/html;+charset=utf-8 2345.2185ms
+2020-12-14 09:46:07.489 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 201
+2020-12-14 09:46:07.527 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-14 09:46:07.550 +01:00 [INF] Route matched with {action = "Search", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Search(System.String, System.String) on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:46:07.586 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:46:07.632 +01:00 [INF] Executing ViewResult, running view Filter.
+2020-12-14 09:47:30.119 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Search (Foxxit) in 82568.8856ms
+2020-12-14 09:47:30.119 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-14 09:47:30.119 +01:00 [ERR] HTTP POST /search responded 500 in 82592.4011 ms
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AspNetCore.Views_Shared__FilterViewPartial.ExecuteAsync() in C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit\Views\Shared\_FilterViewPartial.cshtml:line 5
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.RenderPartialCoreAsync(String partialViewName, Object model, ViewDataDictionary viewData, TextWriter writer)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.PartialAsync(String partialViewName, Object model, ViewDataDictionary viewData)
+   at AspNetCore.Views_Foxxit_Filter.ExecuteAsync() in C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit\Views\Foxxit\Filter.cshtml:line 18
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2020-12-14 09:47:30.196 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AspNetCore.Views_Shared__FilterViewPartial.ExecuteAsync() in C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit\Views\Shared\_FilterViewPartial.cshtml:line 5
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.RenderPartialCoreAsync(String partialViewName, Object model, ViewDataDictionary viewData, TextWriter writer)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.PartialAsync(String partialViewName, Object model, ViewDataDictionary viewData)
+   at AspNetCore.Views_Foxxit_Filter.ExecuteAsync() in C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit\Views\Foxxit\Filter.cshtml:line 18
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-12-14 09:47:30.250 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:47:30.250 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 201 - 500 - text/html;+charset=utf-8 82761.1139ms
+2020-12-14 09:48:13.950 +01:00 [INF] Starting web host
+2020-12-14 09:48:16.608 +01:00 [DBG] Hosting starting
+2020-12-14 09:48:16.699 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:48:17.291 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:48:17.292 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:48:17.292 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:48:17.292 +01:00 [DBG] Hosting started
+2020-12-14 09:48:17.399 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:48:17.621 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:48:17.726 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:48:17.946 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:48:19.146 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-14 09:48:19.147 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-14 09:48:19.147 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-14 09:48:19.148 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-14 09:48:19.321 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:48:19.322 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:48:19.322 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:48:19.322 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:48:19.415 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:48:19.416 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:48:19.416 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:48:19.416 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:48:19.416 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:48:19.677 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:48:19.730 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-14 09:48:20.003 +01:00 [INF] Executed ViewResult - view Index executed in 272.7348ms.
+2020-12-14 09:48:20.009 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 2281.2924ms
+2020-12-14 09:48:20.010 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:48:20.013 +01:00 [INF] HTTP GET / responded 200 in 2391.9744 ms
+2020-12-14 09:48:20.029 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:48:20.045 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 200 - text/html;+charset=utf-8 2648.5004ms
+2020-12-14 09:48:24.349 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 195
+2020-12-14 09:48:24.354 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-14 09:48:24.386 +01:00 [INF] Route matched with {action = "Search", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Search(System.String, System.String) on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:48:24.434 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:50:44.459 +01:00 [INF] Starting web host
+2020-12-14 09:50:46.972 +01:00 [DBG] Hosting starting
+2020-12-14 09:50:47.073 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:50:47.617 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:50:47.617 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:50:47.617 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:50:47.617 +01:00 [DBG] Hosting started
+2020-12-14 09:50:47.707 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:50:47.897 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:50:48.000 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:50:48.216 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:50:49.676 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-14 09:50:49.676 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-14 09:50:49.676 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-14 09:50:49.676 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-14 09:50:49.873 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:50:49.874 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:50:49.874 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:50:49.874 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:50:49.990 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:50:49.990 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:50:49.990 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:50:49.990 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:50:49.990 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:50:50.311 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:50:50.394 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-14 09:50:50.724 +01:00 [INF] Executed ViewResult - view Index executed in 332.759ms.
+2020-12-14 09:50:50.729 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 2727.6897ms
+2020-12-14 09:50:50.731 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:50:50.736 +01:00 [INF] HTTP GET / responded 200 in 2836.9302 ms
+2020-12-14 09:50:50.766 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:50:50.774 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 200 - text/html;+charset=utf-8 3072.5681ms
+2020-12-14 09:50:53.598 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 195
+2020-12-14 09:50:53.602 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-14 09:50:53.629 +01:00 [INF] Route matched with {action = "Search", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Search(System.String, System.String) on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:50:53.677 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:50:53.736 +01:00 [INF] Executing ViewResult, running view Filter.
+2020-12-14 09:50:53.851 +01:00 [DBG] Compiling query expression: 
+'DbSet<SubReddit>()'
+2020-12-14 09:50:54.146 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<SubReddit>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: SubReddit.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: SubReddit.About (string), 1], [Property: SubReddit.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 2], [Property: SubReddit.CreatedById (long) Required, 3], [Property: SubReddit.IsDeleted (bool) Required, 4], [Property: SubReddit.Name (string), 5], }
+        SELECT s.Id, s.About, s.CreatedAt, s.CreatedById, s.IsDeleted, s.Name
+        FROM SubReddits AS s
+        WHERE Not(s.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, SubReddit>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-14 09:50:54.204 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-14 09:50:54.281 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (72ms).
+2020-12-14 09:50:54.286 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:50:56.291 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:50:56.303 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-14 09:50:56.390 +01:00 [INF] Executed DbCommand (88ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[About], [s].[CreatedAt], [s].[CreatedById], [s].[IsDeleted], [s].[Name]
+FROM [SubReddits] AS [s]
+WHERE [s].[IsDeleted] <> CAST(1 AS bit)
+2020-12-14 09:50:56.402 +01:00 [DBG] A data reader was disposed.
+2020-12-14 09:50:56.408 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:50:56.419 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:50:56.420 +01:00 [DBG] Compiling query expression: 
+'DbSet<Post>()'
+2020-12-14 09:50:56.440 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Post>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: PostBase.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: PostBase.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 1], [Property: PostBase.Discriminator (no field, string) Shadow Required AfterSave:Throw, 2], [Property: PostBase.IsDeleted (bool) Required, 3], [Property: PostBase.Text (string), 4], [Property: PostBase.UserId (long) Required FK Index, 5], [Property: Post.ImageURL (string), 6], [Property: Post.SubRedditId (long) Required FK Index, 7], [Property: Post.Title (string), 8], [Property: Post.URL (string), 9], }
+        SELECT p.Id, p.CreatedAt, p.Discriminator, p.IsDeleted, p.Text, p.UserId, p.ImageURL, p.SubRedditId, p.Title, p.URL
+        FROM PostBase AS p
+        WHERE (p.Discriminator == N'Post') && Not(p.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Post>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-14 09:50:56.444 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-14 09:50:56.444 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-14 09:50:56.444 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:50:56.446 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:50:56.446 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-14 09:50:56.459 +01:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-14 09:50:56.460 +01:00 [DBG] A data reader was disposed.
+2020-12-14 09:50:56.460 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:50:56.460 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:50:56.461 +01:00 [DBG] Compiling query expression: 
+'DbSet<Comment>()'
+2020-12-14 09:50:56.466 +01:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Comment>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: PostBase.Id (long) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: PostBase.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 1], [Property: PostBase.Discriminator (no field, string) Shadow Required AfterSave:Throw, 2], [Property: PostBase.IsDeleted (bool) Required, 3], [Property: PostBase.Text (string), 4], [Property: PostBase.UserId (long) Required FK Index, 5], [Property: Comment.CommentId (no field, Nullable<long>) Shadow FK Index, 6], [Property: Comment.OriginalCommentId (long) Required, 7], [Property: Comment.PostId (long) Required FK Index, 8], }
+        SELECT p.Id, p.CreatedAt, p.Discriminator, p.IsDeleted, p.Text, p.UserId, p.CommentId, p.OriginalCommentId, p.PostId
+        FROM PostBase AS p
+        WHERE (p.Discriminator == N'Comment') && Not(p.IsDeleted)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Comment>, 
+    Foxxit.Database.ApplicationDbContext, 
+    False, 
+    False
+)'
+2020-12-14 09:50:56.466 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-14 09:50:56.466 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-14 09:50:56.466 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:50:56.466 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:50:56.466 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[CommentId], [p].[OriginalCommentId], [p].[PostId]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Comment') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-14 09:50:56.468 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[CommentId], [p].[OriginalCommentId], [p].[PostId]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Comment') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-14 09:50:56.469 +01:00 [DBG] A data reader was disposed.
+2020-12-14 09:50:56.469 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:50:56.469 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:50:56.471 +01:00 [INF] Executed ViewResult - view Filter executed in 2740.7356ms.
+2020-12-14 09:50:56.471 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Search (Foxxit) in 2842.07ms
+2020-12-14 09:50:56.471 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-14 09:50:56.472 +01:00 [INF] HTTP POST /search responded 200 in 2869.2516 ms
+2020-12-14 09:50:56.472 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:50:56.473 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 195 - 200 - text/html;+charset=utf-8 2875.2319ms
+2020-12-14 09:51:04.862 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 196
+2020-12-14 09:51:04.869 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-14 09:51:04.870 +01:00 [INF] Route matched with {action = "Search", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Search(System.String, System.String) on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:51:04.904 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:51:04.911 +01:00 [INF] Executing ViewResult, running view Filter.
+2020-12-14 09:51:04.914 +01:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2020-12-14 09:51:04.915 +01:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2020-12-14 09:51:04.915 +01:00 [DBG] Opening connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:51:04.915 +01:00 [DBG] Opened connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:51:04.915 +01:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-14 09:51:04.916 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[Discriminator], [p].[IsDeleted], [p].[Text], [p].[UserId], [p].[ImageURL], [p].[SubRedditId], [p].[Title], [p].[URL]
+FROM [PostBase] AS [p]
+WHERE ([p].[Discriminator] = N'Post') AND ([p].[IsDeleted] <> CAST(1 AS bit))
+2020-12-14 09:51:04.916 +01:00 [DBG] A data reader was disposed.
+2020-12-14 09:51:04.916 +01:00 [DBG] Closing connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:51:04.916 +01:00 [DBG] Closed connection to database 'Foxxit' on server '(localdb)\MSSQLLocalDB'.
+2020-12-14 09:51:04.917 +01:00 [INF] Executed ViewResult - view Filter executed in 6.7363ms.
+2020-12-14 09:51:04.917 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Search (Foxxit) in 47.5053ms
+2020-12-14 09:51:04.917 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-14 09:51:04.917 +01:00 [INF] HTTP POST /search responded 200 in 48.4343 ms
+2020-12-14 09:51:04.918 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:51:04.918 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 196 - 200 - text/html;+charset=utf-8 55.8601ms
+2020-12-14 09:51:20.949 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44314/search application/x-www-form-urlencoded 195
+2020-12-14 09:51:20.949 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Search (Foxxit)'
+2020-12-14 09:51:20.949 +01:00 [INF] Route matched with {action = "Search", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Search(System.String, System.String) on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:51:20.951 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:51:20.954 +01:00 [INF] Executing ViewResult, running view Filter.
+2020-12-14 09:52:51.117 +01:00 [INF] Starting web host
+2020-12-14 09:52:53.692 +01:00 [DBG] Hosting starting
+2020-12-14 09:52:53.779 +01:00 [INF] User profile is available. Using 'C:\Users\MartinAlexander\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-12-14 09:52:54.321 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-12-14 09:52:54.321 +01:00 [INF] Hosting environment: Development
+2020-12-14 09:52:54.321 +01:00 [INF] Content root path: C:\Users\MartinAlexander\Documents\GitHub\GreenFox\Microtis-Fullstack\Foxxit
+2020-12-14 09:52:54.321 +01:00 [DBG] Hosting started
+2020-12-14 09:52:54.397 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44314/ - -
+2020-12-14 09:52:54.573 +01:00 [INF] Executing endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:52:54.694 +01:00 [INF] Route matched with {action = "Index", controller = "Foxxit"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Foxxit.Controllers.FoxxitController (Foxxit).
+2020-12-14 09:52:54.895 +01:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2020-12-14 09:52:56.464 +01:00 [DBG] The index {'UserId'} was not created on entity type 'UserSubReddit' as the properties are already covered by the index {'UserId', 'SubRedditId'}.
+2020-12-14 09:52:56.464 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<long>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2020-12-14 09:52:56.465 +01:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<long>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2020-12-14 09:52:56.465 +01:00 [DBG] The index {'MembersId'} was not created on entity type 'SubRedditUser (Dictionary<string, object>)' as the properties are already covered by the index {'MembersId', 'SubRedditsId'}.
+2020-12-14 09:52:56.650 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Comment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:52:56.650 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'Post'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:52:56.650 +01:00 [WRN] Entity 'SubReddit' has a global query filter defined and is the required end of a relationship with the entity 'UserSubReddit'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:52:56.650 +01:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Vote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2020-12-14 09:52:56.742 +01:00 [DBG] The property 'CommentId.Comment' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:52:56.742 +01:00 [DBG] The property 'Discriminator.PostBase' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:52:56.743 +01:00 [DBG] The property 'Discriminator.IdentityRole<long>' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:52:56.743 +01:00 [DBG] The property 'MembersId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:52:56.743 +01:00 [DBG] The property 'SubRedditsId.SubRedditUser (Dictionary<string, object>)' was created in shadow state because there are no eligible CLR members with a matching name.
+2020-12-14 09:52:57.031 +01:00 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-12-14 09:52:57.120 +01:00 [INF] Executing ViewResult, running view Index.
+2020-12-14 09:52:57.356 +01:00 [INF] Executed ViewResult - view Index executed in 241.4704ms.
+2020-12-14 09:52:57.361 +01:00 [INF] Executed action Foxxit.Controllers.FoxxitController.Index (Foxxit) in 2666.4294ms
+2020-12-14 09:52:57.362 +01:00 [INF] Executed endpoint 'Foxxit.Controllers.FoxxitController.Index (Foxxit)'
+2020-12-14 09:52:57.367 +01:00 [INF] HTTP GET / responded 200 in 2791.7898 ms
+2020-12-14 09:52:57.381 +01:00 [DBG] 'ApplicationDbContext' disposed.
+2020-12-14 09:52:57.386 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44314/ - - - 200 - text/html;+charset=utf-8 2992.3834ms

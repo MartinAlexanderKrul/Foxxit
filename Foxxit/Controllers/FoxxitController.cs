@@ -10,7 +10,7 @@ namespace Foxxit.Controllers
 {
     public class FoxxitController : MainController
     {
-        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, SearchService searchService, PostService postService, SubRedditService subRedditService)
+        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService)
             : base(userManager, signInManager)
         {
             SearchService = searchService;
@@ -18,9 +18,9 @@ namespace Foxxit.Controllers
             SubRedditService = subRedditService;
         }
 
-        public SearchService SearchService { get; set; }
-        public PostService PostService { get; set; }
-        public SubRedditService SubRedditService { get; set; }
+        public ISearchService SearchService { get; set; }
+        public IPostService PostService { get; set; }
+        public ISubRedditService SubRedditService { get; set; }
 
         [HttpGet("index")]
         [HttpGet("")]

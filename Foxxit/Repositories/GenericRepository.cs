@@ -27,7 +27,7 @@ namespace Foxxit.Repositories
 
         public IEnumerable<T> Filter(Func<T, bool> condition)
         {
-            return table.Where(condition).ToList();
+            return table.Where(condition);
         }
 
         public async Task<T> GetByIdAsync(long id)

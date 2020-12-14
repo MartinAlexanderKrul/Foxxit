@@ -21,7 +21,7 @@ namespace Foxxit.Services
             return await SubRedditRepository.GetAllAsync();
         }
 
-        public async Task<IEnumerable<SubReddit>> Filter(Func<SubReddit, bool> condition)
+        public IEnumerable<SubReddit> Filter(Func<SubReddit, bool> condition)
         {
             return SubRedditRepository.Filter(condition);
         }
