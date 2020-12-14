@@ -42,13 +42,5 @@ namespace Foxxit.Controllers
 
             return await Task.Run(() => View("Filter", model));
         }
-
-        [HttpGet("subreddit")]
-        public async Task<IActionResult> SubReddit(long subRedId)
-        {
-            var subReddit = await SubRedditService.GetByIdAsync(subRedId);
-            var viewModel = new SubRedditViewModel() { SubReddit = subReddit };
-            return View(viewModel);
-        }
     }
 }

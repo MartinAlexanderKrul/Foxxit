@@ -1,0 +1,61 @@
+﻿@{ Layout = "_Layout"; }
+@model Foxxit.Models.ViewModels.SubRedditViewModel
+
+<div class="subreddit_header">
+    <div>
+        <div><h1>@Model.SubReddit.Name</h1></div>
+        <div class="subreddit_sorting">
+            <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="hot">HOT</a></div>
+            <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="new">NEW</a></div>
+            <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="top">TOP</a></div>
+        </div>
+    </div>
+    <div>
+        <form action="createPost" method="post">
+            <button type="submit">CREATE POST</button>
+        </form>
+    </div>
+</div>
+
+
+@foreach (var post in Model.SubReddit.Posts)
+{
+    //TODO whole row has to be a link
+<article>
+    <div class="posts_list_row">
+        <div class="votes">
+            <div>
+                <form asp-action="Vote" asp-controller="Home">
+                    <input type="hidden" value="up" name="voteType" />
+                    <input type="hidden" value="@post.Id" name="postId" />
+                    <button type="submit"><img src="UPVOTE IMG" alt="Upvote" /></button>
+                </form>
+            </div>
+            <div>@post.Votes.Count</div>
+            <div>
+                <form asp-action="Vote" asp-controller="Home">
+                    <input type="hidden" value="down" name="voteType" />
+                    <input type="hidden" value="@post.Id" name="postId" />
+                    <button type="submit"><img src="DOWNVOTE IMG" alt="Downvote" /></button>
+                </form>
+            </div>
+        </div>
+        <div class="posts_lists_row_main">
+            <div class="posts_lists_row_main_top">
+                <div><img src="POST ICON" alt="Icon" /></div>
+                <div>@post.Title</div>
+            </div>
+
+            <div class="posts_lists_row_main_bottom">
+                Posted by @post.User.DisplayName on @post.CreatedAt
+                @{ /* TODO createdAt to be handled with the same logic as main view */ }
+            </div>
+        </div>
+        <div class="posts_list_row_right">
+            <a asp-action="Post" asp-controller="Home" asp-route-PostId="@post.Id">
+                <div><img src="COMMENTS ICON" alt="@post.Comments.Count" /></div>
+                <div>@post.Comments.Count</div>
+            </a>
+        </div>
+    </div>
+</article>}
