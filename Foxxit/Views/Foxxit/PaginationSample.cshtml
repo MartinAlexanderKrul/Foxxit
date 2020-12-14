@@ -3,5 +3,6 @@
 @{ // Every ViewModel should Inherit from the PaginatedList to include the pagination properties and functionality.
     // The implementation is definitely up for further discussion, if any other ideas. 
 }
+@{ Layout = "_Layout";}
 
 @await Html.PartialAsync("_PaginationPartial", Model)

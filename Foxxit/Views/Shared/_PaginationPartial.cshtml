@@ -3,7 +3,7 @@
 @model PaginatedList<Foxxit.Models.Entities.Post>
 
 @{ var prevDisabled = !Model.HasPreviousPage ? "hidden" : "";
-    var nextDisabled = !Model.HasNextPage ? "hidden" : "";
+    var nextDisabled = !Model.HasNextPage ? "button-disabled" : "";
     int pageNumsAmount = 3; }
 
 <a asp-action="PaginationSample" asp-route-pageNum="1" class="btn btn-default">FIRST</a>

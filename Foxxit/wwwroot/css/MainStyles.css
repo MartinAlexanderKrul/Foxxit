@@ -314,3 +314,7 @@ article {
 .vote {
     margin-left: 5px;
 }
+
+.button-disabled {
+    display:none;
+}
