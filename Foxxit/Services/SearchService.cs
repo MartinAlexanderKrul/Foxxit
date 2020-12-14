@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Foxxit.Enums;
+using Foxxit.Extensions;
 using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 using Foxxit.Repositories;
@@ -50,17 +51,17 @@ namespace Foxxit.Services
 
         public IEnumerable<Post> SearchInPosts(string keyword)
         {
-            return PostRepository.Filter(p => p.Title.Contains(keyword) || p.Text.Contains(keyword));
+            return PostRepository.Filter(p => p.Title.ContainsCaseInsensitive(keyword) || p.Text.ContainsCaseInsensitive(keyword));
         }
 
         public IEnumerable<SubReddit> SearchInSubReddits(string keyword)
         {
-            return SubRedditRepository.Filter(s => s.Name.Contains(keyword) || s.About.Contains(keyword));
+            return SubRedditRepository.Filter(s => s.Name.ContainsCaseInsensitive(keyword) || s.About.ContainsCaseInsensitive(keyword));
         }
 
         public IEnumerable<Comment> SearchInComments(string keyword)
         {
-            return CommentRepository.Filter(c => c.Text.Contains(keyword));
+            return CommentRepository.Filter(c => c.Text.ContainsCaseInsensitive(keyword));
         }
     }
 }
