@@ -1,8 +1,9 @@
 ﻿@using Foxxit.Models.DTO
+@using Foxxit.Enums
 @model SearchReturnModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-@if (Model.SearchedCategory.Equals("all"))
+@if (Model.SearchedCategory.Equals(nameof(SearchCategory.All)))
 {
     <article>
         <div class="filtered_container">
@@ -38,7 +39,7 @@
     </article>
 }
 
-@if (Model.SearchedCategory.Equals("subReddit"))
+@if (Model.SearchedCategory.Equals(nameof(SearchCategory.SubReddit)))
 {
     <article>
         <div class="filtered_container">
@@ -52,7 +53,7 @@
     </article>
 }
 
-@if (Model.SearchedCategory.Equals("post"))
+@if (Model.SearchedCategory.Equals(nameof(SearchCategory.Post)))
 {
     <article>
         <div class="filtered_container">
@@ -66,7 +67,7 @@
     </article>
 }
 
-@if (Model.SearchedCategory.Equals("comment"))
+@if (Model.SearchedCategory.Equals(nameof(SearchCategory.Comment)))
 {
     <article>
         <div class="filtered_container">

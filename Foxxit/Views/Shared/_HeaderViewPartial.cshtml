@@ -13,7 +13,7 @@
                 <option class="header_options">SubReddits</option>
                 @foreach (var subReddit in Model.SubReddits)
                 {
-                    <option class="header_options" value="@subReddit.Id">@subReddit.Name</option>
+                <option class="header_options" value="@subReddit.Id">@subReddit.Name</option>
                 }
             </select>
         </form>
@@ -21,14 +21,14 @@
 
     <div class="header_search_container">
         <form asp-action="Search" asp-controller="Foxxit">
-            <input class="header_inputs" type="text" id="header_search" placeholder="search for...">
+            <input name="keyword" class="header_inputs" type="text" id="header_search" placeholder="search for...">
             <img src="~/assets/search.png" alt="Search" width="18px" id="header_search_icon">
 
             <select class="header_inputs header_sections" name="category" id="header_search_category">
-                <option value="all">in all</option>
-                <option value="subReddit">in subReddits</option>
-                <option value="post">in posts</option>
-                <option value="comment">in comments</option>
+                <option value="All">in all</option>
+                <option value="SubReddit">in subReddits</option>
+                <option value="Post">in posts</option>
+                <option value="Comment">in comments</option>
             </select>
             <input type="submit" hidden />
         </form>
@@ -47,11 +47,11 @@
     <div class="header_right_two">
         @if (Model.CurrentUser is null)
         {
-            <a href="/account/login">Login</a>
+        <a href="/account/login">Login</a>
         }
         else
         {
-            @Model.CurrentUser.UserName
+        @Model.CurrentUser.UserName
         }
     </div>
 

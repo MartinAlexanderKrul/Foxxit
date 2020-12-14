@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Foxxit.Enums;
 using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 using Foxxit.Repositories;
@@ -27,19 +28,19 @@ namespace Foxxit.Services
 
             switch (category)
             {
-                case "post":
+                case nameof(SearchCategory.Post):
                     result.Posts = SearchInPosts(keyword);
                     break;
 
-                case "subReddit":
+                case nameof(SearchCategory.SubReddit):
                     result.SubReddits = SearchInSubReddits(keyword);
                     break;
 
-                case "comment":
+                case nameof(SearchCategory.Comment):
                     result.Comments = SearchInComments(keyword);
                     break;
 
-                case "all":
+                case nameof(SearchCategory.All):
                     result = new SearchReturnModel(SearchInPosts(keyword), SearchInSubReddits(keyword), SearchInComments(keyword), category);
                     break;
             }

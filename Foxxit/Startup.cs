@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json.Serialization;
 using Foxxit.Database;
+using Foxxit.Enums;
 using Foxxit.Models.Entities;
 using Foxxit.Repositories;
 using Foxxit.Services;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using UserRole = Foxxit.Models.Entities.UserRole;
 
 namespace Foxxit
 {

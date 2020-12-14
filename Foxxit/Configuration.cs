@@ -2,16 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Foxxit.Enums;
 
 namespace Foxxit
 {
-    internal enum DatabaseType
-    {
-        MSSQL,
-        SQLite,
-        Heroku,
-    }
-
     public class Configuration
     {
         public static Enum DbType
