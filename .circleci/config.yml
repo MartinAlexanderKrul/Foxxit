@@ -42,7 +42,3 @@ workflows:
       - test:
           requires:
             - lint
-          filters:
-            branches:
-              only: 
-                - circleCI_test
