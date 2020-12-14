@@ -5,7 +5,6 @@ using Foxxit.Enums;
 using Foxxit.Models.Entities;
 using Foxxit.Repositories;
 using Foxxit.Services;
-using Foxxit.Services.ViewModelServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -64,7 +63,6 @@ namespace Foxxit
             services.AddTransient<ISubRedditService, SubRedditService>();
             services.AddTransient<IPostService, PostService>();
             services.AddTransient<MailService>();
-            services.AddTransient<IMainPageViewModelService, MainPageViewModelService>();
             services.AddTransient<ISearchService, SearchService>();
 
             services.AddAuthentication()
