@@ -59,7 +59,6 @@ namespace Foxxit
             services.AddTransient<SubRedditRepository>();
             services.AddTransient<PostRepository>();
             services.AddTransient<CommentRepository>();
-
             services.AddTransient<ISubRedditService, SubRedditService>();
             services.AddTransient<IPostService, PostService>();
             services.AddTransient<MailService>();
