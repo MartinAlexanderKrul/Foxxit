@@ -1,9 +1,9 @@
 ﻿@{ Layout = "_Layout"; }
-@model Foxxit.Models.ViewModels.SubredditViewModel
+@model Foxxit.Models.ViewModels.SubRedditViewModel
 
 <div class="subreddit_header">
     <div>
-        <div><h1>@Model.Subreddit.Name</h1></div>
+        <div><h1>@Model.SubReddit.Name</h1></div>
         <div class="subreddit_sorting">
             <div><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="hot">HOT</a></div>
             <div><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="new">NEW</a></div>
@@ -18,7 +18,7 @@
 </div>
 
 <div class="posts_list">
-    @foreach (var post in Model.Subreddit.Posts)
+    @foreach (var post in Model.SubReddit.Posts)
     {
         //TODO add a function to count days since created (created 25 days ago / created yesterday)
         //TODO whole row has to be a link

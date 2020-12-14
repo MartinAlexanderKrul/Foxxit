@@ -58,6 +58,7 @@ namespace Foxxit
             services.AddTransient<UserRepository>();
             services.AddTransient<SubRedditRepository>();
             services.AddTransient<PostRepository>();
+            services.AddTransient<SubRedditService>();
 
             services.AddAuthentication()
                 .AddGoogle("google", options =>

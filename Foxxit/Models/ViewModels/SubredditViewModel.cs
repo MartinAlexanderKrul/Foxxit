@@ -6,9 +6,9 @@ using Foxxit.Models.Entities;
 
 namespace Foxxit.Models.ViewModels
 {
-    public class SubredditViewModel
+    public class SubRedditViewModel
     {
-        public SubReddit Subreddit { get; set; }
+        public SubReddit SubReddit { get; set; }
         public User User { get; set; }
     }
 }

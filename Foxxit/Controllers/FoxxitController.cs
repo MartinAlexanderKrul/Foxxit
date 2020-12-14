@@ -7,11 +7,11 @@ namespace Foxxit.Controllers
 {
     public class FoxxitController : Controller
     {
-        private readonly SubRedditService subredditService;
+        private readonly SubRedditService subRedditService;
 
-        public FoxxitController(SubRedditService subredditService)
+        public FoxxitController(SubRedditService subRedditService)
         {
-            this.subredditService = subredditService;
+            this.subRedditService = subRedditService;
         }
 
         [HttpGet("index")]
@@ -21,10 +21,10 @@ namespace Foxxit.Controllers
         }
 
         [HttpGet("subreddit")]
-        public async Task<IActionResult> Subreddit(long subredId)
+        public async Task<IActionResult> SubReddit(long subRedId)
         {
-            var subreddit = await subredditService.GetByIdAsync(subredId);
-            var viewModel = new SubredditViewModel() { Subreddit = subreddit };
+            var subReddit = await subRedditService.GetByIdAsync(subRedId);
+            var viewModel = new SubRedditViewModel() { SubReddit = subReddit };
             return View(viewModel);
         }
     }
