@@ -70,6 +70,7 @@
 
   <ItemGroup>
     <Folder Include="Models\Entities\" />
+    <Folder Include="wwwroot\assets\" />
     <Folder Include="Models\ViewModels\" />
   </ItemGroup>
 

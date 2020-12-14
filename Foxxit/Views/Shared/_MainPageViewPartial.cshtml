@@ -1,0 +1,68 @@
+﻿@using Foxxit.Models.ViewModels
+@using Foxxit.Services.ViewModelServices
+@model MainPageViewModel
+@inject MainPageViewModelService service
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="section_intro">
+    <h2>Welcome to Foxxit</h2>
+    <div class="section_intro_buttons">
+        <div class="not_button section_intro_button">@Html.ActionLink("HOT", "ListHotTopics", "Home")</div>
+        <div class="not_button section_intro_button">@Html.ActionLink("NEW", "ListNewTopics", "Home")</div>
+        <div class="not_button section_intro_button">@Html.ActionLink("TOP", "ListTopTopics", "Home")</div>
+    </div>
+</div>
+
+@foreach (var post in Model.Posts)
+{
+    <article>
+
+        <div class="article_left">
+            <div class="post_vote">
+                <form asp-action="Vote" asp-controller="Home">
+                    <input type="hidden" value="up" name="voteType" />
+                    <input type="hidden" value="post.Id" name="postId" />
+                    <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
+                </form>
+            </div>
+            <div class="post_vote">@post.Votes.Count()</div>
+
+            <div class="post_vote">
+                <form asp-action="Vote" asp-controller="Home">
+                    <input type="hidden" value="down" name="voteType" />
+                    <input type="hidden" value="post.Id" name="postId" />
+                    <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="article_middle">
+            <div class="article_header">
+                <div class="article_text">
+                    <h4>@post.Title</h4>
+                    <p class="article_text_info">Posted by @post.User.UserName @service.GetTimeStamp(post) ago in @post.SubReddit.Name</p>
+                </div>
+                <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Home", new { subRedditId = post.SubRedditId })</div>
+            </div>
+
+            <div class="article_content">
+                @if (post.Text is null)
+                {
+                    <img width="100%" src="@post.ImageURL" alt="@post.Title" />
+                }
+                else
+                {
+                    <p>@post.Text</p>
+                }
+            </div>
+
+            <div class="article_footer">
+                <i class="fa fa-comment"></i>
+                <div class="vote">@Html.ActionLink($"{post.Comments.Count()} COMMENTS", "Comments", "Home", new { postId = post.Id })</div>
+            </div>
+        </div>
+
+        <div class="article_right">
+        </div>
+    </article>
+}
