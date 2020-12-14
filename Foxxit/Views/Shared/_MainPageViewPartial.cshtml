@@ -57,7 +57,7 @@
 
             <div class="article_footer">
                 <i class="fa fa-comment"></i>
-                <div class="vote">@Html.ActionLink($"{post.Comments.Count()} COMMENTS", "Comments", "Home", new { postId = post.Id })</div>
+                <div class="vote">@Html.ActionLink($"{post.Comments.Count()} COMMENTS", "Post", "Home", new { postId = post.Id })</div>
             </div>
         </div>
 
