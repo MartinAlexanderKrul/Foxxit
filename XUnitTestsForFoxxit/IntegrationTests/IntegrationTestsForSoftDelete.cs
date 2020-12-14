@@ -18,14 +18,7 @@ namespace XUnitTestsForFoxxit
         public IntegrationTests()
         {
             DbContext = new ApplicationDbContext(TestBootstrapper.GetInMemoryDbContextOptions("InMemory"));
-        }
-
-        public ApplicationDbContext DbContext { get; set; }
-
-        [Fact]
-        public void SoftDelete_SetsIsDeletedAsTrue()
-        {
-            var testUser = new User()
+            TestUser = new User()
             {
                 UserName = "Jan",
                 DisplayName = "JAN",
@@ -36,15 +29,58 @@ namespace XUnitTestsForFoxxit
                 LockoutEnabled = false,
                 AccessFailedCount = 0
             };
+        }
+
+        public ApplicationDbContext DbContext { get; set; }
+        public User TestUser { get; set; }
+
+        [Fact]
+        public async Task MockDb_AddNewUser()
+        {
+            await DbContext.Users.AddAsync(TestUser);
+            await DbContext.SaveChangesAsync();
+
+            var expected = 1;
+            var actual = DbContext.Users.Count();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public async Task SoftDelete_SetsIsDeletedAsTrue()
+        {
+            await MockDb_AddNewUser();
+
+            DbContext.Users.Remove(TestUser);
+            await DbContext.SaveChangesAsync();
+
+            var expected = true;
+            var actual = DbContext.Users.Any(u=>u.IsDeleted == true);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void SoftDelete_DoesntWorkAsItemIsHardDeletedInstead()
+        {
+            var testUser = new User()
+            {
+                UserName = "Pepa",
+                DisplayName = "PEPA",
+                Email = "pepa@test.com",
+                EmailConfirmed = false,
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEnabled = false,
+                AccessFailedCount = 0
+            };
 
             DbContext.Users.Add(testUser);
-            DbContext.SaveChanges();
-
             DbContext.Users.Remove(testUser);
             DbContext.SaveChanges();
 
-            var expected = true;
-            var actual = DbContext.Users.FirstOrDefault(u => u.Email == "jan@test.com").IsDeleted;
+            var expected = 0;
+            var actual = DbContext.Users.Count();
 
             Assert.Equal(expected, actual);
         }
