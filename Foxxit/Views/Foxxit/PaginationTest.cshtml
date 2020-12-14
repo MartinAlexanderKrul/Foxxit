@@ -1,7 +1,0 @@
-﻿@using Foxxit.Models.DTO;
-@model PaginatedList<Foxxit.Models.Entities.Post>
-@{ // Every ViewModel should Inherit from the PaginatedList to include the pagination properties and functionality.
-    // The implementation is definitely up for further discussion, if any other ideas. 
-}
-
-@await Html.PartialAsync("_PaginationPartial", Model)
