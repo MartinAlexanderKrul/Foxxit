@@ -4,19 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Foxxit.Models.Entities;
 
-namespace Foxxit.Services.ViewModelServices
+namespace Foxxit.Extensions
 {
-    public class MainPageViewModelService : IMainPageViewModelService
+    public static class PostBaseExtension
     {
-        public string GetTimeStamp(Post post)
+        public static string TimeStamp(this PostBase postBase)
         {
-            var totalMinutes = (DateTime.Now - post.CreatedAt).TotalMinutes;
+            var totalMinutes = (DateTime.Now - postBase.CreatedAt).TotalMinutes;
             string result = string.Empty;
 
             switch (totalMinutes)
             {
                 case var expression when totalMinutes < 1:
-                    result = $"{totalMinutes} less than a minute";
+                    result = "less than a minute";
                     break;
 
                 case var expression when totalMinutes < 60 && totalMinutes >= 1:

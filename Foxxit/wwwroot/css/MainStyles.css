@@ -314,3 +314,7 @@ article {
 .vote {
     margin-left: 5px;
 }
+
+.article_item {
+    margin-top: 1%;
+}

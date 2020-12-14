@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 
 namespace Foxxit.Models.ViewModels
@@ -14,15 +15,17 @@ namespace Foxxit.Models.ViewModels
             SubReddits = new List<SubReddit>();
         }
 
-        public MainPageViewModel(User currentUser, List<Post> posts, List<SubReddit> subReddits)
+        public MainPageViewModel(User currentUser, List<Post> posts, List<SubReddit> subReddits, SearchReturnModel searchReturnModel)
         {
             CurrentUser = currentUser;
             Posts = posts;
             SubReddits = subReddits;
+            SearchReturnModel = searchReturnModel;
         }
 
         public User CurrentUser { get; set; }
         public IEnumerable<Post> Posts { get; set; }
         public IEnumerable<SubReddit> SubReddits { get; set; }
+        public SearchReturnModel SearchReturnModel { get; set; }
     }
 }

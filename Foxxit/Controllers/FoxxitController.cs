@@ -1,21 +1,25 @@
-﻿using Foxxit.Models.Entities;
+﻿using System.Threading.Tasks;
+using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Foxxit.Controllers
 {
     public class FoxxitController : MainController
     {
-        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, SubRedditService subRedditService)
+        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService)
             : base(userManager, signInManager)
         {
-            this.subRedditService = subRedditService;
+            SearchService = searchService;
+            PostService = postService;
+            SubRedditService = subRedditService;
         }
 
-        private readonly SubRedditService subRedditService;
+        public ISearchService SearchService { get; set; }
+        public IPostService PostService { get; set; }
+        public ISubRedditService SubRedditService { get; set; }
 
         [HttpGet("index")]
         [HttpGet("")]
@@ -25,10 +29,24 @@ namespace Foxxit.Controllers
             return await Task.Run(() => View("Index", model));
         }
 
+        [HttpPost("search")]
+        public async Task<IActionResult> Search(string category, string keyword)
+        {
+            var model = new MainPageViewModel()
+            {
+                CurrentUser = await GetActiveUserAsync(),
+                Posts = await PostService.GetAllAsync(),
+                SubReddits = await SubRedditService.GetAllAsync(),
+                SearchReturnModel = SearchService.Search(category, keyword),
+            };
+
+            return await Task.Run(() => View("Filter", model));
+        }
+
         [HttpGet("subreddit")]
         public async Task<IActionResult> SubReddit(long subRedId)
         {
-            var subReddit = await subRedditService.GetByIdAsync(subRedId);
+            var subReddit = await SubRedditService.GetByIdAsync(subRedId);
             var viewModel = new SubRedditViewModel() { SubReddit = subReddit };
             return View(viewModel);
         }
