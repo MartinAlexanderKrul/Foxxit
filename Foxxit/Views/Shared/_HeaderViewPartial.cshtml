@@ -1,7 +1,66 @@
-﻿<div class="container">
-    <div class="navbar">
-        <nav>
-            <h1>This would be the navbar</h1>
-        </nav>
+﻿@using Foxxit.Models.ViewModels
+@model MainPageViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="header_left">
+    <div class="header_logo">
+        <img src="~/assets/logo.png" alt="Foxxit logo" width="44px">
+    </div>
+
+    <div class="header_subReddits_container">
+        <form asp-action="ViewSubReddit" asp-controller="Home">
+            <select class="header_inputs" name="SubReddits" id="header_subReddits" onchange="this.form.submit()">
+                <option class="header_options">SubReddits</option>
+                @foreach (var subReddit in Model.SubReddits)
+                {
+                    <option class="header_options" value="@subReddit.Id">@subReddit.Name</option>
+                }
+            </select>
+        </form>
+    </div>
+
+    <div class="header_search_container">
+        <form asp-action="Search" asp-controller="Home">
+            <input class="header_inputs" type="text" id="header_search" placeholder="search for...">
+            <img src="~/assets/search.png" alt="Search" width="18px" id="header_search_icon">
+
+            <select class="header_inputs header_sections" name="category" id="header_search_category">
+                <option value="all">in all</option>
+                <option value="subReddit">in subReddits</option>
+                <option value="post">in posts</option>
+                <option value="comment">in comments</option>
+                <option value="comment">in users</option>
+            </select>
+            <input type="submit" hidden />
+        </form>
+    </div>
+</div>
+<div class="header_right">
+    <div class="header_right_one">
+        <!-- CHAT -->
+        <i class="fa fa-comments fa-lg header_icons"></i>
+
+        <!-- MESSAGE BOX (empty + new message) -->
+        <i class="fa fa-envelope-open fa-lg header_icons"></i>
+        <!-- <i class="fa fa-envelope fa-lg"></i> -->
+    </div>
+
+    <div class="header_right_two">
+        @if (Model.CurrentUser is null)
+        {
+            <a href="/account/login">Login</a>
+        }
+        else
+        {
+            @Model.CurrentUser.UserName
+        }
+    </div>
+
+    <div class="header_right_three dropdown">
+        <button class="dropbtn"><i class="fa fa-cog fa-lg"></i></button>
+        <div class="dropdown-content">
+            <a href="/account/settings">Account Settings</a>
+            <a href="/account/logout/">Logout</a>
+        </div>
     </div>
 </div>

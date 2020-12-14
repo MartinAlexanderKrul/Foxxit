@@ -1,23 +1,28 @@
-﻿using System.Threading.Tasks;
+﻿using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Foxxit.Controllers
 {
-    public class FoxxitController : Controller
+    public class FoxxitController : MainController
     {
-        private readonly SubRedditService subRedditService;
-
-        public FoxxitController(SubRedditService subRedditService)
+        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, SubRedditService subRedditService)
+            : base(userManager, signInManager)
         {
             this.subRedditService = subRedditService;
         }
 
+        private readonly SubRedditService subRedditService;
+
         [HttpGet("index")]
-        public IActionResult Index()
+        [HttpGet("")]
+        public async Task<IActionResult> Index()
         {
-            return View("index");
+            var model = new MainPageViewModel();
+            return await Task.Run(() => View("Index", model));
         }
 
         [HttpGet("subreddit")]
