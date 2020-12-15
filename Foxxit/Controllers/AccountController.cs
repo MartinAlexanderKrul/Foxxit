@@ -18,11 +18,13 @@ namespace Foxxit.Controllers
     public class AccountController : MainController
     {
         private readonly MailService mailService;
+        private readonly ApplicationDbContext dbContext;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, MailService mailService)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, MailService mailService, ApplicationDbContext dbContext)
             : base(userManager, signInManager)
         {
             this.mailService = mailService;
+            this.dbContext = dbContext;
         }
 
         // Here - defaultly set as first login, then Index page. So must be set Login/Registration page as first now.
@@ -269,6 +271,14 @@ namespace Foxxit.Controllers
         {
             SignInManager.SignOutAsync();
             return RedirectToAction("Login");
+        }
+
+        [HttpPost("deleteuser")]
+        public void DeleteUser()
+        {
+            var user = dbContext.Users.FirstOrDefault(u => u.UserName == "fakindzej@protonmail.com");
+            dbContext.Users.Remove(user);
+            dbContext.SaveChanges();
         }
     }
 }

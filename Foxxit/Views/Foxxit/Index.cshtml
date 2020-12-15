@@ -12,6 +12,10 @@
         @await Html.PartialAsync("_SideBar_SubRedditsViewPartial", Model.SubReddits)
     </aside>
 
+    <form asp-action="deleteuser" asp-controller="account" method="post">
+        <button type="submit">DELETE</button>
+    </form>
+
     <section>
         @await Html.PartialAsync("_MainPageViewPartial")
     </section>
