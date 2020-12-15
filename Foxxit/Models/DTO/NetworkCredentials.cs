@@ -11,7 +11,7 @@ namespace Foxxit.Models.DTO
         public NetworkCredentials()
         {
         }
-        
+
         public NetworkCredential GetCredential(string host, int port, string authenticationType)
         {
             return new NetworkCredential();

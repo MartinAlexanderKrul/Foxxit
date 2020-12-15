@@ -7,10 +7,12 @@ namespace Foxxit.Extensions
 {
     public static class Extensions
     {
-        public static bool ContainsCaseInsensitive(this string text, string value,
+        public static bool ContainsCaseInsensitive(
+            this string text,
+            string value,
             StringComparison stringComparison = StringComparison.CurrentCultureIgnoreCase)
         {
-            return text.IndexOf(value, stringComparison) >= 0;
+            return text.Contains(value, stringComparison);
         }
     }
 }
