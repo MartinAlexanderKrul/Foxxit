@@ -272,13 +272,5 @@ namespace Foxxit.Controllers
             SignInManager.SignOutAsync();
             return RedirectToAction("Login");
         }
-
-        [HttpPost("deleteuser")]
-        public void DeleteUser()
-        {
-            var user = dbContext.Users.FirstOrDefault(u => u.UserName == "fakindzej@protonmail.com");
-            dbContext.Users.Remove(user);
-            dbContext.SaveChanges();
-        }
     }
 }
