@@ -16,6 +16,8 @@ namespace Foxxit.Controllers
             this.postService = postService;
         }
 
+        private const int PageSize = 10;
+
         private readonly PostService postService;
 
         [HttpGet("index")]
@@ -30,9 +32,8 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> PaginationSample(int? pageNum)
         {
             var posts = await postService.GetAllAsync();
-            int pageSize = 10;
 
-            return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, pageSize));
+            return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
     }
 }
