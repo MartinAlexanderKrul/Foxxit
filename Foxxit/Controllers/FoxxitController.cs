@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
@@ -9,6 +10,8 @@ namespace Foxxit.Controllers
 {
     public class FoxxitController : MainController
     {
+        private const int PageSize = 10;
+
         public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService)
             : base(userManager, signInManager)
         {
@@ -41,6 +44,14 @@ namespace Foxxit.Controllers
             };
 
             return await Task.Run(() => View("Filter", model));
+        }
+
+        [HttpGet("paginationSample")]
+        public async Task<IActionResult> PaginationSample(int? pageNum)
+        {
+            var posts = await PostService.GetAllAsync();
+
+            return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
     }
 }
