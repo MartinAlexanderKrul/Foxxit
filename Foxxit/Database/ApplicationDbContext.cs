@@ -143,14 +143,17 @@ namespace Foxxit.Database
                 });
         }
 
-        private void SoftDelete(IEnumerable<EntityEntry> entities)
+        private static void SoftDelete(IEnumerable<EntityEntry> entities)
         {
-            foreach (var item in entities)
+            if (entities != null)
             {
-                if (item.Entity is ISoftDeletable entity)
+                foreach (var item in entities)
                 {
-                    item.State = EntityState.Unchanged;
-                    entity.IsDeleted = true;
+                    if (item.Entity is ISoftDeletable entity)
+                    {
+                        item.State = EntityState.Unchanged;
+                        entity.IsDeleted = true;
+                    }
                 }
             }
         }
