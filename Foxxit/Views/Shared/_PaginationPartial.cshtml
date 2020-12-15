@@ -11,19 +11,16 @@
 
 @for (int i = (Model.CurrentPage - pageNumsAmount); i <= (Model.CurrentPage + pageNumsAmount); i++)
 {
-    if (i > 0 && (i <= Model.TotalPages - pageNumsAmount))
+    if (i > 0 && (i <= Model.TotalPages))
     {
-    if (Model.CurrentPage == i)
-    {
-        <a asp-action="PaginationSample" asp-route-pageNum="@Model.CurrentPage" class="btn btn-dark">@Model.CurrentPage</a> 
-        }
-        else
-        {
-            if (i > 0 || i <= Model.TotalPages)
+        if (Model.CurrentPage == i)
             {
-            <a asp-action="PaginationSample" asp-route-pageNum="@i" class="btn btn-default">@i</a> 
+                <a asp-action="PaginationSample" asp-route-pageNum="@Model.CurrentPage" class="btn btn-dark">@Model.CurrentPage</a> 
             }
-        }
+        else
+            {
+                <a asp-action="PaginationSample" asp-route-pageNum="@i" class="btn btn-default">@i</a> 
+            }
     }
 }
 
