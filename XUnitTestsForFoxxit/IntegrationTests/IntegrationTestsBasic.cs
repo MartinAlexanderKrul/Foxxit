@@ -23,7 +23,7 @@ namespace XUnitTestsForFoxxit
         public ApplicationDbContext DbContext { get; set; }
 
         [Fact]
-        public void InMemoryDb_AddingEntityProperly()
+        public void InMemoryDb_AddingEntityWorksProperly()
         {
             var testUser = new User()
             {
