@@ -23,7 +23,7 @@ namespace XUnitTestsForFoxxit
         public ApplicationDbContext DbContext { get; set; }
 
         [Fact]
-        public void InMemoryDb_WorkingProperly()
+        public void InMemoryDb_AddingEntityProperly()
         {
             var testUser = new User()
             {
@@ -46,6 +46,38 @@ namespace XUnitTestsForFoxxit
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void InMemoryDb_MisreadingEntityWorksProperly()
+        {
+            var testUser = new User()
+            {
+                UserName = "Anezka",
+                DisplayName = "ANEZKA",
+                Email = "anezka@test.com",
+                EmailConfirmed = false,
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEnabled = false,
+                AccessFailedCount = 0
+            };
+
+            var nonexistentUser = new User()
+            {
+                UserName = "Aneyka",
+                DisplayName = "ANEPZKA",
+                Email = "lanezka@test.com",
+                EmailConfirmed = false,
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEnabled = false,
+                AccessFailedCount = 0
+            };
+
+            DbContext.Users.Add(testUser);
+            DbContext.SaveChanges();
+
+            Assert.DoesNotContain(nonexistentUser, DbContext.Users);
+        }
 
         #region Sample Test
         //[Fact]

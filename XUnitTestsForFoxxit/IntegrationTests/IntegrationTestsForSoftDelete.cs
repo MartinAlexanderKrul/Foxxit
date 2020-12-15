@@ -13,9 +13,9 @@ using Xunit;
 
 namespace XUnitTestsForFoxxit
 {
-    public class IntegrationTests : IClassFixture<WebApplicationFactory<Startup>>
+    public class IntegrationTestsForSoftDelete : IClassFixture<WebApplicationFactory<Startup>>
     {
-        public IntegrationTests()
+        public IntegrationTestsForSoftDelete()
         {
             DbContext = new ApplicationDbContext(TestBootstrapper.GetInMemoryDbContextOptions("InMemory"));
             TestUser = new User()
