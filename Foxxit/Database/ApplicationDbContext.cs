@@ -30,16 +30,17 @@ namespace Foxxit.Database
         // backing DbSet, maybe it is not necessary to access directly
         public DbSet<UserSubReddit> UserSubReddits { get; set; }
 
-        //public override int SaveChanges()
-        //{
-        //    ChangeTracker.DetectChanges();
 
-        //    var markedAsDeleted = ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted);
+        public override int SaveChanges()
+        {
+            ChangeTracker.DetectChanges();
 
-        //    SoftDelete(markedAsDeleted);
+            var markedAsDeleted = ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted);
 
-        //    return base.SaveChanges();
-        //}
+            SoftDelete(markedAsDeleted);
+
+            return base.SaveChanges();
+        }
 
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -47,17 +48,7 @@ namespace Foxxit.Database
 
             var markedAsDeleted = ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted);
 
-            if (markedAsDeleted != null)
-            {
-                foreach (var item in markedAsDeleted)
-                {
-                    if (item.Entity is ISoftDeletable entity)
-                    {
-                        item.State = EntityState.Unchanged;
-                        entity.IsDeleted = true;
-                    }
-                }
-            }
+            SoftDelete(markedAsDeleted);
 
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
@@ -152,19 +143,16 @@ namespace Foxxit.Database
                 });
         }
 
-        //private static void SoftDelete(IEnumerable<EntityEntry> entities)
-        //{
-        //    if (entities != null)
-        //    {
-        //        foreach (var item in entities)
-        //        {
-        //            if (item.Entity is ISoftDeletable entity)
-        //            {
-        //                item.State = EntityState.Unchanged;
-        //                entity.IsDeleted = true;
-        //            }
-        //        }
-        //    }
-        //}
+        private void SoftDelete(IEnumerable<EntityEntry> entities)
+        {
+            foreach (var item in entities)
+            {
+                if (item.Entity is ISoftDeletable entity)
+                {
+                    item.State = EntityState.Unchanged;
+                    entity.IsDeleted = true;
+                }
+            }
+        }
     }
 }
