@@ -1,7 +1,6 @@
 ﻿@using Foxxit.Models.ViewModels
-@using Foxxit.Services.ViewModelServices
+@using Foxxit.Extensions
 @model MainPageViewModel
-@inject MainPageViewModelService service
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <div class="section_intro">
@@ -21,7 +20,7 @@
             <div class="post_vote">
                 <form asp-action="Vote" asp-controller="Home">
                     <input type="hidden" value="up" name="voteType" />
-                    <input type="hidden" value="post.Id" name="postId" />
+                    <input type="hidden" value="@post.Id" name="postId" />
                     <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
                 </form>
             </div>
@@ -30,7 +29,7 @@
             <div class="post_vote">
                 <form asp-action="Vote" asp-controller="Home">
                     <input type="hidden" value="down" name="voteType" />
-                    <input type="hidden" value="post.Id" name="postId" />
+                    <input type="hidden" value="@post.Id" name="postId" />
                     <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
                 </form>
             </div>
@@ -40,7 +39,7 @@
             <div class="article_header">
                 <div class="article_text">
                     <h4>@post.Title</h4>
-                    <p class="article_text_info">Posted by @post.User.UserName @service.GetTimeStamp(post) ago in @post.SubReddit.Name</p>
+                    <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name</p>
                 </div>
                 <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Home", new { subRedditId = post.SubRedditId })</div>
             </div>
@@ -58,7 +57,7 @@
 
             <div class="article_footer">
                 <i class="fa fa-comment"></i>
-                <div class="vote">@Html.ActionLink($"{post.Comments.Count()} COMMENTS", "Comments", "Home", new { postId = post.Id })</div>
+                <div class="vote">@Html.ActionLink($"{post.Comments.Count()} COMMENTS", "Post", "Home", new { postId = post.Id })</div>
             </div>
         </div>
 

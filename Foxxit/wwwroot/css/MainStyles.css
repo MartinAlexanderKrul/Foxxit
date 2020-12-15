@@ -315,6 +315,11 @@ article {
     margin-left: 5px;
 }
 
+.article_item {
+    margin-top: 1%;
+}
+}
+
 .button-disabled {
     display:none;
 }

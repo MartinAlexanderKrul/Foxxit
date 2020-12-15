@@ -7,6 +7,12 @@ namespace Foxxit.Models.Entities
 {
     public class PostBase : IIdentityEntity, ISoftDeletable
     {
+        public PostBase()
+        {
+            Votes = new Collection<Vote>();
+            Comments = new Collection<Comment>();
+        }
+
         public long Id { get; set; }
         public string Text { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -15,11 +21,5 @@ namespace Foxxit.Models.Entities
         public long UserId { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public bool IsDeleted { get; set; }
-
-        public PostBase()
-        {
-            Votes = new Collection<Vote>();
-            Comments = new Collection<Comment>();
-        }
     }
 }
