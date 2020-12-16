@@ -32,7 +32,7 @@ namespace Foxxit.Services.EntityServices
             return await Repository.GetByIdAsync(id);
         }
 
-        public async void AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
             await Repository.AddAsync(entity);
         }
@@ -47,7 +47,7 @@ namespace Foxxit.Services.EntityServices
             Repository.Delete(entity);
         }
 
-        public async void SaveAsync()
+        public async Task SaveAsync()
         {
             await Repository.SaveAsync();
         }

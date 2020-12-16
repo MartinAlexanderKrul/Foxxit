@@ -10,9 +10,17 @@ namespace Foxxit.Services
 {
     public class NotificationService : GenericEntityService<Notification>, INotificationService
     {
-        public NotificationService(GenericRepository<Notification> repository)
+        public NotificationService(NotificationRepository repository)
             : base(repository)
         {
+        }
+
+        public async Task MarkNotificationRead(Notification notification)
+        {
+            var dbNotification = await GetByIdAsync(notification.Id);
+            dbNotification.HasBeenRead = true;
+            Update(notification);
+            await SaveAsync();
         }
     }
 }

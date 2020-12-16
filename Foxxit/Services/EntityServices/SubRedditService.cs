@@ -10,7 +10,7 @@ namespace Foxxit.Services
 {
     public class SubRedditService : GenericEntityService<SubReddit>, ISubRedditService
     {
-        public SubRedditService(GenericRepository<SubReddit> repository)
+        public SubRedditService(SubRedditRepository repository)
             : base(repository)
         {
         }

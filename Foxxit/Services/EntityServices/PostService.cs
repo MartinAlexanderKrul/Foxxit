@@ -10,7 +10,7 @@ namespace Foxxit.Services
 {
     public class PostService : GenericEntityService<Post>, IPostService
     {
-        public PostService(GenericRepository<Post> repository)
+        public PostService(PostRepository repository)
             : base(repository)
         {
         }

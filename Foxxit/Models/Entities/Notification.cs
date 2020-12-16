@@ -14,11 +14,16 @@ namespace Foxxit.Models.Entities
             ReceivedAt = DateTime.Now;
         }
 
+        public Notification()
+        {
+        }
+
         public long Id { get; set; }
         public string Content { get; set; }
         public User Receiver { get; set; }
         public long ReceiverId { get; set; }
         public DateTime ReceivedAt { get; set; }
+        public bool HasBeenRead { get; set; }
         public PostBase Issue { get; set; }
     }
 }
