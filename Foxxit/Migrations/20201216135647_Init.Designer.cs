@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Foxxit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201209180711_Init")]
+    [Migration("20201216135647_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,37 @@ namespace Foxxit.Migrations
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
+
+            modelBuilder.Entity("Foxxit.Models.Entities.Notification", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HasBeenRead")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("IssueId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("ReceivedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("ReceiverId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IssueId");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.ToTable("Notifications");
+                });
 
             modelBuilder.Entity("Foxxit.Models.Entities.PostBase", b =>
                 {
@@ -415,17 +446,34 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "84d9bf82-def2-4e7d-8d88-77f27230e46f",
+                            ConcurrencyStamp = "b9700ee7-0529-490d-a932-c336d5b5457e",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "f1f0bce7-55ee-488a-a02d-9b0ac8213c77",
+                            ConcurrencyStamp = "7735a770-3c72-48a9-b97d-65b27bf80796",
                             Name = "User",
                             NormalizedName = "USER"
                         });
+                });
+
+            modelBuilder.Entity("Foxxit.Models.Entities.Notification", b =>
+                {
+                    b.HasOne("Foxxit.Models.Entities.PostBase", "Issue")
+                        .WithMany()
+                        .HasForeignKey("IssueId");
+
+                    b.HasOne("Foxxit.Models.Entities.User", "Receiver")
+                        .WithMany("Notifications")
+                        .HasForeignKey("ReceiverId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Issue");
+
+                    b.Navigation("Receiver");
                 });
 
             modelBuilder.Entity("Foxxit.Models.Entities.UserSubReddit", b =>
@@ -587,6 +635,8 @@ namespace Foxxit.Migrations
             modelBuilder.Entity("Foxxit.Models.Entities.User", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Notifications");
 
                     b.Navigation("Posts");
 
