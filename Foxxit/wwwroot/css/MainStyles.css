@@ -333,6 +333,7 @@ article {
     flex-direction: column;
     font-size: var(--comment-font-size);
     margin-top: 1%;
+    position: relative;
 }
 
 .comment_section {
