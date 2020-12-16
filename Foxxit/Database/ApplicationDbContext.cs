@@ -30,6 +30,8 @@ namespace Foxxit.Database
         // backing DbSet, maybe it is not necessary to access directly
         public DbSet<UserSubReddit> UserSubReddits { get; set; }
 
+        public DbSet<Notification> Notifications { get; set; }
+
         public override int SaveChanges()
         {
             ChangeTracker.DetectChanges();
@@ -125,6 +127,15 @@ namespace Foxxit.Database
                 .HasForeignKey(p => p.SubRedditId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.Receiver)
+                .WithMany(r => r.Notifications)
+                .HasForeignKey(n => n.ReceiverId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.Issue);
 
             modelBuilder.Entity<UserRole>()
                 .HasData(new UserRole

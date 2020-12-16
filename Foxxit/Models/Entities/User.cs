@@ -31,6 +31,7 @@ namespace Foxxit.Models.Entities
         public ICollection<SubReddit> SubReddits { get; set; }
         public ICollection<Vote> Votes { get; set; }
         public ICollection<Comment> Comments { get; set; }
+        public ICollection<Notification> Notifications { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

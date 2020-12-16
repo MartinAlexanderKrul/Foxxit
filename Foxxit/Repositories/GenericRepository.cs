@@ -35,7 +35,7 @@ namespace Foxxit.Repositories
             return await table.FindAsync(id);
         }
 
-        public async void AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
             await table.AddAsync(entity);
         }
@@ -50,7 +50,7 @@ namespace Foxxit.Repositories
             table.Remove(entity);
         }
 
-        public async void SaveAsync()
+        public async Task SaveAsync()
         {
             await dbContext.SaveChangesAsync();
         }

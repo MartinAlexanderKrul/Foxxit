@@ -8,9 +8,9 @@ using Foxxit.Services.EntityServices;
 
 namespace Foxxit.Services
 {
-    public class PostService : GenericEntityService<Post>, IPostService
+    public class NotificationService : GenericEntityService<Notification>, INotificationService
     {
-        public PostService(GenericRepository<Post> repository)
+        public NotificationService(GenericRepository<Notification> repository)
             : base(repository)
         {
         }

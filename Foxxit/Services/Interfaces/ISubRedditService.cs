@@ -5,20 +5,7 @@ using Foxxit.Models.Entities;
 
 namespace Foxxit.Services
 {
-    public interface ISubRedditService
+    public interface ISubRedditService : IGeneralEntitySerice<SubReddit>
     {
-        void Add(SubReddit entity);
-
-        void Delete(SubReddit entity);
-
-        Task<IEnumerable<SubReddit>> GetAllAsync();
-
-        IEnumerable<SubReddit> Filter(Func<SubReddit, bool> condition);
-
-        Task<SubReddit> GetByIdAsync(long id);
-
-        void Save();
-
-        void Update(SubReddit entity);
     }
 }
