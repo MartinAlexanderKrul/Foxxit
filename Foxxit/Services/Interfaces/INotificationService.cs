@@ -7,5 +7,6 @@ namespace Foxxit.Services
 {
     public interface INotificationService : IGenericEntityService<Notification>
     {
+        Task MarkNotificationRead(Notification notification);
     }
 }

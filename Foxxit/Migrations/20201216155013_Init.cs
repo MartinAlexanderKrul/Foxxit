@@ -327,12 +327,12 @@ namespace Foxxit.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
-                values: new object[] { 1L, "b9700ee7-0529-490d-a932-c336d5b5457e", "UserRole", "Admin", "ADMIN" });
+                values: new object[] { 1L, "9da2db1a-19ef-4c81-bede-f8f9d9e6bcd2", "UserRole", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
-                values: new object[] { 2L, "7735a770-3c72-48a9-b97d-65b27bf80796", "UserRole", "User", "USER" });
+                values: new object[] { 2L, "ffe76e45-0dfe-47cf-95cd-b54ead842f1c", "UserRole", "User", "USER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

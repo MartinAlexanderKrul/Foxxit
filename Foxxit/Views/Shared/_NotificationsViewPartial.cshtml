@@ -1,0 +1,32 @@
+﻿@using Foxxit.Models.ViewModels
+@model MainPageViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="section_intro">
+    <h2>New Notifications</h2>
+    @if (Model.CurrentUser.Notifications.Count() > 0)
+    {
+        <p>You have Model.CurrentUser.Notifications.Count() unread notifications.</p>
+    }
+    else
+    {
+        <p>You don't have any new notifications.</p>
+    }
+</div>
+
+@foreach (var notification in Model.CurrentUser.Notifications.Where(n => !n.HasBeenRead))
+{
+    <article>
+        <p><a asp-action="ReadNotification" asp-controller="User" asp-route-notificationId="@notification.Id">@notification.Content</a></p>
+    </article>
+}
+
+<article>
+    <div class="article_content">
+        <h2>Old notifications</h2>
+        @foreach (var oldNotification in Model.CurrentUser.Notifications.Where(n => n.HasBeenRead))
+        {
+            <p>@oldNotification.Content</p>
+        }
+    </div>
+</article>

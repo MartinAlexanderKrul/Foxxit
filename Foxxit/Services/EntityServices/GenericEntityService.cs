@@ -15,7 +15,7 @@ namespace Foxxit.Services.EntityServices
             Repository = repository;
         }
 
-        public GenericRepository<T> Repository { get; set; }
+        public GenericRepository<T> Repository { get; private set; }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {

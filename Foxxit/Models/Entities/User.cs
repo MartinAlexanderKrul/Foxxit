@@ -12,6 +12,11 @@ namespace Foxxit.Models.Entities
         {
             UserName = userName;
             Email = email;
+            Posts = new Collection<Post>();
+            SubReddits = new Collection<SubReddit>();
+            Votes = new Collection<Vote>();
+            Comments = new Collection<Comment>();
+            Notifications = new Collection<Notification>();
         }
 
         public User()
@@ -20,6 +25,7 @@ namespace Foxxit.Models.Entities
             SubReddits = new Collection<SubReddit>();
             Votes = new Collection<Vote>();
             Comments = new Collection<Comment>();
+            Notifications = new Collection<Notification>();
         }
 
         public string AvatarURL { get; set; }
