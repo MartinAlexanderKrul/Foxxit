@@ -8,5 +8,12 @@ namespace Foxxit.Services
 {
     public interface IPostService : IGenericEntityService<Post>
     {
+        IEnumerable<Post> HotSort(int hours);
+
+        IEnumerable<Post> NewSort();
+
+        IEnumerable<Post> Sort(string sortMethod);
+
+        IEnumerable<Post> TopSort(int hours);
     }
 }

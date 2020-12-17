@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Foxxit.Enums;
 using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 
@@ -27,5 +28,6 @@ namespace Foxxit.Models.ViewModels
         public IEnumerable<Post> Posts { get; set; }
         public IEnumerable<SubReddit> SubReddits { get; set; }
         public SearchReturnModel SearchReturnModel { get; set; }
+        public SortMethod SortMethod { get; set; }
     }
 }

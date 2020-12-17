@@ -6,9 +6,9 @@
 <div class="section_intro">
     <h2>Welcome to Foxxit</h2>
     <div class="section_intro_buttons">
-        <div class="not_button section_intro_button">@Html.ActionLink("HOT", "ListHotTopics", "Home")</div>
-        <div class="not_button section_intro_button">@Html.ActionLink("NEW", "ListNewTopics", "Home")</div>
-        <div class="not_button section_intro_button">@Html.ActionLink("TOP", "ListTopTopics", "Home")</div>
+        <a class="sorting_button selected_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="Hot">HOT</a>
+        <a class="sorting_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="New">New</a>
+        <a class="sorting_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="Top">Top</a>
     </div>
 </div>
 
@@ -47,7 +47,7 @@
             <div class="article_content">
                 @if (post.Text is null)
                 {
-                    <img width="100%" src="@post.ImageURL" alt="@post.Title" />
+                    <img style="width:100%" src="@post.ImageURL" alt="@post.Title" />
                 }
                 else
                 {

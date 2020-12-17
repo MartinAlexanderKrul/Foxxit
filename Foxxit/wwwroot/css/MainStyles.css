@@ -221,6 +221,12 @@ aside {
     margin-bottom: 15px;
 }
 
+.side_bar_left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .side_bar_header {
     margin-bottom: 30px;
 }
@@ -232,18 +238,27 @@ section {
     height: 100%;
 }
 
-.not_button {
+.not_button, .sorting_button {
     width: 60px;
     height: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
+    border: 3px solid var(--button-color);
 }
 
-.not_button {
-    background-color: var(--button-color);
-    border-radius: 10px;
+.not_button, .selected_button {
+    background-color: var(--button-color) !important;
 }
+
+.sorting_button {
+    background-color: var(--section-color);
+}
+
+    .sorting_button:hover {
+        background-color: var(--button-color);
+    }
 
 .section_intro {
     background-color: var(--section-color);
@@ -318,8 +333,7 @@ article {
 .article_item {
     margin-top: 1%;
 }
-}
 
 .button-disabled {
-    display:none;
+    display: none;
 }
