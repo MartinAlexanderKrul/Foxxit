@@ -28,8 +28,14 @@ namespace Foxxit.Controllers
         [HttpGet("")]
         public async Task<IActionResult> Index()
         {
-            var model = new MainPageViewModel();
-            return await Task.Run(() => View("Index", model));
+            var model = new MainPageViewModel()
+            {
+                // CurrentUser = await GetActiveUserAsync(),
+                Posts = await PostService.GetAllAsync(),
+                SubReddits = await SubRedditService.GetAllAsync(),
+            };
+
+            return View("Index", model);
         }
 
         [HttpPost("search")]
@@ -37,13 +43,13 @@ namespace Foxxit.Controllers
         {
             var model = new MainPageViewModel()
             {
-                CurrentUser = await GetActiveUserAsync(),
+                // CurrentUser = await GetActiveUserAsync(),
                 Posts = await PostService.GetAllAsync(),
                 SubReddits = await SubRedditService.GetAllAsync(),
                 SearchReturnModel = SearchService.Search(category, keyword),
             };
 
-            return await Task.Run(() => View("Filter", model));
+            return View("Filter", model);
         }
 
         [HttpGet("paginationSample")]

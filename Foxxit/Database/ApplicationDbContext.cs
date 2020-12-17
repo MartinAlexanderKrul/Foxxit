@@ -30,6 +30,8 @@ namespace Foxxit.Database
         // backing DbSet, maybe it is not necessary to access directly
         public DbSet<UserSubReddit> UserSubReddits { get; set; }
 
+        public DbSet<Notification> Notifications { get; set; }
+
         public override int SaveChanges()
         {
             ChangeTracker.DetectChanges();
@@ -78,6 +80,10 @@ namespace Foxxit.Database
                 .Property(sr => sr.CreatedAt)
                 .HasDefaultValueSql("GETDATE()")
                 .ValueGeneratedOnAdd();
+            modelBuilder.Entity<Notification>()
+                .Property(n => n.CreatedAt)
+                .HasDefaultValueSql("GETDATE()")
+                .ValueGeneratedOnAdd();
 
             // Relations setup
 
@@ -89,7 +95,7 @@ namespace Foxxit.Database
             modelBuilder.Entity<Vote>()
                 .HasOne(v => v.Owner)
                 .WithMany(u => u.Votes)
-                .HasForeignKey(v => v.FoxxitUserId)
+                .HasForeignKey(v => v.OwnerId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Vote>()
@@ -125,6 +131,21 @@ namespace Foxxit.Database
                 .HasForeignKey(p => p.SubRedditId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.Receiver)
+                .WithMany(r => r.ReceivedNotifications)
+                .HasForeignKey(n => n.ReceiverId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.Sender)
+                .WithMany(s => s.GivenNotifications)
+                .HasForeignKey(n => n.SenderId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.PostBase);
 
             modelBuilder.Entity<UserRole>()
                 .HasData(new UserRole

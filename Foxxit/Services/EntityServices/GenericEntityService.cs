@@ -2,57 +2,54 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Foxxit.Database;
 using Foxxit.Models.Entities;
-using Microsoft.EntityFrameworkCore;
+using Foxxit.Repositories;
 
-namespace Foxxit.Repositories
+namespace Foxxit.Services.EntityServices
 {
-    public class GenericRepository<T>
+    public class GenericEntityService<T> : IGenericEntityService<T>
         where T : class, IIdentityEntity
     {
-        private readonly ApplicationDbContext dbContext;
-        private readonly DbSet<T> table;
-
-        public GenericRepository(ApplicationDbContext dbContext)
+        public GenericEntityService(GenericRepository<T> repository)
         {
-            this.dbContext = dbContext;
-            table = dbContext.Set<T>();
+            Repository = repository;
         }
+
+        public GenericRepository<T> Repository { get; private set; }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await table.ToListAsync();
+            return await Repository.GetAllAsync();
         }
 
         public IEnumerable<T> Filter(Func<T, bool> condition)
         {
-            return table.Where(condition);
+            return Repository.Filter(condition);
         }
 
         public async Task<T> GetByIdAsync(long id)
         {
-            return await table.FindAsync(id);
+            return await Repository.GetByIdAsync(id);
         }
 
         public async Task AddAsync(T entity)
         {
-            await table.AddAsync(entity);
+            await Repository.AddAsync(entity);
         }
 
         public void Update(T entity)
         {
-            table.Update(entity);
+            Repository.Update(entity);
         }
 
         public void Delete(T entity)
         {
-            table.Remove(entity);
+            Repository.Delete(entity);
         }
 
         public async Task SaveAsync()
         {
-            await dbContext.SaveChangesAsync();
+            await Repository.SaveAsync();
         }
     }
 }

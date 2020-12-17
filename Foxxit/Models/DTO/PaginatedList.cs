@@ -7,8 +7,6 @@ namespace Foxxit.Models.DTO
 {
     public class PaginatedList<T> : List<T>
     {
-        public int CurrentPage { get; private set; }
-        public int TotalPages { get; private set; }
         public PaginatedList(List<T> items, int count, int currentPage, int pageSize)
         {
             CurrentPage = currentPage;
@@ -16,6 +14,9 @@ namespace Foxxit.Models.DTO
 
             this.AddRange(items);
         }
+
+        public int CurrentPage { get; private set; }
+        public int TotalPages { get; private set; }
 
         public bool HasPreviousPage
         {
