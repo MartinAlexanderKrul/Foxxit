@@ -277,11 +277,11 @@ namespace Foxxit.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReceiverId = table.Column<long>(type: "bigint", nullable: false),
-                    ReceivedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SenderId = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     HasBeenRead = table.Column<bool>(type: "bit", nullable: false),
-                    IssueId = table.Column<long>(type: "bigint", nullable: true)
+                    PostBaseId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -292,11 +292,16 @@ namespace Foxxit.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Notifications_PostBase_IssueId",
-                        column: x => x.IssueId,
+                        name: "FK_Notifications_AspNetUsers_SenderId",
+                        column: x => x.SenderId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Notifications_PostBase_PostBaseId",
+                        column: x => x.PostBaseId,
                         principalTable: "PostBase",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -306,15 +311,15 @@ namespace Foxxit.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IsNegative = table.Column<bool>(type: "bit", nullable: false),
-                    FoxxitUserId = table.Column<long>(type: "bigint", nullable: false),
+                    OwnerId = table.Column<long>(type: "bigint", nullable: false),
                     PostBaseId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Votes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Votes_AspNetUsers_FoxxitUserId",
-                        column: x => x.FoxxitUserId,
+                        name: "FK_Votes_AspNetUsers_OwnerId",
+                        column: x => x.OwnerId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -327,12 +332,12 @@ namespace Foxxit.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
-                values: new object[] { 1L, "9da2db1a-19ef-4c81-bede-f8f9d9e6bcd2", "UserRole", "Admin", "ADMIN" });
+                values: new object[] { 1L, "6559a13e-c964-4b91-b213-87a13842575c", "UserRole", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
-                values: new object[] { 2L, "ffe76e45-0dfe-47cf-95cd-b54ead842f1c", "UserRole", "User", "USER" });
+                values: new object[] { 2L, "c2c46d06-f877-4fd4-b28c-70514b913394", "UserRole", "User", "USER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -374,14 +379,19 @@ namespace Foxxit.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notifications_IssueId",
+                name: "IX_Notifications_PostBaseId",
                 table: "Notifications",
-                column: "IssueId");
+                column: "PostBaseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Notifications_ReceiverId",
                 table: "Notifications",
                 column: "ReceiverId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Notifications_SenderId",
+                table: "Notifications",
+                column: "SenderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PostBase_CommentId",
@@ -414,9 +424,9 @@ namespace Foxxit.Migrations
                 column: "SubRedditId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Votes_FoxxitUserId",
+                name: "IX_Votes_OwnerId",
                 table: "Votes",
-                column: "FoxxitUserId");
+                column: "OwnerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Votes_PostBaseId",

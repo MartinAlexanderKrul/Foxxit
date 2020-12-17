@@ -16,7 +16,8 @@ namespace Foxxit.Models.Entities
             SubReddits = new Collection<SubReddit>();
             Votes = new Collection<Vote>();
             Comments = new Collection<Comment>();
-            Notifications = new Collection<Notification>();
+            ReceivedNotifications = new Collection<Notification>();
+            GivenNotifications = new Collection<Notification>();
         }
 
         public User()
@@ -25,7 +26,8 @@ namespace Foxxit.Models.Entities
             SubReddits = new Collection<SubReddit>();
             Votes = new Collection<Vote>();
             Comments = new Collection<Comment>();
-            Notifications = new Collection<Notification>();
+            ReceivedNotifications = new Collection<Notification>();
+            GivenNotifications = new Collection<Notification>();
         }
 
         public string AvatarURL { get; set; }
@@ -37,7 +39,8 @@ namespace Foxxit.Models.Entities
         public ICollection<SubReddit> SubReddits { get; set; }
         public ICollection<Vote> Votes { get; set; }
         public ICollection<Comment> Comments { get; set; }
-        public ICollection<Notification> Notifications { get; set; }
+        public ICollection<Notification> ReceivedNotifications { get; set; }
+        public ICollection<Notification> GivenNotifications { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

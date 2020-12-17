@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Foxxit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201216155013_Init")]
+    [Migration("20201217101549_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,26 +28,30 @@ namespace Foxxit.Migrations
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<bool>("HasBeenRead")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("IssueId")
+                    b.Property<long>("PostBaseId")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime>("ReceivedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<long>("ReceiverId")
                         .HasColumnType("bigint");
 
+                    b.Property<long>("SenderId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("IssueId");
+                    b.HasIndex("PostBaseId");
 
                     b.HasIndex("ReceiverId");
+
+                    b.HasIndex("SenderId");
 
                     b.ToTable("Notifications");
                 });
@@ -222,18 +226,18 @@ namespace Foxxit.Migrations
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
-                    b.Property<long>("FoxxitUserId")
-                        .HasColumnType("bigint");
-
                     b.Property<bool>("IsNegative")
                         .HasColumnType("bit");
+
+                    b.Property<long>("OwnerId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("PostBaseId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FoxxitUserId");
+                    b.HasIndex("OwnerId");
 
                     b.HasIndex("PostBaseId");
 
@@ -446,14 +450,14 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "9da2db1a-19ef-4c81-bede-f8f9d9e6bcd2",
+                            ConcurrencyStamp = "6559a13e-c964-4b91-b213-87a13842575c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "ffe76e45-0dfe-47cf-95cd-b54ead842f1c",
+                            ConcurrencyStamp = "c2c46d06-f877-4fd4-b28c-70514b913394",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -461,19 +465,29 @@ namespace Foxxit.Migrations
 
             modelBuilder.Entity("Foxxit.Models.Entities.Notification", b =>
                 {
-                    b.HasOne("Foxxit.Models.Entities.PostBase", "Issue")
+                    b.HasOne("Foxxit.Models.Entities.Post", "PostBase")
                         .WithMany()
-                        .HasForeignKey("IssueId");
+                        .HasForeignKey("PostBaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Foxxit.Models.Entities.User", "Receiver")
-                        .WithMany("Notifications")
+                        .WithMany("ReceivedNotifications")
                         .HasForeignKey("ReceiverId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("Issue");
+                    b.HasOne("Foxxit.Models.Entities.User", "Sender")
+                        .WithMany("GivenNotifications")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("PostBase");
 
                     b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("Foxxit.Models.Entities.UserSubReddit", b =>
@@ -499,7 +513,7 @@ namespace Foxxit.Migrations
                 {
                     b.HasOne("Foxxit.Models.Entities.User", "Owner")
                         .WithMany("Votes")
-                        .HasForeignKey("FoxxitUserId")
+                        .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
@@ -636,9 +650,11 @@ namespace Foxxit.Migrations
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("Notifications");
+                    b.Navigation("GivenNotifications");
 
                     b.Navigation("Posts");
+
+                    b.Navigation("ReceivedNotifications");
 
                     b.Navigation("Votes");
                 });

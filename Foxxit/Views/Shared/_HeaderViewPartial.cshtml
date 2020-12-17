@@ -41,7 +41,7 @@
 
         <!-- MESSAGE BOX -->
 
-        @if (Model.CurrentUser.Notifications.Any(n => n.HasBeenRead))
+        @if (Model.CurrentUser.ReceivedNotifications.Any(n => n.HasBeenRead))
         {
             <a asp-action="Notifications" asp-controller="User"><i class="fa fa-envelope-open fa-lg header_icons"></i></a>
         }
