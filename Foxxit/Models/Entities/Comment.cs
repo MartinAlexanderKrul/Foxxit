@@ -6,7 +6,6 @@ namespace Foxxit.Models.Entities
     {
         public Comment()
         {
-            CreatedAt = DateTime.Now;
         }
 
         public long OriginalCommentId { get; set; }

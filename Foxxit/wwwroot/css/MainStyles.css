@@ -378,3 +378,7 @@ article {
     margin-top: 1%;
     font-weight: bold;
 }
+
+.button-disabled {
+    display:none;
+}

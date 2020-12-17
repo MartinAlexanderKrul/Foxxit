@@ -39,9 +39,16 @@
         <!-- CHAT -->
         <i class="fa fa-comments fa-lg header_icons"></i>
 
-        <!-- MESSAGE BOX (empty + new message) -->
-        <i class="fa fa-envelope-open fa-lg header_icons"></i>
-        <!-- <i class="fa fa-envelope fa-lg"></i> -->
+        <!-- MESSAGE BOX -->
+
+        @if (Model.CurrentUser.ReceivedNotifications.Any(n => n.HasBeenRead))
+        {
+            <a asp-action="Notifications" asp-controller="User"><i class="fa fa-envelope-open fa-lg header_icons"></i></a>
+        }
+        else
+        {
+            <a asp-action="Notifications" asp-controller="User"><i class="fa fa-envelope fa-lg header_icons"></i></a>
+        }
     </div>
 
     <div class="header_right_two">

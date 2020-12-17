@@ -6,7 +6,6 @@ namespace Foxxit.Models.Entities
     {
         public Post()
         {
-            CreatedAt = DateTime.Now;
         }
 
         public string Title { get; set; }

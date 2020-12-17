@@ -4,7 +4,7 @@ using SendGrid.Helpers.Mail;
 
 namespace Foxxit.Services
 {
-    public class MailService
+    public class MailService : IMailService
     {
         private const string Email = "foxxit2020@gmail.com";
         private const string Name = "Foxxit Team";
