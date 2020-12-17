@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Foxxit.Extensions;
 
 namespace Foxxit.Models.Entities
 {
@@ -29,7 +30,7 @@ namespace Foxxit.Models.Entities
 
         public string Content
         {
-            get { return $"{Sender.UserName} commented on your post {PostBase.Title}."; }
+            get { return $"{Sender.UserName} commented on your post {PostBase.Title} {PostBase.TimeStamp()} ago."; }
         }
     }
 }
