@@ -318,3 +318,8 @@ article {
 .article_item {
     margin-top: 1%;
 }
+}
+
+.button-disabled {
+    display:none;
+}

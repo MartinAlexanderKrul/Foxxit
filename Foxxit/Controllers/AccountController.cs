@@ -1,9 +1,4 @@
-﻿using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Foxxit.Attributes.RoleServices;
-using Foxxit.Database;
-using Foxxit.Enums;
+﻿using Foxxit.Attributes.RoleServices;
 using Foxxit.Models;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
@@ -11,6 +6,8 @@ using Foxxit.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Foxxit.Controllers
 {

@@ -49,40 +49,17 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public async Task SoftDelete_SetsIsDeletedAsTrue()
         {
-            await MockDb_AddNewUser();
+            DbContext.Users.Add(TestUser);
+            DbContext.SaveChanges();
+
+            Assert.NotNull(TestUser);
 
             DbContext.Users.Remove(TestUser);
             await DbContext.SaveChangesAsync();
 
-            var expected = true;
-            var actual = DbContext.Users.Any(u=>u.IsDeleted == true);
+            var user = DbContext.Users.FirstOrDefault();
 
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void SoftDelete_DoesntWorkAsItemIsHardDeletedInstead()
-        {
-            var testUser = new User()
-            {
-                UserName = "Pepa",
-                DisplayName = "PEPA",
-                Email = "pepa@test.com",
-                EmailConfirmed = false,
-                PhoneNumberConfirmed = false,
-                TwoFactorEnabled = false,
-                LockoutEnabled = false,
-                AccessFailedCount = 0
-            };
-
-            DbContext.Users.Add(testUser);
-            DbContext.Users.Remove(testUser);
-            DbContext.SaveChanges();
-
-            var expected = 0;
-            var actual = DbContext.Users.Count();
-
-            Assert.Equal(expected, actual);
+            Assert.Null(user);
         }
     }
 }

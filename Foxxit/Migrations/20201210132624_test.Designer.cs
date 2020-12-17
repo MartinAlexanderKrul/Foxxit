@@ -11,7 +11,7 @@ namespace Foxxit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20201210132624_test")]
-    partial class test
+    partial class Test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
