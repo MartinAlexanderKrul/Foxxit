@@ -32,7 +32,7 @@
                 <p style="margin-bottom: 1%">@comment.Text</p>
                 <div class="article_section">
                     <i class="fa fa-comment"></i>
-                    <div class="comment_number">@Html.ActionLink("REPLY", "NewComment", "Post", new { commentId = comment.Id })</div>
+                    <div class="comment_number"><a asp-action="NewComment" asp-controller="Post" asp-route-commentId="@comment.Id">REPLY</a></div> @*TODO: Set the route by the actual endpoint*@
                 </div>
             </div>
         </div>
