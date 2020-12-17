@@ -14,5 +14,20 @@ namespace Foxxit.Services
             : base(repository)
         {
         }
+
+        public IEnumerable<Post> HotSort(int hours)
+        {
+            return Filter(p => (DateTime.Now - p.CreatedAt).TotalHours < hours).OrderByDescending(p => p.Votes.Count);
+        }
+
+        public IEnumerable<Post> NewSort()
+        {
+            return GetAllAsync().Result.OrderByDescending(p => p.CreatedAt);
+        }
+
+        public IEnumerable<Post> TopSort()
+        {
+            return HotSort(168);
+        }
     }
 }
