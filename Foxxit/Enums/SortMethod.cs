@@ -7,7 +7,6 @@ namespace Foxxit.Enums
 {
     public enum SortMethod
     {
-        Default,
         Hot,
         New,
         Top

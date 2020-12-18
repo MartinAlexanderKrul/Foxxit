@@ -1,7 +1,6 @@
 ﻿@using Foxxit.Models.DTO
 @using Foxxit.Enums
 @model SearchReturnModel
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @if (Model.SearchedCategory.Equals(nameof(SearchCategory.All)))
 {
@@ -11,7 +10,7 @@
             <h2>Found SubReddits</h2>
             @foreach (var subReddit in Model.SubReddits)
             {
-                <div class="article_item">@Html.ActionLink($"{subReddit.Name}", "ViewSubReddit", "Foxxit", new { subRedditId = subReddit.Id })</div>
+                <div class="article_item"><a asp-action="ViewSubReddit" asp-controller="SubReddit" asp-route-subRedditId="@subReddit.Id">@subReddit.Name</a></div>
             }
         </div>
     </article>
