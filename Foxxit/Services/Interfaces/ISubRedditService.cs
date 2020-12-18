@@ -16,6 +16,8 @@ namespace Foxxit.Services
         IEnumerable<SubReddit> Filter(Func<SubReddit, bool> condition);
 
         Task<SubReddit> GetByIdAsync(long id);
+        Task<bool> IsExisting(string name);
+        IEnumerable<SubReddit> GetUnApproved();
 
         void Save();
 

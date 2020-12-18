@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Foxxit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201209180711_Init")]
-    partial class Init
+    [Migration("20201217101522_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,6 +70,9 @@ namespace Foxxit.Migrations
 
                     b.Property<long>("CreatedById")
                         .HasColumnType("bigint");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -415,14 +418,14 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "84d9bf82-def2-4e7d-8d88-77f27230e46f",
+                            ConcurrencyStamp = "76c5627c-6f32-4e84-8f91-321044757509",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "f1f0bce7-55ee-488a-a02d-9b0ac8213c77",
+                            ConcurrencyStamp = "bf77fb0e-48a8-4e6e-a528-4f3ef30e8e9b",
                             Name = "User",
                             NormalizedName = "USER"
                         });

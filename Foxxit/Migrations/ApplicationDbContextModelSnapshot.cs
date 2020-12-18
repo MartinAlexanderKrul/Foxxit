@@ -69,6 +69,9 @@ namespace Foxxit.Migrations
                     b.Property<long>("CreatedById")
                         .HasColumnType("bigint");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -413,14 +416,14 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "16f591f9-0168-4966-b7e1-49b02cdefd0a",
+                            ConcurrencyStamp = "76c5627c-6f32-4e84-8f91-321044757509",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "04e21bb6-2d7d-4def-ad7f-fcccdb8de702",
+                            ConcurrencyStamp = "bf77fb0e-48a8-4e6e-a528-4f3ef30e8e9b",
                             Name = "User",
                             NormalizedName = "USER"
                         });

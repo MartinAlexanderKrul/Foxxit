@@ -31,6 +31,21 @@ namespace Foxxit.Services
             return await SubRedditRepository.GetByIdAsync(id);
         }
 
+        public async Task<bool> IsExisting(string name)
+        {
+            IEnumerable<SubReddit> listOfAll = await GetAllAsync();
+            bool existingUserService = listOfAll.ToList().Any(s => s.Name.Equals(name));
+
+            return existingUserService;
+        }
+
+        public IEnumerable<SubReddit> GetUnApproved()
+        {
+            var unApproved = Filter(u => u.IsApproved = false);
+
+            return unApproved;
+        }
+
         public void Add(SubReddit entity)
         {
             SubRedditRepository.AddAsync(entity);
