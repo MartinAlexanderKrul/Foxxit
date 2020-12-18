@@ -1,0 +1,32 @@
+﻿@using Foxxit.Models.DTO;
+
+@model PaginatedList<Foxxit.Models.Entities.Post>
+
+@{  string prevDisabled = !Model.HasPreviousPage ? "button-disabled" : "";
+    string nextDisabled = !Model.HasNextPage ? "button-disabled" : "";
+    int pageNumsAmount = 3;
+
+    int minPageNum = Model.CurrentPage - pageNumsAmount;
+    int showPagesFrom = minPageNum > 0 ? minPageNum : 0;
+
+    int maxPageNum = Model.CurrentPage + pageNumsAmount;
+    int showPagesTo = maxPageNum < Model.TotalPages ? maxPageNum : Model.TotalPages;
+    }
+
+<a asp-action="PaginationSample" asp-route-pageNum="1" class="btn btn-default">FIRST</a>
+<a asp-action="PaginationSample" asp-route-pageNum="@(Model.CurrentPage - 1)" class="btn btn-default @prevDisabled">PREV</a>
+
+@for (int i = showPagesFrom; i <= showPagesTo; i++)
+{
+        if (Model.CurrentPage == i)
+            {
+                <a asp-action="PaginationSample" asp-route-pageNum="@Model.CurrentPage" class="btn btn-dark">@Model.CurrentPage</a> 
+            }
+        else
+            {
+                <a asp-action="PaginationSample" asp-route-pageNum="@i" class="btn btn-default">@i</a> 
+            }
+}
+
+<a asp-action="PaginationSample" asp-route-pageNum="@(Model.CurrentPage + 1)" class="btn btn-default @nextDisabled">NEXT</a>
+<a asp-action="PaginationSample" asp-route-pageNum="@(Model.TotalPages)" class="btn btn-default">LAST</a>

@@ -15,7 +15,7 @@
             <span class="login_title">New Subreddit</span>
         </div><br />
         <div class="login_form">
-            <form class="subreddit_form" asp-action="CreateSubreddit" asp-controller="Foxxit">
+            <form class="subreddit_form" asp-action="CreateSubreddit" asp-controller="Foxxit" method="post">
                 <input class="login_field" type="text" placeholder="Name of subreddit" name="Name" /> <br />
                 <textarea class="login_field" placeholder="About - short description of subreddit" name="About"></textarea> <br />
                 <input class="login_button" type="submit" value="Create" />

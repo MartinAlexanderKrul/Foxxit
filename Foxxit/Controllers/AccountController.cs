@@ -1,9 +1,6 @@
-﻿using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Foxxit.Attributes.RoleServices;
-using Foxxit.Database;
-using Foxxit.Enums;
 using Foxxit.Models;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
@@ -17,9 +14,9 @@ namespace Foxxit.Controllers
     [Route("[controller]")]
     public class AccountController : MainController
     {
-        private readonly MailService mailService;
+        private readonly IMailService mailService;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, MailService mailService)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IMailService mailService)
             : base(userManager, signInManager)
         {
             this.mailService = mailService;

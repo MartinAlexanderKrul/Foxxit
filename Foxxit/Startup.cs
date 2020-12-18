@@ -57,14 +57,21 @@ namespace Foxxit
             .AddDefaultTokenProviders();
 
             services.AddTransient<UserRepository>();
+            services.AddTransient<UserService>();
+
             services.AddTransient<SubRedditRepository>();
-            services.AddTransient<PostRepository>();
-            services.AddTransient<CommentRepository>();
             services.AddTransient<ISubRedditService, SubRedditService>();
+
+            services.AddTransient<PostRepository>();
             services.AddTransient<IPostService, PostService>();
-            services.AddTransient<MailService>();
+
+            services.AddTransient<CommentRepository>();
+
+            services.AddTransient<NotificationRepository>();
+            services.AddTransient<INotificationService, NotificationService>();
+
+            services.AddTransient<IMailService, MailService>();
             services.AddTransient<ISearchService, SearchService>();
-            services.AddTransient<SubRedditService>();
 
             services.AddAuthentication()
                 .AddGoogle("google", options =>
