@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Foxxit.Enums;
 using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
@@ -29,26 +31,14 @@ namespace Foxxit.Controllers
         [HttpGet("")]
         public async Task<IActionResult> Index()
         {
-            var user = new User("Nicolsburg", "nicolsburg@hocz.org");
-            var subreddits = new List<SubReddit>
-            {
-                new SubReddit() { Name = "Green Fox", Id = 1 },
-                new SubReddit() { Name = "Microtis", Id = 2 },
-                new SubReddit() { Name = "Sageeeee", Id = 3 },
-                new SubReddit() { Name = "Vulpes", Id = 9 },
-            };
-            var posts = new List<Post>()
-            {
-                new Post() { User = user,  Id = 1,  SubReddit = new SubReddit() { Name = "Green Fox", Id = 4 }, Title = "Green Fox", Text = "fwafawfajwfjawifjawkjfkawfnkjawh faw jakwfj kawfjj kawf jkawhf jkawhnfk " },
-                new Post() { User = user, Id = 2, SubReddit = new SubReddit() { Name = "Green Fox", Id = 5 }, Title = "Green Fox", ImageURL = "https://www.spacesworks.com/wp-content/uploads/2016/06/coding-in-the-classroom.png" },
-            };
             var model = new MainPageViewModel()
             {
-                CurrentUser = user,
-                SubReddits = subreddits,
-                Posts = posts,
+                // CurrentUser = await GetActiveUserAsync(),
+                Posts = await PostService.GetAllAsync(),
+                SubReddits = await SubRedditService.GetAllAsync(),
             };
-            return await Task.Run(() => View("Index", model));
+
+            return View("Index", model);
         }
 
         [HttpPost("search")]
@@ -73,11 +63,14 @@ namespace Foxxit.Controllers
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
 
-        [HttpGet("search")]
-        public async Task<IActionResult> Sort(string sortMethod)
+        [HttpGet("sort")]
+        public async Task<IActionResult> Sort(SortMethod sortMethod)
         {
             var model = new MainPageViewModel()
             {
+                // CurrentUser = await GetActiveUserAsync(),
+                Posts = PostService.Sort(sortMethod),
+                SortMethod = sortMethod,
                 SubReddits = await SubRedditService.GetAllAsync(),
             };
 

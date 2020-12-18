@@ -1,15 +1,12 @@
 ﻿@using Foxxit.Models.ViewModels
 @using Foxxit.Extensions
+@using Foxxit.Enums
 @model MainPageViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <div class="section_intro">
     <h2>Welcome to Foxxit</h2>
-    <div class="section_intro_buttons">
-        <a class="sorting_button selected_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="Hot">HOT</a>
-        <a class="sorting_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="New">New</a>
-        <a class="sorting_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="Top">Top</a>
-    </div>
+    @await Html.PartialAsync("_MainPageIntroViewPartial", Model)
 </div>
 
 @foreach (var post in Model.Posts)

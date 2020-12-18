@@ -16,17 +16,17 @@ namespace Foxxit.Services
         {
         }
 
-        public IEnumerable<Post> Sort(string sortMethod)
+        public IEnumerable<Post> Sort(SortMethod sortMethod)
         {
             switch (sortMethod)
             {
-                case nameof(SortMethod.Hot):
+                case SortMethod.Hot:
                     return HotSort(24);
 
-                case nameof(SortMethod.New):
+                case SortMethod.New:
                     return NewSort();
 
-                case nameof(SortMethod.Top):
+                case SortMethod.Top:
                     return TopSort(168);
 
                 default:

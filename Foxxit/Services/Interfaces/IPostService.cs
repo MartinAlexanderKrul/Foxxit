@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Foxxit.Enums;
 using Foxxit.Models.Entities;
 using Foxxit.Services.EntityServices;
 
@@ -12,7 +13,7 @@ namespace Foxxit.Services
 
         IEnumerable<Post> NewSort();
 
-        IEnumerable<Post> Sort(string sortMethod);
+        IEnumerable<Post> Sort(SortMethod sortMethod);
 
         IEnumerable<Post> TopSort(int hours);
     }
