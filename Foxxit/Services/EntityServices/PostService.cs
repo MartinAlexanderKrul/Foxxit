@@ -36,12 +36,12 @@ namespace Foxxit.Services
 
         public IEnumerable<Post> HotSort(int hours)
         {
-            return Filter(p => (DateTime.Now - p.CreatedAt).TotalHours < hours).OrderByDescending(p => p.Votes.Count);
+            return Filter(p => (DateTime.Now - p.CreatedAt).TotalHours < hours).OrderBy(p => p.Votes.Count);
         }
 
         public IEnumerable<Post> NewSort()
         {
-            return GetAllAsync().Result.OrderByDescending(p => p.CreatedAt);
+            return GetAllAsync().Result.OrderBy(p => p.CreatedAt);
         }
 
         public IEnumerable<Post> TopSort(int hours)
