@@ -57,7 +57,7 @@
 
             <div class="article_footer">
                 <div class="article_section">
-                    <button onclick="hideComments()"><i class="fa fa-comment fa-lg"></i></button>
+                    <i class="fa fa-comment fa-lg"></i>
                     <div class="comment_number">@Html.ActionLink($"{post.Comments.Count()} COMMENTS", "Comments", "Home", new { postId = post.Id })</div>
                 </div>
                 <div class="comment_container" id="comment_container">

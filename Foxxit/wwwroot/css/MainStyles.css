@@ -329,7 +329,6 @@ article {
 }
 
 .comment_container {
-    display: none;
     flex-direction: column;
     font-size: var(--comment-font-size);
     margin-top: 1%;
