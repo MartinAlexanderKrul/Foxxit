@@ -9,12 +9,12 @@ namespace Foxxit.Services
 {
     public interface IPostService : IGenericEntityService<Post>
     {
-        IEnumerable<Post> HotSort(int hours);
+        IEnumerable<Post> HotSort(int hours, int subRedditId);
 
-        IEnumerable<Post> NewSort();
+        IEnumerable<Post> NewSort(int subRedditId);
 
-        IEnumerable<Post> Sort(SortMethod sortMethod);
+        IEnumerable<Post> Sort(SortMethod sortMethod, int subRedditId);
 
-        IEnumerable<Post> TopSort(int hours);
+        IEnumerable<Post> TopSort(int hours, int subRedditId);
     }
 }

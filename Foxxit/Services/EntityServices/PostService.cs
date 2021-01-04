@@ -16,37 +16,38 @@ namespace Foxxit.Services
         {
         }
 
-        public IEnumerable<Post> Sort(SortMethod sortMethod)
+        public IEnumerable<Post> Sort(SortMethod sortMethod, int subRedditId = 0)
         {
             switch (sortMethod)
             {
                 case SortMethod.Hot:
-                    return HotSort(24);
+                    return HotSort(24, subRedditId);
 
                 case SortMethod.New:
-                    return NewSort();
+                    return NewSort(subRedditId);
 
                 case SortMethod.Top:
-                    return TopSort(168);
+                    return TopSort(168, subRedditId);
 
                 default:
-                    return HotSort(24);
+                    return HotSort(24, subRedditId);
             }
         }
 
-        public IEnumerable<Post> HotSort(int hours)
+        public IEnumerable<Post> HotSort(int hours, int subRedditId)
         {
-            return Filter(p => (DateTime.Now - p.CreatedAt).TotalHours < hours).OrderBy(p => p.Votes.Count);
+            var filter = subRedditId == 0 ? Filter(p => (DateTime.Now - p.CreatedAt).TotalHours < hours && p.SubReddit.Id == subRedditId).OrderBy(p => p.Votes.Count) : Filter(p => (DateTime.Now - p.CreatedAt).TotalHours < hours);
+            return filter.OrderBy(p => p.Votes.Count);
         }
 
-        public IEnumerable<Post> NewSort()
+        public IEnumerable<Post> NewSort(int subRedditId)
         {
-            return GetAllAsync().Result.OrderBy(p => p.CreatedAt);
+            return subRedditId == 0 ? GetAllAsync().Result.OrderBy(p => p.CreatedAt) : Filter(p => p.SubReddit.Id == subRedditId).OrderBy(p => p.CreatedAt);
         }
 
-        public IEnumerable<Post> TopSort(int hours)
+        public IEnumerable<Post> TopSort(int hours, int subRedditId)
         {
-            return HotSort(hours);
+            return HotSort(hours, subRedditId);
         }
     }
 }
