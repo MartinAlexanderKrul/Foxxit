@@ -1,0 +1,59 @@
+﻿@using Foxxit.Extensions
+@{ Layout = "_Layout"; }
+@model Foxxit.Models.ViewModels.SubRedditViewModel
+
+<div class="subreddit_header">
+    <div>
+        <div><h1>@Model.SubReddit.Name</h1></div>
+        <div class="subreddit_sorting">
+            <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="hot">HOT</a></div>
+            <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="new">NEW</a></div>
+            <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="top">TOP</a></div>
+        </div>
+    </div>
+    <div>
+        <form action="createPost" method="post">
+            <button type="submit">CREATE POST</button>
+        </form>
+    </div>
+</div>
+
+
+@foreach (var post in Model.SubReddit.Posts)
+{
+    //TODO whole row has to be a link
+<article>
+    <div class="article_left">
+        <div class="post_vote">
+            <form asp-action="Vote" asp-controller="Home">
+                <input type="hidden" value="up" name="voteType" />
+                <input type="hidden" value="@post.Id" name="postId" />
+                <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
+            </form>
+        </div>
+        <div class="post_vote">@post.Votes.Count</div>
+
+        <div class="post_vote">
+            <form asp-action="Vote" asp-controller="Home">
+                <input type="hidden" value="down" name="voteType" />
+                <input type="hidden" value="@post.Id" name="postId" />
+                <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <div class="article_middle">
+        <div class="article_header">
+            <div><img src="POST ICON" alt="Icon" /></div>
+            <h4>@post.Title</h4>
+            <p class="article_text_info">Posted by @post.User.DisplayName @post.TimeStamp() ago.
+        </div>
+
+    </div>
+    <div class="posts_list_row_right">
+        <a asp-action="Post" asp-controller="Home" asp-route-PostId="@post.Id">
+            <div><i class="fa fa-comment"></i></div>
+            <div>@post.Comments.Count</div>
+        </a>
+    </div>
+</article>}
