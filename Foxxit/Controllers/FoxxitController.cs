@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Foxxit.Attributes.RoleServices;
 using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
@@ -25,12 +27,11 @@ namespace Foxxit.Controllers
         public ISubRedditService SubRedditService { get; set; }
 
         [HttpGet("index")]
-        [HttpGet("")]
         public async Task<IActionResult> Index()
         {
             var model = new MainPageViewModel()
             {
-                // CurrentUser = await GetActiveUserAsync(),
+                CurrentUser = await GetActiveUserAsync(),
                 Posts = await PostService.GetAllAsync(),
                 SubReddits = await SubRedditService.GetAllAsync(),
             };
@@ -61,7 +62,7 @@ namespace Foxxit.Controllers
         }
 
         [HttpGet("subreddit/new")]
-        public async Task<IActionResult> CreateSubreddit()
+        public IActionResult CreateSubreddit()
         {
             var model = new SubRedditViewModel();
             return View("Subreddit", model);
@@ -72,15 +73,17 @@ namespace Foxxit.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("Index");
             }
 
-            var existingSubreddit = SubRedditService.Filter(s => s.Name.Equals(model.Name));
+            var list = await SubRedditService.GetAllAsync();
+            SubReddit existingSubreddit = list.FirstOrDefault(s => s.Name.Equals(model.Name));
 
-            if (existingSubreddit is null) //PRIDAT PODMINKU Z CHECKNUTI existingSubredditu
-            {               
-            var subreddit = new SubReddit(model.Name, model.About, 1);
-            // ↑↑ V CONSTRUCTORU VRATIT ZPET model.User.Id jak bude fungovat ↑↑
+            if (existingSubreddit is null)
+            {
+            var currentUser = await GetActiveUserAsync();
+            var subreddit = new SubReddit(model.Name, model.About, currentUser.Id);
+
             await SubRedditService.AddAsync(subreddit);
             await SubRedditService.SaveAsync();
 
@@ -92,6 +95,19 @@ namespace Foxxit.Controllers
                 ModelState.AddModelError(string.Empty, "Subreddit is already existing!");
             }
             return View("Index");
+        }
+
+        //[AuthorizedRoles(Enums.UserRole.Admin)]
+        [HttpGet("subreddit/approve")]
+        public IActionResult ApproveSubreddit()
+        {
+            return View("SubredditsToApprove");
+        }
+
+        [HttpGet("")]
+        public IActionResult Login()
+        {
+            return Redirect("Account/Login");
         }
     }
 }

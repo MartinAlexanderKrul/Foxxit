@@ -15,7 +15,6 @@ namespace Foxxit.Models.ViewModels
 
         [Required]
         [StringLength(100, ErrorMessage = "About must be between 3 and 100 characters!", MinimumLength = 3)]
-        [RegularExpression("([0-9a-zA-Z._+@-])+", ErrorMessage = "About cannot contain any special character!")]
         public string About { get; set; }
 
         public string DisplayName { get; set; }

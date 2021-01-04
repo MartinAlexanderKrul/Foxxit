@@ -1,22 +1,22 @@
-﻿@using Foxxit.Models.DTO
-@model SearchReturnModel
+﻿@using Foxxit.Models.Entities
+@model IEnumerable<SubReddit>
 
 <table>
     <thead>
         <tr>
             <td>Name</td>
-            <td>Created By</td>
             <td>About</td>
+            <td>Created By</td>
         </tr>
     </thead>
     <tbody>
-        @foreach (var subreddit in Model.SubReddits)
+        @foreach (var subreddit in Model)
         {
-            <tr>
-                <td>@subreddit.Name</td>
-                <td>@subreddit.CreatedById</td>
-                <td>@subreddit.About</td>
-            </tr>
+        <tr>
+            <td>@subreddit.Name</td>
+            <td>@subreddit.About</td>
+            <td>@subreddit.Members</td>
+        </tr>
         }
     </tbody>
 </table>

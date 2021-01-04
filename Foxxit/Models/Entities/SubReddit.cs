@@ -28,6 +28,6 @@ namespace Foxxit.Models.Entities
         public ICollection<Post> Posts { get; set; }
         public ICollection<User> Members { get; set; }
         public bool IsDeleted { get; set; }
-        public bool IsApproved { get; set; }
+        public bool IsApprovedTest { get; set; }
     }
 }

@@ -111,6 +111,7 @@ namespace Foxxit.Controllers
         }
 
         [HttpGet("login")]
+
         public IActionResult Login()
         {
             return View();
