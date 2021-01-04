@@ -108,8 +108,8 @@ namespace Foxxit.Controllers
             return await Task.Run(() => View("Filter", model));
         }
 
-        [HttpGet("newPost")]
-        public IActionResult NewPost(SubReddit subReddit)
+        [HttpGet("/Post/New")]
+        public async Task<IActionResult> NewPost(int subRedditId)
         {
             var user = new User("Nicolsburg", "nicolsburg@hocz.org");
             var subreddits = new List<SubReddit>
@@ -129,10 +129,21 @@ namespace Foxxit.Controllers
                 CurrentUser = user,
                 SubReddits = subreddits,
                 Posts = posts,
-                CurrentSubReddit = subReddit,
+                CurrentSubReddit = new SubReddit() { Name = "Green Fox", Id = 1 },
             };
 
             return View("CreatePost", model);
+        }
+
+        [HttpPost("/Post/Create")]
+        public async Task<IActionResult> CreatePost(string title, string url, string image, string text, int subRedditId)
+        {
+            var post = new Post() { Title = title, ImageURL = image, Text = text, SubRedditId = subRedditId };
+
+            await PostService.AddAsync(post);
+            await PostService.SaveAsync();
+
+            return RedirectToAction("ViewSubReddit", subRedditId); // waiting for Laca's endpoint
         }
     }
 }

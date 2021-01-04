@@ -27,11 +27,15 @@ a {
 }
 
 button {
+    cursor: pointer;
     outline: none;
     border: none;
     background: none;
     margin: 0;
     padding: 0;
+    color: var(--font-color);
+    font-family: var(--font-main);
+    font-size: 16px;
 }
 
 html, body {
@@ -238,12 +242,27 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 16px;
 }
 
 .not_button {
     background-color: var(--button-color);
     border-radius: 10px;
 }
+
+.bigger_button {
+    width: 75px;
+    height: 30px;
+    margin: 5px;
+}
+
+.light_button {
+    background-color: var(--background-color) !important;
+}
+
+/*.dark_button {
+    border: 3px solid var(--button-color) !important;
+}*/
 
 .section_intro {
     background-color: var(--section-color);
@@ -341,6 +360,7 @@ article {
 }
 
 .postform {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -348,4 +368,15 @@ article {
 
 .biginput {
     height: 142px;
+}
+
+.fileinput {
+    height: auto !important;
+}
+
+.postform_buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
