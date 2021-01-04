@@ -18,6 +18,8 @@ namespace XUnitTestsForFoxxit
         public IntegrationTestsBasic()
         {
             DbContext = new ApplicationDbContext(TestBootstrapper.GetInMemoryDbContextOptions("InMemory"));
+            DbContext.Database.EnsureDeleted();
+            DbContext.Database.EnsureCreated();
         }
 
         public ApplicationDbContext DbContext { get; set; }
