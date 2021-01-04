@@ -59,5 +59,22 @@ namespace Foxxit.Controllers
 
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
+
+        [HttpGet("subreddit/subRedditId")]
+        public async Task<IActionResult> Subreddit([FromRoute]int subRedditId)
+        {
+            var user = await GetActiveUserAsync();
+            var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
+            var subReddits = await SubRedditService.GetAllAsync();
+
+            var model = new SubRedditViewModel()
+            {
+                User = user,
+                SubReddit = subReddit,
+                SubReddits = subReddits
+            };
+
+            return View(model);
+        }
     }
 }

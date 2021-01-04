@@ -1,0 +1,18 @@
+﻿@using Foxxit.Models.ViewModels
+@model SubRedditViewModel
+
+@{Layout = "_Layout";}
+
+<header>
+    @await Html.PartialAsync("_HeaderViewPartial")
+</header>
+
+<main>
+    <aside>
+        @await Html.PartialAsync("_SideBar_SubRedditsViewPartial", Model.SubReddits)
+    </aside>
+
+    <section>
+        @await Html.PartialAsync("_SubRedditPartial")
+    </section>
+</main>
