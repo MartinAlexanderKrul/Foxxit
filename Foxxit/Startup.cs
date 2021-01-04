@@ -56,7 +56,7 @@ namespace Foxxit
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
-            services.AddTransient<IMailService, MailService>();
+            services.AddTransient<MailService>();
 
             services.AddTransient<UserRepository>();
             services.AddTransient<UserService>();

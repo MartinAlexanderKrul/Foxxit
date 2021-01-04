@@ -109,7 +109,7 @@ namespace Foxxit.Controllers
         }
 
         [HttpGet("newPost")]
-        public IActionResult Search(SubReddit subReddit)
+        public IActionResult NewPost(SubReddit subReddit)
         {
             var user = new User("Nicolsburg", "nicolsburg@hocz.org");
             var subreddits = new List<SubReddit>
