@@ -67,7 +67,6 @@ namespace Foxxit.Controllers
             var currentUser = await GetActiveUserAsync();
             var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
             var subReddits = await SubRedditService.GetAllAsync();
-            
             var model = new SubRedditViewModel()
             {
                 User = currentUser,
