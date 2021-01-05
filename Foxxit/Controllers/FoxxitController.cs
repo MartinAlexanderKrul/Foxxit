@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
@@ -64,13 +65,28 @@ namespace Foxxit.Controllers
         [HttpGet("subreddit/{subRedditId}")]
         public async Task<IActionResult> Subreddit([FromRoute]int subRedditId)
         {
-            var user = await GetActiveUserAsync();
-            var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
-            var subReddits = await SubRedditService.GetAllAsync();
+            //var currentUser = await GetActiveUserAsync();
+            //var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
+            //var subReddits = await SubRedditService.GetAllAsync();
 
-            var model = new SubRedditViewModel()
+            var currentUser = new User("Nicolsburg", "nicolsburg@hocz.org");
+            var subReddits = new List<SubReddit>
             {
-                User = user,
+                new SubReddit() { Name = "Green Fox", Id = 1 },
+                new SubReddit() { Name = "Microtis", Id = 2 },
+                new SubReddit() { Name = "Sageeeee", Id = 3 },
+                new SubReddit() { Name = "Vulpes", Id = 9 },
+            };
+            var posts = new List<Post>()
+            {
+                new Post() { User = currentUser,  Id = 1,  SubReddit = new SubReddit() { Name = "Green Fox", Id = 4 }, Title = "Green Fox", Text = "fwafawfajwfjawifjawkjfkawfnkjawh faw jakwfj kawfjj kawf jkawhf jkawhnfk " },
+                new Post() { User = currentUser, Id = 2, SubReddit = new SubReddit() { Name = "Green Fox", Id = 5 }, Title = "Green Fox", ImageURL = "https://www.spacesworks.com/wp-content/uploads/2016/06/coding-in-the-classroom.png" },
+            };
+            var subReddit = new SubReddit() { Name = "Green Fox", Id = 1, Posts = posts };
+
+            var model = new MainPageViewModel()
+            {
+                CurrentUser = currentUser,
                 SubReddit = subReddit,
                 SubReddits = subReddits
             };

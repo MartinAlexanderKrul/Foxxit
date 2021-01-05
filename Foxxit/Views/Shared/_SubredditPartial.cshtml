@@ -1,23 +1,22 @@
 ﻿@using Foxxit.Extensions
 @{ Layout = "_Layout"; }
-@model Foxxit.Models.ViewModels.SubRedditViewModel
+@model Foxxit.Models.ViewModels.MainPageViewModel
 
-<div class="subreddit_header">
+<div class="section_intro">
     <div>
         <div><h1>@Model.SubReddit.Name</h1></div>
-        <div class="subreddit_sorting">
+        <div class="section_intro_buttons">
             <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="hot">HOT</a></div>
             <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="new">NEW</a></div>
             <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="top">TOP</a></div>
         </div>
     </div>
-    <div>
+    <div class="create_post">
         <form action="createPost" method="post">
-            <button type="submit">CREATE POST</button>
+            <button type="submit" class="create_new_post_button">CREATE POST</button>
         </form>
     </div>
 </div>
-
 
 @foreach (var post in Model.SubReddit.Posts)
 {

@@ -251,6 +251,9 @@ section {
     margin-bottom: 20px;
     padding: 10px;
     padding-left: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .section_intro_buttons {
@@ -322,4 +325,8 @@ article {
 
 .button-disabled {
     display:none;
+}
+
+.create_new_post_button {
+    width: 50px;
 }

@@ -4,7 +4,7 @@
 @{Layout = "_Layout";}
 
 <header>
-    @await Html.PartialAsync("_HeaderViewPartial")
+    @await Html.PartialAsync("_HeaderViewPartial", new GeneralViewModel() { CurrentUser = Model.User, SubReddits = Model.SubReddits})
 </header>
 
 <main>
