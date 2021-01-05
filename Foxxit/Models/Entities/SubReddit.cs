@@ -25,9 +25,10 @@ namespace Foxxit.Models.Entities
         public string About { get; set; }
         public DateTime CreatedAt { get; set; }
         public long CreatedById { get; set; }
+        public User CreatedBy { get; set; }
         public ICollection<Post> Posts { get; set; }
         public ICollection<User> Members { get; set; }
         public bool IsDeleted { get; set; }
-        public bool IsApprovedTest { get; set; }
+        public bool IsApproved { get; set; }
     }
 }

@@ -161,6 +161,12 @@ namespace Foxxit.Database
                     Name = "User",
                     NormalizedName = "USER",
                 });
+            modelBuilder.Entity<SubReddit>()
+                .HasOne(u => u.CreatedBy)
+                .WithMany(s => s.SubReddits)
+                .HasForeignKey(s => s.CreatedById)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
         }
 
         private static void SoftDelete(IEnumerable<EntityEntry> entities)

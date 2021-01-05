@@ -89,19 +89,36 @@ namespace Foxxit.Controllers
 
             return RedirectToAction("Index");   
             }
-
             else
             {
                 ModelState.AddModelError(string.Empty, "Subreddit is already existing!");
             }
+
             return View("Index");
         }
 
         //[AuthorizedRoles(Enums.UserRole.Admin)]
         [HttpGet("subreddit/approve")]
-        public IActionResult ApproveSubreddit()
+        public async Task<IActionResult> ApproveSubreddit()
         {
-            return View("SubredditsToApprove");
+            var model = new SubredditApproveViewModel()
+            {
+                SubReddits = await SubRedditService.GetAllIncludeUser()
+            };
+
+            return View("SubredditsToApprove", model);
+        }
+        //[AuthorizedRoles(Enums.UserRole.Admin)]
+        [HttpPost("subreddit/approve")]
+        public async Task<IActionResult> ApproveSubreddit(long id, bool isApproved)
+        {
+            var subRedditToChange = await SubRedditService.GetByIdAsync(id);
+            subRedditToChange.IsApproved = isApproved;
+           
+            SubRedditService.Update(subRedditToChange);
+            await SubRedditService.SaveAsync();
+
+            return RedirectToAction("ApproveSubreddit");
         }
 
         [HttpGet("")]
