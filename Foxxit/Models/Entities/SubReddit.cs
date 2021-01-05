@@ -12,8 +12,7 @@ namespace Foxxit.Models.Entities
             Name = name;
             About = about;
             CreatedById = createdById;
-        }        
-
+        }
         public SubReddit()
         {
             Posts = new Collection<Post>();

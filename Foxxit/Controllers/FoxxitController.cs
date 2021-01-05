@@ -44,7 +44,7 @@ namespace Foxxit.Controllers
         {
             var model = new MainPageViewModel()
             {
-                // CurrentUser = await GetActiveUserAsync(),
+                CurrentUser = await GetActiveUserAsync(),
                 Posts = await PostService.GetAllAsync(),
                 SubReddits = await SubRedditService.GetAllAsync(),
                 SearchReturnModel = SearchService.Search(category, keyword),
@@ -87,7 +87,7 @@ namespace Foxxit.Controllers
             await SubRedditService.AddAsync(subreddit);
             await SubRedditService.SaveAsync();
 
-            return RedirectToAction("Index");   
+            return RedirectToAction("Index");
             }
             else
             {
@@ -101,7 +101,7 @@ namespace Foxxit.Controllers
         [HttpGet("subreddit/approve")]
         public async Task<IActionResult> ApproveSubreddit()
         {
-            var model = new SubredditApproveViewModel()
+            var model = new MainPageViewModel()
             {
                 SubReddits = await SubRedditService.GetAllIncludeUser()
             };
@@ -113,8 +113,7 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> ApproveSubreddit(long id, bool isApproved)
         {
             var subRedditToChange = await SubRedditService.GetByIdAsync(id);
-            subRedditToChange.IsApproved = isApproved;
-           
+            subRedditToChange.IsApproved = isApproved;           
             SubRedditService.Update(subRedditToChange);
             await SubRedditService.SaveAsync();
 
