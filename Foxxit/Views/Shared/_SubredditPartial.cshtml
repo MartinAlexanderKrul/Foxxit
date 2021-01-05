@@ -13,7 +13,7 @@
     </div>
     <div class="create_post">
         <form action="createPost" method="post">
-            <button type="submit" class="create_new_post_button">CREATE POST</button>
+            <button type="submit" class="not_button biggest_button light_button">CREATE POST</button>
         </form>
     </div>
 </div>
@@ -42,17 +42,19 @@
     </div>
 
     <div class="article_middle">
-        <div class="article_header">
-            <div><img src="POST ICON" alt="Icon" /></div>
+        <div class="article_post_header">
+            <img src="POST ICON" alt="Icon" class="icon"/>
             <h4>@post.Title</h4>
-            <p class="article_text_info">Posted by @post.User.DisplayName @post.TimeStamp() ago.
         </div>
-
+        <p class="article_text_info">Posted by @post.User.DisplayName @post.TimeStamp() ago.
     </div>
+
     <div class="posts_list_row_right">
         <a asp-action="Post" asp-controller="Home" asp-route-PostId="@post.Id">
-            <div><i class="fa fa-comment"></i></div>
-            <div>@post.Comments.Count</div>
+            <div class="comments">
+                <i class="fa fa-comment icon"></i>
+                @post.Comments.Count
+            </div>
         </a>
     </div>
 </article>}

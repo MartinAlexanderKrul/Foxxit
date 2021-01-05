@@ -238,11 +238,29 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 16px;
 }
 
 .not_button {
     background-color: var(--button-color);
     border-radius: 10px;
+}
+
+.bigger_button {
+    width: 75px;
+    height: 30px;
+    margin: 5px;
+}
+
+.biggest_button {
+    width: 150px;
+    height: 50px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.light_button {
+    background-color: var(--background-color) !important;
 }
 
 .section_intro {
@@ -304,6 +322,13 @@ article {
     justify-content: space-between;
 }
 
+.article_post_header {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 5px;
+    align-items: center;
+}
+
 .article_content {
     margin-top: 10px;
 }
@@ -327,6 +352,13 @@ article {
     display:none;
 }
 
-.create_new_post_button {
-    width: 50px;
+.comments {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.icon {
+    margin-right: 5px;
+    margin-bottom: 5px;
 }
