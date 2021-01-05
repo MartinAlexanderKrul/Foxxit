@@ -83,7 +83,6 @@ namespace Foxxit.Controllers
             {
             var currentUser = await GetActiveUserAsync();
             var subreddit = new SubReddit(model.Name, model.About, currentUser.Id);
-
             await SubRedditService.AddAsync(subreddit);
             await SubRedditService.SaveAsync();
 
@@ -113,7 +112,7 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> ApproveSubreddit(long id, bool isApproved)
         {
             var subRedditToChange = await SubRedditService.GetByIdAsync(id);
-            subRedditToChange.IsApproved = isApproved;           
+            subRedditToChange.IsApproved = isApproved;
             SubRedditService.Update(subRedditToChange);
             await SubRedditService.SaveAsync();
 
