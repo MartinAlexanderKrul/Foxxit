@@ -84,9 +84,9 @@ namespace Foxxit.Controllers
             };
             var subReddit = new SubReddit() { Name = "Green Fox", Id = 1, Posts = posts };
 
-            var model = new MainPageViewModel()
+            var model = new SubRedditViewModel()
             {
-                CurrentUser = currentUser,
+                User = currentUser,
                 SubReddit = subReddit,
                 SubReddits = subReddits
             };
