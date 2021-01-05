@@ -59,8 +59,16 @@ namespace Foxxit.Controllers
 
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
-        
-        [HttpGet("post")]
-        public async Task<IActionResult> ViewPost
+
+        [HttpGet("/Post")]
+        public async Task<IActionResult> ViewPost(long postId)
+        {
+            var model = new PostViewModel()
+            {
+                CurrentUser = await GetActiveUserAsync(),
+                Post = await PostService.GetByIdAsync(postId)
+            };
+            return View("Post", model);
+        }
     }
 }
