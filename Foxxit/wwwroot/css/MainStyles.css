@@ -342,6 +342,8 @@ article {
     display: none;
 }
 
+/* NEW POST */
+
 .form_inputs {
     background-color: var(--background-color);
     font-family: var(--font-main);
@@ -352,6 +354,10 @@ article {
     padding-left: 10px;
     margin: 5px;
 }
+
+    .form_inputs:focus {
+        outline: none;
+    }
 
 .postformcontainer {
     display: flex;
@@ -379,4 +385,8 @@ article {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+}
+
+.noheader {
+    font-weight: lighter;
 }

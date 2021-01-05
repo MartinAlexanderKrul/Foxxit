@@ -109,7 +109,7 @@ namespace Foxxit.Controllers
         }
 
         [HttpGet("/Post/New")]
-        public async Task<IActionResult> NewPost(int subRedditId)
+        public IActionResult NewPost(int subRedditId)
         {
             var user = new User("Nicolsburg", "nicolsburg@hocz.org");
             var subreddits = new List<SubReddit>
@@ -143,7 +143,7 @@ namespace Foxxit.Controllers
             await PostService.AddAsync(post);
             await PostService.SaveAsync();
 
-            return RedirectToAction("ViewSubReddit", subRedditId); // waiting for Laca's endpoint
+            return RedirectToAction("ViewSubReddit", subRedditId); // waiting for the correct endpoint
         }
     }
 }
