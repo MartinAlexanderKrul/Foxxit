@@ -13,7 +13,7 @@ namespace Foxxit.Services
 
         IEnumerable<Post> NewSort(int subRedditId);
 
-        IEnumerable<Post> Sort(SortMethod sortMethod, int subRedditId);
+        IEnumerable<Post> Sort(SortMethod sortMethod, int subRedditId = 0);
 
         IEnumerable<Post> TopSort(int hours, int subRedditId);
     }
