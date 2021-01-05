@@ -7,6 +7,5 @@ namespace Foxxit.Models.ViewModels
     {
         public User CurrentUser { get; set; }
         public IEnumerable<SubReddit> SubReddits { get; set; }
-
     }
 }

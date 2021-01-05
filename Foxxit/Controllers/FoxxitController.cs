@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Foxxit.Controllers
 {
-
     [Route("")]
     public class FoxxitController : MainController
     {
