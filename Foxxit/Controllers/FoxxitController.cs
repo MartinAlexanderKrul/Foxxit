@@ -77,7 +77,7 @@ namespace Foxxit.Controllers
         [HttpPost("/Post/Create")]
         public async Task<IActionResult> CreatePost(string title, string url, string image, string text, int subRedditId)
         {
-            var post = new Post() { Title = title, ImageURL = image, Text = text, SubRedditId = subRedditId };
+            var post = new Post(title, url, image, text, subRedditId);
 
             await PostService.AddAsync(post);
             await PostService.SaveAsync();
