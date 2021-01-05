@@ -59,5 +59,8 @@ namespace Foxxit.Controllers
 
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
+        
+        [HttpGet("post")]
+        public async Task<IActionResult> ViewPost
     }
 }
