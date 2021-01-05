@@ -68,7 +68,7 @@ namespace Foxxit.Controllers
             {
                 // CurrentUser = await GetActiveUserAsync(),
                 SubReddits = await SubRedditService.GetAllAsync(),
-                CurrentSubReddit = new SubReddit() { Name = "Green Fox", Id = 1 },
+                CurrentSubReddit = await SubRedditService.GetByIdAsync(subRedditId),
             };
 
             return View("CreatePost", model);
