@@ -58,6 +58,8 @@ namespace Foxxit.Controllers
             var posts = await PostService.GetAllAsync();
 
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
+            
+            // this is a comment without any purpose
         }
     }
-}
+} 
