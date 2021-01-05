@@ -78,15 +78,13 @@ namespace Foxxit.Controllers
 
             var list = await SubRedditService.GetAllAsync();
             SubReddit existingSubreddit = list.FirstOrDefault(s => s.Name.Equals(model.Name));
-
             if (existingSubreddit is null)
             {
-            var currentUser = await GetActiveUserAsync();
-            var subreddit = new SubReddit(model.Name, model.About, currentUser.Id);
-            await SubRedditService.AddAsync(subreddit);
-            await SubRedditService.SaveAsync();
-
-            return RedirectToAction("Index");
+                var currentUser = await GetActiveUserAsync();
+                var subreddit = new SubReddit(model.Name, model.About, currentUser.Id);
+                await SubRedditService.AddAsync(subreddit);
+                await SubRedditService.SaveAsync();
+                return RedirectToAction("Index");
             }
             else
             {

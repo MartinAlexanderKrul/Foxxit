@@ -21,9 +21,7 @@ namespace Foxxit.Repositories
 
         public async Task<IEnumerable<SubReddit>> GetAllIncludeUser()
         {
-            var include = table.Include(u => u.CreatedBy);
-
-            return include;
+            return table.Include(u => u.CreatedBy);
         }
     }
 }
