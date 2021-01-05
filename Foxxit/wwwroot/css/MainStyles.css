@@ -86,6 +86,16 @@ html, body {
     display: block;
 }
 
+/* WIDTHS */
+
+.fourtyfour {
+    width: 44px;
+}
+
+.eighteen {
+    width: 18px;
+}
+
 /* HEADER */
 
 header {
@@ -379,5 +389,5 @@ article {
 }
 
 .button-disabled {
-    display:none;
+    display: none;
 }
