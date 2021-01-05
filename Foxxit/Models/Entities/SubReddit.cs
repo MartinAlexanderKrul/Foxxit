@@ -18,6 +18,7 @@ namespace Foxxit.Models.Entities
         public string About { get; set; }
         public DateTime CreatedAt { get; set; }
         public long CreatedById { get; set; }
+        public string CreatedByUserName { get; set; }
         public ICollection<Post> Posts { get; set; }
         public ICollection<User> Members { get; set; }
         public bool IsDeleted { get; set; }

@@ -1,5 +1,5 @@
 ﻿@using Foxxit.Models.ViewModels
-@model PostViewModel
+@model MainPageViewModel
 
 @{Layout = "_Layout";}
 
@@ -9,10 +9,14 @@
 
 <main>
     <aside>
-        @await Html.PartialAsync("_SideBar_SubRedditAboutPartial", Model.Post.SubReddit)
+        @await Html.PartialAsync("_SideBar_SubRedditAboutPartial", Model.PostViewModel.Post.SubReddit)
     </aside>
 
     <section>
-        @await Html.PartialAsync("_PostPartial")
+        @await Html.PartialAsync("_PostPartial", Model.PostViewModel)
     </section>
+    
+    <section>
+            @await Html.PartialAsync("_CommentsPartial")
+        </section>
 </main>

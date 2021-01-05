@@ -63,11 +63,20 @@ namespace Foxxit.Controllers
         [HttpGet("/Post")]
         public async Task<IActionResult> ViewPost(long postId)
         {
-            var model = new PostViewModel()
+            var postViewModel = new PostViewModel()
             {
                 CurrentUser = await GetActiveUserAsync(),
-                Post = await PostService.GetByIdAsync(postId)
+                Post = await PostService.GetByIdAsync(postId),
             };
+            
+            var model = new MainPageViewModel()
+            {
+                // CurrentUser = await GetActiveUserAsync(),
+                Posts = await PostService.GetAllAsync(),
+                SubReddits = await SubRedditService.GetAllAsync(),
+                PostViewModel = postViewModel
+            };
+            
             return View("Post", model);
         }
     }

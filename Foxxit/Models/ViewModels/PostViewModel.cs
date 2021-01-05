@@ -7,7 +7,5 @@ namespace Foxxit.Models.ViewModels
     {
         public Post Post { get; set; }
         public User CurrentUser { get; set; }
-        public Comment NewComment { get; set; }
-        public Vote NewVote { get; set; }
     }
 }
