@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Foxxit.Controllers
 {
+
+    [Route("")]
     public class FoxxitController : MainController
     {
         private const int PageSize = 10;
@@ -25,7 +27,6 @@ namespace Foxxit.Controllers
         public ISubRedditService SubRedditService { get; set; }
 
         [HttpGet("index")]
-        [HttpGet("")]
         public async Task<IActionResult> Index()
         {
             var model = new MainPageViewModel()
@@ -60,7 +61,7 @@ namespace Foxxit.Controllers
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
 
-        [HttpGet("subreddit/subRedditId")]
+        [HttpGet("subreddit/{subRedditId}")]
         public async Task<IActionResult> Subreddit([FromRoute]int subRedditId)
         {
             var user = await GetActiveUserAsync();
