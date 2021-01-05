@@ -64,8 +64,7 @@ namespace Foxxit.Controllers
         [HttpGet("subreddit/new")]
         public IActionResult CreateSubreddit()
         {
-            var model = new SubRedditViewModel();
-            return View("Subreddit", model);
+            return View("Subreddit");
         }
 
         [HttpPost("subreddit/new")]
@@ -88,7 +87,7 @@ namespace Foxxit.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Subreddit is already existing!");
+                ModelState.AddModelError(string.Empty, "SubReddit with this name already exists.");
             }
 
             return View("Index");
@@ -100,7 +99,8 @@ namespace Foxxit.Controllers
         {
             var model = new MainPageViewModel()
             {
-                SubReddits = await SubRedditService.GetAllIncludeUser()
+                var currentUser = await GetActiveUserAsync();
+            SubReddits = await SubRedditService.GetAllIncludeUser()
             };
 
             return View("SubredditsToApprove", model);
@@ -115,12 +115,6 @@ namespace Foxxit.Controllers
             await SubRedditService.SaveAsync();
 
             return RedirectToAction("ApproveSubreddit");
-        }
-
-        [HttpGet("")]
-        public IActionResult Login()
-        {
-            return Redirect("Account/Login");
         }
     }
 }
