@@ -68,19 +68,13 @@ namespace Foxxit.Controllers
         }
 
         [HttpPost("subreddit/new")]
-        public async Task<IActionResult> CreateSubreddit(SubRedditViewModel model)
+        public async Task<IActionResult> CreateSubreddit(string name, string about)
         {
-            if (!ModelState.IsValid)
-            {
-                return View("Index");
-            }
-
             var list = await SubRedditService.GetAllAsync();
-            SubReddit existingSubreddit = list.FirstOrDefault(s => s.Name.Equals(model.Name));
-            if (existingSubreddit is null)
+            if (!list.Any(s => s.Name.Equals(name)))
             {
                 var currentUser = await GetActiveUserAsync();
-                var subreddit = new SubReddit(model.Name, model.About, currentUser.Id);
+                var subreddit = new SubReddit(name, about, currentUser.Id);
                 await SubRedditService.AddAsync(subreddit);
                 await SubRedditService.SaveAsync();
                 return RedirectToAction("Index");
