@@ -9,10 +9,10 @@
 
 <main>
     <aside>
-        @await Html.PartialAsync("_SideBar_SubRedditsViewPartial", Model.SubReddits)
+        @await Html.PartialAsync("_SideBar_SubRedditAboutPartial", Model.Post.SubReddit)
     </aside>
 
     <section>
-        @await Html.PartialAsync("_MainPageViewPartial")
+        @await Html.PartialAsync("_PostPartial")
     </section>
 </main>

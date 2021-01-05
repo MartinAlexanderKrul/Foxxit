@@ -1,0 +1,14 @@
+@using Foxxit.Models.Entities
+@model SubReddit
+
+<h3 class="side_bar_header">About this Subreddit</h3>
+
+    <div class="side_bar">
+        <div class="side_bar_left">
+            <p>@Model.Name</p>
+        </div>
+
+        <div class="side_bar_right">
+            <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Home", new { subRedditId = subReddit.Id })</div>
+        </div>
+    </div>
