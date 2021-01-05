@@ -99,8 +99,8 @@ namespace Foxxit.Controllers
         {
             var model = new MainPageViewModel()
             {
-                var currentUser = await GetActiveUserAsync();
-            SubReddits = await SubRedditService.GetAllIncludeUser()
+                CurrentUser = await GetActiveUserAsync(),
+                SubReddits = await SubRedditService.GetAllIncludeUser()
             };
 
             return View("SubredditsToApprove", model);
