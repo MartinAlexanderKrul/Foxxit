@@ -57,7 +57,6 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> PaginationSample(int? pageNum)
         {
             var posts = await PostService.GetAllAsync();
-
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
 
