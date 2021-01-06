@@ -24,9 +24,9 @@ namespace Foxxit.Controllers
         [HttpGet("upload-image")]
         public async Task<IActionResult> ImageAsync()
         {
-            var images = await ImageService.GetAllAsync();
+/*            var images = await ImageService.GetAllAsync();
             var image = images.Last();
-            ViewBag.Base64String = "data:image/png;base64," + Convert.ToBase64String(image.Stream, 0, image.Stream.Length);
+            ViewBag.Base64String = "data:image/png;base64," + Convert.ToBase64String(image.Stream, 0, image.Stream.Length);*/
 
             return View("Image");
         }
