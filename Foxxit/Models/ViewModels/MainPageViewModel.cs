@@ -27,6 +27,7 @@ namespace Foxxit.Models.ViewModels
 
         public PostViewModel PostViewModel { get; set; }
         public User CurrentUser { get; set; }
+        public SubReddit CurrentSubReddit { get; set; }
         public IEnumerable<Post> Posts { get; set; }
         public IEnumerable<SubReddit> SubReddits { get; set; }
         public SearchReturnModel SearchReturnModel { get; set; }

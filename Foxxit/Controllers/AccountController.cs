@@ -14,15 +14,14 @@ namespace Foxxit.Controllers
     [Route("[controller]")]
     public class AccountController : MainController
     {
-        private readonly MailService mailService;
-
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, MailService mailService)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IMailService mailService)
             : base(userManager, signInManager)
         {
-            this.mailService = mailService;
+            MailService = mailService;
         }
 
-        // Here - defaultly set as first login, then Index page. So must be set Login/Registration page as first now.
+        public IMailService MailService { get; set; }
+
         [AuthorizedRoles(Enums.UserRole.Admin, Enums.UserRole.User)]
         [HttpGet("index")]
         public IActionResult Index()
@@ -37,7 +36,7 @@ namespace Foxxit.Controllers
 
             var data = new RegistrationEmailData(confirmationLink, user.UserName);
 
-            await mailService.SendEmailAsync(user.Email, data);
+            await MailService.SendEmailAsync(user.Email, data);
 
             return View("ConfirmRegistration");
         }
@@ -47,7 +46,7 @@ namespace Foxxit.Controllers
         {
             if (userId == null || token == null)
             {
-                return RedirectToAction("index", "account");
+                return RedirectToAction("index", "Foxxit");
             }
 
             var user = UserManager.FindByIdAsync(userId);
@@ -83,9 +82,10 @@ namespace Foxxit.Controllers
                 return View(model);
             }
 
-            var existingUser = await UserManager.FindByEmailAsync(model.Email);
+            var existingEmail = await UserManager.FindByEmailAsync(model.Email);
+            var existingUserName = await UserManager.FindByNameAsync(model.UserName);
 
-            if (existingUser is null)
+            if (existingEmail is null && existingUserName is null)
             {
                 var user = new User(model.UserName, model.Email);
                 var registerResult = await UserManager.CreateAsync(user, model.Password);
@@ -104,7 +104,15 @@ namespace Foxxit.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Email is already taken!");
+                if (existingEmail != null)
+                {
+                    ModelState.AddModelError("Email", "Email is already taken!");
+                }
+
+                if (existingUserName != null)
+                {
+                    ModelState.AddModelError("UserName", "Username is already taken!");
+                }
             }
 
             return View(model);
@@ -132,17 +140,17 @@ namespace Foxxit.Controllers
 
                 if (signInResult.Succeeded)
                 {
-                    return RedirectToAction("Index", "Account");
+                    return RedirectToAction("Index", "Foxxit");
                 }
                 else
                 {
                     // ModelState.AddModelError(string.Empty, "Your email was not approved!");
-                    ModelState.AddModelError(string.Empty, "Try to type your password again!");
+                    ModelState.AddModelError("Password", "Try to type your password again!");
                 }
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Username is not in database! Do you want to Sign Up?");
+                ModelState.AddModelError("UserName", "Username is not in database! Do you want to Sign Up?");
             }
 
             return View(model);
@@ -152,15 +160,16 @@ namespace Foxxit.Controllers
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
             var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { returnUrl });
+            redirectUrl = redirectUrl.Replace("http", "https");
             var properties = SignInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
 
             return Challenge(properties, provider);
         }
 
         [HttpGet("external-login")]
-        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
+        public async Task<IActionResult> ExternalLoginCallback(User user = null, string returnUrl = null, string remoteError = null)
         {
-            returnUrl ??= "/account/index";
+            returnUrl ??= "/index";
             var externalInfo = await SignInManager.GetExternalLoginInfoAsync();
 
             if (externalInfo is null)
@@ -173,18 +182,23 @@ namespace Foxxit.Controllers
 
             if (!signInResult.Succeeded)
             {
-                var email = externalInfo.Principal.FindFirstValue(ClaimTypes.Email);
+                var email = externalInfo.Principal.FindFirstValue(ClaimTypes.Email) ?? user.Email;
                 var username = externalInfo.Principal.FindFirstValue(ClaimTypes.Name);
 
                 if (email != null || username != null)
                 {
-                    var user = email != null
+                    user = email != null
 
                         ? await UserManager.FindByEmailAsync(email)
                         : await UserManager.FindByNameAsync(username);
 
                     if (user is null)
                     {
+                        if (email is null)
+                        {
+                            return View("RequireEmail", user);
+                        }
+
                         user = new User
                         {
                             UserName = email ?? username,
@@ -203,7 +217,7 @@ namespace Foxxit.Controllers
                         {
                             await UserManager.AddToRoleAsync(user, "User");
 
-                            return RedirectToAction("Login");
+                            return LocalRedirect(returnUrl);
                         }
                         else
                         {

@@ -3,6 +3,7 @@ using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,7 +31,7 @@ namespace Foxxit.Controllers
         {
             var model = new MainPageViewModel()
             {
-                // CurrentUser = await GetActiveUserAsync(),
+                CurrentUser = await GetActiveUserAsync(),
                 Posts = await PostService.GetAllAsync(),
                 SubReddits = await SubRedditService.GetAllAsync(),
             };
@@ -43,7 +44,7 @@ namespace Foxxit.Controllers
         {
             var model = new MainPageViewModel()
             {
-                // CurrentUser = await GetActiveUserAsync(),
+                CurrentUser = await GetActiveUserAsync(),
                 Posts = await PostService.GetAllAsync(),
                 SubReddits = await SubRedditService.GetAllAsync(),
                 SearchReturnModel = SearchService.Search(category, keyword),
@@ -65,7 +66,7 @@ namespace Foxxit.Controllers
         {
             var currentUser = await GetActiveUserAsync();
             var post = await PostService.GetByIdAsync(postId);
-            
+
             var postViewModel = new PostViewModel()
             {
                 CurrentUser = currentUser,
@@ -81,9 +82,32 @@ namespace Foxxit.Controllers
                 SubReddits = subReddits,
                 PostViewModel = postViewModel
             };
-            
+
             return View("Post", model);
-            
+        }
+
+        [HttpGet("/Post/New")]
+        public async Task<IActionResult> NewPost(int subRedditId)
+        {
+            var model = new MainPageViewModel()
+            {
+                CurrentUser = await GetActiveUserAsync(),
+                SubReddits = await SubRedditService.GetAllAsync(),
+                CurrentSubReddit = await SubRedditService.GetByIdAsync(subRedditId),
+            };
+
+            return View("CreatePost", model);
+        }
+
+        [HttpPost("/Post/Create")]
+        public async Task<IActionResult> CreatePost(string title, string url, string image, string text, int subRedditId)
+        {
+            var post = new Post(title, url, image, text, subRedditId);
+
+            await PostService.AddAsync(post);
+            await PostService.SaveAsync();
+
+            return RedirectToAction("ViewPost", post.Id); // lets return to the new post also as a confirmation it exists :)
         }
     }
 }
