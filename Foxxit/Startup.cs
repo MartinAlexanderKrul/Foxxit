@@ -56,8 +56,6 @@ namespace Foxxit
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
-            services.AddTransient<MailService>();
-
             services.AddTransient<UserRepository>();
             services.AddTransient<UserService>();
 
@@ -74,6 +72,7 @@ namespace Foxxit
             services.AddTransient<INotificationService, NotificationService>();
 
             services.AddTransient<ISearchService, SearchService>();
+            services.AddTransient<IMailService, MailService>();
 
             services.AddAuthentication()
                 .AddGoogle("google", options =>
