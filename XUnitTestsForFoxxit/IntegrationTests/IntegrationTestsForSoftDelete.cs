@@ -2,64 +2,59 @@
 using Foxxit.Database;
 using Foxxit.Models.Entities;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace XUnitTestsForFoxxit
 {
-    public class IntegrationTestsForSoftDelete : IClassFixture<WebApplicationFactory<Startup>>
-    {
-        public IntegrationTestsForSoftDelete()
+    /*    public class IntegrationTestsForSoftDelete : IClassFixture<WebApplicationFactory<Startup>>
         {
-            DbContext = new ApplicationDbContext(TestBootstrapper.GetInMemoryDbContextOptions("InMemory"));
-            TestUser = new User()
+            public IntegrationTestsForSoftDelete()
             {
-                UserName = "Jan",
-                DisplayName = "JAN",
-                Email = "jan@test.com",
-                EmailConfirmed = false,
-                PhoneNumberConfirmed = false,
-                TwoFactorEnabled = false,
-                LockoutEnabled = false,
-                AccessFailedCount = 0
-            };
-        }
+                DbContext = new ApplicationDbContext(TestBootstrapper.GetInMemoryDbContextOptions("InMemory"));
+                TestUser = new User()
+                {
+                    UserName = "Jan",
+                    DisplayName = "JAN",
+                    Email = "jan@test.com",
+                    EmailConfirmed = false,
+                    PhoneNumberConfirmed = false,
+                    TwoFactorEnabled = false,
+                    LockoutEnabled = false,
+                    AccessFailedCount = 0
+                };
+            }
 
-        public ApplicationDbContext DbContext { get; set; }
-        public User TestUser { get; set; }
+            public ApplicationDbContext DbContext { get; set; }
+            public User TestUser { get; set; }
 
-        [Fact]
-        public async Task MockDb_AddNewUser()
-        {
-            await DbContext.Users.AddAsync(TestUser);
-            await DbContext.SaveChangesAsync();
+            [Fact]
+            public async Task MockDb_AddNewUser()
+            {
+                await DbContext.Users.AddAsync(TestUser);
+                await DbContext.SaveChangesAsync();
 
-            var expected = 1;
-            var actual = DbContext.Users.Count();
+                var expected = 1;
+                var actual = DbContext.Users.Count();
 
-            Assert.Equal(expected, actual);
-        }
+                Assert.Equal(expected, actual);
+            }
 
-        [Fact]
-        public async Task SoftDelete_SetsIsDeletedAsTrue()
-        {
-            DbContext.Users.Add(TestUser);
-            DbContext.SaveChanges();
+            [Fact]
+            public async Task SoftDelete_SetsIsDeletedAsTrue()
+            {
+                DbContext.Users.Add(TestUser);
+                DbContext.SaveChanges();
 
-            Assert.NotNull(TestUser);
+                Assert.NotNull(TestUser);
 
-            DbContext.Users.Remove(TestUser);
-            await DbContext.SaveChangesAsync();
+                DbContext.Users.Remove(TestUser);
+                await DbContext.SaveChangesAsync();
 
-            var user = DbContext.Users.FirstOrDefault();
+                var user = DbContext.Users.FirstOrDefault();
 
-            Assert.Null(user);
-        }
-    }
+                Assert.Null(user);
+            }
+        }*/
 }
