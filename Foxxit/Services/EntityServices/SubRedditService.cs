@@ -13,6 +13,14 @@ namespace Foxxit.Services
         public SubRedditService(SubRedditRepository repository)
             : base(repository)
         {
+            Repository = repository;
+        }
+
+        public SubRedditRepository Repository { get; private set; }
+
+        public async Task<IEnumerable<SubReddit>> GetAllIncludeUser()
+        {
+            return await Repository.GetAllIncludeUser();
         }
     }
 }
