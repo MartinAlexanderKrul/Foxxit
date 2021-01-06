@@ -71,7 +71,7 @@ namespace Foxxit.Controllers
         }
 
         [HttpGet("subreddit/{subRedditId}")]
-        public async Task<IActionResult> Subreddit(int subRedditId)
+        public async Task<IActionResult> Subreddit(long subRedditId)
         {
             var currentUser = await GetActiveUserAsync();
             var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
