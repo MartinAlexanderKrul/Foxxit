@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+using System.Linq;
+using System.Threading.Tasks;
+using Foxxit.Attributes.RoleServices;
 using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
@@ -65,6 +67,62 @@ namespace Foxxit.Controllers
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
 
+        [HttpGet("subreddit/new")]
+        public async Task<IActionResult> CreateSubreddit()
+        {
+            var model = new MainPageViewModel()
+            {
+                CurrentUser = await GetActiveUserAsync(),
+                SubReddits = await SubRedditService.GetAllIncludeUser()
+            };
+
+            return View("CreateSubreddit", model);
+        }
+
+        [HttpPost("subreddit/new")]
+        public async Task<IActionResult> CreateSubreddit(string name, string about)
+        {
+            var list = await SubRedditService.GetAllAsync();
+            if (!list.Any(s => s.Name.Equals(name)))
+            {
+                var currentUser = await GetActiveUserAsync();
+                var subreddit = new SubReddit(name, about, currentUser.Id);
+                await SubRedditService.AddAsync(subreddit);
+                await SubRedditService.SaveAsync();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "SubReddit with this name already exists.");
+            }
+
+            return View("Index");
+        }
+
+        //[AuthorizedRoles(Enums.UserRole.Admin)]
+        [HttpGet("subreddit/approve")]
+        public async Task<IActionResult> ApproveSubreddit()
+        {
+            var model = new MainPageViewModel()
+            {
+                CurrentUser = await GetActiveUserAsync(),
+                SubReddits = await SubRedditService.GetAllIncludeUser()
+            };
+
+            return View("SubredditsToApprove", model);
+        }
+        //[AuthorizedRoles(Enums.UserRole.Admin)]
+        [HttpPost("subreddit/approve")]
+        public async Task<IActionResult> ApproveSubreddit(long id, bool isApproved)
+        {
+            var subRedditToChange = await SubRedditService.GetByIdAsync(id);
+            subRedditToChange.IsApproved = isApproved;
+            SubRedditService.Update(subRedditToChange);
+            await SubRedditService.SaveAsync();
+
+            return RedirectToAction("ApproveSubreddit");
+        }
+
         [HttpGet("/Post/New")]
         public async Task<IActionResult> NewPost(int subRedditId)
         {
@@ -72,7 +130,8 @@ namespace Foxxit.Controllers
             {
                 CurrentUser = await GetActiveUserAsync(),
                 SubReddits = await SubRedditService.GetAllAsync(),
-                CurrentSubReddit = await SubRedditService.GetByIdAsync(subRedditId),
+                CurrentSubReddit = await SubRedditService.GetByIdAsync(subRedditId
+                ),
             };
 
             return View("CreatePost", model);

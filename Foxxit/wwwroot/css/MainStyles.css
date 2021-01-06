@@ -409,6 +409,10 @@ article {
     height: 142px;
 }
 
+.subreddit {
+    padding-top:1%;
+}
+
 .fileinput {
     height: auto !important;
 }
@@ -464,6 +468,7 @@ article {
     display: none;
 }
 
+
 .higher_input {
     height: 65px;
 }
@@ -472,8 +477,37 @@ article {
     display: flex;
     justify-content: flex-end;
 
-  /*FORMS*/
+  /*SUBREDIT*/
 
+.approveSubreddit {
+    border-collapse: collapse;
+    width:100%;
+}
+
+.approveSubreddit td, .approveSubreddit tr {
+    border: 1px solid #ddd;
+    padding: 1%;
+    width:auto;
+}
+
+.approveSubreddit tr:nth-child(even) {
+    background-color: #e3e3e3;
+}
+
+.approveSubreddit thead {
+    font-weight: bold;
+    padding: 1% 1%;
+}
+.approveSubreddit [type=submit] {
+    border: 0px;
+    background:none;
+    font-size: var(--main-font-size);
+    font-weight: bold;
+    padding: 1% 1%;
+    position: center;
+
+    /*SUBREDIT*/
+  
 .login_form {
     display: block;
     margin: auto;
