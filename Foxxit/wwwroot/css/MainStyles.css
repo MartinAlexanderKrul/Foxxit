@@ -422,8 +422,9 @@ article {
 
 .noheader {
     font-weight: lighter;
+    .comment_left
 
-.comment_left {
+{
     width: 15%;
     margin-right: 2%;
     display: flex;
@@ -442,7 +443,6 @@ article {
 
 .article_section {
     display: flex;
-    flex-direction: row;
 }
 
 .sublevel {
