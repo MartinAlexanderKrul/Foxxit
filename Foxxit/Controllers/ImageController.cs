@@ -39,7 +39,7 @@ namespace Foxxit.Controllers
             return new FileStreamResult(stream, $"image/{image.Format}");
         }
 
-        [HttpPost("saving")]
+        [HttpPost("save")]
         public async Task<IActionResult> SaveImage(IFormFile upload, Image image, MemoryStream memory)
         {
             var suffixIndex = upload.FileName.LastIndexOf('.');

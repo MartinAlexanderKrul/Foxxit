@@ -14,15 +14,14 @@ namespace Foxxit.Controllers
     [Route("[controller]")]
     public class AccountController : MainController
     {
-        private readonly IMailService MailService;
-
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IMailService mailService)
             : base(userManager, signInManager)
         {
             MailService = mailService;
         }
 
-        // Here - defaultly set as first login, then Index page. So must be set Login/Registration page as first now.
+        public IMailService MailService { get; set; }
+
         [AuthorizedRoles(Enums.UserRole.Admin, Enums.UserRole.User)]
         [HttpGet("index")]
         public IActionResult Index()
