@@ -3,16 +3,16 @@
 @{Layout = "_Layout";}
 
 <head>
-    <link rel="stylesheet" href="~/css/login_style.css">
+    <link rel="stylesheet" href="~/css/MainStyles.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    @if (Html.ViewData.ModelState.Values.Count() > 0)
+    @if (Html.ViewData.ModelState.Where(x => x.Key.Equals(String.Empty)).Count() > 0)
     {
         <div class="summary">
-            @Html.ValidationSummary(String.Empty, new { @class = "validation_summary" })
+            @Html.ValidationSummary(true, null, new { @class = "validation_summary" })
         </div>
     }
 
@@ -20,11 +20,10 @@
         @using (Html.BeginForm("Login", "Account", FormMethod.Post))
         {
             <div class="login_header">
-                <span> <img src="~/css/foxxit_logo.png" alt="logo" class="login_logo" /></span>
+                <span> <img src="~/assets/logo.png" alt="logo" class="login_logo" /></span>
                 <span class="login_title">
                     <a>LOGIN</a>
                 </span>
-
             </div>
 
             <span>
@@ -34,7 +33,6 @@
             <span class="text-danger">
                 @Html.ValidationMessageFor(m => m.UserName, null)
             </span>
-
 
             <span>
                 @Html.PasswordFor(m => m.Password, new { @class = "login_field", @placeholder = "password" })
@@ -50,5 +48,13 @@
         }
 
         @await Html.PartialAsync("_ExternalAuthentication")
+
+        <div class="center">
+            <span class="center">
+                <br>
+                @Html.ActionLink("Not a member? Sign up now!", "Register", "Account")
+                <br>
+            </span>
+        </div>
     </div>
 </body>

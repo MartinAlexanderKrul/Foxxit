@@ -1,5 +1,3 @@
-using Foxxit.Models.Entities;
-using System;
 using Xunit;
 using Foxxit.Extensions;
 

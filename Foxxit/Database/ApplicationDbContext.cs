@@ -19,6 +19,7 @@ namespace Foxxit.Database
         {
         }
 
+        public DbSet<Image> Images { get; set; }
         public DbSet<Post> Posts { get; set; }
 
         public DbSet<SubReddit> SubReddits { get; set; }
