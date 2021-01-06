@@ -32,7 +32,10 @@
                 <p style="margin-bottom: 1%">@comment.Text</p>
                 <div class="article_section">
                     <i class="fa fa-comment"></i>
-                    <div class="comment_number"><a asp-action="NewComment" asp-controller="Post" asp-route-commentId="@comment.Id">REPLY</a></div> @*TODO: Set the route by the actual endpoint*@
+                    <div class="comment_number"><a class="comment_number" asp-action="NewComment" asp-controller="Foxxit" asp-route-commentId="@comment.Id">REPLY</a></div> @*TODO: Set the route by the actual endpoint*@
+                    <div class="addcomment" id="addcomment">
+                        @await Html.PartialAsync("_AddCommentViewPartial", Model)
+                    </div>
                 </div>
             </div>
         </div>

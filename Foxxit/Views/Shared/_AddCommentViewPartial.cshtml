@@ -1,13 +1,11 @@
-﻿@using Foxxit.Models.ViewModels
-@model CreatingCommentViewModel
+﻿@using Foxxit.Models.Entities
+@model PostBase
 
-<div class="add_comment">
-    <form asp-action="AddComment" asp-controller="Foxxit" method="post">
-        <input class="form_input" type="text" name="text" />
-        <input type="hidden" name="userId" value="@Model.CurrentUser.Id" />
-        <input type="hidden" name="originalCommentId" value="@Model.OriginalCommentId" />
-        <input type="hidden" name="postId" value="@Model.PostId" />
-    </form>
+<form asp-action="AddComment" asp-controller="Foxxit" method="post">
+    <input class="form_input" type="text" name="text" />
+    <input type="hidden" name="userId" value="@Model.UserId" />
+    <input type="hidden" name="originalCommentId" value="@Model.Id" />
+    <input type="hidden" name="postId" value="@Model.Id" />
+</form>
 
-    <button class="not_button bigger_button dark_button">CREATE</button>
-</div>
+<button class="not_button bigger_button dark_button">CREATE</button>
