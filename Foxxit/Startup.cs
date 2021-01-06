@@ -74,7 +74,9 @@ namespace Foxxit
             services.AddTransient<IImageService, ImageService>();
 
             services.AddTransient<IMailService, MailService>();
+
             services.AddTransient<ISearchService, SearchService>();
+            services.AddTransient<IMailService, MailService>();
 
             services.AddAuthentication()
                 .AddGoogle("google", options =>
