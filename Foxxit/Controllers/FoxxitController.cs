@@ -29,63 +29,11 @@ namespace Foxxit.Controllers
         [HttpGet("")]
         public async Task<IActionResult> Index()
         {
-            /*            var model = new MainPageViewModel()
-                        {
-                            // CurrentUser = await GetActiveUserAsync(),
-                            Posts = await PostService.GetAllAsync(),
-                            SubReddits = await SubRedditService.GetAllAsync(),
-                        };*/
-
-            var user = new User("Nicolsburg", "nicolsburg@hocz.org");
-
-            var subreddits = new List<SubReddit>
-            {
-                new SubReddit() { Name = "Green Fox", Id = 1 },
-                new SubReddit() { Name = "Microtis", Id = 2 },
-                new SubReddit() { Name = "Sageeeee", Id = 3 },
-                new SubReddit() { Name = "Vulpes", Id = 9 },
-            };
-
-            var subComments = new List<Comment>()
-            {
-                new Comment()
-            {
-                    User = user,
-                    Text = "This is the first SUBcomment of all comments.",
-            },
-                new Comment()
-                {
-                    User = user,
-                    Text = "This is the second one. SUB!",
-                },
-            };
-
-            var comments = new List<Comment>()
-            {
-                new Comment()
-            {
-                    User = user,
-                    Text = "This is the first comment of all comments.",
-            },
-                new Comment()
-                {
-                    Comments = subComments,
-                    User = user,
-                    Text = "This is the second comment. This is the second comment. This is the second comment. This is the second comment. This is the second comment. This is the second comment. This is the second comment. This is the second comment.",
-                },
-            };
-
-            var posts = new List<Post>()
-            {
-                new Post() { Comments = comments, User = user,  Id = 1,  SubReddit = new SubReddit() { Name = "Green Fox", Id = 4 }, Title = "Green Fox", Text = "fwafawfajwfjawifjawkjfkawfnkjawh faw jakwfj kawfjj kawf jkawhf jkawhnfk " },
-                new Post() { User = user, Id = 2, SubReddit = new SubReddit() { Name = "Green Fox", Id = 5 }, Title = "Green Fox", ImageURL = "https://www.spacesworks.com/wp-content/uploads/2016/06/coding-in-the-classroom.png" },
-            };
-
             var model = new MainPageViewModel()
             {
-                CurrentUser = user,
-                SubReddits = subreddits,
-                Posts = posts,
+                CurrentUser = await GetActiveUserAsync(),
+                Posts = await PostService.GetAllAsync(),
+                SubReddits = await SubRedditService.GetAllAsync(),
             };
 
             return View("Index", model);
@@ -94,32 +42,11 @@ namespace Foxxit.Controllers
         [HttpPost("search")]
         public async Task<IActionResult> Search(string category, string keyword)
         {
-            /*            var model = new MainPageViewModel()
-                        {
-                            // CurrentUser = await GetActiveUserAsync(),
-                            Posts = await PostService.GetAllAsync(),
-                            SubReddits = await SubRedditService.GetAllAsync(),
-                            SearchReturnModel = SearchService.Search(category, keyword),
-                        };*/
-
-            var user = new User("Nicolsburg", "nicolsburg@hocz.org");
-            var subreddits = new List<SubReddit>
-            {
-                new SubReddit() { Name = "Green Fox", Id = 1 },
-                new SubReddit() { Name = "Microtis", Id = 2 },
-                new SubReddit() { Name = "Sageeeee", Id = 3 },
-                new SubReddit() { Name = "Vulpes", Id = 9 },
-            };
-            var posts = new List<Post>()
-            {
-                new Post() { User = user,  Id = 1,  SubReddit = new SubReddit() { Name = "Green Fox", Id = 4 }, Title = "Green Fox", Text = "fwafawfajwfjawifjawkjfkawfnkjawh faw jakwfj kawfjj kawf jkawhf jkawhnfk " },
-                new Post() { User = user, Id = 2, SubReddit = new SubReddit() { Name = "Green Fox", Id = 5 }, Title = "Green Fox", ImageURL = "https://www.spacesworks.com/wp-content/uploads/2016/06/coding-in-the-classroom.png" },
-            };
             var model = new MainPageViewModel()
             {
-                CurrentUser = user,
-                SubReddits = subreddits,
-                Posts = posts,
+                CurrentUser = await GetActiveUserAsync(),
+                Posts = await PostService.GetAllAsync(),
+                SubReddits = await SubRedditService.GetAllAsync(),
                 SearchReturnModel = SearchService.Search(category, keyword),
             };
 
