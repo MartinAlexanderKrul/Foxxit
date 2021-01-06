@@ -1,0 +1,22 @@
+﻿@using Foxxit.Models.ViewModels
+@model MainPageViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<article>
+    <div class="postformcontainer">
+        <h2>Create new post <span class="noheader">to @Model.CurrentSubReddit.Name</span></h2>
+
+        <form class="postform" asp-action="CreatePost" asp-controller="Foxxit" method="post">
+
+            <input class="form_inputs" type="text" name="title" placeholder="Title" required />
+            <input class="form_inputs" type="url" name="url" placeholder="Full link" />
+            <input class="form_inputs fileinput" type="file" name="image" placeholder="Image file (upload)" />
+            <input class="form_inputs biginput" type="text" name="text" placeholder="Text" />
+            <input type="hidden" name="subRedditId" value="@Model.CurrentSubReddit.Id" />
+            <div class="postform_buttons">
+                <a class="not_button bigger_button light_button" asp-action="ViewSubReddit" asp-controller="Foxxit" asp-route-subRedditId="@Model.CurrentSubReddit.Id">BACK</a>
+                <button class="not_button bigger_button dark_button">CREATE</button>
+            </div>
+        </form>
+    </div>
+</article>

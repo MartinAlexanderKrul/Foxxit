@@ -4,7 +4,7 @@
 
 <div class="header_left">
     <div class="header_logo">
-        <a href="/"><img src="~/assets/logo.png" alt="Foxxit logo" width="44px"></a>
+        <a href="/"><img class="fourtyfour" src="~/assets/logo.png" alt="Foxxit logo"></a>
     </div>
 
     <div class="header_subReddits_container">
@@ -22,7 +22,7 @@
     <div class="header_search_container">
         <form asp-action="Search" asp-controller="Foxxit">
             <input name="keyword" class="header_inputs" type="text" id="header_search" placeholder="search for...">
-            <img src="~/assets/search.png" alt="Search" width="18px" id="header_search_icon">
+            <img src="~/assets/search.png" alt="Search" class="eighteen" id="header_search_icon">
 
             <select class="header_inputs header_sections" name="category" id="header_search_category">
                 <option value="All">in all</option>
@@ -40,10 +40,12 @@
         <i class="fa fa-comments fa-lg header_icons"></i>
 
         <!-- MESSAGE BOX -->
-
-        @if (Model.CurrentUser.ReceivedNotifications.Any(n => n.HasBeenRead))
+        @if (Model.CurrentUser is not null)
         {
-            <a asp-action="Notifications" asp-controller="User"><i class="fa fa-envelope-open fa-lg header_icons"></i></a>
+            @if (Model.CurrentUser.ReceivedNotifications.Any(n => n.HasBeenRead))
+            {
+                <a asp-action="Notifications" asp-controller="User"><i class="fa fa-envelope-open fa-lg header_icons"></i></a>
+            }
         }
         else
         {

@@ -27,6 +27,7 @@ namespace Foxxit.Controllers
         public ISubRedditService SubRedditService { get; set; }
 
         [HttpGet("index")]
+        [HttpGet("")]
         public async Task<IActionResult> Index()
         {
             var model = new MainPageViewModel()
@@ -115,6 +116,30 @@ namespace Foxxit.Controllers
             await SubRedditService.SaveAsync();
 
             return RedirectToAction("ApproveSubreddit");
+        }
+
+        [HttpGet("/Post/New")]
+        public async Task<IActionResult> NewPost(int subRedditId)
+        {
+            var model = new MainPageViewModel()
+            {
+                // CurrentUser = await GetActiveUserAsync(),
+                SubReddits = await SubRedditService.GetAllAsync(),
+                CurrentSubReddit = await SubRedditService.GetByIdAsync(subRedditId),
+            };
+
+            return View("CreatePost", model);
+        }
+
+        [HttpPost("/Post/Create")]
+        public async Task<IActionResult> CreatePost(string title, string url, string image, string text, int subRedditId)
+        {
+            var post = new Post(title, url, image, text, subRedditId);
+
+            await PostService.AddAsync(post);
+            await PostService.SaveAsync();
+
+            return RedirectToAction("ViewSubReddit", subRedditId); // waiting for the correct endpoint
         }
     }
 }
