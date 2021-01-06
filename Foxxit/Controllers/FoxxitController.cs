@@ -60,24 +60,30 @@ namespace Foxxit.Controllers
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
 
-        [HttpGet("/Post/{postId}")]
-        public async Task<IActionResult> ViewPost([FromRoute] long postId)
+        [HttpGet("/Post")]
+        public async Task<IActionResult> ViewPost(long postId)
         {
+            var currentUser = await GetActiveUserAsync();
+            var post = await PostService.GetByIdAsync(postId);
+            
             var postViewModel = new PostViewModel()
             {
-                CurrentUser = await GetActiveUserAsync(),
-                Post = await PostService.GetByIdAsync(postId),
+                CurrentUser = currentUser,
+                Post = post
             };
-            
+            var posts = await PostService.GetAllAsync();
+            var subReddits = await SubRedditService.GetAllAsync();
+
             var model = new MainPageViewModel()
             {
-                // CurrentUser = await GetActiveUserAsync(),
-                Posts = await PostService.GetAllAsync(),
-                SubReddits = await SubRedditService.GetAllAsync(),
+                CurrentUser = currentUser,
+                Posts = posts,
+                SubReddits = subReddits,
                 PostViewModel = postViewModel
             };
             
             return View("Post", model);
+            
         }
     }
 }
