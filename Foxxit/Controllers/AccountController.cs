@@ -14,9 +14,9 @@ namespace Foxxit.Controllers
     [Route("[controller]")]
     public class AccountController : MainController
     {
-        private readonly MailService mailService;
+        private readonly IMailService mailService;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, MailService mailService)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IMailService mailService)
             : base(userManager, signInManager)
         {
             this.mailService = mailService;
