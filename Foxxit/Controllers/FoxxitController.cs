@@ -60,8 +60,8 @@ namespace Foxxit.Controllers
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
 
-        [HttpGet("/Post")]
-        public async Task<IActionResult> ViewPost(long postId)
+        [HttpGet("/Post/{postId}")]
+        public async Task<IActionResult> ViewPost([FromRoute] long postId)
         {
             var postViewModel = new PostViewModel()
             {
