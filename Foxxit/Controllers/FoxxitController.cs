@@ -66,11 +66,19 @@ namespace Foxxit.Controllers
             var currentUser = await GetActiveUserAsync();
             var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
             var subReddits = await SubRedditService.GetAllAsync();
+
+            var headerViewModel = new HeaderViewModel()
+            {
+                CurrentUser = currentUser,
+                SubReddits = subReddits
+            };
+
             var model = new SubRedditViewModel()
             {
                 User = currentUser,
                 SubReddit = subReddit,
-                SubReddits = subReddits
+                SubReddits = subReddits,
+                HeaderViewModel = headerViewModel
             };
 
             return View(model);
