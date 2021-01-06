@@ -66,12 +66,18 @@ namespace Foxxit
             services.AddTransient<IPostService, PostService>();
 
             services.AddTransient<CommentRepository>();
+            services.AddTransient<ICommentService, CommentService>();
 
             services.AddTransient<NotificationRepository>();
             services.AddTransient<INotificationService, NotificationService>();
 
+            services.AddTransient<ImageRepository>();
+            services.AddTransient<IImageService, ImageService>();
+
             services.AddTransient<IMailService, MailService>();
+
             services.AddTransient<ISearchService, SearchService>();
+            services.AddTransient<IMailService, MailService>();
 
             services.AddAuthentication()
                 .AddGoogle("google", options =>

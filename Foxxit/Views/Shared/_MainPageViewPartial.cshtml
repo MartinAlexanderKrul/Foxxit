@@ -41,13 +41,13 @@
                     <h4>@post.Title</h4>
                     <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name</p>
                 </div>
-                <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Home", new { subRedditId = post.SubRedditId })</div>
+                <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Foxxit", new { subRedditId = post.SubRedditId })</div>
             </div>
 
             <div class="article_content">
                 @if (post.Text is null)
                 {
-                    <img width="100%" src="@post.ImageURL" alt="@post.Title" />
+                    <img style="width: 100%" src="@post.ImageURL" alt="@post.Title" />
                 }
                 else
                 {
@@ -56,8 +56,15 @@
             </div>
 
             <div class="article_footer">
-                <i class="fa fa-comment"></i>
-                <div class="vote">@Html.ActionLink($"{post.Comments.Count()} COMMENTS", "Post", "Home", new { postId = post.Id })</div>
+                <div class="article_section">
+                    <div class="comment_number">
+                        <i class="fa fa-comment fa-lg load-comments"></i>
+                        <a class="load-comments closed" asp-action="LoadComments" asp-controller="Foxxit" asp-route-postId="@post.Id">@post.Comments.Count() COMMENTS</a>
+                    </div>
+                </div>
+
+                <div class="comment_container" id="comment_container_js">
+                </div>
             </div>
         </div>
 

@@ -15,7 +15,7 @@ namespace Foxxit.Models.ViewModels
 
         [Required]
         [StringLength(100, ErrorMessage = "Email must be between 3 and 100 characters!", MinimumLength = 3)]
-        [RegularExpression("([0-9a-zA-Z._+@-])+", ErrorMessage = "Email cannot contain any special character!")]
+        [RegularExpression(@"^[\w-\.]{2,50}@([\w-]+\.)+[\w-]{2,4}$", ErrorMessage = "Email address is not valid!")]
         public string Email { get; set; }
 
         [Required]

@@ -1,7 +1,6 @@
-﻿@using Foxxit.Models.ViewModels
-@model MainPageViewModel
-
+﻿@using Foxxit.Models.ViewModels;
 @{Layout = "_Layout";}
+@model MainPageViewModel
 
 <header>
     @await Html.PartialAsync("_HeaderViewPartial")
@@ -13,6 +12,9 @@
     </aside>
 
     <section>
-        @await Html.PartialAsync("_FilterViewPartial", Model.SearchReturnModel)
+        @await Html.PartialAsync("_ApproveSubredditViewPartial") 
     </section>
 </main>
+
+
+
