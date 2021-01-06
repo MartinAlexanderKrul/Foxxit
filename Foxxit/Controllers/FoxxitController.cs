@@ -62,9 +62,15 @@ namespace Foxxit.Controllers
         }
 
         [HttpGet("subreddit/new")]
-        public IActionResult CreateSubreddit()
+        public async Task<IActionResult> CreateSubreddit()
         {
-            return View("Subreddit");
+            var model = new MainPageViewModel()
+            {
+                CurrentUser = await GetActiveUserAsync(),
+                SubReddits = await SubRedditService.GetAllIncludeUser()
+            };
+
+            return View("Subreddit", model);
         }
 
         [HttpPost("subreddit/new")]

@@ -1,26 +1,32 @@
 ﻿@using Foxxit.Models.ViewModels
 @{ Layout = "_Layout"; }
-@model SubRedditViewModel
+@model MainPageViewModel
 
-<head>
-    <link rel="stylesheet" href="~/css/login_style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" />
-</head>
+<header>
+    @await Html.PartialAsync("_HeaderViewPartial")
+</header>
 
-<body>
-    <div class="login_form">
-        <div class="login_header">
-            <span> <img src="~/css/foxxit_logo.png" alt="logo" class="login_logo" /></span>
-            <span class="login_title">New Subreddit</span>
-        </div><br />
-        <div class="login_form">
-            <form class="subreddit_form" asp-action="CreateSubreddit" asp-controller="Foxxit" method="post">
-                <input class="login_field" type="text" placeholder="Name of subreddit" name="name" /> <br />
-                <textarea class="login_field" placeholder="About - short description of subreddit" name="about"></textarea> <br />
-                <input class="login_button" type="submit" value="Create" />
-                <p>(Every new subreddit must be approved first, before listed.)</p>
-            </form>
-        </div>
-    </div>
-</body>
+<main>
+    <aside>
+        @await Html.PartialAsync("_SideBar_SubRedditsViewPartial", Model.SubReddits)
+    </aside>
+
+    <section>
+        <body>
+            <div class="login_form">
+                <div class="login_header">
+                    <span> <img src="~/css/foxxit_logo.png" alt="logo" class="login_logo" /></span>
+                    <span class="login_title">New Subreddit</span>
+                </div><br />
+                <div class="login_form">
+                    <form class="subreddit_form" asp-action="CreateSubreddit" asp-controller="Foxxit" method="post">
+                        <input class="login_field" type="text" placeholder="Name of subreddit" name="name" /> <br />
+                        <textarea class="login_field" placeholder="About - short description of subreddit" name="about"></textarea> <br />
+                        <input class="login_button" type="submit" value="Create" />
+                        <p>(Every new subreddit must be approved first, before listed.)</p>
+                    </form>
+                </div>
+            </div>
+        </body>
+    </section>
+</main>
