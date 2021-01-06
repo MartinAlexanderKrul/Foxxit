@@ -428,7 +428,7 @@ article {
     font-weight: lighter;
 }
 
-.comment_left {
+{
     width: 15%;
     margin-right: 2%;
     display: flex;
@@ -447,7 +447,7 @@ article {
 
 .article_section {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .sublevel {
@@ -467,6 +467,17 @@ article {
 .button-disabled {
     display: none;
 }
+
+
+.higher_input {
+    height: 65px;
+}
+
+.end {
+    display: flex;
+    justify-content: flex-end;
+
+  /*SUBREDIT*/
 
 .approveSubreddit {
     border-collapse: collapse;
@@ -495,8 +506,8 @@ article {
     padding: 1% 1%;
     position: center;
 
-/*FORMS*/
-
+    /*SUBREDIT*/
+  
 .login_form {
     display: block;
     margin: auto;

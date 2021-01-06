@@ -57,11 +57,13 @@
 
             <div class="article_footer">
                 <div class="article_section">
-                    <i class="fa fa-comment fa-lg"></i>
-                    <div class="comment_number">@Html.ActionLink($"{post.Comments.Count()} COMMENTS", "Comments", "Home", new { postId = post.Id })</div>
+                    <div class="comment_number">
+                        <i class="fa fa-comment fa-lg load-comments"></i>
+                        <a class="load-comments closed" asp-action="LoadComments" asp-controller="Foxxit" asp-route-postId="@post.Id">@post.Comments.Count() COMMENTS</a>
+                    </div>
                 </div>
-                <div class="comment_container" id="comment_container">
-                    @*@await Html.PartialAsync("_CommentViewPartial", post)       WILL BE DEVELOPED SOON WITH jQuery AJAY*@
+
+                <div class="comment_container" id="comment_container_js">
                 </div>
             </div>
         </div>

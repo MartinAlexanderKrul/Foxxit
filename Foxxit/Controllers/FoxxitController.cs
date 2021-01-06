@@ -17,17 +17,19 @@ namespace Foxxit.Controllers
     {
         private const int PageSize = 10;
 
-        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService)
+        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
             : base(userManager, signInManager)
         {
             SearchService = searchService;
             PostService = postService;
             SubRedditService = subRedditService;
+            CommentService = commentService;
         }
 
         public ISearchService SearchService { get; set; }
         public IPostService PostService { get; set; }
         public ISubRedditService SubRedditService { get; set; }
+        public ICommentService CommentService { get; set; }
 
         [HttpGet("index")]
         [HttpGet("")]
@@ -143,7 +145,24 @@ namespace Foxxit.Controllers
             await PostService.AddAsync(post);
             await PostService.SaveAsync();
 
-            return RedirectToAction("ViewSubReddit", subRedditId); // waiting for the correct endpoint
+            return RedirectToAction("SubReddit", subRedditId);
+        }
+
+        [HttpGet("loadComments")]
+        public async Task<IActionResult> LoadComments(long postId)
+        {
+            var model = await PostService.GetByIdAsync(postId);
+            return PartialView("_CommentViewPartial", model);
+        }
+
+        [HttpGet("addComment")]
+        public IActionResult AddComment(string text, long userId, long postId)
+        {
+            var comment = new Comment(text, userId, postId);
+            CommentService.AddAsync(comment);
+            CommentService.SaveAsync();
+
+            return RedirectToAction("ViewPost", postId);
         }
     }
 }
