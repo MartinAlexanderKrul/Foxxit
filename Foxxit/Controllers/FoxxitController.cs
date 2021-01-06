@@ -1,15 +1,18 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 using Foxxit.Attributes.RoleServices;
 using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Foxxit.Controllers
 {
+    /*[Authorize]*/
+
     public class FoxxitController : MainController
     {
         private const int PageSize = 10;

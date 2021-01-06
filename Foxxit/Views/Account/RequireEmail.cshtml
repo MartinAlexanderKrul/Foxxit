@@ -1,0 +1,42 @@
+﻿@using Foxxit.Models.ViewModels
+@model RequireEmailViewModel
+@{Layout = "_Layout";}
+
+<head>
+    <link rel="stylesheet" href="~/css/MainStyles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    @if (Html.ViewData.ModelState.Values.Count() > 0)
+    {
+        <div class="summary">
+            @Html.ValidationSummary(String.Empty, new { @class = "validation_summary" })
+        </div>
+    }
+
+    <div class="login_form">
+        @using (Html.BeginForm("ExternalLoginCallback", "Account", FormMethod.Get))
+        {
+            <div class="login_header">
+                <span> <img src="~/assets/logo.png" alt="logo" class="login_logo" /></span>
+                <span class="login_title">
+                    <a>EMAIL</a>
+                </span>
+            </div>
+
+            <span>
+                @Html.TextBoxFor(m => m.User.Email, new { @class = "login_field", @placeholder = "email" })
+            </span>
+
+            <span class="text-danger">
+                @Html.ValidationMessageFor(m => m.User.Email, null)
+            </span>
+
+            <input class="login_button" type="submit" value="SUBMIT EMAIL" />
+        }
+
+        @await Html.PartialAsync("_ExternalAuthentication")
+    </div>
+</body>
