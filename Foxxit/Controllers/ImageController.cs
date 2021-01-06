@@ -1,15 +1,16 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Threading.Tasks;
 using Foxxit.Models.Entities;
 using Foxxit.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Foxxit.Controllers
 {
+    /*[Authorize]*/
+
     [Route("[controller]")]
     public class ImageController : MainController
     {
@@ -22,19 +23,15 @@ namespace Foxxit.Controllers
         public IImageService ImageService { get; }
 
         [HttpGet("upload-image")]
-        public async Task<IActionResult> ImageAsync()
+        public IActionResult Image()
         {
-/*            var images = await ImageService.GetAllAsync();
-            var image = images.Last();
-            ViewBag.Base64String = "data:image/png;base64," + Convert.ToBase64String(image.Stream, 0, image.Stream.Length);*/
-
             return View("Image");
         }
 
-        [HttpGet("imagestore/{id}")]
-        public async Task<FileStreamResult> Imagestore([FromRoute] long id)
+        [HttpGet("imagestore/{name}")]
+        public async Task<FileStreamResult> Imagestore([FromRoute] string name)
         {
-            var image = await ImageService.GetByIdAsync(id);
+            var image = await ImageService.GetByNameAsync(name);
             var stream = new MemoryStream(image.Stream);
             return new FileStreamResult(stream, $"image/{image.Format}");
         }

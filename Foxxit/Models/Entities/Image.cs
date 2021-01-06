@@ -1,6 +1,5 @@
-using Foxxit.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using System;
+using Foxxit.Services.Interfaces;
 
 namespace Foxxit.Models.Entities
 {
