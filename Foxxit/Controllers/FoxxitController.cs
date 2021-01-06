@@ -70,7 +70,7 @@ namespace Foxxit.Controllers
                 SubReddits = await SubRedditService.GetAllIncludeUser()
             };
 
-            return View("Subreddit", model);
+            return View("CreateSubreddit", model);
         }
 
         [HttpPost("subreddit/new")]
