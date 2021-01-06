@@ -4,7 +4,7 @@
 }
 
 body {
-    background-color: lightgray;
+    background-color: #E3E3E3;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -43,7 +43,7 @@ body {
     border: hidden;
     border-radius: 10px;
     font-size: 100%;
-    background: lightgray;
+    background: #E3E3E3;
 }
 
 /*::placeholder {
@@ -191,4 +191,10 @@ body {
 
 .post_footer {
     margin-top: 15px;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
