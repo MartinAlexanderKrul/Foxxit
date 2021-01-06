@@ -40,10 +40,12 @@
         <i class="fa fa-comments fa-lg header_icons"></i>
 
         <!-- MESSAGE BOX -->
-
-        @if (Model.CurrentUser.ReceivedNotifications.Any(n => n.HasBeenRead))
+        @if (Model.CurrentUser is not null)
         {
-            <a asp-action="Notifications" asp-controller="User"><i class="fa fa-envelope-open fa-lg header_icons"></i></a>
+            @if (Model.CurrentUser.ReceivedNotifications.Any(n => n.HasBeenRead))
+            {
+                <a asp-action="Notifications" asp-controller="User"><i class="fa fa-envelope-open fa-lg header_icons"></i></a>
+            }
         }
         else
         {
