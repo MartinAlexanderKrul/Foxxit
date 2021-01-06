@@ -1,2 +1,9 @@
 ﻿@using Foxxit.Models.Entities
 @model SubReddit
+
+<h3 class="side_bar_header">About this subreddit</h3>
+<h5 class="side_bar_subheader">Created by @Model.CreatedById</h5>
+
+<h4>Members: @Model.Members.Count</h4>
+
+<p>@Model.About</p>

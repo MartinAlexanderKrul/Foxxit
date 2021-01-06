@@ -1,4 +1,6 @@
-﻿using Foxxit.Database;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Foxxit.Database;
 using Foxxit.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 

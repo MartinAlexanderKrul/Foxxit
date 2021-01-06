@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Foxxit.Models.Entities;
 
 namespace Foxxit.Models.ViewModels
@@ -21,5 +22,7 @@ namespace Foxxit.Models.ViewModels
         public string AvatarUrl { get; set; }
         public SubReddit SubReddit { get; set; }
         public User User { get; set; }
+        public IEnumerable<SubReddit> SubReddits { get; set; }
+        public HeaderViewModel HeaderViewModel { get; set; }
     }
 }

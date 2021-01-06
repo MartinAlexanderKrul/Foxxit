@@ -272,6 +272,13 @@ section {
     margin: 5px;
 }
 
+.biggest_button {
+    width: 170px;
+    height: 40px;
+    margin: 5px;
+    cursor: pointer;
+}
+
 .light_button {
     background-color: var(--background-color) !important;
 }
@@ -286,6 +293,9 @@ section {
     margin-bottom: 20px;
     padding: 10px;
     padding-left: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .section_intro_buttons {
@@ -335,6 +345,13 @@ article {
 .article_header {
     display: flex;
     justify-content: space-between;
+}
+
+.article_post_header {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 5px;
+    align-items: center;
 }
 
 .article_content {
@@ -397,6 +414,20 @@ article {
     flex-direction: column;
     width: 100%;
 }
+
+.button-disabled {
+    display:none;
+}
+
+.comments {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.icon {
+    margin-right: 5px;
+    margin-bottom: 5px;
 
 .postform {
     width: 100%;

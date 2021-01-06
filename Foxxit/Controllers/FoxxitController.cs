@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Foxxit.Attributes.RoleServices;
@@ -32,14 +33,21 @@ namespace Foxxit.Controllers
         public ICommentService CommentService { get; set; }
 
         [HttpGet("index")]
-        [HttpGet("")]
         public async Task<IActionResult> Index()
         {
+            var currentUser = await GetActiveUserAsync();
+            var subReddits = await SubRedditService.GetAllAsync();
+            var headerViewModel = new HeaderViewModel()
+            {
+                CurrentUser = currentUser,
+                SubReddits = subReddits
+            };
             var model = new MainPageViewModel()
             {
                 CurrentUser = await GetActiveUserAsync(),
                 Posts = await PostService.GetAllAsync(),
                 SubReddits = await SubRedditService.GetAllAsync(),
+                HeaderViewModel = headerViewModel
             };
 
             return View("Index", model);
@@ -63,8 +71,29 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> PaginationSample(int? pageNum)
         {
             var posts = await PostService.GetAllAsync();
-
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
+        }
+
+        [HttpGet("subreddit/{subRedditId}")]
+        public async Task<IActionResult> Subreddit(long subRedditId)
+        {
+            var currentUser = await GetActiveUserAsync();
+            var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
+            var subReddits = await SubRedditService.GetAllAsync();
+            var headerViewModel = new HeaderViewModel()
+            {
+                CurrentUser = currentUser,
+                SubReddits = subReddits
+            };
+            var model = new SubRedditViewModel()
+            {
+                User = currentUser,
+                SubReddit = subReddit,
+                SubReddits = subReddits,
+                HeaderViewModel = headerViewModel
+            };
+
+            return View(model);
         }
 
         [HttpGet("subreddit/new")]
@@ -99,7 +128,7 @@ namespace Foxxit.Controllers
             return View("Index");
         }
 
-        //[AuthorizedRoles(Enums.UserRole.Admin)]
+        // [AuthorizedRoles(Enums.UserRole.Admin)]
         [HttpGet("subreddit/approve")]
         public async Task<IActionResult> ApproveSubreddit()
         {
@@ -111,7 +140,8 @@ namespace Foxxit.Controllers
 
             return View("SubredditsToApprove", model);
         }
-        //[AuthorizedRoles(Enums.UserRole.Admin)]
+
+        // [AuthorizedRoles(Enums.UserRole.Admin)]
         [HttpPost("subreddit/approve")]
         public async Task<IActionResult> ApproveSubreddit(long id, bool isApproved)
         {
@@ -130,8 +160,7 @@ namespace Foxxit.Controllers
             {
                 CurrentUser = await GetActiveUserAsync(),
                 SubReddits = await SubRedditService.GetAllAsync(),
-                CurrentSubReddit = await SubRedditService.GetByIdAsync(subRedditId
-                ),
+                CurrentSubReddit = await SubRedditService.GetByIdAsync(subRedditId),
             };
 
             return View("CreatePost", model);

@@ -2,22 +2,19 @@
 @{ Layout = "_Layout"; }
 @model Foxxit.Models.ViewModels.SubRedditViewModel
 
-<div class="subreddit_header">
+<div class="section_intro">
     <div>
         <div><h1>@Model.SubReddit.Name</h1></div>
-        <div class="subreddit_sorting">
+        <div class="section_intro_buttons">
             <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="hot">HOT</a></div>
             <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="new">NEW</a></div>
             <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="top">TOP</a></div>
         </div>
     </div>
-    <div>
-        <form action="createPost" method="post">
-            <button type="submit">CREATE POST</button>
-        </form>
+    <div class="create_post">
+         <a asp-action="NewPost" asp-controller="Foxxit" asp-route-subRedditId="@Model.SubReddit.Id" class="biggest_button light_button">CREATE POST</a>
     </div>
 </div>
-
 
 @foreach (var post in Model.SubReddit.Posts)
 {
@@ -43,17 +40,19 @@
     </div>
 
     <div class="article_middle">
-        <div class="article_header">
-            <div><img src="POST ICON" alt="Icon" /></div>
+        <div class="article_post_header">
+            <img src="POST ICON" alt="Icon" class="icon"/>
             <h4>@post.Title</h4>
-            <p class="article_text_info">Posted by @post.User.DisplayName @post.TimeStamp() ago.
         </div>
-
+        <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago.
     </div>
+
     <div class="posts_list_row_right">
         <a asp-action="Post" asp-controller="Home" asp-route-PostId="@post.Id">
-            <div><i class="fa fa-comment"></i></div>
-            <div>@post.Comments.Count</div>
+            <div class="comments">
+                <i class="fa fa-comment icon"></i>
+                @post.Comments.Count
+            </div>
         </a>
     </div>
 </article>}
