@@ -170,7 +170,7 @@ namespace Foxxit.Controllers
         [HttpGet("external-login")]
         public async Task<IActionResult> ExternalLoginCallback(User user = null, string returnUrl = null, string remoteError = null)
         {
-            returnUrl ??= "/foxxit/index";
+            returnUrl ??= "/index";
             var externalInfo = await SignInManager.GetExternalLoginInfoAsync();
 
             if (externalInfo is null)
