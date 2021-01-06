@@ -8,16 +8,15 @@ namespace Foxxit.Models.Entities
         {
         }
 
-        public Comment(string text, long userId, long? originalCommentId = null, long? postId = null)
+        public Comment(string text, long userId, long postId)
         {
             Text = text;
             UserId = userId;
-            OriginalCommentId = originalCommentId;
             PostId = postId;
         }
 
-        public long? OriginalCommentId { get; set; }
+        public long OriginalCommentId { get; set; }
         public Post Post { get; set; }
-        public long? PostId { get; set; }
+        public long PostId { get; set; }
     }
 }

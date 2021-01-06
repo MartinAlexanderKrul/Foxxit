@@ -5,7 +5,6 @@
 
 @foreach (var comment in Model.Comments)
 {
-
     <div class="comment_section">
 
         <div classs="comment_left">
@@ -31,11 +30,13 @@
             <div class="comment_right_content">
                 <p style="margin-bottom: 1%">@comment.Text</p>
                 <div class="article_section">
-                    <i class="fa fa-comment"></i>
-                    <div class="comment_number"><a class="comment_number" asp-action="NewComment" asp-controller="Foxxit" asp-route-commentId="@comment.Id">REPLY</a></div> @*TODO: Set the route by the actual endpoint*@
-                    <div class="addcomment" id="addcomment">
-                        @await Html.PartialAsync("_AddCommentViewPartial", Model)
-                    </div>
+                    @*<div class="comment_number">
+                            <i class="fa fa-comment"></i>
+                            <a class="comment_number" asp-action="NewComment" asp-controller="Foxxit" asp-route-commentId="@comment.Id">REPLY</a>
+                        </div> TODO: Set the route by the actual endpoint
+                        <div class="addcomment" id="addcomment">
+                                @await Html.PartialAsync("_AddCommentViewPartial", Model)
+                            </div>*@
                 </div>
             </div>
         </div>
@@ -78,3 +79,6 @@
 
     }
 }
+
+<br />
+@await Html.PartialAsync("_AddCommentViewPartial", Model)

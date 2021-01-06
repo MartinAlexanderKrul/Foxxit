@@ -443,6 +443,7 @@ article {
 
 .article_section {
     display: flex;
+    flex-direction: column;
 }
 
 .sublevel {
@@ -461,4 +462,13 @@ article {
 
 .button-disabled {
     display: none;
+}
+
+.higher_input {
+    height: 65px;
+}
+
+.end {
+    display: flex;
+    justify-content: flex-end;
 }

@@ -31,59 +31,14 @@ namespace Foxxit.Controllers
         [HttpGet("")]
         public async Task<IActionResult> Index()
         {
-            var user = new User("Nicolsburg", "nicolsburg@hocz.org");
-
-            var subreddits = new List<SubReddit>
-            {
-                new SubReddit() { Name = "Green Fox", Id = 1 },
-                new SubReddit() { Name = "Microtis", Id = 2 },
-                new SubReddit() { Name = "Sageeeee", Id = 3 },
-                new SubReddit() { Name = "Vulpes", Id = 9 },
-            };
-
-            var subComments = new List<Comment>()
-            {
-                new Comment()
-            {
-                    User = user,
-                    Text = "This is the first SUBcomment of all comments.",
-            },
-                new Comment()
-                {
-                    User = user,
-                    Text = "This is the second one. SUB!",
-                },
-            };
-
-            var comments = new List<Comment>()
-            {
-                new Comment()
-            {
-                    User = user,
-                    Text = "This is the first comment of all comments.",
-            },
-                new Comment()
-                {
-                    Comments = subComments,
-                    User = user,
-                    Text = "This is the second comment. This is the second comment. This is the second comment. This is the second comment. This is the second comment. This is the second comment. This is the second comment. This is the second comment.",
-                },
-            };
-
-            var posts = new List<Post>()
-            {
-                new Post() { Comments = comments, User = user,  Id = 1,  SubReddit = new SubReddit() { Name = "Green Fox", Id = 4 }, Title = "Green Fox", Text = "fwafawfajwfjawifjawkjfkawfnkjawh faw jakwfj kawfjj kawf jkawhf jkawhnfk " },
-                new Post() { Comments = comments,  User = user, Id = 2, SubReddit = new SubReddit() { Name = "Green Fox", Id = 5 }, Title = "Green Fox", ImageURL = "https://www.spacesworks.com/wp-content/uploads/2016/06/coding-in-the-classroom.png" },
-            };
-
             var model = new MainPageViewModel()
             {
-                CurrentUser = user,
-                SubReddits = subreddits,
-                Posts = posts,
+                CurrentUser = await GetActiveUserAsync(),
+                Posts = await PostService.GetAllAsync(),
+                SubReddits = await SubRedditService.GetAllAsync(),
             };
 
-            return await Task.Run(() => View("Index", model));
+            return View("Index", model);
         }
 
         [HttpPost("search")]
@@ -129,64 +84,24 @@ namespace Foxxit.Controllers
             await PostService.AddAsync(post);
             await PostService.SaveAsync();
 
-            return RedirectToAction("ViewSubReddit", subRedditId); // waiting for the correct endpoint
+            return RedirectToAction("SubReddit", subRedditId);
         }
 
         [HttpGet("loadComments")]
         public async Task<IActionResult> LoadComments(long postId)
         {
-            var user = new User("Nicolsburg", "nicolsburg@hocz.org");
-
-            var subComments = new List<Comment>()
-            {
-                new Comment()
-            {
-                    User = user,
-                    Text = "This is the first SUBcomment of all comments.",
-            },
-                new Comment()
-                {
-                    User = user,
-                    Text = "This is the second one. SUB!",
-                },
-            };
-
-            var comments = new List<Comment>()
-            {
-                new Comment()
-            {
-                    User = user,
-                    Text = "This is the first comment of all comments.",
-            },
-                new Comment()
-                {
-                    Comments = subComments,
-                    User = user,
-                    Text = "This is the second comment. This is the second comment. This is the second comment. This is the second comment. This is the second comment. This is the second comment. This is the second comment. This is the second comment.",
-                },
-            };
-            var model = new Post() { Comments = comments, User = user, Id = 1, SubReddit = new SubReddit() { Name = "Green Fox", Id = 4 }, Title = "Green Fox", Text = "fwafawfajwfjawifjawkjfkawfnkjawh faw jakwfj kawfjj kawf jkawhf jkawhnfk " };
-
+            var model = await PostService.GetByIdAsync(postId);
             return PartialView("_CommentViewPartial", model);
         }
 
-        [HttpGet("newComment")]
-        public async Task<IActionResult> NewComment(long? postId, long? originalCommentId)
-        {
-            var user = await GetActiveUserAsync();
-            var model = new CreatingCommentViewModel(postId, originalCommentId, user);
-
-            return PartialView("_AddCommentViewPartial", model);
-        }
-
         [HttpGet("addComment")]
-        public IActionResult AddComment(string text, long userId, long? originalCommentId, long? postId)
+        public IActionResult AddComment(string text, long userId, long postId)
         {
-            var comment = new Comment(text, userId, originalCommentId, postId);
+            var comment = new Comment(text, userId, postId);
             CommentService.AddAsync(comment);
             CommentService.SaveAsync();
 
-            return RedirectToAction("index"); // TODO: REDIRECT AND SHOW ORIGINAL POST instead of index
+            return RedirectToAction("ViewPost", postId);
         }
     }
 }
