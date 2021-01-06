@@ -123,7 +123,7 @@ namespace Foxxit.Controllers
         {
             var model = new MainPageViewModel()
             {
-                // CurrentUser = await GetActiveUserAsync(),
+                CurrentUser = await GetActiveUserAsync(),
                 SubReddits = await SubRedditService.GetAllAsync(),
                 CurrentSubReddit = await SubRedditService.GetByIdAsync(subRedditId),
             };
