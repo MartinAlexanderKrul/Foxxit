@@ -165,12 +165,13 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> CreatePost(string title, string url, string image, string text, long subRedditId)
         {
             var user = await GetActiveUserAsync();
-            var post = new Post(title, url, image, text, subRedditId) { User = user };
+            var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
+            var post = new Post() { Text = text, Title = title, ImageURL = url, SubReddit = subReddit, User = user };
 
             await PostService.AddAsync(post);
             await PostService.SaveAsync();
 
-            return RedirectToAction("Post", post.Id);
+            return RedirectToAction("ViewPost", post.Id);
         }
 
         [HttpGet("/Post")]
@@ -205,14 +206,14 @@ namespace Foxxit.Controllers
             return PartialView("_CommentViewPartial", model);
         }
 
-        [HttpGet("addComment")]
+        [HttpPost("addComment")]
         public IActionResult AddComment(string text, long userId, long postId)
         {
             var comment = new Comment(text, userId, postId);
             CommentService.AddAsync(comment);
             CommentService.SaveAsync();
 
-            return RedirectToAction("Post", postId);
+            return RedirectToAction("ViewPost", postId);
         }
     }
 }
