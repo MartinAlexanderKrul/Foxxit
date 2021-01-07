@@ -166,13 +166,12 @@ namespace Foxxit.Controllers
         {
             var user = await GetActiveUserAsync();
             var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
-            var post = new Post() { Text = text, Title = title, ImageURL = url, SubReddit = subReddit, User = user };
+            var post = new Post(title, text, url, subReddit, user);
 
             await PostService.AddAsync(post);
             await PostService.SaveAsync();
 
             return Redirect($"/Post/{post.Id}");
-            //return RedirectToAction("ViewPost", post.Id);
         }
 
         [HttpGet("/Post/{postId}")]
@@ -213,7 +212,7 @@ namespace Foxxit.Controllers
             var user = await GetActiveUserAsync();
             var post = await PostService.GetByIdAsync(postId);
 
-            var comment = new Comment() { Text = text, User = user, Post = post };
+            var comment = new Comment(text, user, post);
 
             PostService.Update(post);
             post.Comments.Add(comment);

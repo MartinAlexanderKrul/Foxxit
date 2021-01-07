@@ -9,11 +9,11 @@ namespace Foxxit.Models.Entities
         {
         }
 
-        public Comment(string text, long userId, long postId)
+        public Comment(string text, User user, Post post)
         {
             Text = text;
-            UserId = userId;
-            PostId = postId;
+            User = user;
+            Post = post;
         }
 
         public long OriginalCommentId { get; set; }
