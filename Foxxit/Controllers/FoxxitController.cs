@@ -38,12 +38,12 @@ namespace Foxxit.Controllers
         {
             var currentUser = await GetActiveUserAsync();
             var subReddits = await SubRedditService.GetAllAsync();
-
+            var posts = await PostService.GetAllAsync();
             var model = new MainPageViewModel()
             {
-                CurrentUser = await GetActiveUserAsync(),
-                Posts = await PostService.GetAllAsync(),
-                SubReddits = await SubRedditService.GetAllAsync(),
+                CurrentUser = currentUser,
+                Posts = posts,
+                SubReddits = subReddits,
             };
 
             return View("Index", model);
@@ -147,11 +147,15 @@ namespace Foxxit.Controllers
         [HttpGet("/Post/New")]
         public async Task<IActionResult> NewPost(int subRedditId)
         {
+            var currentUser = await GetActiveUserAsync();
+            var subReddits = await SubRedditService.GetAllAsync();
+            var currentSubReddit = await SubRedditService.GetByIdAsync(subRedditId);
+
             var model = new MainPageViewModel()
             {
-                CurrentUser = await GetActiveUserAsync(),
-                SubReddits = await SubRedditService.GetAllAsync(),
-                CurrentSubReddit = await SubRedditService.GetByIdAsync(subRedditId),
+                CurrentUser = currentUser,
+                SubReddits = subReddits,
+                CurrentSubReddit = currentSubReddit
             };
 
             return View("CreatePost", model);
@@ -166,7 +170,32 @@ namespace Foxxit.Controllers
             await PostService.AddAsync(post);
             await PostService.SaveAsync();
 
-            return RedirectToAction("SubReddit", subRedditId);
+            return RedirectToAction("ViewPost", post.Id);
+        }
+
+        [HttpGet("/Post/{postId}")]
+        public async Task<IActionResult> ViewPost(long postId)
+        {
+            var currentUser = await GetActiveUserAsync();
+            var post = await PostService.GetByIdAsync(postId);
+
+            var postViewModel = new PostViewModel()
+            {
+                CurrentUser = currentUser,
+                Post = post
+            };
+            var posts = await PostService.GetAllAsync();
+            var subReddits = await SubRedditService.GetAllAsync();
+
+            var model = new MainPageViewModel()
+            {
+                CurrentUser = currentUser,
+                Posts = posts,
+                SubReddits = subReddits,
+                PostViewModel = postViewModel,
+            };
+
+            return View("Post", model);
         }
 
         [HttpGet("loadComments/")]

@@ -36,7 +36,7 @@ namespace Foxxit.Controllers
             await NotificationService.MarkNotificationRead(await NotificationService.GetByIdAsync(notificationId));
             var model = new MainPageViewModel();
 
-            return RedirectToAction("ShowPost", "Post", notificationId); // TODO: Change action and controller name according to the actual post route
+            return RedirectToAction("ViewPost", "Foxxit", notificationId);
         }
     }
 }

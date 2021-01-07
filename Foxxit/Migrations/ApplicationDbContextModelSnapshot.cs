@@ -467,14 +467,14 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "1dab998b-70fd-4192-966b-8f230666ac52",
+                            ConcurrencyStamp = "8e7ee43a-42ca-416e-a2f3-27ef25691915",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "526132ea-7a3b-4734-923d-1bb730b301a5",
+                            ConcurrencyStamp = "1c229785-3190-499f-ba63-c6282c71a63b",
                             Name = "User",
                             NormalizedName = "USER"
                         });

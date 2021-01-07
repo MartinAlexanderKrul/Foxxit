@@ -1,0 +1,54 @@
+@using Foxxit.Extensions
+@using Foxxit.Models.ViewModels
+@model PostViewModel
+
+{
+<article>
+
+    <div class="article_left">
+        <div class="post_vote">
+            <form asp-action="Vote" asp-controller="Foxxit">
+                <input type="hidden" value="up" name="voteType" />
+                <input type="hidden" value="@Model.Post.Id" name="postId" />
+                <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
+            </form>
+        </div>
+        <div class="post_vote">@Model.Post.Votes.Count()</div>
+
+        <div class="post_vote">
+            <form asp-action="Vote" asp-controller="Foxxit">
+                <input type="hidden" value="down" name="voteType" />
+                <input type="hidden" value="@Model.Post.Id" name="postId" />
+                <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <div class="article_middle">
+        <div class="article_header">
+            <div class="article_text">
+                <h4>@Model.Post.Title</h4>
+                <p class="article_text_info">Posted by @Model.Post.User.UserName @Model.Post.TimeStamp() ago in @Model.Post.SubReddit.Name</p>
+            </div>
+
+            <div class="article_content">
+            @if (Model.Post.Text is null)
+            {
+                <img width="100%" src="@Model.Post.ImageURL" alt="@Model.Post.Title" />
+            }
+            else
+            {
+                <p>@Model.Post.Text</p>
+            }
+        </div>
+
+        @* <div class="article_footer"> *@
+        @*     <i class="fa fa-comment"></i> *@
+        @*     <div class="vote">@Html.ActionLink($"{Model.Post.Comments.Count()} COMMENTS", "Post", "Foxxit", new { postId = Model.Post.Id })</div> *@
+        @* </div> *@
+    </div>
+    </div>
+
+    @* <div class="article_right"> *@
+    @* </div> *@
+</article>
