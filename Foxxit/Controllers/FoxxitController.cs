@@ -70,8 +70,8 @@ namespace Foxxit.Controllers
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
 
-        [HttpGet("subreddit/{subRedditId}")]
-        public async Task<IActionResult> Subreddit(long subRedditId)
+        [HttpGet("subreddit")]
+        public async Task<IActionResult> SubReddit(long subRedditId)
         {
             var currentUser = await GetActiveUserAsync();
             var currentSubReddit = await SubRedditService.GetByIdAsync(subRedditId);
@@ -158,9 +158,10 @@ namespace Foxxit.Controllers
         }
 
         [HttpPost("/Post/Create")]
-        public async Task<IActionResult> CreatePost(string title, string url, string image, string text, int subRedditId)
+        public async Task<IActionResult> CreatePost(string title, string url, string image, string text, long subRedditId)
         {
-            var post = new Post(title, url, image, text, subRedditId);
+            var user = await GetActiveUserAsync();
+            var post = new Post(title, url, image, text, subRedditId) { User = user };
 
             await PostService.AddAsync(post);
             await PostService.SaveAsync();
@@ -168,7 +169,7 @@ namespace Foxxit.Controllers
             return RedirectToAction("SubReddit", subRedditId);
         }
 
-        [HttpGet("loadComments")]
+        [HttpGet("loadComments/")]
         public async Task<IActionResult> LoadComments(long postId)
         {
             var model = await PostService.GetByIdAsync(postId);

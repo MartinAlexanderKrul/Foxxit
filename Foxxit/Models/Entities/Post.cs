@@ -8,7 +8,7 @@ namespace Foxxit.Models.Entities
         {
         }
 
-        public Post(string title, string url, string imageUrl, string text, int subRedditId)
+        public Post(string title, string url, string imageUrl, string text, long subRedditId)
         {
             Title = title;
             URL = url;
