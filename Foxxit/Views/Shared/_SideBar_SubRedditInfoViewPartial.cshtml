@@ -1,9 +1,15 @@
 ﻿@using Foxxit.Models.Entities
 @model SubReddit
 
-<h3 class="side_bar_header">About this subreddit</h3>
-<h5 class="side_bar_subheader">Created by @Model.CreatedBy.UserName</h5>
+    <h3 class="side_bar_header no_bottom_margin">About this subreddit</h3>
 
-<h4>Members: @Model.Members.Count</h4>
+    <div class="side_bar">
+        <div class="side_bar_left">
 
-<p>@Model.About</p>
+            <h5 class="comment_info text_center">Created by @Model.CreatedBy.UserName</h5>
+
+            <div class="members"><i class="fa fa-users"></i><div class="between"></div><h4>Members: @Model.Members.Count</h4></div>
+
+            <p class="subreddit_sidebar_text text_center">@Model.About</p>
+        </div>
+    </div>
