@@ -170,10 +170,10 @@ namespace Foxxit.Controllers
             await PostService.AddAsync(post);
             await PostService.SaveAsync();
 
-            return RedirectToAction("ViewPost", post.Id);
+            return RedirectToAction("Post", post.Id);
         }
 
-        [HttpGet("/Post/{postId}")]
+        [HttpGet("/Post")]
         public async Task<IActionResult> ViewPost(long postId)
         {
             var currentUser = await GetActiveUserAsync();
@@ -212,7 +212,7 @@ namespace Foxxit.Controllers
             CommentService.AddAsync(comment);
             CommentService.SaveAsync();
 
-            return RedirectToAction("ViewPost", postId);
+            return RedirectToAction("Post", postId);
         }
     }
 }
