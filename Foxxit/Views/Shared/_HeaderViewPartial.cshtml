@@ -8,8 +8,8 @@
     </div>
 
     <div class="header_subReddits_container">
-        <form asp-action="SubReddit" asp-controller="Foxxit">
-            <select class="header_inputs" name="SubReddits" id="header_subReddits" onchange="this.form.submit()">
+        <form asp-action="SubReddit" asp-controller="Foxxit" method="get">
+            <select class="header_inputs" name="subRedditId" id="header_subReddits" onchange="this.form.submit()">
                 <option class="header_options">SubReddits</option>
                 @foreach (var subReddit in Model.SubReddits)
                 {

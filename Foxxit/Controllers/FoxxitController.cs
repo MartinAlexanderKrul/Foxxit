@@ -38,12 +38,12 @@ namespace Foxxit.Controllers
         {
             var currentUser = await GetActiveUserAsync();
             var subReddits = await SubRedditService.GetAllAsync();
-
+            var posts = await PostService.GetAllAsync();
             var model = new MainPageViewModel()
             {
-                CurrentUser = await GetActiveUserAsync(),
-                Posts = await PostService.GetAllAsync(),
-                SubReddits = await SubRedditService.GetAllAsync(),
+                CurrentUser = currentUser,
+                Posts = posts.OrderByDescending(post => post.CreatedAt).ToList(),
+                SubReddits = subReddits,
             };
 
             return View("Index", model);
@@ -70,8 +70,8 @@ namespace Foxxit.Controllers
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
 
-        [HttpGet("subreddit/{subRedditId}")]
-        public async Task<IActionResult> Subreddit(long subRedditId)
+        [HttpGet("subreddit")]
+        public async Task<IActionResult> SubReddit(long subRedditId)
         {
             var currentUser = await GetActiveUserAsync();
             var currentSubReddit = await SubRedditService.GetByIdAsync(subRedditId);
@@ -147,25 +147,56 @@ namespace Foxxit.Controllers
         [HttpGet("/Post/New")]
         public async Task<IActionResult> NewPost(int subRedditId)
         {
+            var currentUser = await GetActiveUserAsync();
+            var subReddits = await SubRedditService.GetAllAsync();
+            var currentSubReddit = await SubRedditService.GetByIdAsync(subRedditId);
+
             var model = new MainPageViewModel()
             {
-                CurrentUser = await GetActiveUserAsync(),
-                SubReddits = await SubRedditService.GetAllAsync(),
-                CurrentSubReddit = await SubRedditService.GetByIdAsync(subRedditId),
+                CurrentUser = currentUser,
+                SubReddits = subReddits,
+                CurrentSubReddit = currentSubReddit
             };
 
             return View("CreatePost", model);
         }
 
         [HttpPost("/Post/Create")]
-        public async Task<IActionResult> CreatePost(string title, string url, string image, string text, int subRedditId)
+        public async Task<IActionResult> CreatePost(string title, string url, string image, string text, long subRedditId)
         {
-            var post = new Post(title, url, image, text, subRedditId);
+            var user = await GetActiveUserAsync();
+            var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
+            var post = new Post(title, text, url, subReddit, user);
 
             await PostService.AddAsync(post);
             await PostService.SaveAsync();
 
-            return RedirectToAction("SubReddit", subRedditId);
+            return Redirect($"/Post/{post.Id}");
+        }
+
+        [HttpGet("/Post/{postId}")]
+        public async Task<IActionResult> ViewPost(long postId)
+        {
+            var currentUser = await GetActiveUserAsync();
+            var post = await PostService.GetByIdAsync(postId);
+
+            var postViewModel = new PostViewModel()
+            {
+                CurrentUser = currentUser,
+                Post = post
+            };
+            var posts = await PostService.GetAllAsync();
+            var subReddits = await SubRedditService.GetAllAsync();
+
+            var model = new MainPageViewModel()
+            {
+                CurrentUser = currentUser,
+                Posts = posts,
+                SubReddits = subReddits,
+                PostViewModel = postViewModel,
+            };
+
+            return View("Post", model);
         }
 
         [HttpGet("loadComments")]
@@ -175,14 +206,20 @@ namespace Foxxit.Controllers
             return PartialView("_CommentViewPartial", model);
         }
 
-        [HttpGet("addComment")]
-        public IActionResult AddComment(string text, long userId, long postId)
+        [HttpPost("addComment")]
+        public async Task<IActionResult> AddComment(string text, long userId, long postId)
         {
-            var comment = new Comment(text, userId, postId);
-            CommentService.AddAsync(comment);
-            CommentService.SaveAsync();
+            var user = await GetActiveUserAsync();
+            var post = await PostService.GetByIdAsync(postId);
 
-            return RedirectToAction("ViewPost", postId);
+            var comment = new Comment(text, user, post);
+
+            PostService.Update(post);
+            post.Comments.Add(comment);
+
+            await PostService.SaveAsync();
+
+            return Redirect($"Post/{postId}");
         }
     }
 }
