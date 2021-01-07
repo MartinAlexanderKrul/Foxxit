@@ -13,6 +13,14 @@ namespace Foxxit.Services
         public PostService(PostRepository repository)
             : base(repository)
         {
+            PostRepository = repository;
+        }
+
+        public PostRepository PostRepository { get; private set; }
+
+        public async Task<IEnumerable<Post>> GetAllIncludeCommentsAsync()
+        {
+            return await PostRepository.GetAllIncludeCommentsAsync();
         }
     }
 }
