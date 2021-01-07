@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using Foxxit.Services.Interfaces;
 
 namespace Foxxit.Models.Entities
@@ -13,7 +14,9 @@ namespace Foxxit.Models.Entities
             Comments = new Collection<Comment>();
         }
 
+        [Key]
         public long Id { get; set; }
+
         public string Text { get; set; }
         public DateTime CreatedAt { get; set; }
         public ICollection<Vote> Votes { get; set; }
