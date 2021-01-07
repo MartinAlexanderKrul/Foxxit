@@ -272,6 +272,13 @@ section {
     margin: 5px;
 }
 
+.biggest_button {
+    width: 170px;
+    height: 40px;
+    margin: 5px;
+    cursor: pointer;
+}
+
 .light_button {
     background-color: var(--background-color) !important;
 }
@@ -286,6 +293,9 @@ section {
     margin-bottom: 20px;
     padding: 10px;
     padding-left: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .section_intro_buttons {
@@ -335,6 +345,13 @@ article {
 .article_header {
     display: flex;
     justify-content: space-between;
+}
+
+.article_post_header {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 5px;
+    align-items: center;
 }
 
 .article_content {
@@ -398,6 +415,20 @@ article {
     width: 100%;
 }
 
+.button-disabled {
+    display:none;
+}
+
+.comments {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.icon {
+    margin-right: 5px;
+    margin-bottom: 5px;
+
 .postform {
     width: 100%;
     display: flex;
@@ -407,6 +438,10 @@ article {
 
 .biginput {
     height: 142px;
+}
+
+.subreddit {
+    padding-top:1%;
 }
 
 .fileinput {
@@ -424,7 +459,7 @@ article {
     font-weight: lighter;
 }
 
-.comment_left {
+{
     width: 15%;
     margin-right: 2%;
     display: flex;
@@ -443,7 +478,7 @@ article {
 
 .article_section {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .sublevel {
@@ -464,8 +499,46 @@ article {
     display: none;
 }
 
-/*FORMS*/
 
+.higher_input {
+    height: 65px;
+}
+
+.end {
+    display: flex;
+    justify-content: flex-end;
+
+  /*SUBREDIT*/
+
+.approveSubreddit {
+    border-collapse: collapse;
+    width:100%;
+}
+
+.approveSubreddit td, .approveSubreddit tr {
+    border: 1px solid #ddd;
+    padding: 1%;
+    width:auto;
+}
+
+.approveSubreddit tr:nth-child(even) {
+    background-color: #e3e3e3;
+}
+
+.approveSubreddit thead {
+    font-weight: bold;
+    padding: 1% 1%;
+}
+.approveSubreddit [type=submit] {
+    border: 0px;
+    background:none;
+    font-size: var(--main-font-size);
+    font-weight: bold;
+    padding: 1% 1%;
+    position: center;
+
+    /*SUBREDIT*/
+  
 .login_form {
     display: block;
     margin: auto;

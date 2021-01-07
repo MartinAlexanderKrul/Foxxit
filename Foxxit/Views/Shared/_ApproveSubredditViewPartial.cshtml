@@ -1,0 +1,47 @@
+﻿@using Foxxit.Models.ViewModels
+@model MainPageViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<article>
+    <table class="approveSubreddit">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>About</td>
+                <td>Created By</td>
+                <td>Approved?</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var subreddit in Model.SubReddits)
+            {
+                <tr>
+                    <td>@subreddit.Name</td>
+                    <td>@subreddit.About</td>
+                    <td>@subreddit.CreatedBy.UserName</td>
+
+                    @if (subreddit.IsApproved)
+                    {
+                        <td>
+                            <form asp-action="ApproveSubreddit" asp-controller="Foxxit" method="post">
+                                <input type="hidden" value="@subreddit.Id" name="id" />
+                                <input type="hidden" value=FALSE name="isApproved" />
+                                <input type="submit" value="Unapproved" />
+                            </form>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <form asp-action="ApproveSubreddit" asp-controller="Foxxit" method="post">
+                                <input type="hidden" value="@subreddit.Id" name="id" />
+                                <input type="hidden" value=TRUE name="isApproved" />
+                                <input type="submit" value="Approved" />
+                            </form>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</article>

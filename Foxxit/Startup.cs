@@ -66,6 +66,7 @@ namespace Foxxit
             services.AddTransient<IPostService, PostService>();
 
             services.AddTransient<CommentRepository>();
+            services.AddTransient<ICommentService, CommentService>();
 
             services.AddTransient<NotificationRepository>();
             services.AddTransient<INotificationService, NotificationService>();

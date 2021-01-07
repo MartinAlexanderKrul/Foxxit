@@ -1,5 +1,5 @@
 ﻿@using Foxxit.Models.ViewModels
-@model MainPageViewModel
+@model SubRedditViewModel
 
 @{Layout = "_Layout";}
 
@@ -9,10 +9,10 @@
 
 <main>
     <aside>
-        @await Html.PartialAsync("_SideBar_SubRedditsJoinViewPartial", Model.SubReddits)
+        @await Html.PartialAsync("_SideBar_SubRedditInfoViewPartial", Model.SubReddit)
     </aside>
 
     <section>
-        @await Html.PartialAsync("_MainPageViewPartial")
+        @await Html.PartialAsync("_SubRedditPartial")
     </section>
 </main>

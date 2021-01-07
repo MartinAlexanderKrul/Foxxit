@@ -1,4 +1,4 @@
-﻿using Foxxit;
+using Foxxit;
 using Foxxit.Database;
 using Foxxit.Models.Entities;
 using Microsoft.AspNetCore.Mvc.Testing;
