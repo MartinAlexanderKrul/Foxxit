@@ -42,11 +42,13 @@ namespace Foxxit.Controllers
                 CurrentUser = currentUser,
                 SubReddits = subReddits
             };
+
+            var posts = await PostService.GetAllAsync();
             var model = new MainPageViewModel()
             {
-                CurrentUser = await GetActiveUserAsync(),
-                Posts = await PostService.GetAllAsync(),
-                SubReddits = await SubRedditService.GetAllAsync(),
+                CurrentUser = currentUser,
+                Posts = posts,
+                SubReddits = subReddits,
                 HeaderViewModel = headerViewModel
             };
 
@@ -156,11 +158,15 @@ namespace Foxxit.Controllers
         [HttpGet("/Post/New")]
         public async Task<IActionResult> NewPost(int subRedditId)
         {
+           var currentUser = await GetActiveUserAsync();
+           var subReddits = await SubRedditService.GetAllAsync();
+           var currentSubReddit = await SubRedditService.GetByIdAsync(subRedditId);
+            
             var model = new MainPageViewModel()
             {
-                CurrentUser = await GetActiveUserAsync(),
-                SubReddits = await SubRedditService.GetAllAsync(),
-                CurrentSubReddit = await SubRedditService.GetByIdAsync(subRedditId),
+               CurrentUser = currentUser,
+               SubReddits = subReddits,
+               CurrentSubReddit = currentSubReddit
             };
 
             return View("CreatePost", model);
