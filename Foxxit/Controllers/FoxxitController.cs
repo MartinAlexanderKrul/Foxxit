@@ -32,22 +32,18 @@ namespace Foxxit.Controllers
         public ISubRedditService SubRedditService { get; set; }
         public ICommentService CommentService { get; set; }
 
+        [HttpGet("")]
         [HttpGet("index")]
         public async Task<IActionResult> Index()
         {
             var currentUser = await GetActiveUserAsync();
             var subReddits = await SubRedditService.GetAllAsync();
-            var headerViewModel = new HeaderViewModel()
-            {
-                CurrentUser = currentUser,
-                SubReddits = subReddits
-            };
+
             var model = new MainPageViewModel()
             {
                 CurrentUser = await GetActiveUserAsync(),
                 Posts = await PostService.GetAllAsync(),
                 SubReddits = await SubRedditService.GetAllAsync(),
-                HeaderViewModel = headerViewModel
             };
 
             return View("Index", model);
@@ -78,22 +74,17 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> Subreddit(long subRedditId)
         {
             var currentUser = await GetActiveUserAsync();
-            var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
+            var currentSubReddit = await SubRedditService.GetByIdAsync(subRedditId);
             var subReddits = await SubRedditService.GetAllAsync();
-            var headerViewModel = new HeaderViewModel()
+
+            var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
-                SubReddits = subReddits
-            };
-            var model = new SubRedditViewModel()
-            {
-                User = currentUser,
-                SubReddit = subReddit,
+                CurrentSubReddit = currentSubReddit,
                 SubReddits = subReddits,
-                HeaderViewModel = headerViewModel
             };
 
-            return View(model);
+            return View("SubReddit", model);
         }
 
         [HttpGet("subreddit/new")]
