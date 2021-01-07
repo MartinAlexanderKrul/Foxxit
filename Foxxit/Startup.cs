@@ -57,7 +57,7 @@ namespace Foxxit
             .AddDefaultTokenProviders();
 
             services.AddTransient<UserRepository>();
-            services.AddTransient<UserService>();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddTransient<SubRedditRepository>();
             services.AddTransient<ISubRedditService, SubRedditService>();

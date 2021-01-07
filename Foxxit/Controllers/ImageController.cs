@@ -9,8 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Foxxit.Controllers
 {
-    /*[Authorize]*/
-
+    [Authorize]
     [Route("[controller]")]
     public class ImageController : MainController
     {

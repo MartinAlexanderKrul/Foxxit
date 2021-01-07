@@ -1,5 +1,5 @@
 ﻿@using Foxxit.Models.ViewModels
-@model PasswordChangeViewModel
+@model UsernameChangeViewModel
 @{Layout = "_Layout";}
 
 <head>
@@ -17,39 +17,21 @@
     }
 
     <div class="login_form">
-        @using (Html.BeginForm("PasswordChange", "Account", FormMethod.Post))
+        @using (Html.BeginForm("UsernameChange", "Account", FormMethod.Post))
         {
             <div class="login_header">
                 <span> <img src="~/assets/logo.png" alt="logo" class="login_logo" /></span>
                 <span class="login_title">
-                    <a>PASSWORD CHANGE</a>
+                    <a>USERNAME CHANGE</a>
                 </span>
             </div>
 
             <span>
-                @Html.PasswordFor(m => m.NewPassword, new { @class = "login_field", @placeholder = "new password" })
+                @Html.TextBoxFor(m => m.NewUserName, new { @class = "login_field", @placeholder = "new username" })
             </span>
 
             <span class="text-danger">
-                @Html.ValidationMessageFor(m => m.NewPassword, null)
-            </span>
-
-            <span>
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "login_field", @placeholder = "confirm new password" })
-            </span>
-
-            <span class="text-danger">
-                @Html.ValidationMessageFor(m => m.ConfirmPassword, null)
-                <br>
-            </span>
-
-            <span>
-                @Html.PasswordFor(m => m.CurrentPassword, new { @class = "login_field", @placeholder = "current password" })
-            </span>
-
-            <span class="text-danger">
-                @Html.ValidationMessageFor(m => m.CurrentPassword, null)
-                <br>
+                @Html.ValidationMessageFor(m => m.NewUserName, null)
             </span>
 
             <input class="login_button" type="submit" value="CHANGE" />

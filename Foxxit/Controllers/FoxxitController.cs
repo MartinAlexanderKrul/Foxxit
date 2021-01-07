@@ -12,8 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Foxxit.Controllers
 {
-    /*[Authorize]*/
-
+    [Authorize]
     public class FoxxitController : MainController
     {
         private const int PageSize = 10;
