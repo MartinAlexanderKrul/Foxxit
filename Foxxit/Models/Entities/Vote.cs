@@ -5,7 +5,9 @@ namespace Foxxit.Models.Entities
     public class Vote : IIdentityEntity
     {
         public long Id { get; set; }
-        public bool IsNegative { get; set; }
+
+        // public bool IsNegative { get; set; }
+        public int Value { get; set; }
         public User Owner { get; set; }
         public long OwnerId { get; set; }
         public PostBase Postbase { get; set; }

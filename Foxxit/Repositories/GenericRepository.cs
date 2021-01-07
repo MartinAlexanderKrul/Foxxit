@@ -54,5 +54,10 @@ namespace Foxxit.Repositories
         {
             await dbContext.SaveChangesAsync();
         }
+
+        //public async Task<int> FindByUserId(long id)
+        //{
+        //    await dbContext.FindAsync(id)
+        //}
     }
 }
