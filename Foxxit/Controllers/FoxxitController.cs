@@ -18,7 +18,7 @@ namespace Foxxit.Controllers
     {
         private const int PageSize = 10;
 
-        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService)
+        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
             : base(userManager, signInManager)
         {
             SearchService = searchService;
@@ -190,13 +190,20 @@ namespace Foxxit.Controllers
             };
             var posts = await PostService.GetAllAsync();
             var subReddits = await SubRedditService.GetAllAsync();
+            
+            var headerViewModel = new HeaderViewModel()
+            {
+                CurrentUser = currentUser,
+                SubReddits = subReddits
+            };
 
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
                 Posts = posts,
                 SubReddits = subReddits,
-                PostViewModel = postViewModel
+                PostViewModel = postViewModel,
+                HeaderViewModel = headerViewModel
             };
 
             return View("Post", model);

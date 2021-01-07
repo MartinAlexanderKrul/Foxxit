@@ -4,12 +4,12 @@
 @{Layout = "_Layout";}
 
 <header>
-    @await Html.PartialAsync("_HeaderViewPartial")
+    @await Html.PartialAsync("_HeaderViewPartial", Model.HeaderViewModel)
 </header>
 
 <main>
     <aside>
-        @await Html.PartialAsync("_SideBar_SubRedditAboutPartial", Model.PostViewModel.Post.SubReddit)
+        @await Html.PartialAsync("_SideBar_SubRedditInfoViewPartial", Model.PostViewModel.Post.SubReddit)
     </aside>
 
     <section>
@@ -17,6 +17,6 @@
     </section>
     
     <section>
-            @await Html.PartialAsync("_CommentsPartial") @* TODO: Change PartialViewName to actual *@
+            @await Html.PartialAsync("_CommentViewPartial", Model.PostViewModel.Post)
         </section>
 </main>
