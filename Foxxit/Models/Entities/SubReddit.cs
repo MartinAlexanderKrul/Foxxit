@@ -13,6 +13,7 @@ namespace Foxxit.Models.Entities
             About = about;
             CreatedById = createdById;
         }
+
         public SubReddit()
         {
             Posts = new Collection<Post>();
