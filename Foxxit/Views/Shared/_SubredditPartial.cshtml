@@ -4,7 +4,7 @@
 @model MainPageViewModel
 
 <div class="section_intro">
-    <div>
+    <div class="subreddit_header">
         <div><h1>@Model.CurrentSubReddit.Name</h1></div>
         <div class="section_intro_buttons">
             <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="hot">HOT</a></div>
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="create_post">
-        <a asp-action="NewPost" asp-controller="Foxxit" asp-route-subRedditId="@Model.CurrentSubReddit.Id" class="biggest_button light_button">CREATE POST</a>
+        <a asp-action="NewPost" asp-controller="Foxxit" asp-route-subRedditId="@Model.CurrentSubReddit.Id" class="biggest_button not_button bigger_button light_button">CREATE POST</a>
     </div>
 </div>
 

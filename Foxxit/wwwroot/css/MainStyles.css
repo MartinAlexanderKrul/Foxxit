@@ -742,3 +742,9 @@ article {
     align-items: center;
     justify-content: center;
 }
+
+.create_post {
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+}
