@@ -42,7 +42,7 @@ namespace Foxxit.Controllers
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
-                Posts = posts,
+                Posts = posts.OrderByDescending(post => post.CreatedAt).ToList(),
                 SubReddits = subReddits,
             };
 
@@ -171,10 +171,11 @@ namespace Foxxit.Controllers
             await PostService.AddAsync(post);
             await PostService.SaveAsync();
 
-            return RedirectToAction("ViewPost", post.Id);
+            return Redirect($"/Post/{post.Id}");
+            //return RedirectToAction("ViewPost", post.Id);
         }
 
-        [HttpGet("/Post")]
+        [HttpGet("/Post/{postId}")]
         public async Task<IActionResult> ViewPost(long postId)
         {
             var currentUser = await GetActiveUserAsync();
@@ -199,7 +200,7 @@ namespace Foxxit.Controllers
             return View("Post", model);
         }
 
-        [HttpGet("loadComments/")]
+        [HttpGet("loadComments")]
         public async Task<IActionResult> LoadComments(long postId)
         {
             var model = await PostService.GetByIdAsync(postId);
@@ -207,13 +208,19 @@ namespace Foxxit.Controllers
         }
 
         [HttpPost("addComment")]
-        public IActionResult AddComment(string text, long userId, long postId)
+        public async Task<IActionResult> AddComment(string text, long userId, long postId)
         {
-            var comment = new Comment(text, userId, postId);
-            CommentService.AddAsync(comment);
-            CommentService.SaveAsync();
+            var user = await GetActiveUserAsync();
+            var post = await PostService.GetByIdAsync(postId);
 
-            return RedirectToAction("ViewPost", postId);
+            var comment = new Comment() { Text = text, User = user, Post = post };
+
+            PostService.Update(post);
+            post.Comments.Add(comment);
+
+            await PostService.SaveAsync();
+
+            return Redirect($"Post/{postId}");
         }
     }
 }
