@@ -69,19 +69,23 @@ html, body {
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
-    position: relative;
-    right: 0;
+    position: absolute;
+    margin-top: 2%;
     background-color: var(--section-color);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 5000;
+    padding: 12px 16px;
+    transition-duration: 2s;
 }
 
     /* Links inside the dropdown */
     .dropdown-content a {
         padding: 12px 16px;
         text-decoration: none;
-        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        white-space: nowrap;
     }
 
         /* Change color of dropdown links on hover */
@@ -116,6 +120,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 5000;
 }
 
 .header_left {
@@ -187,13 +192,14 @@ header {
 
 .header_right_one {
     width: 30%;
-    margin-left: 3%;
+    margin-left: -5%;
     flex-grow: 1;
 }
 
 .header_right_two {
     flex-shrink: 2;
-    width: 40%;
+    margin: -30%;
+    width: 80%;
 }
 
 .header_right_three {

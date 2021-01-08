@@ -12,8 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Foxxit.Controllers
 {
-    /*[Authorize]*/
-
+    [Authorize]
     public class FoxxitController : MainController
     {
         private const int PageSize = 10;
@@ -38,7 +37,7 @@ namespace Foxxit.Controllers
         {
             var currentUser = await GetActiveUserAsync();
             var subReddits = await SubRedditService.GetAllAsync();
-            var posts = await PostService.GetAllAsync();
+            var posts = await PostService.GetAllIncludeCommentsAsync();
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
@@ -55,7 +54,7 @@ namespace Foxxit.Controllers
             var model = new MainPageViewModel()
             {
                 CurrentUser = await GetActiveUserAsync(),
-                Posts = await PostService.GetAllAsync(),
+                Posts = await PostService.GetAllIncludeCommentsAsync(),
                 SubReddits = await SubRedditService.GetAllAsync(),
                 SearchReturnModel = SearchService.Search(category, keyword),
             };
@@ -66,7 +65,7 @@ namespace Foxxit.Controllers
         [HttpGet("paginationSample")]
         public async Task<IActionResult> PaginationSample(int? pageNum)
         {
-            var posts = await PostService.GetAllAsync();
+            var posts = await PostService.GetAllIncludeCommentsAsync();
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
 
@@ -185,7 +184,7 @@ namespace Foxxit.Controllers
                 CurrentUser = currentUser,
                 Post = post
             };
-            var posts = await PostService.GetAllAsync();
+            var posts = await PostService.GetAllIncludeCommentsAsync();
             var subReddits = await SubRedditService.GetAllAsync();
 
             var model = new MainPageViewModel()
@@ -214,10 +213,8 @@ namespace Foxxit.Controllers
 
             var comment = new Comment(text, user, post);
 
-            PostService.Update(post);
-            post.Comments.Add(comment);
-
-            await PostService.SaveAsync();
+            await CommentService.AddAsync(comment);
+            await CommentService.SaveAsync();
 
             return Redirect($"Post/{postId}");
         }

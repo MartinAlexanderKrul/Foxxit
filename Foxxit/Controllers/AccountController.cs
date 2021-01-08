@@ -14,13 +14,15 @@ namespace Foxxit.Controllers
     [Route("[controller]")]
     public class AccountController : MainController
     {
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IMailService mailService)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IMailService mailService, IUserService userService)
             : base(userManager, signInManager)
         {
             MailService = mailService;
+            UserService = userService;
         }
 
         public IMailService MailService { get; set; }
+        public IUserService UserService { get; set; }
 
         [AuthorizedRoles(Enums.UserRole.Admin, Enums.UserRole.User)]
         [HttpGet("index")]
@@ -216,6 +218,8 @@ namespace Foxxit.Controllers
                         if (registerResult.Succeeded)
                         {
                             await UserManager.AddToRoleAsync(user, "User");
+                            await UserManager.AddLoginAsync(user, externalInfo);
+                            await SignInManager.SignInAsync(user, isPersistent: false);
 
                             return LocalRedirect(returnUrl);
                         }
@@ -244,14 +248,14 @@ namespace Foxxit.Controllers
         }
 
         [Authorize]
-        [HttpGet("passwordchange")]
+        [HttpGet("password-change")]
         public IActionResult PasswordChange()
         {
             return View();
         }
 
         [Authorize]
-        [HttpPost("passwordchange")]
+        [HttpPost("password-change")]
         public async Task<IActionResult> PasswordChange(PasswordChangeViewModel model)
         {
             if (!ModelState.IsValid)
@@ -268,10 +272,39 @@ namespace Foxxit.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Password was not changed!");
+                if (user.PasswordHash is not null)
+                {
+                    ModelState.AddModelError(string.Empty, "Server side denied the password change!");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Foxxit has no permission to change you password! Try to contact your external login provider.");
+                }
             }
 
             return View(model);
+        }
+
+        [Authorize]
+        [HttpGet("username-change")]
+        public IActionResult UsernameChange()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost("username-change")]
+        public async Task<IActionResult> UsernameChange(UsernameChangeViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await GetActiveUserAsync();
+            await UserService.UpdateUsernameAsync(user, model.NewUserName);
+
+            return RedirectToAction("Index", "Foxxit");
         }
 
         [Authorize]

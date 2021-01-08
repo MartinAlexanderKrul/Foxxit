@@ -8,5 +8,6 @@ namespace Foxxit.Services
 {
     public interface IPostService : IGenericEntityService<Post>
     {
+        public Task<IEnumerable<Post>> GetAllIncludeCommentsAsync();
     }
 }
