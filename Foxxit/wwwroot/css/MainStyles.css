@@ -790,3 +790,8 @@ article {
     padding-left: 2px;
     margin-bottom: 12px;
 }
+
+.text_about {
+    margin-right: 4px !important;
+    margin-left: 4px !important;
+}
