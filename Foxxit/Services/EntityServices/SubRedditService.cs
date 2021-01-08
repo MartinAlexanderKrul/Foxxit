@@ -22,5 +22,10 @@ namespace Foxxit.Services
         {
             return await Repository.GetAllIncludeUser();
         }
+
+        public async Task<SubReddit> GetbyIdIncludeUser(long id)
+        {
+            return await Repository.GetByIdAsyncIncludeUser(id);
+        }
     }
 }
