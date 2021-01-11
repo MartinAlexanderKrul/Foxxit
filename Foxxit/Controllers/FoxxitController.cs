@@ -17,31 +17,33 @@ namespace Foxxit.Controllers
     {
         private const int PageSize = 10;
 
-        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
+        public FoxxitController(IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
             : base(userManager, signInManager)
         {
             SearchService = searchService;
             PostService = postService;
             SubRedditService = subRedditService;
             CommentService = commentService;
+            UserService = userService;
         }
 
         public ISearchService SearchService { get; set; }
         public IPostService PostService { get; set; }
         public ISubRedditService SubRedditService { get; set; }
         public ICommentService CommentService { get; set; }
+        public IUserService UserService { get; set; }
 
         [HttpGet("")]
         [HttpGet("index")]
         public async Task<IActionResult> Index()
         {
             var currentUser = await GetActiveUserAsync();
-            var subReddits = await SubRedditService.GetAllAsync();
+            var subReddits = await SubRedditService.GetAllIncludeUser();
             var posts = await PostService.GetAllIncludeCommentsAsync();
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
-                Posts = posts.OrderByDescending(post => post.CreatedAt).ToList(),
+                Posts = posts.OrderByDescending(post => post.CreatedAt).ToList(), // TODO: Instead of OrderBy use Sort Method
                 SubReddits = subReddits,
             };
 
@@ -55,7 +57,7 @@ namespace Foxxit.Controllers
             {
                 CurrentUser = await GetActiveUserAsync(),
                 Posts = await PostService.GetAllIncludeCommentsAsync(),
-                SubReddits = await SubRedditService.GetAllAsync(),
+                SubReddits = await SubRedditService.GetAllIncludeUser(),
                 SearchReturnModel = SearchService.Search(category, keyword),
             };
 
@@ -74,7 +76,7 @@ namespace Foxxit.Controllers
         {
             var currentUser = await GetActiveUserAsync();
             var currentSubReddit = SubRedditService.GetbyIdIncludeUser(subRedditId);
-            var subReddits = await SubRedditService.GetAllAsync();
+            var subReddits = await SubRedditService.GetAllIncludeUser();
 
             var model = new MainPageViewModel()
             {
@@ -147,7 +149,7 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> NewPost(int subRedditId)
         {
             var currentUser = await GetActiveUserAsync();
-            var subReddits = await SubRedditService.GetAllAsync();
+            var subReddits = await SubRedditService.GetAllIncludeUser();
             var currentSubReddit = SubRedditService.GetbyIdIncludeUser(subRedditId);
 
             var model = new MainPageViewModel()
@@ -185,7 +187,7 @@ namespace Foxxit.Controllers
                 Post = post
             };
             var posts = await PostService.GetAllIncludeCommentsAsync();
-            var subReddits = await SubRedditService.GetAllAsync();
+            var subReddits = await SubRedditService.GetAllIncludeUser();
 
             var model = new MainPageViewModel()
             {
@@ -217,6 +219,33 @@ namespace Foxxit.Controllers
             await CommentService.SaveAsync();
 
             return Redirect($"Post/{postId}");
+        }
+
+        [HttpGet("SubReddit/Join")]
+        public async Task<IActionResult> Join(long subRedditId)
+        {
+            var user = await GetActiveUserAsync();
+            var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
+
+            subReddit.Members.Add(user);
+            SubRedditService.Update(subReddit);
+            await SubRedditService.SaveAsync();
+
+            await UserService.UpdateUsersSubReddits(user, subReddit);
+
+            return Redirect($"/SubReddit?subRedditId={subRedditId}");
+        }
+
+        [HttpGet("SubReddit/Unfollow")]
+        public async Task<IActionResult> Unfollow(long subRedditId)
+        {
+            var user = await GetActiveUserAsync();
+            var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
+            subReddit.Members.Remove(user);
+            SubRedditService.Update(subReddit);
+            await SubRedditService.SaveAsync();
+
+            return Redirect($"/SubReddit?subRedditId={subRedditId}");
         }
     }
 }

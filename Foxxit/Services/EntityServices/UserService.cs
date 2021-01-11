@@ -18,5 +18,13 @@ namespace Foxxit.Services
             Update(user);
             await SaveAsync();
         }
+
+        public async Task UpdateUsersSubReddits(User user, SubReddit subReddit)
+        {
+            var dbUser = await GetByIdAsync(user.Id);
+            dbUser.SubReddits.Add(subReddit);
+            Update(dbUser);
+            await SaveAsync();
+        }
     }
 }
