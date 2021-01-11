@@ -12,7 +12,7 @@ namespace XUnitTestsForFoxxit
     {
         public IntegrationTestsForSoftDelete()
         {
-            DbContext = new ApplicationDbContext(TestBootstrapper.GetInMemoryDbContextOptions("InMemory"));
+            DbContext = new ApplicationDbContext(TestBootstrapper.GetInMemoryDbContextOptions("InMemorySoftDelete"));
             DbContext.Database.EnsureDeleted();
             DbContext.Database.EnsureCreated();
 
