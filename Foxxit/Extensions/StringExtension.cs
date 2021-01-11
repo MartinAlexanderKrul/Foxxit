@@ -14,5 +14,18 @@ namespace Foxxit.Extensions
         {
             return text.Contains(value, stringComparison);
         }
+
+        public static string ShortenDisplayName(this string displayName)
+        {
+            displayName = displayName.Contains('@')
+                               ? displayName.Split('@')[0]
+                               : displayName;
+
+            displayName = displayName.Length > 16
+                    ? displayName.Substring(0, 13) + "..."
+                    : displayName;
+
+            return displayName;
+        }
     }
 }
