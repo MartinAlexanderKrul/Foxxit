@@ -96,7 +96,7 @@ namespace Foxxit.Controllers
                 {
                     await UserManager.AddToRoleAsync(user, "User");
 
-                    // await SendEmailConfirmation(user);
+                    await SendEmailConfirmation(user);
                     return RedirectToAction("Login");
                 }
                 else
@@ -139,10 +139,18 @@ namespace Foxxit.Controllers
             if (existingUser != null)
             {
                 var signInResult = await SignInManager.PasswordSignInAsync(existingUser, model.Password, model.RememberMe, false);
+                var isEmailConfirmed = await UserManager.IsEmailConfirmedAsync(existingUser);
 
                 if (signInResult.Succeeded)
                 {
-                    return RedirectToAction("Index", "Foxxit");
+                    if (isEmailConfirmed)
+                    {
+                        return RedirectToAction("Index", "Foxxit");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Please confirm your email address.");
+                    }
                 }
                 else
                 {
