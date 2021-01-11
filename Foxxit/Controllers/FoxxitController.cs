@@ -73,7 +73,7 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> SubReddit(long subRedditId)
         {
             var currentUser = await GetActiveUserAsync();
-            var currentSubReddit = await SubRedditService.GetbyIdIncludeUser(subRedditId);
+            var currentSubReddit = SubRedditService.GetbyIdIncludeUser(subRedditId);
             var subReddits = await SubRedditService.GetAllAsync();
 
             var model = new MainPageViewModel()
@@ -148,7 +148,7 @@ namespace Foxxit.Controllers
         {
             var currentUser = await GetActiveUserAsync();
             var subReddits = await SubRedditService.GetAllAsync();
-            var currentSubReddit = await SubRedditService.GetbyIdIncludeUser(subRedditId);
+            var currentSubReddit = SubRedditService.GetbyIdIncludeUser(subRedditId);
 
             var model = new MainPageViewModel()
             {
@@ -206,7 +206,7 @@ namespace Foxxit.Controllers
         }
 
         [HttpPost("addComment")]
-        public async Task<IActionResult> AddComment(string text, long userId, long postId)
+        public async Task<IActionResult> AddComment(string text, long postId)
         {
             var user = await GetActiveUserAsync();
             var post = await PostService.GetByIdAsync(postId);

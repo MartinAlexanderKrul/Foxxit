@@ -21,12 +21,12 @@ namespace Foxxit.Repositories
 
         public async Task<IEnumerable<SubReddit>> GetAllIncludeUser()
         {
-            return table.Include(u => u.CreatedBy);
+            return await table.Include(u => u.CreatedBy).ToListAsync();
         }
 
-        public async Task<SubReddit> GetByIdAsyncIncludeUser(long id)
+        public SubReddit GetByIdAsyncIncludeUser(long id)
         {
-            return table.Include(u => u.CreatedBy).ToListAsync().Result.FirstOrDefault(s => s.Id == id);
+            return GetAllIncludeUser().Result.FirstOrDefault(s => s.Id == id);
         }
     }
 }
