@@ -17,6 +17,8 @@ namespace Foxxit.Extensions
 
         public static string ShortenDisplayName(this string displayName)
         {
+            displayName ??= string.Empty;
+
             displayName = displayName.Contains('@')
                                ? displayName.Split('@')[0]
                                : displayName;
