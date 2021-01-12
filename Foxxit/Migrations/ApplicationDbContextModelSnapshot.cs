@@ -211,9 +211,6 @@ namespace Foxxit.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("SubRedditId")
-                        .HasColumnType("bigint");
-
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -231,12 +228,10 @@ namespace Foxxit.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("SubRedditId");
-
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Foxxit.Models.Entities.UserSubReddit", b =>
+            modelBuilder.Entity("Foxxit.Models.Entities.UserCreatedSubReddit", b =>
                 {
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
@@ -249,6 +244,21 @@ namespace Foxxit.Migrations
                     b.HasIndex("SubRedditId");
 
                     b.ToTable("UserSubReddits");
+                });
+
+            modelBuilder.Entity("Foxxit.Models.Entities.UserJoinedSubReddit", b =>
+                {
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("SubRedditId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("UserId", "SubRedditId");
+
+                    b.HasIndex("SubRedditId");
+
+                    b.ToTable("UserJoinedSubReddit");
                 });
 
             modelBuilder.Entity("Foxxit.Models.Entities.Vote", b =>
@@ -412,6 +422,21 @@ namespace Foxxit.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("SubRedditUser", b =>
+                {
+                    b.Property<long>("JoinedSubRedditsId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("MembersId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("JoinedSubRedditsId", "MembersId");
+
+                    b.HasIndex("MembersId");
+
+                    b.ToTable("SubRedditUser");
+                });
+
             modelBuilder.Entity("Foxxit.Models.Entities.Comment", b =>
                 {
                     b.HasBaseType("Foxxit.Models.Entities.PostBase");
@@ -467,14 +492,14 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "4e748aca-8b8a-4f29-a5ad-2696e46f3df1",
+                            ConcurrencyStamp = "1bf6e5b9-f492-4242-bd4b-e612a7c918f5",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "7bedcf17-d7b2-414f-9493-f6d5fdcd22d5",
+                            ConcurrencyStamp = "0ba63b0e-784c-465c-b433-091108144a0b",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -510,7 +535,7 @@ namespace Foxxit.Migrations
             modelBuilder.Entity("Foxxit.Models.Entities.SubReddit", b =>
                 {
                     b.HasOne("Foxxit.Models.Entities.User", "CreatedBy")
-                        .WithMany("SubReddits")
+                        .WithMany("CreatedSubReddits")
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -518,14 +543,26 @@ namespace Foxxit.Migrations
                     b.Navigation("CreatedBy");
                 });
 
-            modelBuilder.Entity("Foxxit.Models.Entities.User", b =>
+            modelBuilder.Entity("Foxxit.Models.Entities.UserCreatedSubReddit", b =>
                 {
-                    b.HasOne("Foxxit.Models.Entities.SubReddit", null)
-                        .WithMany("Members")
-                        .HasForeignKey("SubRedditId");
+                    b.HasOne("Foxxit.Models.Entities.SubReddit", "SubReddit")
+                        .WithMany()
+                        .HasForeignKey("SubRedditId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Foxxit.Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SubReddit");
+
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Foxxit.Models.Entities.UserSubReddit", b =>
+            modelBuilder.Entity("Foxxit.Models.Entities.UserJoinedSubReddit", b =>
                 {
                     b.HasOne("Foxxit.Models.Entities.SubReddit", "SubReddit")
                         .WithMany()
@@ -614,6 +651,21 @@ namespace Foxxit.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SubRedditUser", b =>
+                {
+                    b.HasOne("Foxxit.Models.Entities.SubReddit", null)
+                        .WithMany()
+                        .HasForeignKey("JoinedSubRedditsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Foxxit.Models.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("MembersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Foxxit.Models.Entities.Comment", b =>
                 {
                     b.HasOne("Foxxit.Models.Entities.Comment", null)
@@ -663,8 +715,6 @@ namespace Foxxit.Migrations
 
             modelBuilder.Entity("Foxxit.Models.Entities.SubReddit", b =>
                 {
-                    b.Navigation("Members");
-
                     b.Navigation("Posts");
                 });
 
@@ -672,13 +722,13 @@ namespace Foxxit.Migrations
                 {
                     b.Navigation("Comments");
 
+                    b.Navigation("CreatedSubReddits");
+
                     b.Navigation("GivenNotifications");
 
                     b.Navigation("Posts");
 
                     b.Navigation("ReceivedNotifications");
-
-                    b.Navigation("SubReddits");
 
                     b.Navigation("Votes");
                 });

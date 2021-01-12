@@ -29,7 +29,7 @@ namespace Foxxit.Database
         public DbSet<Comment> Comments { get; set; }
 
         // backing DbSet, maybe it is not necessary to access directly
-        public DbSet<UserSubReddit> UserSubReddits { get; set; }
+        public DbSet<UserCreatedSubReddit> UserSubReddits { get; set; }
 
         public DbSet<Notification> Notifications { get; set; }
 
@@ -87,10 +87,6 @@ namespace Foxxit.Database
                 .ValueGeneratedOnAdd();
 
             // Relations setup
-
-            // Join table for User/Subreddit
-            modelBuilder.Entity<UserSubReddit>()
-                .HasKey(usr => new { usr.UserId, usr.SubRedditId });
 
             // Vote
             modelBuilder.Entity<Vote>()
@@ -162,12 +158,24 @@ namespace Foxxit.Database
                     Name = "User",
                     NormalizedName = "USER",
                 });
+
             modelBuilder.Entity<SubReddit>()
-                .HasOne(u => u.CreatedBy)
-                .WithMany(s => s.SubReddits)
+                .HasOne(s => s.CreatedBy)
+                .WithMany(u => u.CreatedSubReddits)
                 .HasForeignKey(s => s.CreatedById)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<SubReddit>()
+                .HasMany(s => s.Members)
+                .WithMany(m => m.JoinedSubReddits);
+
+            // Join table for User/Subreddit
+            modelBuilder.Entity<UserCreatedSubReddit>()
+                .HasKey(usr => new { usr.UserId, usr.SubRedditId });
+
+            modelBuilder.Entity<UserJoinedSubReddit>()
+                .HasKey(usr => new { usr.UserId, usr.SubRedditId });
         }
 
         private static void SoftDelete(IEnumerable<EntityEntry> entities)
