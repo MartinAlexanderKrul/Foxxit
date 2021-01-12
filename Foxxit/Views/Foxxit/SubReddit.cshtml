@@ -9,7 +9,7 @@
 
 <main>
     <aside>
-        @await Html.PartialAsync("_SideBar_SubRedditInfoViewPartial")
+        @await Html.PartialAsync("_SideBar_SubRedditInfoViewPartial", Model.CurrentSubReddit)
     </aside>
 
     <section>
