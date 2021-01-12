@@ -39,7 +39,7 @@ namespace Foxxit.Controllers
         {
             var currentUser = await GetActiveUserAsync();
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
-            var posts = await PostService.GetAllIncludeCommentsAsync();
+            var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
@@ -56,7 +56,7 @@ namespace Foxxit.Controllers
             var model = new MainPageViewModel()
             {
                 CurrentUser = await GetActiveUserAsync(),
-                Posts = await PostService.GetAllIncludeCommentsAsync(),
+                Posts = await PostService.GetAllIncludeCommentsAndUserAsync(),
                 SubReddits = await SubRedditService.GetAllIncludeUserAndMembers(),
                 SearchReturnModel = SearchService.Search(category, keyword),
             };
@@ -67,7 +67,7 @@ namespace Foxxit.Controllers
         [HttpGet("paginationSample")]
         public async Task<IActionResult> PaginationSample(int? pageNum)
         {
-            var posts = await PostService.GetAllIncludeCommentsAsync();
+            var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
 
@@ -186,7 +186,7 @@ namespace Foxxit.Controllers
                 CurrentUser = currentUser,
                 Post = post
             };
-            var posts = await PostService.GetAllIncludeCommentsAsync();
+            var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
 
             var model = new MainPageViewModel()
