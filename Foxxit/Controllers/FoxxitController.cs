@@ -38,7 +38,7 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> Index()
         {
             var currentUser = await GetActiveUserAsync();
-            var subReddits = await SubRedditService.GetAllIncludeUser();
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
             var posts = await PostService.GetAllIncludeCommentsAsync();
             var model = new MainPageViewModel()
             {
@@ -57,7 +57,7 @@ namespace Foxxit.Controllers
             {
                 CurrentUser = await GetActiveUserAsync(),
                 Posts = await PostService.GetAllIncludeCommentsAsync(),
-                SubReddits = await SubRedditService.GetAllIncludeUser(),
+                SubReddits = await SubRedditService.GetAllIncludeUserAndMembers(),
                 SearchReturnModel = SearchService.Search(category, keyword),
             };
 
@@ -75,8 +75,8 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> SubReddit(long subRedditId)
         {
             var currentUser = await GetActiveUserAsync();
-            var currentSubReddit = SubRedditService.GetbyIdIncludeUser(subRedditId);
-            var subReddits = await SubRedditService.GetAllIncludeUser();
+            var currentSubReddit = SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
 
             var model = new MainPageViewModel()
             {
@@ -94,7 +94,7 @@ namespace Foxxit.Controllers
             var model = new MainPageViewModel()
             {
                 CurrentUser = await GetActiveUserAsync(),
-                SubReddits = await SubRedditService.GetAllIncludeUser()
+                SubReddits = await SubRedditService.GetAllIncludeUserAndMembers()
             };
 
             return View("CreateSubreddit", model);
@@ -127,7 +127,7 @@ namespace Foxxit.Controllers
             var model = new MainPageViewModel()
             {
                 CurrentUser = await GetActiveUserAsync(),
-                SubReddits = await SubRedditService.GetAllIncludeUser()
+                SubReddits = await SubRedditService.GetAllIncludeUserAndMembers()
             };
 
             return View("SubredditsToApprove", model);
@@ -149,8 +149,8 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> NewPost(int subRedditId)
         {
             var currentUser = await GetActiveUserAsync();
-            var subReddits = await SubRedditService.GetAllIncludeUser();
-            var currentSubReddit = SubRedditService.GetbyIdIncludeUser(subRedditId);
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+            var currentSubReddit = SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
 
             var model = new MainPageViewModel()
             {
@@ -187,7 +187,7 @@ namespace Foxxit.Controllers
                 Post = post
             };
             var posts = await PostService.GetAllIncludeCommentsAsync();
-            var subReddits = await SubRedditService.GetAllIncludeUser();
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
 
             var model = new MainPageViewModel()
             {

@@ -19,14 +19,14 @@ namespace Foxxit.Repositories
             table = dbContext.Set<SubReddit>();
         }
 
-        public async Task<IEnumerable<SubReddit>> GetAllIncludeUser()
+        public async Task<IEnumerable<SubReddit>> GetAllIncludeUserAndMembers()
         {
             return await table.Include(s => s.CreatedBy).Include(s => s.Members).ToListAsync();
         }
 
-        public SubReddit GetByIdAsyncIncludeUser(long id)
+        public SubReddit GetByIdIncludeUserAndMembers(long id)
         {
-            return GetAllIncludeUser().Result.FirstOrDefault(s => s.Id == id);
+            return GetAllIncludeUserAndMembers().Result.FirstOrDefault(s => s.Id == id);
         }
     }
 }

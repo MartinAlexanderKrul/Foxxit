@@ -8,8 +8,8 @@ namespace Foxxit.Services
 {
     public interface ISubRedditService : IGenericEntityService<SubReddit>
     {
-        Task<IEnumerable<SubReddit>> GetAllIncludeUser();
+        Task<IEnumerable<SubReddit>> GetAllIncludeUserAndMembers();
 
-        SubReddit GetbyIdIncludeUser(long id);
+        SubReddit GetbyIdIncludeUserAndMembers(long id);
     }
 }
