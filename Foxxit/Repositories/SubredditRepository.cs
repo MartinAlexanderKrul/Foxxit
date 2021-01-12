@@ -9,13 +9,11 @@ namespace Foxxit.Repositories
 {
     public class SubRedditRepository : GenericRepository<SubReddit>
     {
-        private readonly ApplicationDbContext dbContext;
         private readonly DbSet<SubReddit> table;
 
         public SubRedditRepository(ApplicationDbContext dbContext)
             : base(dbContext)
         {
-            this.dbContext = dbContext;
             table = dbContext.Set<SubReddit>();
         }
 
