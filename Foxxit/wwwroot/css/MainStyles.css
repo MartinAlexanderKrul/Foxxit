@@ -24,6 +24,7 @@
 * {
     margin: 0;
     padding: 0;
+    word-wrap: break-word;
 }
 
 a {
@@ -241,6 +242,7 @@ aside {
     display: flex;
     align-items: center;
     flex-direction: column;
+    word-wrap: break-word;
 }
 
 .side_bar {
@@ -794,4 +796,8 @@ article {
 .text_about {
     margin-right: 4px !important;
     margin-left: 4px !important;
+}
+
+.subreddit_info {
+    width: 100%;
 }
