@@ -138,24 +138,25 @@ namespace Foxxit.Controllers
 
             if (existingUser != null)
             {
-                var signInResult = await SignInManager.PasswordSignInAsync(existingUser, model.Password, model.RememberMe, false);
                 var isEmailConfirmed = await UserManager.IsEmailConfirmedAsync(existingUser);
 
-                if (signInResult.Succeeded)
+                if (isEmailConfirmed)
                 {
-                    if (isEmailConfirmed)
+                    var signInResult = await SignInManager.PasswordSignInAsync(existingUser, model.Password, model.RememberMe, false);
+
+                    if (signInResult.Succeeded)
                     {
                         return RedirectToAction("Index", "Foxxit");
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, "Please confirm your email address.");
+                        // ModelState.AddModelError(string.Empty, "Your email was not approved!");
+                        ModelState.AddModelError("Password", "Try to type your password again!");
                     }
                 }
                 else
                 {
-                    // ModelState.AddModelError(string.Empty, "Your email was not approved!");
-                    ModelState.AddModelError("Password", "Try to type your password again!");
+                    ModelState.AddModelError(string.Empty, "Please confirm your email address. If you haven't received it, check your SPAM folder.");
                 }
             }
             else
