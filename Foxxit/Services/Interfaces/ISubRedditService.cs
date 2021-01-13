@@ -10,6 +10,6 @@ namespace Foxxit.Services
     {
         Task<IEnumerable<SubReddit>> GetAllIncludeUserAndMembers();
 
-        SubReddit GetbyIdIncludeUserAndMembers(long id);
+        Task<SubReddit> GetbyIdIncludeUserAndMembers(long id);
     }
 }

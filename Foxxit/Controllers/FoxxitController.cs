@@ -77,7 +77,7 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> SubReddit(long subRedditId)
         {
             var currentUser = await GetActiveUserAsync();
-            var currentSubReddit = SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
+            var currentSubReddit = await SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
 
             var model = new MainPageViewModel()

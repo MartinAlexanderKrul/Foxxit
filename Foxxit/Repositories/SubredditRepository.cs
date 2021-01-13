@@ -22,9 +22,10 @@ namespace Foxxit.Repositories
             return await table.Include(s => s.CreatedBy).Include(s => s.Members).ThenInclude(m => m.User).ToListAsync();
         }
 
-        public SubReddit GetByIdIncludeUserAndMembers(long id)
+        public async Task<SubReddit> GetByIdIncludeUserAndMembers(long id)
         {
-            return GetAllIncludeUserAndMembers().Result.FirstOrDefault(s => s.Id == id);
+            var table = await GetAllIncludeUserAndMembers();
+            return table.FirstOrDefault(s => s.Id == id);
         }
     }
 }
