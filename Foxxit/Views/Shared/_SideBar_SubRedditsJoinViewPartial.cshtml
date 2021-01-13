@@ -11,7 +11,7 @@
         </div>
 
         <div class="side_bar_right">
-            @if (!subReddit.Members.Any(member => member.Id == Model.CurrentUser.Id))
+            @if (!subReddit.Members.Any(member => member.UserId == Model.CurrentUser.Id))
             {
                 <div class="not_button">@Html.ActionLink("JOIN", "Join", "Foxxit", new { subRedditId = subReddit.Id })</div>
             }
@@ -22,3 +22,7 @@
         </div>
     </div>
 }
+
+<div class="subreddit_end">
+    <a href="/subreddit/new/">CREATE NEW SUBREDDIT</a>
+</div>
