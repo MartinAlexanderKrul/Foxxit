@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using Foxxit.Services.Interfaces;
 
 namespace Foxxit.Models.Entities
@@ -17,7 +18,7 @@ namespace Foxxit.Models.Entities
         public SubReddit()
         {
             Posts = new Collection<Post>();
-            Members = new Collection<User>();
+            Members = new Collection<UserSubReddit>();
         }
 
         public long Id { get; set; }
@@ -27,8 +28,8 @@ namespace Foxxit.Models.Entities
         public long CreatedById { get; set; }
         public User CreatedBy { get; set; }
         public ICollection<Post> Posts { get; set; }
-        public ICollection<User> Members { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsApproved { get; set; }
+        public ICollection<UserSubReddit> Members { get; set; }
     }
 }

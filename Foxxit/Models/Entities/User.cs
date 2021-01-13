@@ -39,13 +39,13 @@ namespace Foxxit.Models.Entities
         public ICollection<Post> Posts { get; set; }
         public ICollection<Vote> Votes { get; set; }
         public ICollection<Comment> Comments { get; set; }
-
-        [InverseProperty("CreatedBy")]
-        public ICollection<SubReddit> CreatedSubReddits { get; set; }
-
-        public ICollection<SubReddit> JoinedSubReddits { get; set; }
         public ICollection<Notification> ReceivedNotifications { get; set; }
         public ICollection<Notification> GivenNotifications { get; set; }
         public bool IsDeleted { get; set; }
+
+        public ICollection<UserSubReddit> JoinedSubReddits { get; set; }
+
+        [InverseProperty("CreatedBy")]
+        public ICollection<SubReddit> CreatedSubReddits { get; set; }
     }
 }
