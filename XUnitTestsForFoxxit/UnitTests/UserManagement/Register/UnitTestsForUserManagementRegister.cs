@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace XUnitTestsForFoxxit
 {
-    public class UserManagementUnitTests
+    public class UserManagementUnitTestsRegister
     {
         [Fact]
         public void RegistrationModelStateValidationTestEmail_1_ReturnsTrue()
