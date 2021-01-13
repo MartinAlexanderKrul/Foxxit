@@ -20,6 +20,7 @@
     <EmbeddedResource Remove="Views\Home\**" />
     <None Remove="Email\**" />
     <None Remove="Views\Home\**" />
+    <Compile Remove="Repositories\SubredditRepository - Copy.cs" />
 
     <Content Remove="stylecop.json" />
   </ItemGroup>

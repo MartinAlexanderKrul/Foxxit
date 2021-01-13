@@ -235,6 +235,7 @@ main {
 /* SIDEBAR */
 
 aside {
+    position: relative;
     background-color: var(--section-color);
     width: var(--right-side-size);
     height: 631px;
@@ -800,4 +801,12 @@ article {
 
 .subreddit_info {
     width: 100%;
+}
+
+.subreddit_end {
+    width: 100%;
+    position: absolute;
+    bottom: 5px;
+    text-align: center;
+    font-size: var(--main-font-size-smaller);
 }

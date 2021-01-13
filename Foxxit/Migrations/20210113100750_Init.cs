@@ -246,59 +246,12 @@ namespace Foxxit.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SubRedditUser",
-                columns: table => new
-                {
-                    JoinedSubRedditsId = table.Column<long>(type: "bigint", nullable: false),
-                    MembersId = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SubRedditUser", x => new { x.JoinedSubRedditsId, x.MembersId });
-                    table.ForeignKey(
-                        name: "FK_SubRedditUser_AspNetUsers_MembersId",
-                        column: x => x.MembersId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_SubRedditUser_SubReddits_JoinedSubRedditsId",
-                        column: x => x.JoinedSubRedditsId,
-                        principalTable: "SubReddits",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserJoinedSubReddit",
-                columns: table => new
-                {
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    SubRedditId = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserJoinedSubReddit", x => new { x.UserId, x.SubRedditId });
-                    table.ForeignKey(
-                        name: "FK_UserJoinedSubReddit_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserJoinedSubReddit_SubReddits_SubRedditId",
-                        column: x => x.SubRedditId,
-                        principalTable: "SubReddits",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UserSubReddits",
                 columns: table => new
                 {
                     UserId = table.Column<long>(type: "bigint", nullable: false),
-                    SubRedditId = table.Column<long>(type: "bigint", nullable: false)
+                    SubRedditId = table.Column<long>(type: "bigint", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -378,12 +331,12 @@ namespace Foxxit.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
-                values: new object[] { 1L, "1bf6e5b9-f492-4242-bd4b-e612a7c918f5", "UserRole", "Admin", "ADMIN" });
+                values: new object[] { 1L, "712e9e57-1f90-4810-a167-c42b9c2d3bf6", "UserRole", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
-                values: new object[] { 2L, "0ba63b0e-784c-465c-b433-091108144a0b", "UserRole", "User", "USER" });
+                values: new object[] { 2L, "fe2b5c30-483a-43c1-b9de-53a130f5d0c9", "UserRole", "User", "USER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -465,16 +418,6 @@ namespace Foxxit.Migrations
                 column: "CreatedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubRedditUser_MembersId",
-                table: "SubRedditUser",
-                column: "MembersId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserJoinedSubReddit_SubRedditId",
-                table: "UserJoinedSubReddit",
-                column: "SubRedditId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_UserSubReddits_SubRedditId",
                 table: "UserSubReddits",
                 column: "SubRedditId");
@@ -512,12 +455,6 @@ namespace Foxxit.Migrations
 
             migrationBuilder.DropTable(
                 name: "Notifications");
-
-            migrationBuilder.DropTable(
-                name: "SubRedditUser");
-
-            migrationBuilder.DropTable(
-                name: "UserJoinedSubReddit");
 
             migrationBuilder.DropTable(
                 name: "UserSubReddits");
