@@ -17,7 +17,7 @@ namespace Foxxit.Controllers
     {
         private const int PageSize = 10;
 
-        public FoxxitController(IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
+        public FoxxitController(IUserSubRedditService userSubReddit, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
             : base(userManager, signInManager)
         {
             SearchService = searchService;
@@ -25,6 +25,7 @@ namespace Foxxit.Controllers
             SubRedditService = subRedditService;
             CommentService = commentService;
             UserService = userService;
+            UserSubRedditService = userSubReddit;
         }
 
         public ISearchService SearchService { get; set; }
@@ -32,6 +33,7 @@ namespace Foxxit.Controllers
         public ISubRedditService SubRedditService { get; set; }
         public ICommentService CommentService { get; set; }
         public IUserService UserService { get; set; }
+        public IUserSubRedditService UserSubRedditService { get; set; }
 
         [HttpGet("")]
         [HttpGet("index")]
@@ -227,11 +229,9 @@ namespace Foxxit.Controllers
             var user = await GetActiveUserAsync();
             var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
 
-            subReddit.Members.Add(user);
+            subReddit.Members.Add(new UserSubReddit() { SubReddit = subReddit, User = user });
             SubRedditService.Update(subReddit);
             await SubRedditService.SaveAsync();
-
-            await UserService.UpdateUsersSubReddits(user, subReddit);
 
             return Redirect($"/SubReddit?subRedditId={subRedditId}");
         }
@@ -240,10 +240,9 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> Unfollow(long subRedditId)
         {
             var user = await GetActiveUserAsync();
-            var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
-            subReddit.Members.Remove(user);
-            SubRedditService.Update(subReddit);
-            await SubRedditService.SaveAsync();
+            var subReddit = SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
+
+            await UserSubRedditService.Delete(subRedditId, user.Id);
 
             return Redirect($"/SubReddit?subRedditId={subRedditId}");
         }
