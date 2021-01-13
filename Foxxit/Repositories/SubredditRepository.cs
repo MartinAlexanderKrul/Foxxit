@@ -19,7 +19,7 @@ namespace Foxxit.Repositories
 
         public async Task<IEnumerable<SubReddit>> GetAllIncludeUserAndMembers()
         {
-            return await table.Include(s => s.CreatedBy).Include(s => s.Members).ToListAsync();
+            return await table.Include(s => s.CreatedBy).Include(s => s.Members).ThenInclude(m => m.User).ToListAsync();
         }
 
         public SubReddit GetByIdIncludeUserAndMembers(long id)
