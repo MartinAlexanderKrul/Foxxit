@@ -34,11 +34,11 @@
                 <div class="comment_right_content">
                     <p style="margin-bottom: 1%">@comment.Text</p>
                     <div class="article_section">
-                        <div class="comment_number">
+                        <div class="closed comment_number" id="show_reply">
                             <i class="fa fa-comment" id="show_reply"></i>
-                            <a id="show_reply" class="comment_number" asp-action="NewComment" asp-controller="Foxxit" asp-route-commentId="@comment.Id">REPLY</a>
+                            <a class="comment_number" asp-action="NewComment" asp-controller="Foxxit" asp-route-commentId="@comment.Id">REPLY</a>
                         </div>
-                        <div class="addcomment" id="add_subcomment">
+                        <div class="addcomment" id="add_subcomment_@comment.Id">
                             @*@await Html.PartialAsync("_AddSubCommentViewPartial", comment)*@
                         </div>
                     </div>
