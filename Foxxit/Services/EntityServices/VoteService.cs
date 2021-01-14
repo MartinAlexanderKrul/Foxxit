@@ -29,20 +29,16 @@ namespace Foxxit.Services.EntityServices
 
         public int GetVoteValue(long userId, long postBaseId)
         {
-            var existingVotes = Repository.Filter(x => x.OwnerId == userId && x.PostBaseId == postBaseId);
-            int finalVote = 0;
-
-            foreach (var vote in existingVotes)
-            {
-                finalVote += vote.Value;
-            }
-
-            return finalVote;
+            return Repository
+                .Filter(x => x.OwnerId == userId && x.PostBaseId == postBaseId)
+                .First().Value;
         }
 
         public int GetVotesCount(long postBaseId)
         {
-            return Repository.Filter(x => x.PostBaseId == postBaseId).Count();
+            return Repository
+                .Filter(x => x.PostBaseId == postBaseId)
+                .Count();
         }
 
     }
