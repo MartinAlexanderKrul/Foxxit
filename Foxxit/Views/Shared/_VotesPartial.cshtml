@@ -1,0 +1,45 @@
+﻿@using Foxxit.Models.ViewModels;
+@model VoteViewModel
+
+<div class="post_vote">
+    <form asp-action="Vote" asp-controller="Home">
+        <input type="hidden" value="1" name="value" />
+        <input type="hidden" value="@Model.PostBase.Id" name="postBaseId" />
+        <button type="submit" id="vote-btn" data-postBaseId="{{ @Model.PostBase.Id }}" data-value="{{ 1 }}">
+            @if (Model.Value == 1) // add different colors
+            {
+                <i class="fa fa-chevron-up fa-lg"></i>
+            }
+            else
+            {
+                <i class="fa fa-chevron-up fa-lg"></i>             
+            }
+
+        </button>
+    </form>
+</div>
+<div class="post_vote">
+    @if (Model.Value != 0)
+    {
+        @Model.Count
+    }
+    else
+    {
+        @Model.Count
+    }
+</div>
+
+<div class="post_vote">
+    <form asp-action="Vote" asp-controller="Home">
+        <button type="submit" id="vote-btn" data-postBaseId="{{ @Model.PostBase.Id }}" data-value="{{ -1 }}">
+            @if (Model.Value == 1) // add different colors
+            {
+                <i class="fa fa-chevron-down fa-lg"></i>
+            }
+            else
+            {
+                <i class="fa fa-chevron-down fa-lg"></i>
+            }
+        </button>
+    </form>
+</div>

@@ -43,7 +43,7 @@ namespace Foxxit.Controllers
 
             var model = new VoteViewModel() { Value = voteValue, Count = votesCount };
 
-            return View(model);
+            return View("_VotesPartial", model);
         }
     }
 }

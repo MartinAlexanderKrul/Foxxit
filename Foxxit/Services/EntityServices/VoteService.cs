@@ -25,6 +25,7 @@ namespace Foxxit.Services.EntityServices
 
             var newVote = new Vote() { OwnerId = userId, PostBaseId = postBaseId, Value = value };
             await Repository.AddAsync(newVote);
+            await Repository.SaveAsync();
         }
 
         public int GetVoteValue(long userId, long postBaseId)

@@ -12,13 +12,16 @@
 //    $('#addcomment').load("/newComment");
 //});
 
-$(document).on('click', '#upvote-btn', function (event) {
+$(document).on('click', '#vote-btn', function (event) {
     $.ajax({
         url: '/vote',
         type: "post",
         contentType: 'application/json;charset=UTF-8',
         dataType: "json",
-        data: JSON.stringify({ 'postBaseId': $('#vote-btn').data('postBaseId') }),
+        data: JSON.stringify({
+            'postBaseId': $('#vote-btn').data('postBaseId'),
+            'value': value // ??
+        }),
         success: function (response) {
             console.log(response);
         },
