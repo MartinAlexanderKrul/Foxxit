@@ -241,10 +241,11 @@ namespace Foxxit.Controllers
             return Redirect($"Post/{postId}");
         }
 
-        [HttpGet("comment/reply")]
-        public IActionResult ShowReply()
+        [HttpGet("comment/reply/{id}")]
+        public async Task<IActionResult> ShowReply(long id)
         {
-            return View("_AddSubCommentViewPartial");
+            var comment = await CommentService.GetByIdInclude(id);
+            return View("_AddSubCommentViewPartial", comment);
         }
 
         [HttpGet("SubReddit/Join")]

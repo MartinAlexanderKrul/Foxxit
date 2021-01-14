@@ -1,14 +1,18 @@
-﻿$('#show_reply').on('click', function (evt) {
+﻿$('.show_reply').on('click', function (evt) {
     evt.preventDefault();
     evt.stopPropagation();
+    debugger;
 
-    for (var i = 0; i < 100; i++) {
-        if (this.className !== "open comment_ńumber") {
-            $("closed comment_number").toggleClass("open comment_number");
-            $('#add_subcomment_' + i).load("/comment/reply");
-        } else {
-            $("open comment_number").toggleClass("i}closed comment_number");
-            $('#add_subcomment_' + i).load("/comment/reply/empty")
-        }
+    let id = this.getAttribute("data-commentId");
+
+    if ($(this).hasClass("closed")) {
+        $(this).toggleClass("open");
+        $(this).toggleClass("closed");
+        $('#add_subcomment_' + id).load("/comment/reply/" + id);
+    } else {
+        $(this).hasClass("open");
+        $(this).toggleClass("closed");
+        $(this).toggleClass("open");
+        $('#add_subcomment_' + id).load("/comment/reply/empty")
     }
 });

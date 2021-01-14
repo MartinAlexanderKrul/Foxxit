@@ -1,21 +1,10 @@
 ﻿@using Foxxit.Models.Entities
 @model Comment
-@*<form asp-action="AddSubComment" asp-controller="Foxxit" method="post">
-        <input class="form_inputs higher_input" type="text" name="text" placeholder="Comment" />
-        <input type="hidden" name="userId" value="@Model.UserId" />
-        <input type="hidden" name="originalCommentId" value="@Model.Id" />
-        <input type="hidden" name="postId" value="@Model.PostId" />
-
-        <div class="end">
-            <button class="not_button bigger_button dark_button">REPLY</button>
-        </div>
-    </form>*@
-
 <form asp-action="AddSubComment" asp-controller="Foxxit" method="post">
     <input class="form_inputs higher_input" type="text" name="text" placeholder="Comment" />
-    <input type="hidden" name="userId" value="" />
-    <input type="hidden" name="originalCommentId" value="" />
-    <input type="hidden" name="postId" value="" />
+    <input type="hidden" name="userId" value="@Model.UserId" />
+    <input type="hidden" name="originalCommentId" value="@Model.Id" />
+    <input type="hidden" name="postId" value="@Model.PostId" />
 
     <div class="end">
         <button class="not_button bigger_button dark_button">REPLY</button>
