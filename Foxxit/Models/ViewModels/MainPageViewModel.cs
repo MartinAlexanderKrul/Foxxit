@@ -16,15 +16,19 @@ namespace Foxxit.Models.ViewModels
             SubReddits = new List<SubReddit>();
         }
 
-        public MainPageViewModel(User currentUser, List<Post> posts, List<SubReddit> subReddits, SearchReturnModel searchReturnModel)
+        public MainPageViewModel(User currentUser, List<Post> posts, List<SubReddit> subReddits, SearchReturnModel searchReturnModel, PostViewModel postViewModel)
         {
             CurrentUser = currentUser;
             Posts = posts;
             SubReddits = subReddits;
             SearchReturnModel = searchReturnModel;
+            PostViewModel = postViewModel;
+
         }
 
+        public PostViewModel PostViewModel { get; set; }
         public User CurrentUser { get; set; }
+        public SubReddit CurrentSubReddit { get; set; }
         public IEnumerable<Post> Posts { get; set; }
         public IEnumerable<SubReddit> SubReddits { get; set; }
         public SearchReturnModel SearchReturnModel { get; set; }

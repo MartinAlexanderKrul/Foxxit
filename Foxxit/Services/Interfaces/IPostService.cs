@@ -9,6 +9,7 @@ namespace Foxxit.Services
 {
     public interface IPostService : IGenericEntityService<Post>
     {
+        public Task<IEnumerable<Post>> GetAllIncludeCommentsAsync();
         IEnumerable<Post> HotSort(int hours, int subRedditId);
 
         IEnumerable<Post> NewSort(int subRedditId);
