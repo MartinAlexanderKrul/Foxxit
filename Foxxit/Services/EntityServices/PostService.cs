@@ -36,8 +36,13 @@ namespace Foxxit.Services
 
         public IEnumerable<Post> HotSort(int hours, int subRedditId)
         {
-            var filter = subRedditId == 0 ? Filter(p => (DateTime.Now - p.CreatedAt).TotalHours < hours && p.SubReddit.Id == subRedditId).OrderBy(p => p.Votes.Count) : Filter(p => (DateTime.Now - p.CreatedAt).TotalHours < hours);
-            return filter.OrderBy(p => p.Votes.Count);
+            var filter = Filter(p => (DateTime.Now - p.CreatedAt).TotalHours < hours).OrderBy(p => p.Votes.Count);
+            if (subRedditId != 0)
+            {
+                return filter.Where(p => p.SubRedditId == subRedditId);
+            }
+
+            return filter;
         }
 
         public IEnumerable<Post> NewSort(int subRedditId)

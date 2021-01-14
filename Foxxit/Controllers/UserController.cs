@@ -25,7 +25,10 @@ namespace Foxxit.Controllers
         [HttpGet("notifications")]
         public async Task<IActionResult> Notifications()
         {
-            var model = new MainPageViewModel() /* {CurrentUser = await GetActiveUserAsync()}*/;
+            var model = new MainPageViewModel()
+            {
+                //CurrentUser = await GetActiveUserAsync() ↑ nechat async - v momente, kdy se "zprovozni" CurrentUser nebude házet hlášku o "lacks of await"
+            };
 
             return View("Notifications", model);
         }

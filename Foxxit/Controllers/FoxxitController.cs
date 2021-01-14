@@ -33,7 +33,7 @@ namespace Foxxit.Controllers
         {
             var model = new MainPageViewModel()
             {
-                // CurrentUser = await GetActiveUserAsync(),
+                CurrentUser = await GetActiveUserAsync(),
                 Posts = await PostService.GetAllAsync(),
                 SubReddits = await SubRedditService.GetAllAsync(),
             };
@@ -46,7 +46,7 @@ namespace Foxxit.Controllers
         {
             var model = new MainPageViewModel()
             {
-                // CurrentUser = await GetActiveUserAsync(),
+                CurrentUser = await GetActiveUserAsync(),
                 Posts = await PostService.GetAllAsync(),
                 SubReddits = await SubRedditService.GetAllAsync(),
                 SearchReturnModel = SearchService.Search(category, keyword),
@@ -68,7 +68,7 @@ namespace Foxxit.Controllers
         {
             var model = new MainPageViewModel()
             {
-                // CurrentUser = await GetActiveUserAsync(),
+                CurrentUser = await GetActiveUserAsync(),
                 Posts = PostService.Sort(sortMethod),
                 SortMethod = sortMethod,
                 SubReddits = await SubRedditService.GetAllAsync(),
