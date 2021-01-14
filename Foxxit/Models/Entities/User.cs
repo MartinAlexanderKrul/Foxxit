@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using Foxxit.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 
@@ -13,7 +14,7 @@ namespace Foxxit.Models.Entities
             UserName = userName;
             Email = email;
             Posts = new Collection<Post>();
-            SubReddits = new Collection<SubReddit>();
+            CreatedSubReddits = new Collection<SubReddit>();
             Votes = new Collection<Vote>();
             Comments = new Collection<Comment>();
             ReceivedNotifications = new Collection<Notification>();
@@ -23,7 +24,7 @@ namespace Foxxit.Models.Entities
         public User()
         {
             Posts = new Collection<Post>();
-            SubReddits = new Collection<SubReddit>();
+            CreatedSubReddits = new Collection<SubReddit>();
             Votes = new Collection<Vote>();
             Comments = new Collection<Comment>();
             ReceivedNotifications = new Collection<Notification>();
@@ -36,11 +37,15 @@ namespace Foxxit.Models.Entities
         public string About { get; set; }
         public DateTime CreatedAt { get; set; }
         public ICollection<Post> Posts { get; set; }
-        public ICollection<SubReddit> SubReddits { get; set; }
         public ICollection<Vote> Votes { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Notification> ReceivedNotifications { get; set; }
         public ICollection<Notification> GivenNotifications { get; set; }
         public bool IsDeleted { get; set; }
+
+        public ICollection<UserSubReddit> JoinedSubReddits { get; set; }
+
+        [InverseProperty("CreatedBy")]
+        public ICollection<SubReddit> CreatedSubReddits { get; set; }
     }
 }

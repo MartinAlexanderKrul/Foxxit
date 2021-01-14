@@ -17,31 +17,35 @@ namespace Foxxit.Controllers
     {
         private const int PageSize = 10;
 
-        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
+        public FoxxitController(IUserSubRedditService userSubReddit, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
             : base(userManager, signInManager)
         {
             SearchService = searchService;
             PostService = postService;
             SubRedditService = subRedditService;
             CommentService = commentService;
+            UserService = userService;
+            UserSubRedditService = userSubReddit;
         }
 
         public ISearchService SearchService { get; set; }
         public IPostService PostService { get; set; }
         public ISubRedditService SubRedditService { get; set; }
         public ICommentService CommentService { get; set; }
+        public IUserService UserService { get; set; }
+        public IUserSubRedditService UserSubRedditService { get; set; }
 
         [HttpGet("")]
         [HttpGet("index")]
         public async Task<IActionResult> Index()
         {
             var currentUser = await GetActiveUserAsync();
-            var subReddits = await SubRedditService.GetAllAsync();
-            var posts = await PostService.GetAllIncludeCommentsAsync();
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+            var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
-                Posts = posts.OrderByDescending(post => post.CreatedAt).ToList(),
+                Posts = posts.OrderByDescending(post => post.CreatedAt).ToList(), // TODO: Instead of OrderBy use Sort Method
                 SubReddits = subReddits,
             };
 
@@ -54,8 +58,8 @@ namespace Foxxit.Controllers
             var model = new MainPageViewModel()
             {
                 CurrentUser = await GetActiveUserAsync(),
-                Posts = await PostService.GetAllIncludeCommentsAsync(),
-                SubReddits = await SubRedditService.GetAllAsync(),
+                Posts = await PostService.GetAllIncludeCommentsAndUserAsync(),
+                SubReddits = await SubRedditService.GetAllIncludeUserAndMembers(),
                 SearchReturnModel = SearchService.Search(category, keyword),
             };
 
@@ -65,7 +69,7 @@ namespace Foxxit.Controllers
         [HttpGet("paginationSample")]
         public async Task<IActionResult> PaginationSample(int? pageNum)
         {
-            var posts = await PostService.GetAllIncludeCommentsAsync();
+            var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
         }
 
@@ -73,8 +77,8 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> SubReddit(long subRedditId)
         {
             var currentUser = await GetActiveUserAsync();
-            var currentSubReddit = await SubRedditService.GetbyIdIncludeUser(subRedditId);
-            var subReddits = await SubRedditService.GetAllAsync();
+            var currentSubReddit = await SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
 
             var model = new MainPageViewModel()
             {
@@ -92,7 +96,7 @@ namespace Foxxit.Controllers
             var model = new MainPageViewModel()
             {
                 CurrentUser = await GetActiveUserAsync(),
-                SubReddits = await SubRedditService.GetAllIncludeUser()
+                SubReddits = await SubRedditService.GetAllIncludeUserAndMembers()
             };
 
             return View("CreateSubreddit", model);
@@ -125,7 +129,7 @@ namespace Foxxit.Controllers
             var model = new MainPageViewModel()
             {
                 CurrentUser = await GetActiveUserAsync(),
-                SubReddits = await SubRedditService.GetAllIncludeUser()
+                SubReddits = await SubRedditService.GetAllIncludeUserAndMembers()
             };
 
             return View("SubredditsToApprove", model);
@@ -147,8 +151,8 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> NewPost(int subRedditId)
         {
             var currentUser = await GetActiveUserAsync();
-            var subReddits = await SubRedditService.GetAllAsync();
-            var currentSubReddit = await SubRedditService.GetbyIdIncludeUser(subRedditId);
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+            var currentSubReddit = await SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
 
             var model = new MainPageViewModel()
             {
@@ -184,8 +188,8 @@ namespace Foxxit.Controllers
                 CurrentUser = currentUser,
                 Post = post
             };
-            var posts = await PostService.GetAllIncludeCommentsAsync();
-            var subReddits = await SubRedditService.GetAllAsync();
+            var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
 
             var model = new MainPageViewModel()
             {
@@ -206,7 +210,7 @@ namespace Foxxit.Controllers
         }
 
         [HttpPost("addComment")]
-        public async Task<IActionResult> AddComment(string text, long userId, long postId)
+        public async Task<IActionResult> AddComment(string text, long postId)
         {
             var user = await GetActiveUserAsync();
             var post = await PostService.GetByIdAsync(postId);
@@ -217,6 +221,29 @@ namespace Foxxit.Controllers
             await CommentService.SaveAsync();
 
             return Redirect($"Post/{postId}");
+        }
+
+        [HttpGet("SubReddit/Join")]
+        public async Task<IActionResult> Join(long subRedditId)
+        {
+            var user = await GetActiveUserAsync();
+            var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
+
+            subReddit.Members.Add(new UserSubReddit() { SubReddit = subReddit, User = user });
+            SubRedditService.Update(subReddit);
+            await SubRedditService.SaveAsync();
+
+            return Redirect($"/SubReddit?subRedditId={subRedditId}");
+        }
+
+        [HttpGet("SubReddit/Unfollow")]
+        public async Task<IActionResult> Unfollow(long subRedditId)
+        {
+            var user = await GetActiveUserAsync();
+
+            await UserSubRedditService.Delete(subRedditId, user.Id);
+
+            return Redirect($"/SubReddit?subRedditId={subRedditId}");
         }
     }
 }

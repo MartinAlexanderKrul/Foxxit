@@ -1,4 +1,5 @@
 ﻿@using Foxxit.Models.ViewModels;
+@using Foxxit.Extensions;
 @model MainPageViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
@@ -11,12 +12,7 @@
     }
     else
     {
-        displayUser = @Model.CurrentUser.UserName.Contains('@')
-                              ? @Model.CurrentUser.UserName.Split('@')[0]
-                              : @Model.CurrentUser.UserName;
-        displayUser = displayUser.Length > 16
-                ? displayUser.Substring(0, 13) + "..."
-                : displayUser;
+        displayUser = @Model.CurrentUser.UserName.ShortenDisplayName();
     }
 
 }

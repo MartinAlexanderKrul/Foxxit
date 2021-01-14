@@ -88,10 +88,6 @@ namespace Foxxit.Database
 
             // Relations setup
 
-            // Join table for User/Subreddit
-            modelBuilder.Entity<UserSubReddit>()
-                .HasKey(usr => new { usr.UserId, usr.SubRedditId });
-
             // Vote
             modelBuilder.Entity<Vote>()
                 .HasOne(v => v.Owner)
@@ -162,12 +158,25 @@ namespace Foxxit.Database
                     Name = "User",
                     NormalizedName = "USER",
                 });
+
             modelBuilder.Entity<SubReddit>()
-                .HasOne(u => u.CreatedBy)
-                .WithMany(s => s.SubReddits)
+                .HasOne(s => s.CreatedBy)
+                .WithMany(u => u.CreatedSubReddits)
                 .HasForeignKey(s => s.CreatedById)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
+
+            // Join table for User/Subreddit
+            modelBuilder.Entity<UserSubReddit>()
+                .HasKey(usr => new { usr.UserId, usr.SubRedditId });
+            modelBuilder.Entity<UserSubReddit>()
+                .HasOne(usr => usr.User)
+                .WithMany(u => u.JoinedSubReddits)
+                .HasForeignKey(usr => usr.UserId);
+            modelBuilder.Entity<UserSubReddit>()
+                .HasOne(usr => usr.SubReddit)
+                .WithMany(u => u.Members)
+                .HasForeignKey(usr => usr.SubRedditId);
         }
 
         private static void SoftDelete(IEnumerable<EntityEntry> entities)

@@ -1,9 +1,9 @@
-﻿@using Foxxit.Models.Entities
-@model IEnumerable<SubReddit>
+﻿@using Foxxit.Models.ViewModels
+@model MainPageViewModel
 
 <h3 class="side_bar_header">Trending SubReddits</h3>
 
-@foreach (var subReddit in Model)
+@foreach (var subReddit in Model.SubReddits)
 {
     <div class="side_bar">
         <div class="side_bar_left">
@@ -11,7 +11,18 @@
         </div>
 
         <div class="side_bar_right">
-            <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Foxxit", new { subRedditId = subReddit.Id })</div>
+            @if (!subReddit.Members.Any(member => member.UserId == Model.CurrentUser.Id))
+            {
+                <div class="not_button">@Html.ActionLink("JOIN", "Join", "Foxxit", new { subRedditId = subReddit.Id })</div>
+            }
+            else
+            {
+                <div class="not_button light_button">@Html.ActionLink("Leave", "Unfollow", "Foxxit", new { subRedditId = subReddit.Id })</div>
+            }
         </div>
     </div>
 }
+
+<div class="subreddit_end">
+    <a href="/subreddit/new/">CREATE NEW SUBREDDIT</a>
+</div>

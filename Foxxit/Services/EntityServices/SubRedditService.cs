@@ -16,16 +16,16 @@ namespace Foxxit.Services
             Repository = repository;
         }
 
-        public SubRedditRepository Repository { get; private set; }
+        public new SubRedditRepository Repository { get; private set; }
 
-        public async Task<IEnumerable<SubReddit>> GetAllIncludeUser()
+        public async Task<IEnumerable<SubReddit>> GetAllIncludeUserAndMembers()
         {
-            return await Repository.GetAllIncludeUser();
+            return await Repository.GetAllIncludeUserAndMembers();
         }
 
-        public async Task<SubReddit> GetbyIdIncludeUser(long id)
+        public async Task<SubReddit> GetbyIdIncludeUserAndMembers(long id)
         {
-            return await Repository.GetByIdAsyncIncludeUser(id);
+            return await Repository.GetByIdIncludeUserAndMembers(id);
         }
     }
 }

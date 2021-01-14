@@ -24,6 +24,7 @@
 * {
     margin: 0;
     padding: 0;
+    word-wrap: break-word;
 }
 
 a {
@@ -234,6 +235,7 @@ main {
 /* SIDEBAR */
 
 aside {
+    position: relative;
     background-color: var(--section-color);
     width: var(--right-side-size);
     height: 631px;
@@ -241,6 +243,7 @@ aside {
     display: flex;
     align-items: center;
     flex-direction: column;
+    word-wrap: break-word;
 }
 
 .side_bar {
@@ -794,4 +797,16 @@ article {
 .text_about {
     margin-right: 4px !important;
     margin-left: 4px !important;
+}
+
+.subreddit_info {
+    width: 100%;
+}
+
+.subreddit_end {
+    width: 100%;
+    position: absolute;
+    bottom: 5px;
+    text-align: center;
+    font-size: var(--main-font-size-smaller);
 }
