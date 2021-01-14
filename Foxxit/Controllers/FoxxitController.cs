@@ -181,12 +181,12 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> ViewPost(long postId)
         {
             var currentUser = await GetActiveUserAsync();
-            var post = await PostService.GetByIdAsync(postId);
+            var post = await PostService.GetByIdIncludeCommentsAndUserAsync(postId);
 
             var postViewModel = new PostViewModel()
             {
                 CurrentUser = currentUser,
-                Post = post
+                Post = post,
             };
             var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
@@ -223,6 +223,29 @@ namespace Foxxit.Controllers
             return Redirect($"Post/{postId}");
         }
 
+        [HttpPost("addSubComment")]
+        public async Task<IActionResult> AddSubComment(string text, long postId, long originalCommentId)
+        {
+            var user = await GetActiveUserAsync();
+
+            var originalComment = await CommentService.GetByIdAsync(originalCommentId);
+            var comment = new Comment() { OriginalCommentId = originalCommentId, Text = text, User = user };
+
+            originalComment.Comments.Add(comment);
+
+            CommentService.Update(originalComment);
+            await CommentService.SaveAsync();
+
+            return Redirect($"Post/{postId}");
+        }
+
+        [HttpGet("comment/reply/{id}")]
+        public async Task<IActionResult> ShowReply(long id)
+        {
+            var comment = await CommentService.GetByIdInclude(id);
+            return View("_AddSubCommentViewPartial", comment);
+        }
+
         [HttpGet("SubReddit/Join")]
         public async Task<IActionResult> Join(long subRedditId)
         {
@@ -240,10 +263,103 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> Unfollow(long subRedditId)
         {
             var user = await GetActiveUserAsync();
-
             await UserSubRedditService.Delete(subRedditId, user.Id);
 
             return Redirect($"/SubReddit?subRedditId={subRedditId}");
+        }
+
+        [HttpGet("passwordchange")]
+        public async Task<IActionResult> PasswordChange()
+        {
+            var currentUser = await GetActiveUserAsync();
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+
+            var model = new MainPageViewModel()
+            {
+                CurrentUser = currentUser,
+                SubReddits = subReddits,
+            };
+
+            return View("AccountPasswordChange", model);
+        }
+
+        [HttpGet("usernamechange")]
+        public async Task<IActionResult> UsernameChange()
+        {
+            var currentUser = await GetActiveUserAsync();
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+
+            var model = new MainPageViewModel()
+            {
+                CurrentUser = currentUser,
+                SubReddits = subReddits,
+            };
+
+            return View("AccountUsernameChange", model);
+        }
+
+        [HttpPost("passwordchange")]
+        public async Task<IActionResult> PasswordChange(PasswordChangeViewModel model)
+        {
+            var currentUser = await GetActiveUserAsync();
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+
+            var mainModel = new MainPageViewModel()
+            {
+                CurrentUser = currentUser,
+                SubReddits = subReddits,
+                PasswordChangeViewModel = model,
+            };
+
+            if (!ModelState.IsValid)
+            {
+                return View("AccountPasswordChange", mainModel);
+            }
+
+            var user = await GetActiveUserAsync();
+            var changePasswordResult = await UserManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+
+            if (changePasswordResult.Succeeded)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                if (user.PasswordHash is not null)
+                {
+                    ModelState.AddModelError(string.Empty, "Server side denied the password change!");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Foxxit has no permission to change you password! Try to contact your external login provider.");
+                }
+            }
+
+            return View("AccountPasswordChange", mainModel);
+        }
+
+        [HttpPost("usernamechange")]
+        public async Task<IActionResult> UsernameChange(UsernameChangeViewModel model)
+        {
+            var currentUser = await GetActiveUserAsync();
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+
+            var mainModel = new MainPageViewModel()
+            {
+                CurrentUser = currentUser,
+                SubReddits = subReddits,
+                UsernameChangeViewModel = model,
+            };
+
+            if (!ModelState.IsValid)
+            {
+                return View("AccountUsernameChange", mainModel);
+            }
+
+            var user = await GetActiveUserAsync();
+            await UserService.UpdateUsernameAsync(user, model.NewUserName);
+
+            return RedirectToAction("Index", "Foxxit");
         }
     }
 }

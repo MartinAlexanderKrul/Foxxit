@@ -7,6 +7,7 @@ using Foxxit.Repositories;
 using Foxxit.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +32,13 @@ namespace Foxxit
             services.AddControllersWithViews().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            });
+
+            // External Login
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
             });
 
             switch (Configuration.DbType)
@@ -70,9 +78,6 @@ namespace Foxxit
 
             services.AddTransient<NotificationRepository>();
             services.AddTransient<INotificationService, NotificationService>();
-
-            services.AddTransient<UserSubRedditRepository>();
-            services.AddTransient<IUserSubRedditService, UserSubRedditService>();
 
             services.AddTransient<ImageRepository>();
             services.AddTransient<IImageService, ImageService>();
@@ -137,8 +142,8 @@ namespace Foxxit
             // {
             //    app.UseDeveloperExceptionPage();
             // }
-
             app.UseDeveloperExceptionPage();
+            app.UseForwardedHeaders();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();

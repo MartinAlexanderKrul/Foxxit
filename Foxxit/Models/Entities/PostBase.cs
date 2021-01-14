@@ -6,7 +6,7 @@ using Foxxit.Services.Interfaces;
 
 namespace Foxxit.Models.Entities
 {
-    public class PostBase : IIdentityEntity, ISoftDeletable
+    public abstract class PostBase : IIdentityEntity, ISoftDeletable
     {
         public PostBase()
         {

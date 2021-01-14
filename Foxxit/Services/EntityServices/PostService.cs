@@ -22,5 +22,10 @@ namespace Foxxit.Services
         {
             return await PostRepository.GetAllIncludeCommentsAndUserAsync();
         }
+
+        public async Task<Post> GetByIdIncludeCommentsAndUserAsync(long id)
+        {
+            return await PostRepository.GetByIdIncludeCommentsAndUserAsync(id);
+        }
     }
 }

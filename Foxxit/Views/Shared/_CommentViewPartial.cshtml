@@ -1,7 +1,9 @@
 ﻿@using Foxxit.Extensions
 @using Foxxit.Models.Entities
-@model PostBase
+@model Post
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@await Html.PartialAsync("_AddCommentViewPartial", Model)
 
 @if (Model.Comments is not null)
 {
@@ -32,56 +34,47 @@
                 <div class="comment_right_content">
                     <p style="margin-bottom: 1%">@comment.Text</p>
                     <div class="article_section">
-                        @*<div class="comment_number">
-                                <i class="fa fa-comment"></i>
-                                <a class="comment_number" asp-action="NewComment" asp-controller="Foxxit" asp-route-commentId="@comment.Id">REPLY</a>
-                            </div> TODO: Set the route by the actual endpoint
-                            <div class="addcomment" id="addcomment">
-                                    @await Html.PartialAsync("_AddCommentViewPartial", Model)
-                                </div>*@
+                        <div class="closed comment_number show_reply" data-commentId="@comment.Id">
+                            <i class="fa fa-comment" id="show_reply"></i>
+                            <a class="comment_number" asp-action="NewComment" asp-controller="Foxxit" asp-route-commentId="@comment.Id">REPLY</a>
+                        </div>
+                        <div class="addcomment" id="add_subcomment_@comment.Id">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        @if (comment.Comments.Any())
+        @foreach (var subComment in comment.Comments)
         {
 
-            @foreach (var subComment in comment.Comments)
-            {
+            <div class="comment_section sublevel">
 
-                <div class="comment_section sublevel">
-
-                    <div classs="comment_left">
-                        <div class="post_vote">
-                            <form asp-action="Vote" asp-controller="Comment">
-                                <input type="hidden" value="up" name="voteType" />
-                                <input type="hidden" value="@subComment.Id" name="commentId" />
-                                <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
-                            </form>
-                        </div>
-                        <div class="post_vote">
-                            <form asp-action="Vote" asp-controller="Comment">
-                                <input type="hidden" value="down" name="voteType" />
-                                <input type="hidden" value="@subComment.Id" name="commentId" />
-                                <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
-                            </form>
-                        </div>
+                <div classs="comment_left">
+                    <div class="post_vote">
+                        <form asp-action="Vote" asp-controller="Comment">
+                            <input type="hidden" value="up" name="voteType" />
+                            <input type="hidden" value="@subComment.Id" name="commentId" />
+                            <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
+                        </form>
                     </div>
-                    <div class="comment_right">
-                        <div class="comment_right_header">
-                            <p class="comment_info">@subComment.User.UserName ● @subComment.Votes.Count() points ● @subComment.TimeStamp() ago</p>
-                        </div>
-                        <div class="comment_right_content">
-                            <p>@subComment.Text</p>
-                        </div>
+                    <div class="post_vote">
+                        <form asp-action="Vote" asp-controller="Comment">
+                            <input type="hidden" value="down" name="voteType" />
+                            <input type="hidden" value="@subComment.Id" name="commentId" />
+                            <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
+                        </form>
                     </div>
                 </div>
-            }
-
+                <div class="comment_right">
+                    <div class="comment_right_header">
+                        <p class="comment_info">@subComment.User.UserName ● @subComment.Votes.Count() points ● @subComment.TimeStamp() ago</p>
+                    </div>
+                    <div class="comment_right_content">
+                        <p>@subComment.Text</p>
+                    </div>
+                </div>
+            </div>
         }
     }
 }
-
-<br />
-@await Html.PartialAsync("_AddCommentViewPartial", Model)
