@@ -1,5 +1,6 @@
 ﻿@using Foxxit.Extensions
 @using Foxxit.Models.ViewModels
+@using Foxxit.Enums
 @{ Layout = "_Layout"; }
 @model MainPageViewModel
 
@@ -7,9 +8,9 @@
     <div class="subreddit_header">
         <div><h1>@Model.CurrentSubReddit.Name</h1></div>
         <div class="section_intro_buttons">
-            <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="hot">HOT</a></div>
-            <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="new">NEW</a></div>
-            <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="top">TOP</a></div>
+            <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.Hot ? " selected_button" : ""))" asp-action="SubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Hot" asp-route-subRedditId="@Model.CurrentSubReddit.Id">HOT</a>
+            <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.New ? " selected_button" : ""))" asp-action="SubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.New" asp-route-subRedditId="@Model.CurrentSubReddit.Id">NEW</a>
+            <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.Top ? " selected_button" : ""))" asp-action="SubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Top" asp-route-subRedditId="@Model.CurrentSubReddit.Id">TOP</a>
         </div>
     </div>
     <div class="create_post">
@@ -17,43 +18,65 @@
     </div>
 </div>
 
-@foreach (var post in Model.CurrentSubReddit.Posts)
+@foreach (var post in Model.Posts)
 {
     //TODO whole row has to be a link
-    <article>
-        <div class="article_left">
-            <div class="post_vote">
-                <form asp-action="Vote" asp-controller="Home">
-                    <input type="hidden" value="up" name="voteType" />
-                    <input type="hidden" value="@post.Id" name="postId" />
-                    <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
-                </form>
-            </div>
-            <div class="post_vote">@post.Votes.Count</div>
-
-            <div class="post_vote">
-                <form asp-action="Vote" asp-controller="Home">
-                    <input type="hidden" value="down" name="voteType" />
-                    <input type="hidden" value="@post.Id" name="postId" />
-                    <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
-                </form>
-            </div>
+<article>
+    <div class="article_left">
+        <div class="post_vote">
+            <form asp-action="Vote" asp-controller="Home">
+                <input type="hidden" value="up" name="voteType" />
+                <input type="hidden" value="@post.Id" name="postId" />
+                <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
+            </form>
         </div>
+        <div class="post_vote">@post.Votes.Count</div>
 
-        <div class="article_middle">
-            <div class="article_post_header">
-                <img src="POST ICON" alt="Icon" class="icon" />
+        <div class="post_vote">
+            <form asp-action="Vote" asp-controller="Home">
+                <input type="hidden" value="down" name="voteType" />
+                <input type="hidden" value="@post.Id" name="postId" />
+                <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <div class="article_middle">
+        <div class="article_header">
+            <div class="article_text">
                 <h4>@post.Title</h4>
+                <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name</p>
             </div>
-            <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago.
+            <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Foxxit", new { subRedditId = post.SubRedditId })</div>
         </div>
 
-        <div class="posts_list_row_right">
-            <a asp-action="Post" asp-controller="Home" asp-route-PostId="@post.Id">
-                <div class="comments">
-                    <i class="fa fa-comment icon"></i>
-                    @post.Comments.Count
-                </div>
-            </a>
+        <div class="article_content">
+            @if (!String.IsNullOrEmpty(post.ImageURL))
+            {
+                <img style="width: 100%" src="@post.ImageURL" alt="@post.Title" />
+            }
+            else
+            {
+                <p>@post.Text</p>
+            }
         </div>
-    </article>}
+
+        <div class="article_footer">
+            <div class="article_section">
+                <div class="comment_number">
+                    <a href="/post/@post.Id">
+                        <i class="fa fa-comment fa-lg load-comments"></i>
+                        @post.Comments.Count() COMMENTS
+                    </a>
+                </div>
+            </div>
+
+            <div class="posts_list_row_right">
+                <a asp-action="Post" asp-controller="Home" asp-route-PostId="@post.Id">
+                    <div class="comments">
+                        <i class="fa fa-comment icon"></i>
+                        @post.Comments.Count
+                    </div>
+                </a>
+            </div>
+</article>}

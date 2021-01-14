@@ -2,34 +2,10 @@
 @using Foxxit.Enums
 @model MainPageViewModel
 
-@switch (Model.SortMethod)
-{
-    case SortMethod.Hot:
-        <div class="section_intro_buttons">
-            <a class="sorting_button selected_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="Hot">HOT</a>
-            <a class="sorting_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.New">New</a>
-            <a class="sorting_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="Top">Top</a>
-        </div>
-        break;
-    case SortMethod.New:
-        <div class="section_intro_buttons">
-            <a class="sorting_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="Hot">HOT</a>
-            <a class="sorting_button selected_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.New">New</a>
-            <a class="sorting_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="Top">Top</a>
-        </div>
-        break;
-    case SortMethod.Top:
-        <div class="section_intro_buttons">
-            <a class="sorting_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="Hot">HOT</a>
-            <a class="sorting_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.New">New</a>
-            <a class="sorting_button selected_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="Top">Top</a>
-        </div>
-        break;
-    default:
-        <div class="section_intro_buttons">
-            <a class="sorting_button selected_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="Hot">HOT</a>
-            <a class="sorting_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.New">New</a>
-            <a class="sorting_button section_intro_button" asp-action="Sort" asp-controller="Foxxit" asp-route-sortMethod="Top">Top</a>
-        </div>
-        break;
-}
+
+<div class="section_intro_buttons">
+
+    <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.Hot ? " selected_button" : ""))" asp-action="Index" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Hot">HOT</a>
+    <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.New ? " selected_button" : ""))" asp-action="Index" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.New">NEW</a>
+    <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.Top ? " selected_button" : ""))" asp-action="Index" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Top">TOP</a>
+</div>

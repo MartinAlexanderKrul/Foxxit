@@ -24,7 +24,7 @@ namespace Foxxit.Services
             return await PostRepository.GetAllIncludeCommentsAsync();
         }
 
-        public IEnumerable<Post> Sort(SortMethod sortMethod, int subRedditId = 0)
+        public IEnumerable<Post> Sort(SortMethod sortMethod, long? subRedditId)
         {
             switch (sortMethod)
             {
@@ -42,10 +42,10 @@ namespace Foxxit.Services
             }
         }
 
-        public IEnumerable<Post> HotSort(int hours, int subRedditId)
+        public IEnumerable<Post> HotSort(int hours, long? subRedditId)
         {
             var filter = Filter(p => (DateTime.Now - p.CreatedAt).TotalHours < hours).OrderBy(p => p.Votes.Count);
-            if (subRedditId != 0)
+            if (subRedditId.HasValue)
             {
                 return filter.Where(p => p.SubRedditId == subRedditId);
             }
@@ -53,12 +53,12 @@ namespace Foxxit.Services
             return filter;
         }
 
-        public IEnumerable<Post> NewSort(int subRedditId)
+        public IEnumerable<Post> NewSort(long? subRedditId)
         {
-            return subRedditId == 0 ? GetAllAsync().Result.OrderBy(p => p.CreatedAt) : Filter(p => p.SubReddit.Id == subRedditId).OrderBy(p => p.CreatedAt);
+            return subRedditId.HasValue ? Filter(p => p.SubReddit.Id == subRedditId).OrderByDescending(p => p.CreatedAt) : GetAllAsync().Result.OrderByDescending(p => p.CreatedAt);
         }
 
-        public IEnumerable<Post> TopSort(int hours, int subRedditId)
+        public IEnumerable<Post> TopSort(int hours, long? subRedditId)
         {
             return HotSort(hours, subRedditId);
         }
