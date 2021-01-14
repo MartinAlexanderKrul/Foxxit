@@ -20,5 +20,10 @@ namespace Foxxit.Repositories
         {
             return await table.Include(p => p.User).Include(p => p.Comments).ThenInclude(c => c.User).ToListAsync();
         }
+
+        public async Task<Post> GetByIdIncludeCommentsAndUserAsync(long id)
+        {
+            return await table.Include(p => p.Comments).ThenInclude(c => c.Comments).Include(p => p.User).Include(p => p.Comments).ThenInclude(c => c.User).FirstOrDefaultAsync(c => c.Id == id);
+        }
     }
 }

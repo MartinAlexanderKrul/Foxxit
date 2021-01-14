@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Foxxit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210113100750_Init")]
+    [Migration("20210114082404_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -422,7 +422,7 @@ namespace Foxxit.Migrations
                     b.Property<long>("OriginalCommentId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("PostId")
+                    b.Property<long?>("PostId")
                         .HasColumnType("bigint");
 
                     b.HasIndex("CommentId");
@@ -467,14 +467,14 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "712e9e57-1f90-4810-a167-c42b9c2d3bf6",
+                            ConcurrencyStamp = "78718095-1d33-4b1e-83dc-37763474be24",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "fe2b5c30-483a-43c1-b9de-53a130f5d0c9",
+                            ConcurrencyStamp = "4e176c5b-9331-414f-9f6b-5b61e37972f6",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -616,8 +616,7 @@ namespace Foxxit.Migrations
                     b.HasOne("Foxxit.Models.Entities.Post", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("Foxxit.Models.Entities.User", "User")
                         .WithMany("Comments")

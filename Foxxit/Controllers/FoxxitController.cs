@@ -181,12 +181,12 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> ViewPost(long postId)
         {
             var currentUser = await GetActiveUserAsync();
-            var post = await PostService.GetByIdAsync(postId);
+            var post = await PostService.GetByIdIncludeCommentsAndUserAsync(postId);
 
             var postViewModel = new PostViewModel()
             {
                 CurrentUser = currentUser,
-                Post = post
+                Post = post,
             };
             var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
@@ -223,6 +223,30 @@ namespace Foxxit.Controllers
             return Redirect($"Post/{postId}");
         }
 
+        [HttpPost("addSubComment")]
+        public async Task<IActionResult> AddSubComment(string text, long postId, long originalCommentId)
+        {
+            var user = await GetActiveUserAsync();
+            var post = await PostService.GetByIdAsync(postId);
+
+            var originalComment = await CommentService.GetByIdAsync(originalCommentId);
+            var comment = new Comment() { OriginalCommentId = originalCommentId, Text = text, User = user };
+            originalComment.Comments.Add(comment);
+
+            CommentService.Update(originalComment);
+            await CommentService.SaveAsync();
+
+            var testComment = await CommentService.GetByIdAsync(originalComment.Id);
+
+            return Redirect($"Post/{postId}");
+        }
+
+        [HttpGet("comment/reply")]
+        public IActionResult ShowReply()
+        {
+            return View("_AddSubCommentViewPartial");
+        }
+
         [HttpGet("SubReddit/Join")]
         public async Task<IActionResult> Join(long subRedditId)
         {
@@ -240,8 +264,6 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> Unfollow(long subRedditId)
         {
             var user = await GetActiveUserAsync();
-            var subReddit = SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
-
             await UserSubRedditService.Delete(subRedditId, user.Id);
 
             return Redirect($"/SubReddit?subRedditId={subRedditId}");
