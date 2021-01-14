@@ -810,3 +810,7 @@ article {
     text-align: center;
     font-size: var(--main-font-size-smaller);
 }
+
+.show_reply {
+    cursor: pointer;
+}
