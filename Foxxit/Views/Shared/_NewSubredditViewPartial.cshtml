@@ -1,0 +1,19 @@
+﻿@using Foxxit.Models.ViewModels
+@model MainPageViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<article>
+    <div class="postformcontainer">
+        <h2>Create new subreddit</h2>
+        <p class="after_header">Every new subreddit must be approved first, before listed.</p>
+
+        <form class="postform" asp-action="CreateSubreddit" asp-controller="Foxxit" method="post">
+
+            <input class="form_inputs" type="text" name="name" placeholder="Name" required /><br />
+            <textarea class="form_inputs biginput padding_input" name="about" placeholder="About – short description of subreddit" required></textarea> <br />
+            <div class="postform_buttons">
+                <button class="not_button bigger_button dark_button">CREATE</button>
+            </div>
+        </form>
+    </div>
+</article>

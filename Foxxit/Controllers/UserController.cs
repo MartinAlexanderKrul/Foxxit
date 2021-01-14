@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Foxxit.Models.DTO;
+﻿using System.Threading.Tasks;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
@@ -36,7 +34,7 @@ namespace Foxxit.Controllers
             await NotificationService.MarkNotificationRead(await NotificationService.GetByIdAsync(notificationId));
             var model = new MainPageViewModel();
 
-            return RedirectToAction("ShowPost", "Post", notificationId); // TODO: Change action and controller name according to the actual post route
+            return RedirectToAction("ViewPost", "Foxxit", notificationId);
         }
     }
 }

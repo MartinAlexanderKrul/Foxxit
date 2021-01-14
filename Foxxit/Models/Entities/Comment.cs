@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Foxxit.Models.Entities
 {
@@ -6,6 +7,13 @@ namespace Foxxit.Models.Entities
     {
         public Comment()
         {
+        }
+
+        public Comment(string text, User user, Post post)
+        {
+            Text = text;
+            User = user;
+            Post = post;
         }
 
         public long OriginalCommentId { get; set; }

@@ -1,13 +1,8 @@
-﻿using Foxxit;
+using Foxxit;
 using Foxxit.Database;
 using Foxxit.Models.Entities;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -17,7 +12,10 @@ namespace XUnitTestsForFoxxit
     {
         public IntegrationTestsForSoftDelete()
         {
-            DbContext = new ApplicationDbContext(TestBootstrapper.GetInMemoryDbContextOptions("InMemory"));
+            DbContext = new ApplicationDbContext(TestBootstrapper.GetInMemoryDbContextOptions("InMemorySoftDelete"));
+            DbContext.Database.EnsureDeleted();
+            DbContext.Database.EnsureCreated();
+
             TestUser = new User()
             {
                 UserName = "Jan",

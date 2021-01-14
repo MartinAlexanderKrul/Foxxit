@@ -1,25 +1,23 @@
 ﻿@using Foxxit.Extensions
+@using Foxxit.Models.ViewModels
 @{ Layout = "_Layout"; }
-@model Foxxit.Models.ViewModels.SubRedditViewModel
+@model MainPageViewModel
 
-<div class="subreddit_header">
-    <div>
-        <div><h1>@Model.SubReddit.Name</h1></div>
-        <div class="subreddit_sorting">
+<div class="section_intro">
+    <div class="subreddit_header">
+        <div><h1>@Model.CurrentSubReddit.Name</h1></div>
+        <div class="section_intro_buttons">
             <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="hot">HOT</a></div>
             <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="new">NEW</a></div>
             <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="top">TOP</a></div>
         </div>
     </div>
-    <div>
-        <form action="createPost" method="post">
-            <button type="submit">CREATE POST</button>
-        </form>
+    <div class="create_post">
+        <a asp-action="NewPost" asp-controller="Foxxit" asp-route-subRedditId="@Model.CurrentSubReddit.Id" class="biggest_button not_button bigger_button light_button">CREATE POST</a>
     </div>
 </div>
 
-
-@foreach (var post in Model.SubReddit.Posts)
+@foreach (var post in Model.CurrentSubReddit.Posts)
 {
     //TODO whole row has to be a link
 <article>
@@ -42,18 +40,20 @@
         </div>
     </div>
 
-    <div class="article_middle">
-        <div class="article_header">
-            <div><img src="POST ICON" alt="Icon" /></div>
-            <h4>@post.Title</h4>
-            <p class="article_text_info">Posted by @post.User.DisplayName @post.TimeStamp() ago.
+        <div class="article_middle">
+            <div class="article_post_header">
+                <img src="POST ICON" alt="Icon" class="icon" />
+                <h4>@post.Title</h4>
+            </div>
+            <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago.
         </div>
 
-    </div>
-    <div class="posts_list_row_right">
-        <a asp-action="Post" asp-controller="Home" asp-route-PostId="@post.Id">
-            <div><i class="fa fa-comment"></i></div>
-            <div>@post.Comments.Count</div>
-        </a>
-    </div>
-</article>}
+        <div class="posts_list_row_right">
+            <a asp-action="Post" asp-controller="Home" asp-route-PostId="@post.Id">
+                <div class="comments">
+                    <i class="fa fa-comment icon"></i>
+                    @post.Comments.Count
+                </div>
+            </a>
+        </div>
+    </article>}

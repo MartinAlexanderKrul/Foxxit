@@ -1,6 +1,25 @@
-﻿@using Foxxit.Models.ViewModels
+﻿@using Foxxit.Models.ViewModels;
 @model MainPageViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    var displayUser = String.Empty;
+
+    if (@Model.CurrentUser is null)
+    {
+        displayUser = "Login";
+    }
+    else
+    {
+        displayUser = @Model.CurrentUser.UserName.Contains('@')
+                              ? @Model.CurrentUser.UserName.Split('@')[0]
+                              : @Model.CurrentUser.UserName;
+        displayUser = displayUser.Length > 16
+                ? displayUser.Substring(0, 13) + "..."
+                : displayUser;
+    }
+
+}
 
 <div class="header_left">
     <div class="header_logo">
@@ -8,8 +27,8 @@
     </div>
 
     <div class="header_subReddits_container">
-        <form asp-action="ViewSubReddit" asp-controller="Foxxit">
-            <select class="header_inputs" name="SubReddits" id="header_subReddits" onchange="this.form.submit()">
+        <form asp-action="SubReddit" asp-controller="Foxxit" method="get">
+            <select class="header_inputs" name="subRedditId" id="header_subReddits" onchange="this.form.submit()">
                 <option class="header_options">SubReddits</option>
                 @foreach (var subReddit in Model.SubReddits)
                 {
@@ -56,18 +75,19 @@
     <div class="header_right_two">
         @if (Model.CurrentUser is null)
         {
-            <a href="/account/login">Login</a>
+            <a href="/account/login">@displayUser</a>
         }
         else
         {
-            @Model.CurrentUser.UserName
+            @displayUser
         }
     </div>
 
     <div class="header_right_three dropdown">
         <button class="dropbtn"><i class="fa fa-cog fa-lg"></i></button>
         <div class="dropdown-content">
-            <a href="/account/settings">Account Settings</a>
+            <a href="/account/username-change">Change username</a>
+            <a href="/account/password-change">Change password</a>
             <a href="/account/logout/">Logout</a>
         </div>
     </div>

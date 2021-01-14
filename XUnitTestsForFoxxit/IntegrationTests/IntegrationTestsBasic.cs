@@ -2,13 +2,7 @@
 using Foxxit.Database;
 using Foxxit.Models.Entities;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace XUnitTestsForFoxxit
@@ -81,24 +75,21 @@ namespace XUnitTestsForFoxxit
             Assert.DoesNotContain(nonexistentUser, DbContext.Users);
         }
 
-        #region Sample Test
         //[Fact]
         //public async Task Doubling_ReturnsResult()
         //{
-        //    //Arrange
+        //    Arrange
         //    var expected = 10;
         //    var response = await factory.CreateClient().GetAsync("doubling?input=5");
         //    var data = await response.Content.ReadAsStringAsync();
 
-        //    //Act
+        //    Act
         //    var result = JsonConvert.DeserializeObject<Dictionary<string, int>>(data);
         //    result.TryGetValue("result", out int actual);
 
-        //    //Assert
+        //    Assert
         //    response.EnsureSuccessStatusCode();
         //    Assert.Equal(expected, actual);
         //}
-        #endregion
-
     }
 }

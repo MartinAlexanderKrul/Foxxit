@@ -1,0 +1,40 @@
+﻿@using Foxxit.Models.ViewModels
+@model UsernameChangeViewModel
+@{Layout = "_Layout";}
+
+<head>
+    <link rel="stylesheet" href="~/css/MainStyles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    @if (Html.ViewData.ModelState.Where(x => x.Key.Equals(String.Empty)).Count() > 0)
+    {
+        <div class="summary">
+            @Html.ValidationSummary(true, null, new { @class = "validation_summary" })
+        </div>
+    }
+
+    <div class="login_form">
+        @using (Html.BeginForm("UsernameChange", "Account", FormMethod.Post))
+        {
+            <div class="login_header">
+                <span> <img src="~/assets/logo.png" alt="logo" class="login_logo" /></span>
+                <span class="login_title">
+                    <a>USERNAME CHANGE</a>
+                </span>
+            </div>
+
+            <span>
+                @Html.TextBoxFor(m => m.NewUserName, new { @class = "login_field", @placeholder = "new username" })
+            </span>
+
+            <span class="text-danger">
+                @Html.ValidationMessageFor(m => m.NewUserName, null)
+            </span>
+
+            <input class="login_button" type="submit" value="CHANGE" />
+        }
+    </div>
+</body>

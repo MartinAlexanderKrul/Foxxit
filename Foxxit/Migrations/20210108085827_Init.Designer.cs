@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Foxxit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201217101549_Init")]
+    [Migration("20210108085827_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,7 +19,31 @@ namespace Foxxit.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.1");
+
+            modelBuilder.Entity("Foxxit.Models.Entities.Image", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Format")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Stream")
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
+                });
 
             modelBuilder.Entity("Foxxit.Models.Entities.Notification", b =>
                 {
@@ -106,6 +130,9 @@ namespace Foxxit.Migrations
                     b.Property<long>("CreatedById")
                         .HasColumnType("bigint");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -113,6 +140,8 @@ namespace Foxxit.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
 
                     b.ToTable("SubReddits");
                 });
@@ -184,6 +213,9 @@ namespace Foxxit.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long?>("SubRedditId")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -200,6 +232,8 @@ namespace Foxxit.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("SubRedditId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -380,21 +414,6 @@ namespace Foxxit.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SubRedditUser", b =>
-                {
-                    b.Property<long>("MembersId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("SubRedditsId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("MembersId", "SubRedditsId");
-
-                    b.HasIndex("SubRedditsId");
-
-                    b.ToTable("SubRedditUser");
-                });
-
             modelBuilder.Entity("Foxxit.Models.Entities.Comment", b =>
                 {
                     b.HasBaseType("Foxxit.Models.Entities.PostBase");
@@ -450,14 +469,14 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "6559a13e-c964-4b91-b213-87a13842575c",
+                            ConcurrencyStamp = "4e748aca-8b8a-4f29-a5ad-2696e46f3df1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "c2c46d06-f877-4fd4-b28c-70514b913394",
+                            ConcurrencyStamp = "7bedcf17-d7b2-414f-9493-f6d5fdcd22d5",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -488,6 +507,24 @@ namespace Foxxit.Migrations
                     b.Navigation("Receiver");
 
                     b.Navigation("Sender");
+                });
+
+            modelBuilder.Entity("Foxxit.Models.Entities.SubReddit", b =>
+                {
+                    b.HasOne("Foxxit.Models.Entities.User", "CreatedBy")
+                        .WithMany("SubReddits")
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+                });
+
+            modelBuilder.Entity("Foxxit.Models.Entities.User", b =>
+                {
+                    b.HasOne("Foxxit.Models.Entities.SubReddit", null)
+                        .WithMany("Members")
+                        .HasForeignKey("SubRedditId");
                 });
 
             modelBuilder.Entity("Foxxit.Models.Entities.UserSubReddit", b =>
@@ -579,21 +616,6 @@ namespace Foxxit.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SubRedditUser", b =>
-                {
-                    b.HasOne("Foxxit.Models.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("MembersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Foxxit.Models.Entities.SubReddit", null)
-                        .WithMany()
-                        .HasForeignKey("SubRedditsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Foxxit.Models.Entities.Comment", b =>
                 {
                     b.HasOne("Foxxit.Models.Entities.Comment", null)
@@ -643,6 +665,8 @@ namespace Foxxit.Migrations
 
             modelBuilder.Entity("Foxxit.Models.Entities.SubReddit", b =>
                 {
+                    b.Navigation("Members");
+
                     b.Navigation("Posts");
                 });
 
@@ -655,6 +679,8 @@ namespace Foxxit.Migrations
                     b.Navigation("Posts");
 
                     b.Navigation("ReceivedNotifications");
+
+                    b.Navigation("SubReddits");
 
                     b.Navigation("Votes");
                 });

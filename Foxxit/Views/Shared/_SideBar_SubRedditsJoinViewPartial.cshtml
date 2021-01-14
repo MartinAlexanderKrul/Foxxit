@@ -7,11 +7,11 @@
 {
     <div class="side_bar">
         <div class="side_bar_left">
-            <p>@subReddit.Name</p>
+            <p><a href="/SubReddit?subRedditId=@subReddit.Id">@subReddit.Name</a></p>
         </div>
 
         <div class="side_bar_right">
-            <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Home", new { subRedditId = subReddit.Id })</div>
+            <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Foxxit", new { subRedditId = subReddit.Id })</div>
         </div>
     </div>
 }

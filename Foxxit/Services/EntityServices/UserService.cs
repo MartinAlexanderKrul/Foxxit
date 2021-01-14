@@ -1,18 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Foxxit.Models.Entities;
 using Foxxit.Repositories;
+using Foxxit.Services.EntityServices;
 
 namespace Foxxit.Services
 {
-    public class UserService : IUserService
+    public class UserService : GenericEntityService<User>, IUserService
     {
-        public UserService(UserRepository userRepository)
+        public UserService(UserRepository repository)
+            : base(repository)
         {
-            UserRepository = userRepository;
         }
 
-        public UserRepository UserRepository { get; set; }
+        public async Task UpdateUsernameAsync(User user, string newUserName)
+        {
+            user.UserName = newUserName;
+            Update(user);
+            await SaveAsync();
+        }
     }
 }
