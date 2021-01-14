@@ -240,7 +240,6 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> Unfollow(long subRedditId)
         {
             var user = await GetActiveUserAsync();
-            var subReddit = SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
 
             await UserSubRedditService.Delete(subRedditId, user.Id);
 
