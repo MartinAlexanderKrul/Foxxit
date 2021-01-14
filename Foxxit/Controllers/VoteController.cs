@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Foxxit.Models.Entities;
+using Foxxit.Models.ViewModels;
 using Foxxit.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,20 +21,29 @@ namespace Foxxit.Controllers
         public IVoteService VoteService { get; set; }
 
         [HttpPost("vote")]
-        public async Task<IActionResult> Vote(int voteType, int postBaseId)
+        public async Task<IActionResult> Vote(int value, int postBaseId)
         {
             var currentUser = GetActiveUserAsync();
-            var vote = new Vote() { Value = voteType, PostBaseId = postBaseId, OwnerId = currentUser.Id };
+            var existingVote = VoteService.GetVoteValue(currentUser.Id, postBaseId);
 
-            var existingVotes = VoteService.GetVoteValue(currentUser.Id, postBaseId);
-
-            if (existingVotes == 0 || existingVotes != voteType)
+            if (existingVote == 0 || existingVote != value)
             {
-                await VoteService.AddAsync(vote);
-                await VoteService.SaveAsync();
+                VoteService.AddNewVote(currentUser.Id, postBaseId, value);
             }
 
-            return RedirectToAction();
+            return await VotesInfo(postBaseId);
+        }
+
+        [HttpGet("votesInfo")]
+        public async Task<IActionResult> VotesInfo(int postBaseId)
+        {
+            var currentUser = await GetActiveUserAsync();
+            var voteValue = VoteService.GetVoteValue(currentUser.Id, postBaseId);
+            var votesCount = VoteService.GetVotesCount(postBaseId);
+
+            var model = new VoteViewModel() { Value = voteValue, Count = votesCount };
+
+            return View(model);
         }
     }
 }
