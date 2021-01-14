@@ -248,66 +248,6 @@ namespace Foxxit.Controllers
         }
 
         [Authorize]
-        [HttpGet("password-change")]
-        public IActionResult PasswordChange()
-        {
-            return View();
-        }
-
-        [Authorize]
-        [HttpPost("password-change")]
-        public async Task<IActionResult> PasswordChange(PasswordChangeViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var user = await GetActiveUserAsync();
-            var changePasswordResult = await UserManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
-
-            if (changePasswordResult.Succeeded)
-            {
-                return RedirectToAction("Login");
-            }
-            else
-            {
-                if (user.PasswordHash is not null)
-                {
-                    ModelState.AddModelError(string.Empty, "Server side denied the password change!");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Foxxit has no permission to change you password! Try to contact your external login provider.");
-                }
-            }
-
-            return View(model);
-        }
-
-        [Authorize]
-        [HttpGet("username-change")]
-        public IActionResult UsernameChange()
-        {
-            return View();
-        }
-
-        [Authorize]
-        [HttpPost("username-change")]
-        public async Task<IActionResult> UsernameChange(UsernameChangeViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var user = await GetActiveUserAsync();
-            await UserService.UpdateUsernameAsync(user, model.NewUserName);
-
-            return RedirectToAction("Index", "Foxxit");
-        }
-
-        [Authorize]
         [HttpGet("logout")]
         public IActionResult Logout()
         {

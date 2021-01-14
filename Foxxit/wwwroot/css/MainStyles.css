@@ -296,9 +296,9 @@ section {
     background-color: var(--background-color) !important;
 }
 
-/*.dark_button {
-    border: 3px solid var(--button-color) !important;
-}*/
+.dark_button {
+    border: var(--button-color) !important;
+}
 
 .section_intro, .section_intro_main {
     background-color: var(--section-color);
@@ -813,4 +813,9 @@ article {
 
 .show_reply {
     cursor: pointer;
+}
+
+.button_onleft {
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
 }

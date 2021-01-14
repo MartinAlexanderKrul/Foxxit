@@ -30,5 +30,7 @@ namespace Foxxit.Models.ViewModels
         public IEnumerable<Post> Posts { get; set; }
         public IEnumerable<SubReddit> SubReddits { get; set; }
         public SearchReturnModel SearchReturnModel { get; set; }
+        public PasswordChangeViewModel PasswordChangeViewModel { get; set; }
+        public UsernameChangeViewModel UsernameChangeViewModel { get; set; }
     }
 }
