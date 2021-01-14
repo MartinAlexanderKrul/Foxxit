@@ -144,7 +144,6 @@ namespace Foxxit
             // }
             app.UseDeveloperExceptionPage();
             app.UseForwardedHeaders();
-
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
