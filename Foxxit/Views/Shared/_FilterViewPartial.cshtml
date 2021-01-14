@@ -31,7 +31,7 @@
         <div class="filtered_container">
 
             <h2>Found Comments</h2>
-            @foreach (var comment in Model.Comments)
+            @foreach (var comment in Model.Comments.Where(c => c.PostId != null))
             {
                 <div class="article_item">@Html.ActionLink($"{comment.Text.Substring(0, comment.Text.Length > 101 ? 100 : comment.Text.Length)} on {comment.Post.Title}", "ViewPost", "Foxxit", new { postId = comment.Post.Id })</div>
             }
@@ -73,7 +73,7 @@
         <div class="filtered_container">
 
             <h2>Found Comments</h2>
-            @foreach (var comment in Model.Comments)
+            @foreach (var comment in Model.Comments.Where(c => c.PostId != null))
             {
                 <div class="article_item">@Html.ActionLink($"{comment.Text.Substring(0, comment.Text.Length > 101 ? 100 : comment.Text.Length)} on {comment.Post.Title}", "ViewPost", "Foxxit", new { postId = comment.Post.Id })</div>
             }

@@ -227,16 +227,14 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> AddSubComment(string text, long postId, long originalCommentId)
         {
             var user = await GetActiveUserAsync();
-            var post = await PostService.GetByIdAsync(postId);
 
             var originalComment = await CommentService.GetByIdAsync(originalCommentId);
             var comment = new Comment() { OriginalCommentId = originalCommentId, Text = text, User = user };
+
             originalComment.Comments.Add(comment);
 
             CommentService.Update(originalComment);
             await CommentService.SaveAsync();
-
-            var testComment = await CommentService.GetByIdAsync(originalComment.Id);
 
             return Redirect($"Post/{postId}");
         }
