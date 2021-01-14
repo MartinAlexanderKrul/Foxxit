@@ -20,12 +20,12 @@ namespace Foxxit.Controllers
         public IVoteService VoteService { get; set; }
 
         [HttpPost("vote")]
-        public async Task<IActionResult> Vote(int voteType, int postId)
+        public async Task<IActionResult> Vote(int voteType, int postBaseId)
         {
             var currentUser = GetActiveUserAsync();
-            var vote = new Vote() { Value = voteType, PostBaseId = postId, OwnerId = currentUser.Id };
+            var vote = new Vote() { Value = voteType, PostBaseId = postBaseId, OwnerId = currentUser.Id };
 
-            var existingVotes = VoteService.GetVotesValue(currentUser.Id, postId);
+            var existingVotes = VoteService.GetVoteValue(currentUser.Id, postBaseId);
 
             if (existingVotes == 0 || existingVotes != voteType)
             {

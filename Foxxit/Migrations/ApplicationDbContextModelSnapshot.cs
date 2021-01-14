@@ -258,14 +258,14 @@ namespace Foxxit.Migrations
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
-                    b.Property<bool>("IsNegative")
-                        .HasColumnType("bit");
-
                     b.Property<long>("OwnerId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("PostBaseId")
                         .HasColumnType("bigint");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -467,14 +467,14 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "4e748aca-8b8a-4f29-a5ad-2696e46f3df1",
+                            ConcurrencyStamp = "134ad2b9-e417-48c6-9672-f713fbc5aeac",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "7bedcf17-d7b2-414f-9493-f6d5fdcd22d5",
+                            ConcurrencyStamp = "87312d24-c037-4438-80ea-17cd98b0d5c1",
                             Name = "User",
                             NormalizedName = "USER"
                         });

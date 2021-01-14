@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Foxxit.Models.Entities;
 using Foxxit.Repositories;
@@ -13,9 +14,22 @@ namespace Foxxit.Services.EntityServices
         {
         }
 
-        public int GetVotesValue(long userId, long postId)
+        public async void AddNewVote(long userId, long postBaseId, int value)
         {
-            var existingVotes = Repository.Filter(x => x.OwnerId == userId && x.PostBaseId == postId);
+            var votes = Repository.Filter(x => x.OwnerId == userId && x.PostBaseId == postBaseId);
+
+            foreach (var vote in votes)
+            {
+                Repository.Delete(vote);
+            }
+
+            var newVote = new Vote() { OwnerId = userId, PostBaseId = postBaseId, Value = value };
+            await Repository.AddAsync(newVote);
+        }
+
+        public int GetVoteValue(long userId, long postBaseId)
+        {
+            var existingVotes = Repository.Filter(x => x.OwnerId == userId && x.PostBaseId == postBaseId);
             int finalVote = 0;
 
             foreach (var vote in existingVotes)
@@ -25,5 +39,11 @@ namespace Foxxit.Services.EntityServices
 
             return finalVote;
         }
+
+        public int GetVotesCount(long postBaseId)
+        {
+            return Repository.Filter(x => x.PostBaseId == postBaseId).Count();
+        }
+
     }
 }

@@ -260,7 +260,7 @@ namespace Foxxit.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IsNegative = table.Column<bool>(type: "bit", nullable: false),
+                    Value = table.Column<int>(type: "int", nullable: false),
                     OwnerId = table.Column<long>(type: "bigint", nullable: false),
                     PostBaseId = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -282,12 +282,12 @@ namespace Foxxit.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
-                values: new object[] { 1L, "4e748aca-8b8a-4f29-a5ad-2696e46f3df1", "UserRole", "Admin", "ADMIN" });
+                values: new object[] { 1L, "134ad2b9-e417-48c6-9672-f713fbc5aeac", "UserRole", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
-                values: new object[] { 2L, "7bedcf17-d7b2-414f-9493-f6d5fdcd22d5", "UserRole", "User", "USER" });
+                values: new object[] { 2L, "87312d24-c037-4438-80ea-17cd98b0d5c1", "UserRole", "User", "USER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

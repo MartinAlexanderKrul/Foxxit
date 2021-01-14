@@ -7,6 +7,6 @@ namespace Foxxit.Services.Interfaces
 {
     public interface IVoteService : IGenericEntityService<Vote>
     {
-        public int GetVotesValue(long userId, long postId);
+        public int GetVoteValue(long userId, long postId);
     }
 }
