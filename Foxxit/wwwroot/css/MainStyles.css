@@ -795,3 +795,8 @@ article {
     margin-right: 4px !important;
     margin-left: 4px !important;
 }
+
+/*VOTES*/
+#red {
+    color: red;
+}

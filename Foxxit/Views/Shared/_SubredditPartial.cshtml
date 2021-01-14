@@ -22,23 +22,25 @@
     //TODO whole row has to be a link
 <article>
     <div class="article_left">
-        <div class="post_vote">
-            <form asp-action="Vote" asp-controller="Home">
-                <input type="hidden" value="1" name="value" />
-                <input type="hidden" value="@post.Id" name="postBaseId" />
-                <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
-            </form>
-        </div>
-        <div class="post_vote">@post.Votes.Count</div>
+        @*<div class="post_vote">
+                <form asp-action="Vote" asp-controller="Home">
+                    <input type="hidden" value="1" name="value" />
+                    <input type="hidden" value="@post.Id" name="postBaseId" />
+                    <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
+                </form>
+            </div>
+            <div class="post_vote">@post.Votes.Count</div>
 
-        <div class="post_vote">
-            <form asp-action="Vote" asp-controller="Home">
-                <input type="hidden" value="-1" name="value" />
-                <input type="hidden" value="@post.Id" name="postBaseId" />
-                <button type="submit" id="vote-btn" data-postid="{{ @post.Id }}"> Upvote <i class="fa fa-chevron-down fa-lg"></i></button>
-            </form>
-        </div>
-    </div>
+            <div class="post_vote">
+                <form asp-action="Vote" asp-controller="Home">
+                    <input type="hidden" value="-1" name="value" />
+                    <input type="hidden" value="@post.Id" name="postBaseId" />
+                    <button type="submit" id="vote-btn" data-postid="{{ @post.Id }}"> Upvote <i class="fa fa-chevron-down fa-lg"></i></button>
+                </form>
+            </div>
+        </div>*@
+
+        @await Html.PartialAsync("_VotesPartial", Model.VoteViewModel)
 
         <div class="article_middle">
             <div class="article_post_header">
@@ -56,4 +58,4 @@
                 </div>
             </a>
         </div>
-    </article>}
+</article>}
