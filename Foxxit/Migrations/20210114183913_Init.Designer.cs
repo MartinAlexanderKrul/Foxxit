@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Foxxit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210114134931_Init")]
+    [Migration("20210114183913_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -213,9 +213,6 @@ namespace Foxxit.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
-                    b.Property<long?>("SubRedditId")
-                        .HasColumnType("bigint");
-
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean");
 
@@ -232,8 +229,6 @@ namespace Foxxit.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.HasIndex("SubRedditId");
-
                     b.ToTable("AspNetUsers");
                 });
 
@@ -243,6 +238,9 @@ namespace Foxxit.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<long>("SubRedditId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Id")
                         .HasColumnType("bigint");
 
                     b.HasKey("UserId", "SubRedditId");
@@ -467,14 +465,14 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "f75371d5-7020-426a-9dea-92a883eb7b6c",
+                            ConcurrencyStamp = "9c4affc7-ad46-49e3-9491-2fd5a66b33ee",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "61b07eb3-7940-4f63-a8bc-5cc4052d6076",
+                            ConcurrencyStamp = "92480a0b-a3a2-46fd-8c84-232417e76906",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -510,7 +508,7 @@ namespace Foxxit.Migrations
             modelBuilder.Entity("Foxxit.Models.Entities.SubReddit", b =>
                 {
                     b.HasOne("Foxxit.Models.Entities.User", "CreatedBy")
-                        .WithMany("SubReddits")
+                        .WithMany("CreatedSubReddits")
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -518,23 +516,16 @@ namespace Foxxit.Migrations
                     b.Navigation("CreatedBy");
                 });
 
-            modelBuilder.Entity("Foxxit.Models.Entities.User", b =>
-                {
-                    b.HasOne("Foxxit.Models.Entities.SubReddit", null)
-                        .WithMany("Members")
-                        .HasForeignKey("SubRedditId");
-                });
-
             modelBuilder.Entity("Foxxit.Models.Entities.UserSubReddit", b =>
                 {
                     b.HasOne("Foxxit.Models.Entities.SubReddit", "SubReddit")
-                        .WithMany()
+                        .WithMany("Members")
                         .HasForeignKey("SubRedditId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Foxxit.Models.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("JoinedSubReddits")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -672,13 +663,15 @@ namespace Foxxit.Migrations
                 {
                     b.Navigation("Comments");
 
+                    b.Navigation("CreatedSubReddits");
+
                     b.Navigation("GivenNotifications");
+
+                    b.Navigation("JoinedSubReddits");
 
                     b.Navigation("Posts");
 
                     b.Navigation("ReceivedNotifications");
-
-                    b.Navigation("SubReddits");
 
                     b.Navigation("Votes");
                 });
