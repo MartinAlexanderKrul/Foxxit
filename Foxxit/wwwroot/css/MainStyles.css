@@ -819,3 +819,11 @@ article {
     justify-content: flex-start !important;
     align-items: flex-start !important;
 }
+
+.search_margin {
+    margin-left: 4px;
+}
+
+.search_header {
+    margin-bottom: 6px;
+}
