@@ -20,6 +20,7 @@
     <EmbeddedResource Remove="Views\Home\**" />
     <None Remove="Email\**" />
     <None Remove="Views\Home\**" />
+    <Compile Remove="Repositories\SubredditRepository - Copy.cs" />
 
     <Content Remove="stylecop.json" />
   </ItemGroup>
@@ -71,7 +72,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Entities\" />
     <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 

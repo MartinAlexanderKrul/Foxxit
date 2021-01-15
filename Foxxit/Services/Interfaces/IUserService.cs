@@ -6,5 +6,7 @@ namespace Foxxit.Services
     public interface IUserService
     {
         Task UpdateUsernameAsync(User user, string newUserName);
+
+        Task UpdateUsersSubReddits(User user, SubReddit subReddit);
     }
 }

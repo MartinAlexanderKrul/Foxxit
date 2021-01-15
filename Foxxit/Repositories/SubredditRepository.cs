@@ -9,24 +9,23 @@ namespace Foxxit.Repositories
 {
     public class SubRedditRepository : GenericRepository<SubReddit>
     {
-        private readonly ApplicationDbContext dbContext;
         private readonly DbSet<SubReddit> table;
 
         public SubRedditRepository(ApplicationDbContext dbContext)
             : base(dbContext)
         {
-            this.dbContext = dbContext;
             table = dbContext.Set<SubReddit>();
         }
 
-        public async Task<IEnumerable<SubReddit>> GetAllIncludeUser()
+        public async Task<IEnumerable<SubReddit>> GetAllIncludeUserAndMembers()
         {
-            return table.Include(u => u.CreatedBy);
+            return await table.Include(s => s.Posts).ThenInclude(p => p.Comments).Include(s => s.Posts).ThenInclude(p => p.User).Include(s => s.CreatedBy).Include(s => s.Members).ThenInclude(m => m.User).ToListAsync();
         }
 
-        public async Task<SubReddit> GetByIdAsyncIncludeUser(long id)
+        public async Task<SubReddit> GetByIdIncludeUserAndMembers(long id)
         {
-            return table.Include(u => u.CreatedBy).ToListAsync().Result.FirstOrDefault(s => s.Id == id);
+            var table = await GetAllIncludeUserAndMembers();
+            return table.FirstOrDefault(s => s.Id == id);
         }
     }
 }

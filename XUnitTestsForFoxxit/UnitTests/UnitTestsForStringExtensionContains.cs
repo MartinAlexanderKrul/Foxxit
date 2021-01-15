@@ -3,7 +3,7 @@ using Foxxit.Extensions;
 
 namespace XUnitTestsForFoxxit
 {
-    public class StringExtensionUnitTests
+    public class StringExtensionUnitTests01
     {
         [Fact]
         public void Contains()

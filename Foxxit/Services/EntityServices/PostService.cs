@@ -19,9 +19,14 @@ namespace Foxxit.Services
 
         public PostRepository PostRepository { get; private set; }
 
-        public async Task<IEnumerable<Post>> GetAllIncludeCommentsAsync()
+        public async Task<IEnumerable<Post>> GetAllIncludeCommentsAndUserAsync()
         {
-            return await PostRepository.GetAllIncludeCommentsAsync();
+            return await PostRepository.GetAllIncludeCommentsAndUserAsync();
+        }
+
+        public async Task<Post> GetByIdIncludeCommentsAndUserAsync(long id)
+        {
+            return await PostRepository.GetByIdIncludeCommentsAndUserAsync(id);
         }
 
         public IEnumerable<Post> Sort(SortMethod sortMethod, long? subRedditId)

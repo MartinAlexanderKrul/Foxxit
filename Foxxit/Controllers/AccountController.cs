@@ -96,7 +96,7 @@ namespace Foxxit.Controllers
                 {
                     await UserManager.AddToRoleAsync(user, "User");
 
-                    // await SendEmailConfirmation(user);
+                    await SendEmailConfirmation(user);
                     return RedirectToAction("Login");
                 }
                 else
@@ -138,16 +138,25 @@ namespace Foxxit.Controllers
 
             if (existingUser != null)
             {
-                var signInResult = await SignInManager.PasswordSignInAsync(existingUser, model.Password, model.RememberMe, false);
+                var isEmailConfirmed = await UserManager.IsEmailConfirmedAsync(existingUser);
 
-                if (signInResult.Succeeded)
+                if (isEmailConfirmed)
                 {
-                    return RedirectToAction("Index", "Foxxit");
+                    var signInResult = await SignInManager.PasswordSignInAsync(existingUser, model.Password, model.RememberMe, false);
+
+                    if (signInResult.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Foxxit");
+                    }
+                    else
+                    {
+                        // ModelState.AddModelError(string.Empty, "Your email was not approved!");
+                        ModelState.AddModelError("Password", "Try to type your password again!");
+                    }
                 }
                 else
                 {
-                    // ModelState.AddModelError(string.Empty, "Your email was not approved!");
-                    ModelState.AddModelError("Password", "Try to type your password again!");
+                    ModelState.AddModelError(string.Empty, "Please confirm your email address. If you haven't received it, check your SPAM folder.");
                 }
             }
             else
@@ -245,66 +254,6 @@ namespace Foxxit.Controllers
             }
 
             return LocalRedirect(returnUrl);
-        }
-
-        [Authorize]
-        [HttpGet("password-change")]
-        public IActionResult PasswordChange()
-        {
-            return View();
-        }
-
-        [Authorize]
-        [HttpPost("password-change")]
-        public async Task<IActionResult> PasswordChange(PasswordChangeViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var user = await GetActiveUserAsync();
-            var changePasswordResult = await UserManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
-
-            if (changePasswordResult.Succeeded)
-            {
-                return RedirectToAction("Login");
-            }
-            else
-            {
-                if (user.PasswordHash is not null)
-                {
-                    ModelState.AddModelError(string.Empty, "Server side denied the password change!");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Foxxit has no permission to change you password! Try to contact your external login provider.");
-                }
-            }
-
-            return View(model);
-        }
-
-        [Authorize]
-        [HttpGet("username-change")]
-        public IActionResult UsernameChange()
-        {
-            return View();
-        }
-
-        [Authorize]
-        [HttpPost("username-change")]
-        public async Task<IActionResult> UsernameChange(UsernameChangeViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var user = await GetActiveUserAsync();
-            await UserService.UpdateUsernameAsync(user, model.NewUserName);
-
-            return RedirectToAction("Index", "Foxxit");
         }
 
         [Authorize]

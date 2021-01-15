@@ -17,5 +17,8 @@ namespace Foxxit.Services
         IEnumerable<Post> Sort(SortMethod sortMethod, long? subRedditId);
 
         IEnumerable<Post> TopSort(int hours, long? subRedditId);
+        Task<IEnumerable<Post>> GetAllIncludeCommentsAndUserAsync();
+
+        Task<Post> GetByIdIncludeCommentsAndUserAsync(long id);
     }
 }

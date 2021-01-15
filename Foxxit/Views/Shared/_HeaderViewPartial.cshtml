@@ -1,4 +1,5 @@
 ﻿@using Foxxit.Models.ViewModels;
+@using Foxxit.Extensions;
 @model MainPageViewModel
 
 @{
@@ -10,12 +11,7 @@
     }
     else
     {
-        displayUser = @Model.CurrentUser.UserName.Contains('@')
-                              ? @Model.CurrentUser.UserName.Split('@')[0]
-                              : @Model.CurrentUser.UserName;
-        displayUser = displayUser.Length > 16
-                ? displayUser.Substring(0, 13) + "..."
-                : displayUser;
+        displayUser = @Model.CurrentUser.UserName.ShortenDisplayName();
     }
 
 }
@@ -85,8 +81,8 @@
     <div class="header_right_three dropdown">
         <button class="dropbtn"><i class="fa fa-cog fa-lg"></i></button>
         <div class="dropdown-content">
-            <a href="/account/username-change">Change username</a>
-            <a href="/account/password-change">Change password</a>
+            <a href="/usernamechange">Change username</a>
+            <a href="/passwordchange">Change password</a>
             <a href="/account/logout/">Logout</a>
         </div>
     </div>

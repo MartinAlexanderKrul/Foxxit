@@ -211,9 +211,6 @@ namespace Foxxit.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("SubRedditId")
-                        .HasColumnType("bigint");
-
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -231,8 +228,6 @@ namespace Foxxit.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("SubRedditId");
-
                     b.ToTable("AspNetUsers");
                 });
 
@@ -242,6 +237,9 @@ namespace Foxxit.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<long>("SubRedditId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Id")
                         .HasColumnType("bigint");
 
                     b.HasKey("UserId", "SubRedditId");
@@ -422,7 +420,7 @@ namespace Foxxit.Migrations
                     b.Property<long>("OriginalCommentId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("PostId")
+                    b.Property<long?>("PostId")
                         .HasColumnType("bigint");
 
                     b.HasIndex("CommentId");
@@ -467,14 +465,14 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "4e748aca-8b8a-4f29-a5ad-2696e46f3df1",
+                            ConcurrencyStamp = "78718095-1d33-4b1e-83dc-37763474be24",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "7bedcf17-d7b2-414f-9493-f6d5fdcd22d5",
+                            ConcurrencyStamp = "4e176c5b-9331-414f-9f6b-5b61e37972f6",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -510,7 +508,7 @@ namespace Foxxit.Migrations
             modelBuilder.Entity("Foxxit.Models.Entities.SubReddit", b =>
                 {
                     b.HasOne("Foxxit.Models.Entities.User", "CreatedBy")
-                        .WithMany("SubReddits")
+                        .WithMany("CreatedSubReddits")
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -518,23 +516,16 @@ namespace Foxxit.Migrations
                     b.Navigation("CreatedBy");
                 });
 
-            modelBuilder.Entity("Foxxit.Models.Entities.User", b =>
-                {
-                    b.HasOne("Foxxit.Models.Entities.SubReddit", null)
-                        .WithMany("Members")
-                        .HasForeignKey("SubRedditId");
-                });
-
             modelBuilder.Entity("Foxxit.Models.Entities.UserSubReddit", b =>
                 {
                     b.HasOne("Foxxit.Models.Entities.SubReddit", "SubReddit")
-                        .WithMany()
+                        .WithMany("Members")
                         .HasForeignKey("SubRedditId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Foxxit.Models.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("JoinedSubReddits")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -623,8 +614,7 @@ namespace Foxxit.Migrations
                     b.HasOne("Foxxit.Models.Entities.Post", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("Foxxit.Models.Entities.User", "User")
                         .WithMany("Comments")
@@ -672,13 +662,15 @@ namespace Foxxit.Migrations
                 {
                     b.Navigation("Comments");
 
+                    b.Navigation("CreatedSubReddits");
+
                     b.Navigation("GivenNotifications");
+
+                    b.Navigation("JoinedSubReddits");
 
                     b.Navigation("Posts");
 
                     b.Navigation("ReceivedNotifications");
-
-                    b.Navigation("SubReddits");
 
                     b.Navigation("Votes");
                 });

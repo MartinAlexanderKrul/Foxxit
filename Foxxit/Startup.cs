@@ -7,6 +7,7 @@ using Foxxit.Repositories;
 using Foxxit.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +32,13 @@ namespace Foxxit
             services.AddControllersWithViews().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            });
+
+            // External Login
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
             });
 
             switch (Configuration.DbType)
@@ -130,11 +138,12 @@ namespace Foxxit
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
+            // if (env.IsDevelopment())
+            // {
+            //    app.UseDeveloperExceptionPage();
+            // }
+            app.UseDeveloperExceptionPage();
+            app.UseForwardedHeaders();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();

@@ -24,6 +24,7 @@
 * {
     margin: 0;
     padding: 0;
+    word-wrap: break-word;
 }
 
 a {
@@ -234,6 +235,7 @@ main {
 /* SIDEBAR */
 
 aside {
+    position: relative;
     background-color: var(--section-color);
     width: var(--right-side-size);
     height: 631px;
@@ -241,6 +243,7 @@ aside {
     display: flex;
     align-items: center;
     flex-direction: column;
+    word-wrap: break-word;
 }
 
 .side_bar {
@@ -309,9 +312,9 @@ section {
     background-color: var(--background-color) !important;
 }
 
-/*.dark_button {
-    border: 3px solid var(--button-color) !important;
-}*/
+.dark_button {
+    border: var(--button-color) !important;
+}
 
 .section_intro, .section_intro_main {
     background-color: var(--section-color);
@@ -810,4 +813,25 @@ article {
 .text_about {
     margin-right: 4px !important;
     margin-left: 4px !important;
+}
+
+.subreddit_info {
+    width: 100%;
+}
+
+.subreddit_end {
+    width: 100%;
+    position: absolute;
+    bottom: 5px;
+    text-align: center;
+    font-size: var(--main-font-size-smaller);
+}
+
+.show_reply {
+    cursor: pointer;
+}
+
+.button_onleft {
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
 }

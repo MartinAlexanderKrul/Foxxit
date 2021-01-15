@@ -13,6 +13,14 @@ namespace Foxxit.Services
         public CommentService(CommentRepository repository)
             : base(repository)
         {
+            Repository = repository;
+        }
+
+        public new CommentRepository Repository { get; set; }
+
+        public async Task<Comment> GetByIdInclude(long id)
+        {
+            return await Repository.GetByIdInclude(id);
         }
     }
 }
