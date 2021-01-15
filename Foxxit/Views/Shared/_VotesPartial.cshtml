@@ -1,38 +1,14 @@
-﻿@using Foxxit.Models.ViewModels;
-@model VoteViewModel
+﻿@using Foxxit.Models.Entities;
+@model PostBase
 
-<div class="post_vote">
-    <form asp-action="Vote" asp-controller="Home">
-        <input type="hidden" value="1" name="value" />
-        <input type="hidden" value="@Model.PostBase.Id" name="postBaseId" />
-        <button type="submit" id="vote-btn" data-postBaseId="{{ @Model.PostBase.Id }}" data-value="{{ 1 }}">
-            @if (Model.Value == 1)
-            {
-                <span style="color:red">
-                    <i class="fa fa-chevron-up fa-lg red"></i>
-                </span>
-            }
-        </button>
-    </form>
-</div>
-<div class="post_vote">
-    @if (Model.Value != 0)
-    {
-        <span style="color:red">
-            @Model.Count
-        </span>
-    }
-</div>
 
-<div class="post_vote">
-    <form asp-action="Vote" asp-controller="Home">
-        <button type="submit" id="vote-btn" data-postBaseId="{{ @Model.PostBase.Id }}" data-value="{{ -1 }}">
-            @if (Model.Value == 1)
-            {
-                <span style="color:red">
-                    <i class="fa fa-chevron-down fa-lg"></i>
-                </span>
-            }
-        </button>
-    </form>
+<div class="article_left" id="voting_@Model.Id">
+    <div class="post_vote" data-value="{{ 1 }}" data-postBaseId="{{ @Model.Id }}">
+        <i class="fa fa-chevron-up fa-lg"></i>
+    </div>
+    <div class="post_vote">@Model.Votes.Count()</div>
+
+    <div class="post_vote" data-value="{{ -1 }}" data-postBaseId="{{ @Model.Id }}">
+        <i class="fa fa-chevron-up fa-lg"></i>
+    </div>
 </div>

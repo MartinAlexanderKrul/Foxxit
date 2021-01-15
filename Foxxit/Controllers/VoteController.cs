@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Foxxit.Models.Entities;
+﻿using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services.Interfaces;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,10 +17,10 @@ namespace Foxxit.Controllers
 
         public IVoteService VoteService { get; set; }
 
-        [HttpPost("vote")]
-        public async Task<IActionResult> Vote(int value, int postBaseId)
+        [HttpPost("{value}/{postBaseId}")]
+        public async Task<IActionResult> Vote([FromRoute]int value, [FromRoute]int postBaseId)
         {
-            var currentUser = GetActiveUserAsync();
+            var currentUser = await GetActiveUserAsync();
             var existingVote = VoteService.GetVoteValue(currentUser.Id, postBaseId);
 
             if (existingVote == 0 || existingVote != value)
@@ -31,19 +28,21 @@ namespace Foxxit.Controllers
                 VoteService.AddNewVote(currentUser.Id, postBaseId, value);
             }
 
-            return await VotesInfo(postBaseId);
-        }
-
-        [HttpGet("votesInfo")]
-        public async Task<IActionResult> VotesInfo(int postBaseId)
-        {
-            var currentUser = await GetActiveUserAsync();
-            var voteValue = VoteService.GetVoteValue(currentUser.Id, postBaseId);
-            var votesCount = VoteService.GetVotesCount(postBaseId);
-
-            var model = new VoteViewModel() { Value = voteValue, Count = votesCount };
+            var model = new PostBase() { CurrentVoteValue = existingVote/*, Count = votesCount*/ };
 
             return View("_VotesPartial", model);
         }
+
+        //[HttpGet("votesInfo")]
+        //public async Task<IActionResult> VotesInfo(int postBaseId)
+        //{
+        //    var currentUser = await GetActiveUserAsync();
+        //    var voteValue = VoteService.GetVoteValue(currentUser.Id, postBaseId);
+        //    //var votesCount = VoteService.GetVotesCount(postBaseId);
+
+        //    var model = new PostBase() { CurrentVoteValue = voteValue/*, Count = votesCount*/ };
+
+        //    return View("_VotesPartial", model);
+        //}
     }
 }

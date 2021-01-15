@@ -6,7 +6,7 @@ using Foxxit.Services.Interfaces;
 
 namespace Foxxit.Models.Entities
 {
-    public abstract class PostBase : IIdentityEntity, ISoftDeletable
+    public class PostBase : IIdentityEntity, ISoftDeletable
     {
         public PostBase()
         {
@@ -23,5 +23,6 @@ namespace Foxxit.Models.Entities
         public long UserId { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public bool IsDeleted { get; set; }
+        public int CurrentVoteValue { get; set; }
     }
 }

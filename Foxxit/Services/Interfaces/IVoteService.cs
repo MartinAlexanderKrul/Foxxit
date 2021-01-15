@@ -10,7 +10,5 @@ namespace Foxxit.Services.Interfaces
         public int GetVoteValue(long userId, long postId);
         public void AddNewVote(long userId, long postBaseId, int value);
         public int GetVotesCount(long postBaseId);
-
-
     }
 }
