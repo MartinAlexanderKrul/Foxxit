@@ -70,6 +70,9 @@ namespace Foxxit
             services.AddTransient<SubRedditRepository>();
             services.AddTransient<ISubRedditService, SubRedditService>();
 
+            services.AddTransient<UserSubRedditRepository>();
+            services.AddTransient<IUserSubRedditService, UserSubRedditService>();
+
             services.AddTransient<PostRepository>();
             services.AddTransient<IPostService, PostService>();
 
