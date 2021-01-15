@@ -171,9 +171,10 @@ namespace Foxxit.Controllers
         [HttpPost("/Post/Create")]
         public async Task<IActionResult> CreatePost(string title, string url, string text, long subRedditId, IFormFile file)
         {
-            var imageUrl = Request.Host + $"/ImageController/imagestore/{await ImageService.SaveImageAsync(file)}";
+            var imageUrl = "https://" + Request.Host + $"/image/imagestore/{await ImageService.SaveImageAsync(file)}";
             url = imageUrl ?? url;
 
+            var asd = await ImageService.SaveImageAsync(file);
             var user = await GetActiveUserAsync();
             var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
             var post = new Post(title, text, url, subReddit, user);
@@ -290,21 +291,6 @@ namespace Foxxit.Controllers
             return View("AccountPasswordChange", model);
         }
 
-        [HttpGet("usernamechange")]
-        public async Task<IActionResult> UsernameChange()
-        {
-            var currentUser = await GetActiveUserAsync();
-            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
-
-            var model = new MainPageViewModel()
-            {
-                CurrentUser = currentUser,
-                SubReddits = subReddits,
-            };
-
-            return View("AccountUsernameChange", model);
-        }
-
         [HttpPost("passwordchange")]
         public async Task<IActionResult> PasswordChange(PasswordChangeViewModel model)
         {
@@ -343,6 +329,21 @@ namespace Foxxit.Controllers
             }
 
             return View("AccountPasswordChange", mainModel);
+        }
+
+        [HttpGet("usernamechange")]
+        public async Task<IActionResult> UsernameChange()
+        {
+            var currentUser = await GetActiveUserAsync();
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+
+            var model = new MainPageViewModel()
+            {
+                CurrentUser = currentUser,
+                SubReddits = subReddits,
+            };
+
+            return View("AccountUsernameChange", model);
         }
 
         [HttpPost("usernamechange")]
