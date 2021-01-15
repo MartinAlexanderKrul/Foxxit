@@ -79,6 +79,9 @@ namespace Foxxit
             services.AddTransient<NotificationRepository>();
             services.AddTransient<INotificationService, NotificationService>();
 
+            services.AddTransient<UserSubRedditRepository>();
+            services.AddTransient<IUserSubRedditService, UserSubRedditService>();
+
             services.AddTransient<ImageRepository>();
             services.AddTransient<IImageService, ImageService>();
 
