@@ -49,7 +49,7 @@ namespace Foxxit.Services
 
         public IEnumerable<Post> HotSort(int hours, long? subRedditId)
         {
-            var filter = Filter(p => (DateTime.Now - p.CreatedAt).TotalHours < hours).OrderBy(p => p.Votes.Count);
+            var filter = Filter(p => (DateTime.Now - p.CreatedAt).TotalHours < hours).OrderByDescending(p => p.Votes.Count);
             if (subRedditId.HasValue)
             {
                 return filter.Where(p => p.SubRedditId == subRedditId);
