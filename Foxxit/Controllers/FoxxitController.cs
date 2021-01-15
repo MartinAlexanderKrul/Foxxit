@@ -7,8 +7,10 @@ using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace Foxxit.Controllers
 {
@@ -17,7 +19,7 @@ namespace Foxxit.Controllers
     {
         private const int PageSize = 10;
 
-        public FoxxitController(IUserSubRedditService userSubReddit, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
+        public FoxxitController(IUserSubRedditService userSubReddit, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService, IImageService imageService)
             : base(userManager, signInManager)
         {
             SearchService = searchService;
@@ -26,6 +28,7 @@ namespace Foxxit.Controllers
             CommentService = commentService;
             UserService = userService;
             UserSubRedditService = userSubReddit;
+            ImageService = imageService;
         }
 
         public ISearchService SearchService { get; set; }
@@ -34,6 +37,7 @@ namespace Foxxit.Controllers
         public ICommentService CommentService { get; set; }
         public IUserService UserService { get; set; }
         public IUserSubRedditService UserSubRedditService { get; set; }
+        public IImageService ImageService { get; set; }
 
         [HttpGet("")]
         [HttpGet("index")]
@@ -165,8 +169,11 @@ namespace Foxxit.Controllers
         }
 
         [HttpPost("/Post/Create")]
-        public async Task<IActionResult> CreatePost(string title, string url, string image, string text, long subRedditId)
+        public async Task<IActionResult> CreatePost(string title, string url, string text, long subRedditId, IFormFile file)
         {
+            var imageUrl = Request.Host + $"/ImageController/imagestore/{await ImageService.SaveImageAsync(file)}";
+            url = imageUrl ?? url;
+
             var user = await GetActiveUserAsync();
             var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
             var post = new Post(title, text, url, subReddit, user);
