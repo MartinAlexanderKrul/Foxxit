@@ -4,14 +4,16 @@ using Foxxit.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Foxxit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210115105900_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,9 +107,6 @@ namespace Foxxit.Migrations
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
-
-                    b.Property<int>("VotesSum")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -267,9 +266,6 @@ namespace Foxxit.Migrations
 
                     b.Property<long>("PostBaseId")
                         .HasColumnType("bigint");
-
-                    b.Property<int>("TotalSum")
-                        .HasColumnType("int");
 
                     b.Property<int>("Value")
                         .HasColumnType("int");
@@ -474,14 +470,14 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "cc690053-65e8-4f39-a730-78cb0dc0452a",
+                            ConcurrencyStamp = "ccd6c412-ecc3-44d0-a497-395e8b782025",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "7f3f8367-9319-4eb8-b921-0e1ee3d9d43e",
+                            ConcurrencyStamp = "672cbe8e-79a4-4981-b1b1-5690b1d0589b",
                             Name = "User",
                             NormalizedName = "USER"
                         });

@@ -24,5 +24,6 @@ namespace Foxxit.Models.Entities
         public ICollection<Comment> Comments { get; set; }
         public bool IsDeleted { get; set; }
         public int CurrentVoteValue { get; set; }
+        public int VotesSum { get; set; }
     }
 }

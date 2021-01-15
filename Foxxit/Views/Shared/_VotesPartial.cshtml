@@ -1,14 +1,13 @@
 ﻿@using Foxxit.Models.Entities;
 @model PostBase
 
-
 <div class="article_left" id="voting_@Model.Id">
-    <div class="post_vote" data-value="{{ 1 }}" data-postBaseId="{{ @Model.Id }}">
+    <div class="post_vote" data-value="1" data-postBaseId="@Model.Id">
         <i class="fa fa-chevron-up fa-lg"></i>
     </div>
     <div class="post_vote">@Model.Votes.Count()</div>
 
-    <div class="post_vote" data-value="{{ -1 }}" data-postBaseId="{{ @Model.Id }}">
-        <i class="fa fa-chevron-up fa-lg"></i>
+    <div class="post_vote" data-value="-1" data-postBaseId="@Model.Id">
+        <i class="fa fa-chevron-down fa-lg"></i>
     </div>
 </div>

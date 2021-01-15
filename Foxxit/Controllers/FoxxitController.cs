@@ -6,6 +6,7 @@ using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
+using Foxxit.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace Foxxit.Controllers
     {
         private const int PageSize = 10;
 
-        public FoxxitController(IUserSubRedditService userSubReddit, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
+        public FoxxitController(IVoteService voteService, IUserSubRedditService userSubReddit, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
             : base(userManager, signInManager)
         {
             SearchService = searchService;
@@ -26,6 +27,7 @@ namespace Foxxit.Controllers
             CommentService = commentService;
             UserService = userService;
             UserSubRedditService = userSubReddit;
+            VoteService = voteService;
         }
 
         public ISearchService SearchService { get; set; }
@@ -34,6 +36,30 @@ namespace Foxxit.Controllers
         public ICommentService CommentService { get; set; }
         public IUserService UserService { get; set; }
         public IUserSubRedditService UserSubRedditService { get; set; }
+        public IVoteService VoteService { get; set; }
+
+        [HttpGet("/vote/{value}/{postBaseId}")]
+        public async Task<IActionResult> Vote(int value, long postBaseId)
+        {
+            var currentUser = await GetActiveUserAsync();
+            var existingVote = VoteService.GetVote(currentUser.Id, postBaseId);
+            var votesSum = VoteService.GetVotesSum(postBaseId);
+
+            if (existingVote is null)
+            {
+                existingVote = await VoteService.AddNewVote(currentUser.Id, postBaseId, value);
+            }
+            else
+            {
+                existingVote.Value = value;
+                VoteService.Update(existingVote);
+                await VoteService.SaveAsync();
+            }
+
+            var model = new PostBase() { CurrentVoteValue = existingVote.Value, VotesSum = votesSum };
+
+            return View("_VotesPartial", model);
+        }
 
         [HttpGet("")]
         [HttpGet("index")]

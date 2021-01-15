@@ -14,32 +14,29 @@ namespace Foxxit.Services.EntityServices
         {
         }
 
-        public async void AddNewVote(long userId, long postBaseId, int value)
+        public async Task<Vote> AddNewVote(long userId, long postBaseId, int value)
         {
             var votes = Repository.Filter(x => x.OwnerId == userId && x.PostBaseId == postBaseId);
-
-            foreach (var vote in votes)
-            {
-                Repository.Delete(vote);
-            }
 
             var newVote = new Vote() { OwnerId = userId, PostBaseId = postBaseId, Value = value };
             await Repository.AddAsync(newVote);
             await Repository.SaveAsync();
+
+            return newVote;
         }
 
-        public int GetVoteValue(long userId, long postBaseId)
+        public Vote GetVote(long userId, long postBaseId)
         {
             return Repository
                 .Filter(x => x.OwnerId == userId && x.PostBaseId == postBaseId)
-                .First().Value;
+                .FirstOrDefault();
         }
 
-        public int GetVotesCount(long postBaseId)
+        public int GetVotesSum(long postBaseId)
         {
             return Repository
-                .Filter(x => x.PostBaseId == postBaseId)
-                .Count();
+                .Filter(v => v.PostBaseId == postBaseId)
+                .Sum(v=>v.Value);
         }
 
     }

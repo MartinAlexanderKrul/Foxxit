@@ -7,8 +7,9 @@ namespace Foxxit.Services.Interfaces
 {
     public interface IVoteService : IGenericEntityService<Vote>
     {
-        public int GetVoteValue(long userId, long postId);
-        public void AddNewVote(long userId, long postBaseId, int value);
-        public int GetVotesCount(long postBaseId);
+        public Vote GetVote(long userId, long postId);
+        public Task<Vote> AddNewVote(long userId, long postBaseId, int value)
+;
+        public int GetVotesSum(long postBaseId);
     }
 }

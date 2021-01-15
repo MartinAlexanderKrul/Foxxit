@@ -43,9 +43,10 @@
 $('.post_vote').on('click', function (evt) {
     evt.preventDefault();
     evt.stopPropagation();
-
+    debugger;
     let id = this.getAttribute("data-postBaseId");
     let value = this.getAttribute("data-value");
 
+    $('#voting_' + id).empty();
     $('#voting_' + id).load("/vote/" + value + "/" + id);
 });
