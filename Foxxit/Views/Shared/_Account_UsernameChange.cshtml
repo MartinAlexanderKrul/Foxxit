@@ -1,0 +1,29 @@
+﻿@using Foxxit.Models.ViewModels
+@model UsernameChangeViewModel
+
+<article>
+    <h2>Username Change</h2>
+</article>
+
+@if (Html.ViewData.ModelState.Where(x => x.Key.Equals(String.Empty)).Count() > 0)
+{
+    <article>
+        @Html.ValidationSummary(true, null, new { @class = "validation_summary" })
+    </article>
+}
+
+<article>
+
+    @using (Html.BeginForm("UsernameChange", "Account", FormMethod.Post))
+    {
+        <span>
+            @Html.TextBoxFor(m => m.NewUserName, new { @class = "login_field", @placeholder = "new username" })
+        </span>
+
+        <span class="text-danger">
+            @Html.ValidationMessageFor(m => m.NewUserName, null)
+        </span>
+
+        <button class="not_button biggest_button" type="submit" value="CHANGE">CHANGE</button>
+    }
+</article>

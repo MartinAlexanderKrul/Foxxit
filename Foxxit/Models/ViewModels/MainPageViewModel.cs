@@ -22,7 +22,6 @@ namespace Foxxit.Models.ViewModels
             SubReddits = subReddits;
             SearchReturnModel = searchReturnModel;
             PostViewModel = postViewModel;
-
         }
 
         public PostViewModel PostViewModel { get; set; }
@@ -31,6 +30,8 @@ namespace Foxxit.Models.ViewModels
         public IEnumerable<Post> Posts { get; set; }
         public IEnumerable<SubReddit> SubReddits { get; set; }
         public SearchReturnModel SearchReturnModel { get; set; }
+        public PasswordChangeViewModel PasswordChangeViewModel { get; set; }
+        public UsernameChangeViewModel UsernameChangeViewModel { get; set; }
         public VoteViewModel VoteViewModel { get; set; }
     }
 }

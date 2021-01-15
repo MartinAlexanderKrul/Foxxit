@@ -23,7 +23,7 @@ namespace Foxxit.Controllers
         [HttpGet("notifications")]
         public async Task<IActionResult> Notifications()
         {
-            var model = new MainPageViewModel() /* {CurrentUser = await GetActiveUserAsync()}*/;
+            var model = new MainPageViewModel() { CurrentUser = await GetActiveUserAsync() };
 
             return View("Notifications", model);
         }

@@ -1,9 +1,8 @@
-﻿//$('.load-comments').on('click', function (evt) {
-//    evt.preventDefault();
-//    evt.stopPropagation();
+﻿$('.show_reply').on('click', function (evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
 
-//    $('#comment_container_js').load("/loadComments");
-//});
+    let id = this.getAttribute("data-commentId");
 
 //$('.comment_number').on('click', function (evt) {
 //    evt.preventDefault();
@@ -30,4 +29,12 @@ $(document).on('click', '#vote-btn', function (event) {
         }
     });
     event.preventDefault();
+});
+    if ($(this).hasClass("closed")) {
+        $(this).toggleClass("closed");
+        $('#add_subcomment_' + id).load("/comment/reply/" + id);
+    } else {
+        $(this).toggleClass("closed");
+        $('#add_subcomment_' + id).empty();
+    }
 });
