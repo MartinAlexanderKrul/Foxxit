@@ -60,7 +60,6 @@ namespace Foxxit.Services
 
         public IEnumerable<Post> NewSort(long? subRedditId)
         {
-
             return subRedditId.HasValue ? GetAllIncludeCommentsAndUserAsync().Result.Where(p => p.SubReddit.Id == subRedditId).OrderByDescending(p => p.CreatedAt) : GetAllIncludeCommentsAndUserAsync().Result.OrderByDescending(p => p.CreatedAt);
         }
 
