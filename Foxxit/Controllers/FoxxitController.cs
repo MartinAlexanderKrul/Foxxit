@@ -171,9 +171,10 @@ namespace Foxxit.Controllers
         [HttpPost("/Post/Create")]
         public async Task<IActionResult> CreatePost(string title, string url, string text, long subRedditId, IFormFile file)
         {
-            var imageUrl = Request.Host + $"/ImageController/imagestore/{await ImageService.SaveImageAsync(file)}";
+            var imageUrl = "https://" + Request.Host + $"/image/imagestore/{await ImageService.SaveImageAsync(file)}";
             url = imageUrl ?? url;
 
+            var asd = await ImageService.SaveImageAsync(file);
             var user = await GetActiveUserAsync();
             var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
             var post = new Post(title, text, url, subReddit, user);
