@@ -27,7 +27,7 @@ namespace Foxxit
 
         public IConfiguration Config { get; set; }
 
-        private void CheckSameSite(HttpContext httpContext, CookieOptions options)
+        public static void CheckSameSite(HttpContext httpContext, CookieOptions options)
         {
             if (options.SameSite == SameSiteMode.None)
             {
@@ -163,6 +163,7 @@ namespace Foxxit
                 {
                     context.Request.Scheme = "https";
                 }
+
                 return next();
             });
 

@@ -17,7 +17,7 @@ namespace Foxxit.Controllers
     {
         private const int PageSize = 10;
 
-        public FoxxitController(IUserSubRedditService userSubReddit, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
+        public FoxxitController(IUserSubRedditService userSubRedditservice, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
             : base(userManager, signInManager)
         {
             SearchService = searchService;
@@ -25,7 +25,7 @@ namespace Foxxit.Controllers
             SubRedditService = subRedditService;
             CommentService = commentService;
             UserService = userService;
-            UserSubRedditService = userSubReddit;
+            UserSubRedditService = userSubRedditservice;
         }
 
         public ISearchService SearchService { get; set; }
