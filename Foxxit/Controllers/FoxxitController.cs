@@ -373,7 +373,7 @@ namespace Foxxit.Controllers
             }
             else
             {
-                ModelState.AddModelError("UserName", "Username is already taken!");
+                ModelState.AddModelError("NewUserName", "Username is already taken!");
             }
 
             return RedirectToAction("Index", "Foxxit");
