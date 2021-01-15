@@ -171,7 +171,6 @@ namespace Foxxit.Controllers
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
             var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { returnUrl });
-            redirectUrl = redirectUrl.Replace("http", "https");
             var properties = SignInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
 
             return Challenge(properties, provider);
