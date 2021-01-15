@@ -16,7 +16,7 @@ namespace Foxxit.Controllers
     [Authorize]
     public class FoxxitController : MainController
     {
-        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
+        public FoxxitController(UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService, IUserService userService, IUserSubRedditService userSubRedditService)
             : base(userManager, signInManager)
         {
             SearchService = searchService;
@@ -24,7 +24,7 @@ namespace Foxxit.Controllers
             SubRedditService = subRedditService;
             CommentService = commentService;
             UserService = userService;
-            UserSubRedditService = userSubReddit;
+            UserSubRedditService = userSubRedditService;
         }
 
         public ISearchService SearchService { get; set; }
