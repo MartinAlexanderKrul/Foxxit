@@ -69,7 +69,7 @@ namespace Foxxit.Controllers
         [HttpGet("paginationSample")]
         public async Task<IActionResult> PaginationSample(int? pageNum)
         {
-            var posts = await PostService.GetAllIncludeCommentsAsync();
+            var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
             return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1));
         }
 

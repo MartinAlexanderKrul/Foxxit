@@ -49,7 +49,7 @@ namespace Foxxit.Services
 
         public IEnumerable<Post> HotSort(int hours, long? subRedditId)
         {
-            var filter = Filter(p => (DateTime.Now - p.CreatedAt).TotalHours < hours).OrderByDescending(p => p.Votes.Count);
+            var filter = GetAllIncludeCommentsAndUserAsync().Result.Where(p => (DateTime.Now - p.CreatedAt).TotalHours < hours).OrderByDescending(p => p.Votes.Count);
             if (subRedditId.HasValue)
             {
                 return filter.Where(p => p.SubRedditId == subRedditId);
@@ -60,7 +60,8 @@ namespace Foxxit.Services
 
         public IEnumerable<Post> NewSort(long? subRedditId)
         {
-            return subRedditId.HasValue ? Filter(p => p.SubReddit.Id == subRedditId).OrderByDescending(p => p.CreatedAt) : GetAllAsync().Result.OrderByDescending(p => p.CreatedAt);
+
+            return subRedditId.HasValue ? GetAllIncludeCommentsAndUserAsync().Result.Where(p => p.SubReddit.Id == subRedditId).OrderByDescending(p => p.CreatedAt) : GetAllIncludeCommentsAndUserAsync().Result.OrderByDescending(p => p.CreatedAt);
         }
 
         public IEnumerable<Post> TopSort(int hours, long? subRedditId)
