@@ -44,7 +44,7 @@
     <div class="article_middle">
         <div class="article_header">
             <div class="article_text">
-                <h4>@post.Title</h4>
+                <h4><a href="/post/@post.Id">@post.Title</a></h4>
                 <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name</p>
             </div>
             <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Foxxit", new { subRedditId = post.SubRedditId })</div>
