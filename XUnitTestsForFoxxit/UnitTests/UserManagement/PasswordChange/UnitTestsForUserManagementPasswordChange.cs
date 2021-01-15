@@ -13,7 +13,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewPassword_1_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "asd",
@@ -29,7 +29,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewPassword_2_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "asdqw",
@@ -45,7 +45,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewPassword_3_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "correctpasswordcorrectpasswordcorrectpasswordcorrectpasswordcorrectpassword",
@@ -61,7 +61,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewPassword_4_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "correctpassword",
@@ -77,7 +77,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewPassword_5_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = @"`        ",
@@ -93,7 +93,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewPassword_6_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "/ * - + () [] {}",
@@ -109,7 +109,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewPassword_7_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "******",
@@ -125,7 +125,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewPassword_8_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "/-/-/-/-/-/",
@@ -141,7 +141,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewPassword_9_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = @"`~???\\/<>/*-**PKe..",
@@ -157,7 +157,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewPassword_10_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = @"`          ~???\\/<>/*-**PKe..",
@@ -173,7 +173,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestConfirmPassword_1_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "asdasd",
@@ -189,7 +189,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestConfirmPassword_2_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "asdasd",
@@ -205,7 +205,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestConfirmPassword_3_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "asdasd",
@@ -221,7 +221,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestConfirmPassword_4_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "asdasd",
@@ -237,7 +237,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestConfirmPassword_5_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "asdasd",
@@ -253,7 +253,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestConfirmPassword_6_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "",
@@ -269,7 +269,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestConfirmPassword_7_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "ubrouskuprostrise",
@@ -285,7 +285,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestConfirmPassword_8_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
             var model = new PasswordChangeViewModel
             {
                 NewPassword = "qwerty",

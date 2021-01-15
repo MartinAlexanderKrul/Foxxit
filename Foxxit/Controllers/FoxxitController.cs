@@ -364,8 +364,17 @@ namespace Foxxit.Controllers
                 return View("AccountUsernameChange", mainModel);
             }
 
-            var user = await GetActiveUserAsync();
-            await UserService.UpdateUsernameAsync(user, model.NewUserName);
+            var existingUserName = await UserManager.FindByNameAsync(model.NewUserName);
+
+            if (existingUserName is null)
+            {
+                var user = await GetActiveUserAsync();
+                await UserService.UpdateUsernameAsync(user, model.NewUserName);
+            }
+            else
+            {
+                ModelState.AddModelError("UserName", "Username is already taken!");
+            }
 
             return RedirectToAction("Index", "Foxxit");
         }
