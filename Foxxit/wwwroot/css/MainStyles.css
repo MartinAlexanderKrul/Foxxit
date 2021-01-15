@@ -804,9 +804,9 @@ article {
 }
 
 .subreddit_end {
-    width: 100%;
+    width: 75%;
     position: absolute;
-    bottom: 5px;
+    bottom: 10px;
     text-align: center;
     font-size: var(--main-font-size-smaller);
 }

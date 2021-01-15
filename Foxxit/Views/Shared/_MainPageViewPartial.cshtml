@@ -39,7 +39,7 @@
             <div class="article_header">
                 <div class="article_text">
                     <h4><a href="/post/@post.Id">@post.Title</a></h4>
-                    <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name</p>
+                    <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in <a href="/subreddit?subRedditId=@post.SubReddit.Id">@post.SubReddit.Name</a></p>
                 </div>
                 @if (!post.SubReddit.Members.Any(s => s.UserId == Model.CurrentUser.Id))
                 {

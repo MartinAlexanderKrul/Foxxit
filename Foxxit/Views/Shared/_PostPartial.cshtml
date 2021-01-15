@@ -27,7 +27,7 @@
         <div class="article_header">
             <div class="article_text">
                 <h4>@Model.Post.Title</h4>
-                <p class="article_text_info">Posted by @Model.Post.User.UserName @Model.Post.TimeStamp() ago in @Model.Post.SubReddit.Name</p>
+                <p class="article_text_info">Posted by @Model.Post.User.UserName @Model.Post.TimeStamp() ago in <a href="/subreddit?subRedditId=@Model.Post.SubReddit.Id">@Model.Post.SubReddit.Name</a></p>
             </div>
         </div>
 
