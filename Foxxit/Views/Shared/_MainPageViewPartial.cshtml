@@ -14,65 +14,6 @@
 
 @foreach (var post in Model.Posts)
 {
-    <article>
-
-        <div class="article_left">
-            <div class="post_vote">
-                <form asp-action="Vote" asp-controller="Home">
-                    <input type="hidden" value="up" name="voteType" />
-                    <input type="hidden" value="@post.Id" name="postId" />
-                    <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
-                </form>
-            </div>
-            <div class="post_vote">@post.Votes.Count()</div>
-
-            <div class="post_vote">
-                <form asp-action="Vote" asp-controller="Home">
-                    <input type="hidden" value="down" name="voteType" />
-                    <input type="hidden" value="@post.Id" name="postId" />
-                    <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
-                </form>
-            </div>
-        </div>
-
-        <div class="article_middle">
-            <div class="article_header">
-                <div class="article_text">
-                    <h4><a href="/post/@post.Id">@post.Title</a></h4>
-                    <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in <a href="/subreddit?subRedditId=@post.SubReddit.Id">@post.SubReddit.Name</a></p>
-                </div>
-                @if (!post.SubReddit.Members.Any(s => s.UserId == Model.CurrentUser.Id))
-                {
-                    <div class="not_button">@Html.ActionLink("JOIN", "Join", "Foxxit", new { subRedditId = post.SubRedditId })</div>
-                }
-            </div>
-
-            <div class="article_content">
-                @if (!String.IsNullOrEmpty(post.ImageURL))
-                {
-                    <img style="width: 100%" src="@post.ImageURL" alt="@post.Title" />
-                }
-                else
-                {
-                    <p>@post.Text</p>
-                }
-            </div>
-
-            <div class="article_footer">
-                <div class="article_section">
-                    <div class="comment_number">
-                        <a href="/post/@post.Id">
-                            <i class="fa fa-comment fa-lg load-comments"></i>
-                            @post.Comments.Count() COMMENTS
-                        </a>
-                    </div>
-                </div>
-                @*<div class="comment_container" id="comment_container_js">
-                    </div>*@
-            </div>
-        </div>
-
-        <div class="article_right">
-        </div>
-    </article>
+    Model.PostViewModel.Post = post;
+    @await Html.PartialAsync("_PostPartial", Model.PostViewModel)
 }
