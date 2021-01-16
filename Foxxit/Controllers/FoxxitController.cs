@@ -47,6 +47,7 @@ namespace Foxxit.Controllers
                 CurrentUser = currentUser,
                 Posts = posts.OrderByDescending(post => post.CreatedAt).ToList(), // TODO: Instead of OrderBy use Sort Method
                 SubReddits = subReddits,
+                PostViewModel = new PostViewModel(currentUser, false),
             };
 
             return View("Index", model);
@@ -63,7 +64,7 @@ namespace Foxxit.Controllers
                 SearchReturnModel = SearchService.Search(category, keyword),
             };
 
-            return View("Filter", model);
+            return View("Search", model);
         }
 
         [HttpGet("paginationSample")]
@@ -182,14 +183,10 @@ namespace Foxxit.Controllers
         {
             var currentUser = await GetActiveUserAsync();
             var post = await PostService.GetByIdIncludeCommentsAndUserAsync(postId);
-
-            var postViewModel = new PostViewModel()
-            {
-                CurrentUser = currentUser,
-                Post = post,
-            };
             var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+
+            var postViewModel = new PostViewModel(currentUser, post, true);
 
             var model = new MainPageViewModel()
             {
