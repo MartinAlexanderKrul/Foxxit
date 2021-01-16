@@ -172,9 +172,8 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> CreatePost(string title, string url, string text, long subRedditId, IFormFile file)
         {
             var imageUrl = "https://" + Request.Host + $"/image/imagestore/{await ImageService.SaveImageAsync(file)}";
-            url = imageUrl ?? url;
+            url = file is null ? url : imageUrl;
 
-            var asd = await ImageService.SaveImageAsync(file);
             var user = await GetActiveUserAsync();
             var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
             var post = new Post(title, text, url, subReddit, user);
