@@ -14,7 +14,7 @@
             @foreach (var subReddit in Model.SubReddits)
             {
                 <div class="article_item search_margin">
-                    <h4><a href="/post/@subReddit.Id">@subReddit.Name</a></h4>
+                    <h4><a href="/SubReddit?subRedditId=@subReddit.Id">@subReddit.Name</a></h4>
                     <p class="article_text_info">Created by @subReddit.CreatedBy.UserName</p>
                 </div>
             }
@@ -62,7 +62,7 @@
             @foreach (var subReddit in Model.SubReddits)
             {
                 <div class="article_item search_margin">
-                    <h4><a href="/post/@subReddit.Id">@subReddit.Name</a></h4>
+                    <h4><a href="/SubReddit?subRedditId=@subReddit.Id">@subReddit.Name</a></h4>
                     <p class="article_text_info">Created by @subReddit.CreatedBy.UserName</p>
                 </div>
             }
