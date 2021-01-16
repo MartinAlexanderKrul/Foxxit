@@ -47,36 +47,17 @@
                 <h4><a href="/post/@post.Id">@post.Title</a></h4>
                 <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name</p>
             </div>
-            <div class="not_button">@Html.ActionLink("JOIN", "JoinSubReddit", "Foxxit", new { subRedditId = post.SubRedditId })</div>
         </div>
+    </div>
 
-        <div class="article_content">
-            @if (!String.IsNullOrEmpty(post.ImageURL))
-            {
-                <img style="width: 100%" src="@post.ImageURL" alt="@post.Title" />
-            }
-            else
-            {
-                <p>@post.Text</p>
-            }
-        </div>
-
-        <div class="article_footer">
-            <div class="article_section">
-                <div class="comment_number">
-                    <a href="/post/@post.Id">
-                        <i class="fa fa-comment fa-lg load-comments"></i>
-                        @post.Comments.Count() COMMENTS
-                    </a>
+    <div class="article_footer">
+        <div class="posts_list_row_right">
+            <a asp-action="Post" asp-controller="Home" asp-route-PostId="@post.Id">
+                <div class="comments">
+                    <i class="fa fa-comment icon"></i>
+                    @post.Comments.Count
                 </div>
-            </div>
-
-            <div class="posts_list_row_right">
-                <a asp-action="Post" asp-controller="Home" asp-route-PostId="@post.Id">
-                    <div class="comments">
-                        <i class="fa fa-comment icon"></i>
-                        @post.Comments.Count
-                    </div>
-                </a>
-            </div>
+            </a>
+        </div>
+    </div>
 </article>}
