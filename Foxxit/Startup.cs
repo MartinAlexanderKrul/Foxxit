@@ -27,7 +27,7 @@ namespace Foxxit
 
         public IConfiguration Config { get; set; }
 
-        private void CheckSameSite(HttpContext httpContext, CookieOptions options)
+        public static void CheckSameSite(HttpContext httpContext, CookieOptions options)
         {
             if (options.SameSite == SameSiteMode.None)
             {
@@ -149,7 +149,7 @@ namespace Foxxit
                 // User settings.
                 options.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-                options.User.RequireUniqueEmail = false;
+                options.User.RequireUniqueEmail = true;
             });
         }
 
@@ -166,6 +166,7 @@ namespace Foxxit
                 {
                     context.Request.Scheme = "https";
                 }
+
                 return next();
             });
 

@@ -33,6 +33,11 @@ namespace Foxxit.Models.Entities
 
         public string AvatarURL { get; set; }
         public string DisplayName { get; set; }
+        public override string NormalizedUserName
+        {
+            get { return UserName; }
+        }
+
         public int Karma { get; set; }
         public string About { get; set; }
         public DateTime CreatedAt { get; set; }
