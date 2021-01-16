@@ -7,6 +7,7 @@ using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -166,7 +167,7 @@ namespace Foxxit.Controllers
         }
 
         [HttpPost("/Post/Create")]
-        public async Task<IActionResult> CreatePost(string title, string url, string image, string text, long subRedditId)
+        public async Task<IActionResult> CreatePost(string title, string url, string text, long subRedditId, IFormFile file)
         {
             var user = await GetActiveUserAsync();
             var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
