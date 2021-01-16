@@ -10,7 +10,7 @@ else if (!String.IsNullOrEmpty(Model.URL))
 {
     if (Model.URL.Contains("image/imagestore/") || Model.URL.Contains(".jpg") || Model.URL.Contains(".jpeg") || Model.URL.Contains(".png") || Model.URL.Contains(".gif"))
     {
-        <img style="width: 100%" src="@Model.ImageURL" alt="@Model.Title" />
+        <img style="width: 100%" src="@Model.URL" alt="@Model.Title" />
     }
     else if (Model.URL.Contains("youtube.com") || Model.URL.Contains("youtu.be"))
     {

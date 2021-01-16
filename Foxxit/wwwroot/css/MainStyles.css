@@ -24,7 +24,7 @@
 * {
     margin: 0;
     padding: 0;
-    word-wrap: break-word;
+    word-wrap: break-word !important;
 }
 
 a {
@@ -252,6 +252,12 @@ aside {
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 15px;
+    word-wrap: break-word;
+}
+
+.side_bar_left {
+    width: 65%;
+    word-wrap: break-word;
 }
 
 .side_bar_header {
@@ -336,10 +342,13 @@ article {
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
+    word-wrap: break-word;
 }
 
 .article_text {
+    width: 85%;
     margin-left: 2.5%;
+    word-wrap: break-word;
 }
 
 .article_text_info {
@@ -360,6 +369,7 @@ article {
 
 .article_middle {
     width: 80%;
+    word-wrap: break-word;
 }
 
 .article_right {
@@ -367,9 +377,13 @@ article {
 }
 
 .article_header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    word-wrap: break-word;
 }
+
+.article
 
 .article_post_header {
     display: flex;

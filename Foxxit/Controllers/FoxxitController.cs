@@ -184,7 +184,6 @@ namespace Foxxit.Controllers
         {
             var currentUser = await GetActiveUserAsync();
             var post = await PostService.GetByIdIncludeCommentsAndUserAsync(postId);
-            var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
 
             var postViewModel = new PostViewModel(currentUser, post, true);
@@ -192,7 +191,6 @@ namespace Foxxit.Controllers
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
-                Posts = posts,
                 SubReddits = subReddits,
                 PostViewModel = postViewModel,
             };
