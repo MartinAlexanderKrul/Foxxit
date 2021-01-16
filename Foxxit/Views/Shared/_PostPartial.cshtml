@@ -36,14 +36,7 @@
         </div>
 
         <div class="article_content">
-            @if (!String.IsNullOrEmpty(Model.Post.ImageURL))
-            {
-                <img style="width: 100%" src="@Model.Post.ImageURL" alt="@Model.Post.Title" />
-            }
-            else
-            {
-                <p>@Model.Post.Text</p>
-            }
+            @await Html.PartialAsync("_PostPartial_Content", Model.Post)
         </div>
 
         <div class="article_footer">
