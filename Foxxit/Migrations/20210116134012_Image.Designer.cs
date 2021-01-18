@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Foxxit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210116115541_Image")]
+    [Migration("20210116134012_Image")]
     partial class Image
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -467,14 +467,14 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "1e9ddf68-108a-4f48-bbc5-5d5a5d973940",
+                            ConcurrencyStamp = "ed9fd704-5e76-41d2-9c5a-5618b09f37c4",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "1b2e9631-e1ca-4459-8966-3284777c037e",
+                            ConcurrencyStamp = "2e30cd77-be2d-44dd-bb53-76e53f4b0181",
                             Name = "User",
                             NormalizedName = "USER"
                         });
