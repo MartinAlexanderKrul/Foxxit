@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using Abp.Domain.Uow;
 using Foxxit.Attributes.RoleServices;
+using Foxxit.Enums;
 using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
@@ -43,15 +44,16 @@ namespace Foxxit.Controllers
 
         [HttpGet("")]
         [HttpGet("index")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(SortMethod sortMethod)
         {
             var currentUser = await GetActiveUserAsync();
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
-            var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
+            var posts = PostService.Sort(sortMethod, null);
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
-                Posts = posts.OrderByDescending(post => post.CreatedAt).ToList(), // TODO: Instead of OrderBy use Sort Method
+                Posts = posts,
+                SortMethod = sortMethod,
                 SubReddits = subReddits,
             };
 
@@ -76,20 +78,23 @@ namespace Foxxit.Controllers
         public async Task<IActionResult> PaginationSample(int? pageNum)
         {
             var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
-            return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
+            return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1));
         }
 
         [HttpGet("subreddit")]
-        public async Task<IActionResult> SubReddit(long subRedditId)
+        public async Task<IActionResult> SubReddit(SortMethod sortMethod, long subRedditId)
         {
             var currentUser = await GetActiveUserAsync();
             var currentSubReddit = await SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+            var posts = PostService.Sort(sortMethod, subRedditId);
 
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
                 CurrentSubReddit = currentSubReddit,
+                Posts = posts,
+                SortMethod = sortMethod,
                 SubReddits = subReddits,
             };
 
