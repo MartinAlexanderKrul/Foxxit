@@ -13,11 +13,9 @@ namespace Foxxit.Models.Entities
         {
             Votes = new Collection<Vote>();
             Comments = new Collection<Comment>();
-            Karma = Votes.Sum(v => v.Value);
         }
 
         public long Id { get; set; }
-
         public string Text { get; set; }
         public DateTime CreatedAt { get; set; }
         public ICollection<Vote> Votes { get; set; }
@@ -26,6 +24,9 @@ namespace Foxxit.Models.Entities
         public ICollection<Comment> Comments { get; set; }
         public bool IsDeleted { get; set; }
         public int CurrentVoteValue { get; set; }
-        public int Karma { get; set; }
+        public int Karma
+        {
+            get { return Votes.Sum(v => v.Value); }
+        }
     }
 }

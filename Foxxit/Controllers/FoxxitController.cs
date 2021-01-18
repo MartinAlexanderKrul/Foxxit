@@ -43,7 +43,6 @@ namespace Foxxit.Controllers
         {
             var currentUser = await GetActiveUserAsync();
             var existingVote = VoteService.GetVote(currentUser.Id, postBaseId);
-            var votesSum = VoteService.GetVotesSum(postBaseId);
 
             if (existingVote is null)
             {
@@ -56,7 +55,7 @@ namespace Foxxit.Controllers
                 await VoteService.SaveAsync();
             }
 
-            var model = new PostBase() { CurrentVoteValue = existingVote.Value, Karma = votesSum };
+            var model = new PostBase() { CurrentVoteValue = existingVote.Value };
 
             return View("_VotesPartial", model);
         }

@@ -32,12 +32,11 @@ namespace Foxxit.Services.EntityServices
                 .FirstOrDefault();
         }
 
-        public int GetVotesSum(long postBaseId)
+        public int GetKarma(long postBaseId)
         {
             return Repository
                 .Filter(v => v.PostBaseId == postBaseId)
-                .Sum(v=>v.Value);
+                .Sum(v => v.Value);
         }
-
     }
 }

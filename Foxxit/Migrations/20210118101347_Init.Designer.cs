@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Foxxit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210115132121_Votes")]
-    partial class Votes
+    [Migration("20210118101347_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -107,9 +107,6 @@ namespace Foxxit.Migrations
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
-
-                    b.Property<int>("VotesSum")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -269,9 +266,6 @@ namespace Foxxit.Migrations
 
                     b.Property<long>("PostBaseId")
                         .HasColumnType("bigint");
-
-                    b.Property<int>("TotalSum")
-                        .HasColumnType("int");
 
                     b.Property<int>("Value")
                         .HasColumnType("int");
@@ -476,14 +470,14 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "cc690053-65e8-4f39-a730-78cb0dc0452a",
+                            ConcurrencyStamp = "d22b473b-2881-43f9-8b7f-e6b27229630d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "7f3f8367-9319-4eb8-b921-0e1ee3d9d43e",
+                            ConcurrencyStamp = "d0050062-33be-4246-a63b-e30739bc14d1",
                             Name = "User",
                             NormalizedName = "USER"
                         });

@@ -18,12 +18,12 @@ namespace Foxxit.Repositories
 
         public async Task<IEnumerable<Post>> GetAllIncludeCommentsAndUserAsync()
         {
-            return await table.Include(p => p.User).Include(p => p.Comments).ThenInclude(c => c.User).ToListAsync();
+            return await table.Include(p => p.Comments).ThenInclude(c => c.Comments).Include(p => p.User).Include(p => p.Comments).ThenInclude(c => c.User).Include(p => p.Votes).ToListAsync();
         }
 
         public async Task<Post> GetByIdIncludeCommentsAndUserAsync(long id)
         {
-            return await table.Include(p => p.Comments).ThenInclude(c => c.Comments).Include(p => p.User).Include(p => p.Comments).ThenInclude(c => c.User).FirstOrDefaultAsync(c => c.Id == id);
+            return await table.Include(p => p.Comments).ThenInclude(c => c.Comments).Include(p => p.User).Include(p => p.Comments).ThenInclude(c => c.User).Include(p => p.Votes).FirstOrDefaultAsync(c => c.Id == id);
         }
     }
 }

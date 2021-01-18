@@ -10,6 +10,6 @@ namespace Foxxit.Services.Interfaces
         public Vote GetVote(long userId, long postId);
         public Task<Vote> AddNewVote(long userId, long postBaseId, int value)
 ;
-        public int GetVotesSum(long postBaseId);
+        public int GetKarma(long postBaseId);
     }
 }
