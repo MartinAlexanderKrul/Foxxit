@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using Foxxit.Services.Interfaces;
 
 namespace Foxxit.Models.Entities
@@ -12,6 +13,7 @@ namespace Foxxit.Models.Entities
         {
             Votes = new Collection<Vote>();
             Comments = new Collection<Comment>();
+            Karma = Votes.Sum(v => v.Value);
         }
 
         public long Id { get; set; }
@@ -24,6 +26,6 @@ namespace Foxxit.Models.Entities
         public ICollection<Comment> Comments { get; set; }
         public bool IsDeleted { get; set; }
         public int CurrentVoteValue { get; set; }
-        public int VotesSum { get; set; }
+        public int Karma { get; set; }
     }
 }

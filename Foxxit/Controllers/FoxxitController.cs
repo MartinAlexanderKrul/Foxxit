@@ -56,7 +56,7 @@ namespace Foxxit.Controllers
                 await VoteService.SaveAsync();
             }
 
-            var model = new PostBase() { CurrentVoteValue = existingVote.Value, VotesSum = votesSum };
+            var model = new PostBase() { CurrentVoteValue = existingVote.Value, Karma = votesSum };
 
             return View("_VotesPartial", model);
         }
