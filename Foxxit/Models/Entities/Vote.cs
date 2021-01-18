@@ -1,4 +1,5 @@
 using System;
+using Foxxit.Services.EntityServices;
 
 namespace Foxxit.Models.Entities
 {
@@ -12,5 +13,10 @@ namespace Foxxit.Models.Entities
         public long PostBaseId { get; set; }
         public int TotalSum { get; set; }
         public DateTime CreatedOn { get; } = DateTime.UtcNow;
+
+        public Vote()
+        {
+            TotalSum = VoteService
+        }
     }
 }
