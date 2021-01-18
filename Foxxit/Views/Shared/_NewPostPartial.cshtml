@@ -8,7 +8,7 @@
 
         <form class="postform" asp-action="CreatePost" asp-controller="Foxxit" enctype="multipart/form-data" method="post">
 
-            <input class="form_inputs" type="text" name="title" placeholder="Title" required />
+            <input class="form_inputs" type="text" name="title" placeholder="Title" maxlength="100" required />
             <input class="form_inputs" type="url" name="url" placeholder="Full link" />
             <input class="form_inputs fileinput" type="file" name="file" placeholder="Image file (upload)" />
             <textarea class="form_inputs biginput padding_input" name="text" placeholder="Your text" required></textarea> <br />

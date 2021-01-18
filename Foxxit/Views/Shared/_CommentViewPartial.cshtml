@@ -32,7 +32,7 @@
                     <p class="comment_info">@comment.User.UserName ● @comment.Votes.Count() points ● @comment.TimeStamp() ago</p>
                 </div>
                 <div class="comment_right_content">
-                    <p style="margin-bottom: 1%">@comment.Text</p>
+                    @await Html.PartialAsync("_Comment_Content_ViewPartial", comment)
                     <div class="article_section">
                         <div class="closed comment_number show_reply" data-commentId="@comment.Id">
                             <i class="fa fa-comment" id="show_reply"></i>
@@ -71,7 +71,7 @@
                         <p class="comment_info">@subComment.User.UserName ● @subComment.Votes.Count() points ● @subComment.TimeStamp() ago</p>
                     </div>
                     <div class="comment_right_content">
-                        <p>@subComment.Text</p>
+                        @await Html.PartialAsync("_Comment_Content_ViewPartial", subComment)
                     </div>
                 </div>
             </div>

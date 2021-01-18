@@ -24,7 +24,7 @@
 * {
     margin: 0;
     padding: 0;
-    word-wrap: break-word;
+    word-wrap: break-word !important;
 }
 
 a {
@@ -252,6 +252,12 @@ aside {
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 15px;
+    word-wrap: break-word;
+}
+
+.side_bar_left {
+    width: 65%;
+    word-wrap: break-word;
 }
 
 .side_bar_left {
@@ -352,10 +358,13 @@ article {
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
+    word-wrap: break-word;
 }
 
 .article_text {
+    width: 85%;
     margin-left: 2.5%;
+    word-wrap: break-word;
 }
 
 .article_text_info {
@@ -376,6 +385,7 @@ article {
 
 .article_middle {
     width: 80%;
+    word-wrap: break-word;
 }
 
 .article_right {
@@ -383,9 +393,13 @@ article {
 }
 
 .article_header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    word-wrap: break-word;
 }
+
+.article
 
 .article_post_header {
     display: flex;
@@ -820,9 +834,9 @@ article {
 }
 
 .subreddit_end {
-    width: 100%;
+    width: 75%;
     position: absolute;
-    bottom: 5px;
+    bottom: 10px;
     text-align: center;
     font-size: var(--main-font-size-smaller);
 }
@@ -834,4 +848,12 @@ article {
 .button_onleft {
     justify-content: flex-start !important;
     align-items: flex-start !important;
+}
+
+.search_margin {
+    margin-left: 4px;
+}
+
+.search_header {
+    margin-bottom: 6px;
 }

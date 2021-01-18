@@ -18,7 +18,7 @@ namespace Foxxit.Repositories
 
         public async Task<IEnumerable<Post>> GetAllIncludeCommentsAndUserAsync()
         {
-            return await table.Include(p => p.User).Include(p => p.Comments).ThenInclude(c => c.User).ToListAsync();
+            return await table.Include(p => p.Comments).ThenInclude(c => c.Comments).Include(p => p.User).Include(p => p.Comments).ThenInclude(c => c.User).ToListAsync();
         }
 
         public async Task<Post> GetByIdIncludeCommentsAndUserAsync(long id)

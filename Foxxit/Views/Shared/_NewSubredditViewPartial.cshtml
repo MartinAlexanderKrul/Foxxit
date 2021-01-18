@@ -9,8 +9,8 @@
 
         <form class="postform" asp-action="CreateSubreddit" asp-controller="Foxxit" method="post">
 
-            <input class="form_inputs" type="text" name="name" placeholder="Name" required /><br />
-            <textarea class="form_inputs biginput padding_input" name="about" placeholder="About – short description of subreddit" required></textarea> <br />
+            <input class="form_inputs" type="text" name="name" placeholder="Name" maxlength="24" required /><br />
+            <textarea class="form_inputs biginput padding_input" name="about" placeholder="About – short description of subreddit" maxlength="650" required></textarea> <br />
             <div class="postform_buttons">
                 <button class="not_button bigger_button dark_button">CREATE</button>
             </div>

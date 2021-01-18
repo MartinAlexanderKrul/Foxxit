@@ -1,0 +1,18 @@
+﻿@using Foxxit.Extensions
+@using Foxxit.Models.Entities
+@model Comment
+
+@{
+    string url = Model.Text.Split(" ").FirstOrDefault(w => w.StartsWith("http") && (w.EndsWith("jpg") || w.EndsWith("jpeg") || w.EndsWith("png") || w.EndsWith("gif")));
+}
+
+@if (String.IsNullOrEmpty(url))
+{
+    <p style="margin-bottom: 1%">@Model.Text</p>
+}
+else
+{
+    <p style="margin-bottom: 1%; margin-top: 1%">
+        <img width="35%" src="@url" alt="comment" />
+    </p>
+}

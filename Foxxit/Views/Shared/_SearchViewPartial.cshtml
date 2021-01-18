@@ -1,0 +1,107 @@
+﻿@using Foxxit.Models.DTO
+@using Foxxit.Enums
+@using Foxxit.Extensions
+@model SearchReturnModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@if (Model.SearchedCategory.Equals(nameof(SearchCategory.All)))
+{
+    <article>
+        <div class="filtered_container">
+
+            <h2 class="search_header">Found SubReddits</h2>
+
+            @foreach (var subReddit in Model.SubReddits)
+            {
+                <div class="article_item search_margin">
+                    <h4><a href="/SubReddit?subRedditId=@subReddit.Id">@subReddit.Name</a></h4>
+                    <p class="article_text_info">Created by @subReddit.CreatedBy.UserName</p>
+                </div>
+            }
+        </div>
+    </article>
+
+    <article>
+        <div class="filtered_container">
+
+            <h2 class="search_header">Found Posts</h2>
+
+            @foreach (var post in Model.Posts)
+            {
+                <div class="article_item search_margin">
+                    <h4><a href="/post/@post.Id">@post.Title</a></h4>
+                    <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name ● @post.Votes.Count() points</p>
+                </div>
+            }
+        </div>
+    </article>
+
+    <article>
+        <div class="filtered_container">
+
+            <h2 class="search_header">Found Comments</h2>
+
+            @foreach (var comment in Model.Comments.Where(c => c.PostId != null))
+            {
+                <div class="article_item search_margin">
+                    <h4><a href="/post/@comment.PostId">"@(comment.Text.Split(" ")[0])..." on post @comment.Post.Title ● @comment.Votes.Count() points</a></h4>
+                    <p class="article_text_info">Content of comment: @comment.Text.Substring(0, comment.Text.Length > 201 ? 200 : comment.Text.Length)</p>
+                </div>
+            }
+        </div>
+    </article>
+}
+
+@if (Model.SearchedCategory.Equals(nameof(SearchCategory.SubReddit)))
+{
+    <article>
+        <div class="filtered_container">
+
+            <h2 class="search_header">Found SubReddits</h2>
+
+            @foreach (var subReddit in Model.SubReddits)
+            {
+                <div class="article_item search_margin">
+                    <h4><a href="/SubReddit?subRedditId=@subReddit.Id">@subReddit.Name</a></h4>
+                    <p class="article_text_info">Created by @subReddit.CreatedBy.UserName</p>
+                </div>
+            }
+        </div>
+    </article>
+}
+
+@if (Model.SearchedCategory.Equals(nameof(SearchCategory.Post)))
+{
+    <article>
+        <div class="filtered_container">
+
+            <h2 class="search_header">Found Posts</h2>
+
+            @foreach (var post in Model.Posts)
+            {
+                <div class="article_item search_margin">
+                    <h4><a href="/post/@post.Id">@post.Title</a></h4>
+                    <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name ● @post.Votes.Count() points</p>
+                </div>
+            }
+        </div>
+    </article>
+}
+
+@if (Model.SearchedCategory.Equals(nameof(SearchCategory.Comment)))
+{
+    <article>
+        <div class="filtered_container">
+
+            <h2 class="search_header">Found Comments</h2>
+
+            @foreach (var comment in Model.Comments.Where(c => c.PostId != null))
+            {
+                <div class="article_item search_margin">
+                    <h4><a href="/post/@comment.PostId">"@(comment.Text.Split(" ")[0])..." on post @comment.Post.Title ● @comment.Votes.Count() points</a></h4>
+                    <p class="article_text_info">Content of comment: @comment.Text.Substring(0, comment.Text.Length > 201 ? 200 : comment.Text.Length)</p>
+                </div>
+            }
+        </div>
+    </article>
+}

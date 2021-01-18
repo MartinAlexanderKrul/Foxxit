@@ -22,7 +22,7 @@ namespace Foxxit.Controllers
     {
         private const int PageSize = 10;
 
-        public FoxxitController(IUserSubRedditService userSubReddit, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService, IImageService imageService)
+        public FoxxitController(IUserSubRedditService userSubRedditservice, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService, IImageService imageService)
             : base(userManager, signInManager)
         {
             SearchService = searchService;
@@ -30,7 +30,7 @@ namespace Foxxit.Controllers
             SubRedditService = subRedditService;
             CommentService = commentService;
             UserService = userService;
-            UserSubRedditService = userSubReddit;
+            UserSubRedditService = userSubRedditservice;
             ImageService = imageService;
         }
 
@@ -55,6 +55,7 @@ namespace Foxxit.Controllers
                 Posts = posts,
                 SortMethod = sortMethod,
                 SubReddits = subReddits,
+                PostViewModel = new PostViewModel(currentUser, false),
             };
 
             return View("Index", model);
@@ -71,7 +72,7 @@ namespace Foxxit.Controllers
                 SearchReturnModel = SearchService.Search(category, keyword),
             };
 
-            return View("Filter", model);
+            return View("Search", model);
         }
 
         [HttpGet("paginationSample")]
@@ -178,13 +179,11 @@ namespace Foxxit.Controllers
         [HttpPost("/Post/Create")]
         public async Task<IActionResult> CreatePost(string title, string url, string text, long subRedditId, IFormFile file)
         {
-            var imageUrl = "https://" + Request.Host + $"/image/imagestore/{await ImageService.SaveImageAsync(file)}";
-            url = imageUrl ?? url;
+            var imageUrl = file != null ? "https://" + Request.Host + $"/image/imagestore/{await ImageService.SaveImageAsync(file)}" : null;
 
-            var asd = await ImageService.SaveImageAsync(file);
             var user = await GetActiveUserAsync();
             var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
-            var post = new Post(title, text, url, subReddit, user);
+            var post = new Post(title, text, url, imageUrl, subReddit, user);
 
             await PostService.AddAsync(post);
             await PostService.SaveAsync();
@@ -197,19 +196,13 @@ namespace Foxxit.Controllers
         {
             var currentUser = await GetActiveUserAsync();
             var post = await PostService.GetByIdIncludeCommentsAndUserAsync(postId);
-
-            var postViewModel = new PostViewModel()
-            {
-                CurrentUser = currentUser,
-                Post = post,
-            };
-            var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+
+            var postViewModel = new PostViewModel(currentUser, post, true);
 
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
-                Posts = posts,
                 SubReddits = subReddits,
                 PostViewModel = postViewModel,
             };
