@@ -35,8 +35,9 @@ namespace Foxxit.Models.DTO
         }
 
         // the following async method is used instead of a constructor which cannot run async code
-        public static async Task<PaginatedList<T>> CreateAsync(IEnumerable<T> source, int currentPage, int pageSize)
+        public static async Task<PaginatedList<T>> CreateAsync(IEnumerable<T> source, int currentPage)
         {
+            int pageSize = 10;
             var count = source.Count();
             var items = source.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
             return new PaginatedList<T>(items, count, currentPage, pageSize);
