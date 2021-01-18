@@ -40,11 +40,11 @@ namespace Foxxit.Controllers
         {
             var currentUser = await GetActiveUserAsync();
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
-            var posts = sortMethod != null ? PostService.Sort(sortMethod, null) : PostService.Sort(SortMethod.Hot, null);
+            var posts = PostService.Sort(sortMethod, null);
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
-                Posts = posts.ToList(),
+                Posts = posts,
                 SortMethod = sortMethod,
                 SubReddits = subReddits,
             };
@@ -85,7 +85,7 @@ namespace Foxxit.Controllers
             {
                 CurrentUser = currentUser,
                 CurrentSubReddit = currentSubReddit,
-                Posts = posts.ToList(),
+                Posts = posts,
                 SortMethod = sortMethod,
                 SubReddits = subReddits,
             };
