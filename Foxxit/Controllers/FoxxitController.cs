@@ -131,7 +131,7 @@ namespace Foxxit.Controllers
                 ModelState.AddModelError(string.Empty, "SubReddit with this name already exists.");
             }
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         // [AuthorizedRoles(Enums.UserRole.Admin)]
