@@ -1,15 +1,11 @@
 ﻿@using Foxxit.Models.ViewModels
 @using Foxxit.Extensions
+@using Foxxit.Enums
 @model MainPageViewModel
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <div class="section_intro_main">
     <h2>Welcome to Foxxit</h2>
-    <div class="section_intro_buttons">
-        <div class="not_button section_intro_button">@Html.ActionLink("HOT", "ListHotTopics", "Home")</div>
-        <div class="not_button section_intro_button">@Html.ActionLink("NEW", "ListNewTopics", "Home")</div>
-        <div class="not_button section_intro_button">@Html.ActionLink("TOP", "ListTopTopics", "Home")</div>
-    </div>
+    @await Html.PartialAsync("_MainPageIntroViewPartial", Model)
 </div>
 
 @foreach (var post in Model.Posts)

@@ -254,6 +254,12 @@ aside {
     margin-bottom: 15px;
 }
 
+.side_bar_left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .side_bar_header {
     margin-bottom: 30px;
 }
@@ -266,6 +272,10 @@ section {
 }
 
 .not_button {
+    border-radius: 10px;
+}
+
+.not_button, .sorting_button {
     width: 60px;
     height: 25px;
     display: flex;
@@ -273,11 +283,17 @@ section {
     justify-content: center;
     font-size: 16px;
 }
-
-.not_button {
-    background-color: var(--button-color);
-    border-radius: 10px;
+.not_button, .selected_button {
+    background-color: var(--button-color) !important;
 }
+
+.sorting_button {
+    background-color: var(--section-color);
+}
+
+    .sorting_button:hover {
+        background-color: var(--button-color);
+    }
 
 .bigger_button {
     width: 75px;
