@@ -183,7 +183,7 @@ namespace Foxxit.Controllers
 
             var user = await GetActiveUserAsync();
             var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
-            var post = new Post(title, text, url, subReddit, user);
+            var post = new Post(title, text, url, imageUrl, subReddit, user);
 
             await PostService.AddAsync(post);
             await PostService.SaveAsync();
