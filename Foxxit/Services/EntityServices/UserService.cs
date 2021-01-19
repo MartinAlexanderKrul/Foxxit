@@ -10,11 +10,15 @@ namespace Foxxit.Services
         public UserService(UserRepository repository)
             : base(repository)
         {
+            UserRepository = repository;
         }
+
+        public UserRepository UserRepository { get; private set; }
 
         public async Task UpdateUsernameAsync(User user, string newUserName)
         {
             user.UserName = newUserName;
+            user.NormalizedUserName = newUserName;
             Update(user);
             await SaveAsync();
         }

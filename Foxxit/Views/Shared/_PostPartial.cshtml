@@ -26,33 +26,35 @@
     <div class="article_middle">
         <div class="article_header">
             <div class="article_text">
-                <h4>@Model.Post.Title</h4>
-                <p class="article_text_info">Posted by @Model.Post.User.UserName @Model.Post.TimeStamp() ago in @Model.Post.SubReddit.Name</p>
+                <h4><a href="/post/@Model.Post.Id">@Model.Post.Title</a></h4>
+                <p class="article_text_info">Posted by @Model.Post.User.UserName @Model.Post.TimeStamp() ago in <a href="/subreddit?subRedditId=@Model.Post.SubReddit.Id">@Model.Post.SubReddit.Name</a></p>
             </div>
+            @if (Model.ShouldShowButton && !Model.Post.SubReddit.Members.Any(s => s.UserId == Model.CurrentUser.Id))
+            {
+                <div class="not_button">@Html.ActionLink("JOIN", "Join", "Foxxit", new { subRedditId = Model.Post.SubRedditId })</div>
+            }
         </div>
 
         <div class="article_content">
-            @if (!String.IsNullOrEmpty(Model.Post.ImageURL))
-            {
-                <img style="width: 100%" src="@Model.Post.ImageURL" alt="@Model.Post.Title" />
-            }
-            else
-            {
-                <p>@Model.Post.Text</p>
-            }
+            @await Html.PartialAsync("_PostPartial_Content", Model.Post)
         </div>
 
         <div class="article_footer">
             <div class="article_section">
                 <div class="comment_number">
-                    <i class="fa fa-comment fa-lg load-comments"></i>
-                    @Model.Post.Comments.Count() COMMENTS
+                    <a href="/post/@Model.Post.Id">
+                        <i class="fa fa-comment fa-lg load-comments"></i>
+                        @Model.Post.NumOfComments() COMMENTS
+                    </a>
                 </div>
             </div>
 
-            <div class="comment_container">
-                @await Html.PartialAsync("_CommentViewPartial", Model.Post)
-            </div>
+            @if (Model.ShouldLoadComments)
+            {
+                <div class="comment_container">
+                    @await Html.PartialAsync("_CommentViewPartial", Model.Post)
+                </div>
+            }
         </div>
     </div>
 

@@ -1,15 +1,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
+using Abp.Domain.Uow;
 using Foxxit.Attributes.RoleServices;
+using Foxxit.Enums;
 using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
 using Foxxit.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace Foxxit.Controllers
 {
@@ -18,7 +23,7 @@ namespace Foxxit.Controllers
     {
         private const int PageSize = 10;
 
-        public FoxxitController(IVoteService voteService, IUserSubRedditService userSubReddit, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService)
+        public FoxxitController(IVoteService voteService, IUserSubRedditService userSubRedditService, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService, IImageService imageService)
             : base(userManager, signInManager)
         {
             SearchService = searchService;
@@ -26,8 +31,9 @@ namespace Foxxit.Controllers
             SubRedditService = subRedditService;
             CommentService = commentService;
             UserService = userService;
-            UserSubRedditService = userSubReddit;
             VoteService = voteService;
+            UserSubRedditService = userSubRedditService;
+            ImageService = imageService;
         }
 
         public ISearchService SearchService { get; set; }
@@ -36,6 +42,7 @@ namespace Foxxit.Controllers
         public ICommentService CommentService { get; set; }
         public IUserService UserService { get; set; }
         public IUserSubRedditService UserSubRedditService { get; set; }
+        public IImageService ImageService { get; set; }
         public IVoteService VoteService { get; set; }
 
         [HttpGet("/vote/{value}/{postBaseId}")]
@@ -62,16 +69,18 @@ namespace Foxxit.Controllers
 
         [HttpGet("")]
         [HttpGet("index")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(SortMethod sortMethod)
         {
             var currentUser = await GetActiveUserAsync();
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
-            var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
+            var posts = PostService.Sort(sortMethod, null);
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
-                Posts = posts.OrderByDescending(post => post.CreatedAt).ToList(), // TODO: Instead of OrderBy use Sort Method
+                Posts = posts,
+                SortMethod = sortMethod,
                 SubReddits = subReddits,
+                PostViewModel = new PostViewModel(currentUser, false),
             };
 
             return View("Index", model);
@@ -88,29 +97,30 @@ namespace Foxxit.Controllers
                 SearchReturnModel = SearchService.Search(category, keyword),
             };
 
-            return View("Filter", model);
+            return View("Search", model);
         }
 
         [HttpGet("paginationSample")]
         public async Task<IActionResult> PaginationSample(int? pageNum)
         {
             var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
-            return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1, PageSize));
-            
-            // this is a comment without any purpose
+            return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1));
         }
 
         [HttpGet("subreddit")]
-        public async Task<IActionResult> SubReddit(long subRedditId)
+        public async Task<IActionResult> SubReddit(SortMethod sortMethod, long subRedditId)
         {
             var currentUser = await GetActiveUserAsync();
             var currentSubReddit = await SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+            var posts = PostService.Sort(sortMethod, subRedditId);
 
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
                 CurrentSubReddit = currentSubReddit,
+                Posts = posts,
+                SortMethod = sortMethod,
                 SubReddits = subReddits,
             };
 
@@ -192,11 +202,13 @@ namespace Foxxit.Controllers
         }
 
         [HttpPost("/Post/Create")]
-        public async Task<IActionResult> CreatePost(string title, string url, string image, string text, long subRedditId)
+        public async Task<IActionResult> CreatePost(string title, string url, string text, long subRedditId, IFormFile file)
         {
+            var imageUrl = file != null ? "https://" + Request.Host + $"/image/imagestore/{await ImageService.SaveImageAsync(file)}" : null;
+
             var user = await GetActiveUserAsync();
             var subReddit = await SubRedditService.GetByIdAsync(subRedditId);
-            var post = new Post(title, text, url, subReddit, user);
+            var post = new Post(title, text, url, imageUrl, subReddit, user);
 
             await PostService.AddAsync(post);
             await PostService.SaveAsync();
@@ -209,19 +221,13 @@ namespace Foxxit.Controllers
         {
             var currentUser = await GetActiveUserAsync();
             var post = await PostService.GetByIdIncludeCommentsAndUserAsync(postId);
-
-            var postViewModel = new PostViewModel()
-            {
-                CurrentUser = currentUser,
-                Post = post,
-            };
-            var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+
+            var postViewModel = new PostViewModel(currentUser, post, true);
 
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
-                Posts = posts,
                 SubReddits = subReddits,
                 PostViewModel = postViewModel,
             };
@@ -310,21 +316,6 @@ namespace Foxxit.Controllers
             return View("AccountPasswordChange", model);
         }
 
-        [HttpGet("usernamechange")]
-        public async Task<IActionResult> UsernameChange()
-        {
-            var currentUser = await GetActiveUserAsync();
-            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
-
-            var model = new MainPageViewModel()
-            {
-                CurrentUser = currentUser,
-                SubReddits = subReddits,
-            };
-
-            return View("AccountUsernameChange", model);
-        }
-
         [HttpPost("passwordchange")]
         public async Task<IActionResult> PasswordChange(PasswordChangeViewModel model)
         {
@@ -365,6 +356,21 @@ namespace Foxxit.Controllers
             return View("AccountPasswordChange", mainModel);
         }
 
+        [HttpGet("usernamechange")]
+        public async Task<IActionResult> UsernameChange()
+        {
+            var currentUser = await GetActiveUserAsync();
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+
+            var model = new MainPageViewModel()
+            {
+                CurrentUser = currentUser,
+                SubReddits = subReddits,
+            };
+
+            return View("AccountUsernameChange", model);
+        }
+
         [HttpPost("usernamechange")]
         public async Task<IActionResult> UsernameChange(UsernameChangeViewModel model)
         {
@@ -383,8 +389,17 @@ namespace Foxxit.Controllers
                 return View("AccountUsernameChange", mainModel);
             }
 
-            var user = await GetActiveUserAsync();
-            await UserService.UpdateUsernameAsync(user, model.NewUserName);
+            var existingUserName = await UserManager.FindByNameAsync(model.NewUserName);
+
+            if (existingUserName is null)
+            {
+                var user = await GetActiveUserAsync();
+                await UserService.UpdateUsernameAsync(user, model.NewUserName);
+            }
+            else
+            {
+                ModelState.AddModelError("NewUserName", "Username is already taken!");
+            }
 
             return RedirectToAction("Index", "Foxxit");
         }

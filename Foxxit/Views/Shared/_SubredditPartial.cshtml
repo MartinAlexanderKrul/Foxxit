@@ -1,5 +1,6 @@
 ﻿@using Foxxit.Extensions
 @using Foxxit.Models.ViewModels
+@using Foxxit.Enums
 @{ Layout = "_Layout"; }
 @model MainPageViewModel
 
@@ -7,9 +8,9 @@
     <div class="subreddit_header">
         <div><h1>@Model.CurrentSubReddit.Name</h1></div>
         <div class="section_intro_buttons">
-            <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="hot">HOT</a></div>
-            <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="new">NEW</a></div>
-            <div class="not_button section_intro_button"><a asp-action="OrderTopics" asp-controller="Home" asp-route-orderBy="top">TOP</a></div>
+            <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.Hot ? " selected_button" : ""))" asp-action="SubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Hot" asp-route-subRedditId="@Model.CurrentSubReddit.Id">HOT</a>
+            <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.New ? " selected_button" : ""))" asp-action="SubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.New" asp-route-subRedditId="@Model.CurrentSubReddit.Id">NEW</a>
+            <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.Top ? " selected_button" : ""))" asp-action="SubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Top" asp-route-subRedditId="@Model.CurrentSubReddit.Id">TOP</a>
         </div>
     </div>
     <div class="create_post">
@@ -17,7 +18,7 @@
     </div>
 </div>
 
-@foreach (var post in Model.CurrentSubReddit.Posts)
+@foreach (var post in Model.Posts)
 {
     //TODO whole row has to be a link
 <article>
@@ -42,18 +43,23 @@
 
         @await Html.PartialAsync("_VotesPartial", Model.VoteViewModel)
 
-        <div class="article_middle">
-            <div class="article_post_header">
+    <div class="article_middle">
+        <div class="article_header">
+            <div class="article_text">
                 <h4><a href="/post/@post.Id">@post.Title</a></h4>
+                <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name</p>
             </div>
-            <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago
         </div>
+    </div>
 
+    <div class="article_footer">
         <div class="posts_list_row_right">
-            <div class="comments">
-                <i class="fa fa-comment icon"></i>
-                @post.Comments.Count
-            </div>
+            <a asp-action="Post" asp-controller="Home" asp-route-PostId="@post.Id">
+                <div class="comments">
+                    <i class="fa fa-comment icon"></i>
+                    @post.Comments.Count
+                </div>
+            </a>
         </div>
-    </article>
-}
+    </div>
+</article>}

@@ -6,11 +6,11 @@
     <div class="postformcontainer">
         <h2>Create new post <span class="noheader">to @Model.CurrentSubReddit.Name</span></h2>
 
-        <form class="postform" asp-action="CreatePost" asp-controller="Foxxit" method="post">
+        <form class="postform" asp-action="CreatePost" asp-controller="Foxxit" enctype="multipart/form-data" method="post">
 
-            <input class="form_inputs" type="text" name="title" placeholder="Title" required />
+            <input class="form_inputs" type="text" name="title" placeholder="Title" maxlength="100" required />
             <input class="form_inputs" type="url" name="url" placeholder="Full link" />
-            <input class="form_inputs fileinput" type="file" name="image" placeholder="Image file (upload)" />
+            <input class="form_inputs fileinput" type="file" name="file" placeholder="Image file (upload)" />
             <textarea class="form_inputs biginput padding_input" name="text" placeholder="Your text" required></textarea> <br />
             <input type="hidden" name="subRedditId" value="@Model.CurrentSubReddit.Id" />
             <div class="postform_buttons">

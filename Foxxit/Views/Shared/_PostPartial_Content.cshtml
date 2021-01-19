@@ -1,0 +1,24 @@
+﻿@using Foxxit.Models.Entities
+@using Foxxit.Extensions
+@model Post
+
+@if (!String.IsNullOrEmpty(Model.ImageURL))
+{
+    <img style="width: 100%" src="@Model.ImageURL" alt="@Model.Title" />
+}
+else if (!String.IsNullOrEmpty(Model.URL))
+{
+    if (Model.URL.Contains("image/imagestore/") || Model.URL.Contains(".jpg") || Model.URL.Contains(".jpeg") || Model.URL.Contains(".png") || Model.URL.Contains(".gif"))
+    {
+        <img style="width: 100%" src="@Model.URL" alt="@Model.Title" />
+    }
+    else if (Model.URL.Contains("youtube.com") || Model.URL.Contains("youtu.be"))
+    {
+
+        <iframe style="width: 100%; height: 315px" src="https://www.youtube.com/embed/@Model.URL.GetYoutubeId()" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    }
+}
+else
+{
+    <p>@Model.Text</p>
+}

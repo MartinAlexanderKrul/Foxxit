@@ -1,5 +1,6 @@
 ﻿@using Foxxit.Models.ViewModels
 @model MainPageViewModel
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     var unreads = Model.CurrentUser.ReceivedNotifications.Where(n => !n.HasBeenRead);
