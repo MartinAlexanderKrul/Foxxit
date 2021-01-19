@@ -53,7 +53,8 @@ namespace Foxxit.Controllers
 
             if (existingVote is null)
             {
-                existingVote = await VoteService.AddNewVote(currentUser.Id, postBaseId, value);
+                _ = await VoteService.AddNewVote(currentUser.Id, postBaseId, value);
+                await VoteService.SaveAsync();
             }
             else
             {
@@ -62,9 +63,15 @@ namespace Foxxit.Controllers
                 await VoteService.SaveAsync();
             }
 
-            var model = new PostBase() { CurrentVoteValue = existingVote.Value };
+            var commentModel = await CommentService.GetByIdInclude(postBaseId);
+            var postModel = await PostService.GetByIdIncludeCommentsAndUserAsync(postBaseId);
 
-            return View("_VotesPartial", model);
+            if (commentModel is not null) 
+            {
+                return View("_VotesPartialComment", commentModel);
+            }
+
+            return View("_VotesPartial", postModel);
         }
 
         [HttpGet("")]
