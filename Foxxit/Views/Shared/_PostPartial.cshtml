@@ -5,22 +5,7 @@
 <article>
 
     <div class="article_left">
-        <div class="post_vote">
-            <form asp-action="Vote" asp-controller="Home">
-                <input type="hidden" value="1" name="value" />
-                <input type="hidden" value="@Model.Post.Id" name="postBaseId" />
-                <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
-            </form>
-        </div>
-        <div class="post_vote">@Model.Post.Votes.Count()</div>
-
-        <div class="post_vote">
-            <form asp-action="Vote" asp-controller="Home">
-                <input type="hidden" value="-1" name="value" />
-                <input type="hidden" value="@Model.Post.Id" name="postBaseId" />
-                <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
-            </form>
-        </div>
+        @await Html.PartialAsync("_VotesPartial", Model.Post)
     </div>
 
     <div class="article_middle">

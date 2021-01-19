@@ -63,6 +63,8 @@ namespace Foxxit.Controllers
                 await VoteService.SaveAsync();
             }
 
+            // add service for removing vote
+
             var commentModel = await CommentService.GetByIdInclude(postBaseId);
             var postModel = await PostService.GetByIdIncludeCommentsAndUserAsync(postBaseId);
 
