@@ -61,9 +61,18 @@ namespace Foxxit.Controllers
             return View("Index", model);
         }
 
+        [HttpGet("search")]
+        public IActionResult SearchGet()
+        {
+            return RedirectToAction("Index");
+        }
+
         [HttpPost("search")]
         public async Task<IActionResult> Search(string category, string keyword)
         {
+            keyword ??= string.Empty;
+            category ??= string.Empty;
+
             var model = new MainPageViewModel()
             {
                 CurrentUser = await GetActiveUserAsync(),
