@@ -857,10 +857,11 @@ article {
 .search_header {
     margin-bottom: 6px;
 }
-}
-}
 
 /*VOTES*/
-#red {
+i {
+    cursor: pointer !important;
+}
+.red {
     color: red;
 }

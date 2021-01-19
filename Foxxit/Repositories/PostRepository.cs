@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Foxxit.Database;
 using Foxxit.Models.Entities;
@@ -16,14 +17,26 @@ namespace Foxxit.Repositories
             table = dbContext.Set<Post>();
         }
 
+        public IQueryable<Post> GetInclude()
+        {
+            return table
+                .Include(p => p.Comments)
+                .ThenInclude(c => c.Comments)
+                .ThenInclude(c => c.Votes)
+                .Include(p => p.User)
+                .Include(p => p.Comments)
+                .ThenInclude(c => c.User)
+                .Include(p => p.Votes);
+        }
+
         public async Task<IEnumerable<Post>> GetAllIncludeCommentsAndUserAsync()
         {
-            return await table.Include(p => p.Comments).ThenInclude(c => c.Comments).Include(p => p.User).Include(p => p.Comments).ThenInclude(c => c.User).Include(p => p.Votes).ToListAsync();
+            return await GetInclude().ToListAsync();
         }
 
         public async Task<Post> GetByIdIncludeCommentsAndUserAsync(long id)
         {
-            return await table.Include(p => p.Comments).ThenInclude(c => c.Comments).Include(p => p.User).Include(p => p.Comments).ThenInclude(c => c.User).Include(p => p.Votes).FirstOrDefaultAsync(c => c.Id == id);
+            return await GetInclude().FirstOrDefaultAsync(c => c.Id == id);
         }
     }
 }

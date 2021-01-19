@@ -16,10 +16,27 @@
 $('.post_vote').on('click', function (evt) {
     evt.preventDefault();
     evt.stopPropagation();
-    debugger;
     let id = this.getAttribute("data-postBaseId");
     let value = this.getAttribute("data-value");
+    debugger;
+    $.getJSON("/vote/" + value + "/" + id, function (data) {
+        debugger;
+        var karma = data.karma
+        var currentVote = data.currentVote
+        $('#karma_' + id).html(karma)
 
-    $('#voting_' + id).empty();
-    $('#voting_' + id).load("/vote/" + value + "/" + id);
+        if (currentVote == 1) {
+            $('#upvote_' + id).toggleClass("red");
+            if ($('#downvote_' + id).hasClass("red")) {
+                $('#downvote_' + id).toggleClass("red");
+            }
+        }
+        if (currentVote == -1) {
+            $('#downvote_' + id).toggleClass("red");
+            if ($('#upvote_' + id).hasClass("red")) {
+                $('#upvote_' + id).toggleClass("red");
+            }
+        }
+    });
+    //$('#karma_' + id).load("/vote/" + value + "/" + id),
 });

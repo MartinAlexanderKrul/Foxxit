@@ -46,14 +46,19 @@ namespace Foxxit.Controllers
         public IVoteService VoteService { get; set; }
 
         [HttpGet("/vote/{value}/{postBaseId}")]
-        public async Task<IActionResult> Vote(int value, long postBaseId)
+        public async Task<VotesInfo> Vote(int value, long postBaseId)
         {
             var currentUser = await GetActiveUserAsync();
             var existingVote = VoteService.GetVote(currentUser.Id, postBaseId);
 
             if (existingVote is null)
             {
-                _ = await VoteService.AddNewVote(currentUser.Id, postBaseId, value);
+                existingVote = await VoteService.AddNewVote(currentUser.Id, postBaseId, value);
+                await VoteService.SaveAsync();
+            }
+            else if (existingVote.Value == value)
+            {
+                VoteService.Delete(existingVote);
                 await VoteService.SaveAsync();
             }
             else
@@ -63,17 +68,19 @@ namespace Foxxit.Controllers
                 await VoteService.SaveAsync();
             }
 
-            // add service for removing vote
-
             var commentModel = await CommentService.GetByIdInclude(postBaseId);
             var postModel = await PostService.GetByIdIncludeCommentsAndUserAsync(postBaseId);
 
             if (commentModel is not null) 
             {
-                return View("_VotesPartialComment", commentModel);
+                var dto = new VotesInfo { Karma = commentModel.Karma, CurrentVote = existingVote.Value };
+                return dto;
             }
-
-            return View("_VotesPartial", postModel);
+            else
+            {
+                var dto = new VotesInfo { Karma = postModel.Karma, CurrentVote = existingVote.Value };
+                return dto;
+            }
         }
 
         [HttpGet("")]

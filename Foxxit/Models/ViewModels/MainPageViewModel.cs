@@ -33,6 +33,5 @@ namespace Foxxit.Models.ViewModels
         public SortMethod SortMethod { get; set; }
         public PasswordChangeViewModel PasswordChangeViewModel { get; set; }
         public UsernameChangeViewModel UsernameChangeViewModel { get; set; }
-        public VoteViewModel VoteViewModel { get; set; }
     }
 }

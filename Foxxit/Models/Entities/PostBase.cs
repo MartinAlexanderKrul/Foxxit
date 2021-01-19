@@ -23,7 +23,6 @@ namespace Foxxit.Models.Entities
         public long UserId { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public bool IsDeleted { get; set; }
-        public int CurrentVoteValue { get; set; }
         public int Karma
         {
             get { return Votes.Sum(v => v.Value); }
