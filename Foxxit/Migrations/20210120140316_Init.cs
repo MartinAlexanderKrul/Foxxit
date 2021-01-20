@@ -210,7 +210,6 @@ namespace Foxxit.Migrations
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     UserId = table.Column<long>(type: "bigint", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CurrentVoteValue = table.Column<int>(type: "int", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OriginalCommentId = table.Column<long>(type: "bigint", nullable: true),
                     PostId = table.Column<long>(type: "bigint", nullable: true),
@@ -332,12 +331,12 @@ namespace Foxxit.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
-                values: new object[] { 1L, "e1864bc1-0acf-4da5-8c78-d70989cd0912", "UserRole", "Admin", "ADMIN" });
+                values: new object[] { 1L, "4d434dac-f986-4546-ad00-f84af4aad1c7", "UserRole", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
-                values: new object[] { 2L, "f93fb051-9b3d-4362-afa0-bd488b8b0edc", "UserRole", "User", "USER" });
+                values: new object[] { 2L, "68e6bc3f-ec54-415f-9e1f-7a0d4278a2d6", "UserRole", "User", "USER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

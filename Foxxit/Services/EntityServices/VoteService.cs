@@ -19,6 +19,7 @@ namespace Foxxit.Services.EntityServices
             var votes = Repository.Filter(x => x.OwnerId == userId && x.PostBaseId == postBaseId);
 
             var newVote = new Vote() { OwnerId = userId, PostBaseId = postBaseId, Value = value };
+
             await Repository.AddAsync(newVote);
 
             return newVote;
@@ -36,6 +37,17 @@ namespace Foxxit.Services.EntityServices
             return Repository
                 .Filter(v => v.PostBaseId == postBaseId)
                 .Sum(v => v.Value);
+        }
+
+        public async Task EnsureOneVote(Vote newVote)
+        {
+            var existingVotes = Repository.Filter(v => v.Id != newVote.Id && v.PostBaseId == newVote.PostBaseId && v.OwnerId == newVote.OwnerId);
+            foreach (Vote vote in existingVotes)
+            {
+                Repository.Delete(vote);
+            }
+
+            await Repository.SaveAsync();
         }
     }
 }

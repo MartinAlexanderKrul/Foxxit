@@ -90,9 +90,6 @@ namespace Foxxit.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<int>("CurrentVoteValue")
-                        .HasColumnType("int");
-
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -468,14 +465,14 @@ namespace Foxxit.Migrations
                         new
                         {
                             Id = 1L,
-                            ConcurrencyStamp = "e1864bc1-0acf-4da5-8c78-d70989cd0912",
+                            ConcurrencyStamp = "4d434dac-f986-4546-ad00-f84af4aad1c7",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2L,
-                            ConcurrencyStamp = "f93fb051-9b3d-4362-afa0-bd488b8b0edc",
+                            ConcurrencyStamp = "68e6bc3f-ec54-415f-9e1f-7a0d4278a2d6",
                             Name = "User",
                             NormalizedName = "USER"
                         });

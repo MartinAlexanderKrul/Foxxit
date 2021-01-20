@@ -11,5 +11,7 @@ namespace Foxxit.Services.Interfaces
         public Task<Vote> AddNewVote(long userId, long postBaseId, int value)
 ;
         public int GetKarma(long postBaseId);
+        public Task EnsureOneVote(Vote newVote);
+
     }
 }

@@ -54,12 +54,15 @@ namespace Foxxit.Controllers
             if (existingVote is null)
             {
                 existingVote = await VoteService.AddNewVote(currentUser.Id, postBaseId, value);
+                
                 await VoteService.SaveAsync();
+                await VoteService.EnsureOneVote(existingVote);
             }
             else if (existingVote.Value == value)
             {
                 VoteService.Delete(existingVote);
                 await VoteService.SaveAsync();
+                existingVote.Value = 0;
             }
             else
             {
