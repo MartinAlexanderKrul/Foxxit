@@ -71,8 +71,13 @@ namespace Foxxit.Controllers
         }
 
         [HttpGet("register")]
-        public IActionResult Register()
+        public async Task<IActionResult> Register()
         {
+            if (await GetActiveUserAsync() is not null)
+            {
+                return RedirectToAction("Index", "Foxxit");
+            }
+
             return View();
         }
 
@@ -121,8 +126,13 @@ namespace Foxxit.Controllers
         }
 
         [HttpGet("login")]
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
         {
+            if (await GetActiveUserAsync() is not null)
+            {
+                return RedirectToAction("Index", "Foxxit");
+            }
+
             return View();
         }
 
