@@ -161,7 +161,7 @@ namespace Foxxit.Controllers
             }
             else
             {
-                ModelState.AddModelError("UserName", "Username is not in database! Do you want to Sign Up?");
+                ModelState.AddModelError("UserName", "Username doesn't exist!");
             }
 
             return View(model);
