@@ -17,6 +17,10 @@ else if (!String.IsNullOrEmpty(Model.URL))
 
         <iframe style="width: 100%; height: 315px" src="https://www.youtube.com/embed/@Model.URL.GetYoutubeId()" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     }
+    else
+    {
+        <p>@Model.Text <a href="@Model.URL">[LINK]</a></p>
+    }
 }
 else
 {
