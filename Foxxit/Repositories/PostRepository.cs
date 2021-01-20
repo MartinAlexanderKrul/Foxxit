@@ -25,6 +25,8 @@ namespace Foxxit.Repositories
                 .ThenInclude(c => c.Votes)
                 .Include(p => p.User)
                 .Include(p => p.Comments)
+                .ThenInclude(c => c.Votes)
+                .Include(p => p.Comments)
                 .ThenInclude(c => c.User)
                 .Include(p => p.Votes);
         }
