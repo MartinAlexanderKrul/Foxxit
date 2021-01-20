@@ -12,6 +12,5 @@ namespace Foxxit.Services.Interfaces
 ;
         public int GetKarma(long postBaseId);
         public Task EnsureOneVote(Vote newVote);
-
     }
 }
