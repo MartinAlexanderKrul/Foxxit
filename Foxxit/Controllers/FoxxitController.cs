@@ -54,7 +54,6 @@ namespace Foxxit.Controllers
             if (existingVote is null)
             {
                 existingVote = await VoteService.AddNewVote(currentUser.Id, postBaseId, value);
-                
                 await VoteService.SaveAsync();
                 await VoteService.EnsureOneVote(existingVote);
             }
@@ -74,7 +73,7 @@ namespace Foxxit.Controllers
             var commentModel = await CommentService.GetByIdInclude(postBaseId);
             var postModel = await PostService.GetByIdIncludeCommentsAndUserAsync(postBaseId);
 
-            if (commentModel is not null) 
+            if (commentModel is not null)
             {
                 var dto = new VotesInfo { Karma = commentModel.Karma, CurrentVote = existingVote.Value };
                 return dto;
@@ -423,4 +422,4 @@ namespace Foxxit.Controllers
             return RedirectToAction("Index", "Foxxit");
         }
     }
-} 
+}
