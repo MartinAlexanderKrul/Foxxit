@@ -3,7 +3,7 @@ using Foxxit.Models.ViewModels;
 using Foxxit.Controllers;
 using Moq;
 using System.Collections.Generic;
-using   System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace XUnitTestsForFoxxit

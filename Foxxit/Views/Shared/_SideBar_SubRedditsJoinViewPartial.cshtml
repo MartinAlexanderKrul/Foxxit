@@ -7,7 +7,9 @@
 {
     <div class="side_bar">
         <div class="side_bar_left">
-            <p><a href="/SubReddit?subRedditId=@subReddit.Id">@subReddit.Name</a></p>
+            <p><a href="/SubReddit?subRedditId=@subReddit.Id">
+                    @(subReddit.Name.Contains(" ") || subReddit.Name.Length < 12 ? subReddit.Name : subReddit.Name.Insert(subReddit.Name.Length/2, " "))
+               </a></p>
         </div>
 
         <div class="side_bar_right">

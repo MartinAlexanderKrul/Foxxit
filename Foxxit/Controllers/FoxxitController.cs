@@ -21,9 +21,8 @@ namespace Foxxit.Controllers
     [Authorize]
     public class FoxxitController : MainController
     {
-        private const int PageSize = 10;
-
         public FoxxitController(IVoteService voteService, IUserSubRedditService userSubRedditService, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService, IImageService imageService)
+
             : base(userManager, signInManager)
         {
             SearchService = searchService;
@@ -87,16 +86,15 @@ namespace Foxxit.Controllers
 
         [HttpGet("")]
         [HttpGet("index")]
-        public async Task<IActionResult> Index(SortMethod sortMethod)
+        public async Task<IActionResult> Index(SortMethod sortMethod, int? pageNum)
         {
             var currentUser = await GetActiveUserAsync();
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
-            var posts = PostService.Sort(sortMethod, null);
+            var posts = await PaginatedList<Post>.CreateAsync(PostService.Sort(sortMethod, null), pageNum ?? 1, sortMethod);
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
                 Posts = posts,
-                SortMethod = sortMethod,
                 SubReddits = subReddits,
                 PostViewModel = new PostViewModel(currentUser, false),
             };
@@ -104,13 +102,22 @@ namespace Foxxit.Controllers
             return View("Index", model);
         }
 
-        [HttpPost("search")]
-        public async Task<IActionResult> Search(string category, string keyword)
+        [HttpGet("search")]
+        public IActionResult SearchGet()
         {
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost("search")]
+        public async Task<IActionResult> Search(string category, string keyword, int? pageNum, SortMethod sortMethod)
+        {
+            keyword ??= string.Empty;
+            category ??= string.Empty;
+
             var model = new MainPageViewModel()
             {
                 CurrentUser = await GetActiveUserAsync(),
-                Posts = await PostService.GetAllIncludeCommentsAndUserAsync(),
+                Posts = await PaginatedList<Post>.CreateAsync(await PostService.GetAllIncludeCommentsAndUserAsync(), pageNum ?? 1, sortMethod),
                 SubReddits = await SubRedditService.GetAllIncludeUserAndMembers(),
                 SearchReturnModel = SearchService.Search(category, keyword),
             };
@@ -118,27 +125,19 @@ namespace Foxxit.Controllers
             return View("Search", model);
         }
 
-        [HttpGet("paginationSample")]
-        public async Task<IActionResult> PaginationSample(int? pageNum)
-        {
-            var posts = await PostService.GetAllIncludeCommentsAndUserAsync();
-            return View(await PaginatedList<Post>.CreateAsync(posts, pageNum ?? 1));
-        }
-
         [HttpGet("subreddit")]
-        public async Task<IActionResult> SubReddit(SortMethod sortMethod, long subRedditId)
+        public async Task<IActionResult> SubReddit(SortMethod sortMethod, long subRedditId, int? pageNum)
         {
             var currentUser = await GetActiveUserAsync();
             var currentSubReddit = await SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
-            var posts = PostService.Sort(sortMethod, subRedditId);
+            var posts = await PaginatedList<Post>.CreateAsync(PostService.Sort(sortMethod, subRedditId), pageNum ?? 1, sortMethod);
 
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
                 CurrentSubReddit = currentSubReddit,
                 Posts = posts,
-                SortMethod = sortMethod,
                 SubReddits = subReddits,
             };
 
@@ -146,19 +145,18 @@ namespace Foxxit.Controllers
         }
 
         [HttpGet("expanded-subreddit")]
-        public async Task<IActionResult> ExpandSubReddit(SortMethod sortMethod, long subRedditId)
+        public async Task<IActionResult> ExpandSubReddit(SortMethod sortMethod, long subRedditId, int? pageNum)
         {
             var currentUser = await GetActiveUserAsync();
             var currentSubReddit = await SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
-            var posts = PostService.Sort(sortMethod, subRedditId);
+            var posts = await PaginatedList<Post>.CreateAsync(PostService.Sort(sortMethod, subRedditId), pageNum ?? 1, sortMethod);
 
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
                 CurrentSubReddit = currentSubReddit,
                 Posts = posts,
-                SortMethod = sortMethod,
                 SubReddits = subReddits,
             };
 
@@ -194,7 +192,7 @@ namespace Foxxit.Controllers
                 ModelState.AddModelError(string.Empty, "SubReddit with this name already exists.");
             }
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         // [AuthorizedRoles(Enums.UserRole.Admin)]
@@ -437,6 +435,7 @@ namespace Foxxit.Controllers
             else
             {
                 ModelState.AddModelError("NewUserName", "Username is already taken!");
+                return View("AccountUsernameChange", mainModel);
             }
 
             return RedirectToAction("Index", "Foxxit");

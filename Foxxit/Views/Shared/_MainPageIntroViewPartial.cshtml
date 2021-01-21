@@ -5,7 +5,7 @@
 
 <div class="section_intro_buttons">
 
-    <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.Hot ? " selected_button" : ""))" asp-action="Index" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Hot">HOT</a>
-    <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.New ? " selected_button" : ""))" asp-action="Index" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.New">NEW</a>
-    <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.Top ? " selected_button" : ""))" asp-action="Index" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Top">TOP</a>
+    <a class="@("sorting_button section_intro_button" + (Model.Posts.SortMethod == SortMethod.Hot ? " selected_button" : ""))" asp-action="Index" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Hot">HOT</a>
+    <a class="@("sorting_button section_intro_button" + (Model.Posts.SortMethod == SortMethod.New ? " selected_button" : ""))" asp-action="Index" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.New">NEW</a>
+    <a class="@("sorting_button section_intro_button" + (Model.Posts.SortMethod == SortMethod.Top ? " selected_button" : ""))" asp-action="Index" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Top">TOP</a>
 </div>

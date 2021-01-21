@@ -44,6 +44,10 @@ namespace Foxxit.Services
                 case nameof(SearchCategory.All):
                     result = new SearchReturnModel(SearchInPosts(keyword), SearchInSubReddits(keyword), SearchInComments(keyword), category);
                     break;
+
+                default:
+                    result = new SearchReturnModel(SearchInPosts(keyword), SearchInSubReddits(keyword), SearchInComments(keyword), category);
+                    break;
             }
 
             return result;

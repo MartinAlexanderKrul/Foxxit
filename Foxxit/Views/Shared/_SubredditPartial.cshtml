@@ -1,16 +1,17 @@
 ﻿@using Foxxit.Extensions
 @using Foxxit.Models.ViewModels
 @using Foxxit.Enums
-@{ Layout = "_Layout"; }
+@{ Layout = "_Layout";
+    ViewData["subRedditId"] = Model.CurrentSubReddit.Id;}
 @model MainPageViewModel
 
 <div class="section_intro">
     <div class="subreddit_header">
         <div><h1>@Model.CurrentSubReddit.Name</h1></div>
         <div class="section_intro_buttons">
-            <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.Hot ? " selected_button" : ""))" asp-action="SubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Hot" asp-route-subRedditId="@Model.CurrentSubReddit.Id">HOT</a>
-            <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.New ? " selected_button" : ""))" asp-action="SubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.New" asp-route-subRedditId="@Model.CurrentSubReddit.Id">NEW</a>
-            <a class="@("sorting_button section_intro_button" + (Model.SortMethod == SortMethod.Top ? " selected_button" : ""))" asp-action="SubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Top" asp-route-subRedditId="@Model.CurrentSubReddit.Id">TOP</a>
+            <a class="@("sorting_button section_intro_button" + (Model.Posts.SortMethod == SortMethod.Hot ? " selected_button" : ""))" asp-action="SubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Hot" asp-route-subRedditId="@Model.CurrentSubReddit.Id">HOT</a>
+            <a class="@("sorting_button section_intro_button" + (Model.Posts.SortMethod == SortMethod.New ? " selected_button" : ""))" asp-action="SubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.New" asp-route-subRedditId="@Model.CurrentSubReddit.Id">NEW</a>
+            <a class="@("sorting_button section_intro_button" + (Model.Posts.SortMethod == SortMethod.Top ? " selected_button" : ""))" asp-action="SubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Top" asp-route-subRedditId="@Model.CurrentSubReddit.Id">TOP</a>
         </div>
     </div>
     <div class="create_post">
@@ -45,4 +46,8 @@
                 </div>
             </div>
         </div>
-    </article>}
+    </article>
+}
+<div class="pagination">
+    @await Html.PartialAsync("_PaginationPartialSubreddit", Model.Posts, this.ViewData)
+</div>

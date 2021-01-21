@@ -10,7 +10,7 @@ namespace Foxxit.Extensions
     {
         public static string TimeStamp(this PostBase postBase)
         {
-            var totalMinutes = (DateTime.Now - postBase.CreatedAt).TotalMinutes;
+            var totalMinutes = (DateTime.Now.ToUniversalTime() - postBase.CreatedAt.ToUniversalTime()).TotalMinutes;
             string result = string.Empty;
 
             switch (totalMinutes)
