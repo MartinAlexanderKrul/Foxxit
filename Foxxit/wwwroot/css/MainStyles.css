@@ -8,7 +8,6 @@
     --green-fox-light-green: #3CB878;
     --green-fox-dark-green: #007335;
     --green-fox-dark-red: #730d00;
-
     /* FONTS */
     --font-main: 'Roboto', sans-serif;
     --main-font-size: 17px;
@@ -864,15 +863,14 @@ article {
     background-color: var(--section-color);
     padding: 2%;
 }
+
 .currentPage {
     background-color: var(--button-color);
     border-radius: 10%;
-    border: 1px solid var(--font-color-lighter);
     padding: 0.5%;
     font-weight: bold;
-    font-size: 1vw;
 }
-  
+
 /*VOTES*/
 i {
     cursor: pointer !important;
