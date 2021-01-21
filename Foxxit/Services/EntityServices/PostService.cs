@@ -52,13 +52,13 @@ namespace Foxxit.Services
             var filter = GetAllIncludeCommentsAndUserAsync().Result.Where(p => (DateTime.Now - p.CreatedAt).TotalHours < hours).OrderByDescending(p => p.Karma);
 
             // so that the mainpage is not empty when there are no new posts:
-            if (filter.Count() < 5) 
+            if (filter.Count() < 5)
             {
                 return HotSort(4000, subRedditId);
-            } 
+            }
 
-            return subRedditId.HasValue ? 
-                filter.Where(p => p.SubRedditId == subRedditId) : 
+            return subRedditId.HasValue ?
+                filter.Where(p => p.SubRedditId == subRedditId) :
                 filter;
         }
 
