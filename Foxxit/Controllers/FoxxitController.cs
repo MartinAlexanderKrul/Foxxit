@@ -145,6 +145,26 @@ namespace Foxxit.Controllers
             return View("SubReddit", model);
         }
 
+        [HttpGet("expanded-subreddit")]
+        public async Task<IActionResult> ExpandSubReddit(SortMethod sortMethod, long subRedditId)
+        {
+            var currentUser = await GetActiveUserAsync();
+            var currentSubReddit = await SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
+            var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
+            var posts = PostService.Sort(sortMethod, subRedditId);
+
+            var model = new MainPageViewModel()
+            {
+                CurrentUser = currentUser,
+                CurrentSubReddit = currentSubReddit,
+                Posts = posts,
+                SortMethod = sortMethod,
+                SubReddits = subReddits,
+            };
+
+            return View("ExpandedSubReddit", model);
+        }
+
         [HttpGet("subreddit/new")]
         public async Task<IActionResult> CreateSubreddit()
         {

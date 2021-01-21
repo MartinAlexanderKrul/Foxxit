@@ -18,42 +18,46 @@
     </div>
 </div>
 
+<div class="view_change"><a asp-action="ExpandSubReddit" asp-controller="Foxxit" asp-route-SubRedditId="@Model.CurrentSubReddit.Id">Expand posts</a></div>
+
 @foreach (var post in Model.Posts)
 {
     //TODO whole row has to be a link
-<article>
-    <div class="article_left">
+    <article>
+        <div class="article_left">
+            <div class="post_vote">
+                <form asp-action="Vote" asp-controller="Home">
+                    <input type="hidden" value="up" name="voteType" />
+                    <input type="hidden" value="@post.Id" name="postId" />
+                    <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
+                </form>
+            </div>
+            <div class="post_vote">@post.Votes.Count</div>
 
-        @await Html.PartialAsync("_VotesPartial", post)
-    </div>
-    <div class="article_middle">
-        <div class="article_header">
-            <div class="article_text">
-                <h4><a href="/post/@post.Id">@post.Title</a></h4>
-                <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in <a href="/subreddit?subRedditId=@post.SubReddit.Id">@post.SubReddit.Name</a></p>
+            <div class="post_vote">
+                <form asp-action="Vote" asp-controller="Home">
+                    <input type="hidden" value="down" name="voteType" />
+                    <input type="hidden" value="@post.Id" name="postId" />
+                    <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
+                </form>
             </div>
         </div>
 
-        <div class="article_content">
-            @await Html.PartialAsync("_PostPartial_Content", post)
+        <div class="article_middle">
+            <div class="article_header">
+                <div class="article_text">
+                    <h4><a href="/post/@post.Id">@post.Title</a></h4>
+                    <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name</p>
+                </div>
+            </div>
         </div>
 
         <div class="article_footer">
-            <div class="article_section">
-                <div class="comment_number">
-                    <a href="/post/@post.Id">
-                        <i class="fa fa-comment fa-lg load-comments"></i>
-                        @post.NumOfComments() COMMENTS
-                    </a>
+            <div class="posts_list_row_right">
+                <div class="comments">
+                    <i class="fa fa-comment icon"></i>
+                    @post.Comments.Count
                 </div>
             </div>
-
-            <div class="comment_container">
-                @await Html.PartialAsync("_CommentViewPartial", post)
-            </div>
         </div>
-    </div>
-
-    <div class="article_right">
-    </div>
-</article>}
+    </article>}
