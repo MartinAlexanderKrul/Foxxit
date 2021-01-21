@@ -1,6 +1,4 @@
 ﻿@using Foxxit.Models.ViewModels
-@using Foxxit.Extensions
-@using Foxxit.Enums
 @model MainPageViewModel
 
 <div class="section_intro_main">
@@ -13,3 +11,7 @@
     Model.PostViewModel.Post = post;
     @await Html.PartialAsync("_PostPartial", Model.PostViewModel)
 }
+
+<div class="pagination">
+    @await Html.PartialAsync("_PaginationPartial", Model.Posts) 
+</div>
