@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace Foxxit.Controllers
 {
-    [Authorize]
+    [Route("[controller]")]
     public class APIController : Controller
     {
         public APIController(ISubRedditService subRedditService, ICommentService commentService, IPostService postService)
