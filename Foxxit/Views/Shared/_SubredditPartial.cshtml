@@ -23,7 +23,6 @@
     //TODO whole row has to be a link
 <article>
     <div class="article_left">
-        
         @await Html.PartialAsync("_VotesPartial", post)
     </div>
     <div class="article_middle">
@@ -33,16 +32,13 @@
                 <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name</p>
             </div>
         </div>
-    </div>
 
-    <div class="article_footer">
-        <div class="posts_list_row_right">
-            <a asp-action="Post" asp-controller="Home" asp-route-PostId="@post.Id">
+        <div class="article_footer">
+            <div class="posts_list_row_right">
                 <div class="comments">
                     <i class="fa fa-comment icon"></i>
                     @post.Comments.Count
                 </div>
-            </a>
+            </div>
         </div>
-    </div>
-</article>}
+    </article>}

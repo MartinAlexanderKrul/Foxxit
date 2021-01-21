@@ -104,9 +104,18 @@ namespace Foxxit.Controllers
             return View("Index", model);
         }
 
+        [HttpGet("search")]
+        public IActionResult SearchGet()
+        {
+            return RedirectToAction("Index");
+        }
+
         [HttpPost("search")]
         public async Task<IActionResult> Search(string category, string keyword)
         {
+            keyword ??= string.Empty;
+            category ??= string.Empty;
+
             var model = new MainPageViewModel()
             {
                 CurrentUser = await GetActiveUserAsync(),
@@ -174,7 +183,7 @@ namespace Foxxit.Controllers
                 ModelState.AddModelError(string.Empty, "SubReddit with this name already exists.");
             }
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         // [AuthorizedRoles(Enums.UserRole.Admin)]
@@ -417,6 +426,7 @@ namespace Foxxit.Controllers
             else
             {
                 ModelState.AddModelError("NewUserName", "Username is already taken!");
+                return View("AccountUsernameChange", mainModel);
             }
 
             return RedirectToAction("Index", "Foxxit");
