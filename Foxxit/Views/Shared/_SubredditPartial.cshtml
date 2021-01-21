@@ -23,7 +23,6 @@
 
 @foreach (var post in Model.Posts)
 {
-    //TODO whole row has to be a link
     <article>
         <div class="article_left">
             @await Html.PartialAsync("_VotesPartial", post)
