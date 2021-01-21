@@ -12,11 +12,11 @@
         <div class="comment_section">
 
             <div classs="comment_left">
-                @await Html.PartialAsync("_VotesPartialComment", comment) 
+                @await Html.PartialAsync("_VotesPartialComment", comment)
             </div>
             <div class="comment_right">
                 <div class="comment_right_header">
-                    <p class="comment_info">@comment.User.UserName ● <span id="karma_@comment.Id">@comment.Karma</span> points ● @comment.TimeStamp() ago</p>
+                    <p class="comment_info">@comment.User.UserName.ToUser() ● <span id="karma_@comment.Id">@comment.Karma</span> points ● @comment.TimeStamp() ago</p>
                 </div>
                 <div class="comment_right_content">
                     @await Html.PartialAsync("_Comment_Content_ViewPartial", comment)
@@ -40,16 +40,16 @@
                 <div classs="comment_left">
                     @await Html.PartialAsync("_VotesPartialComment", subComment)
                 </div>
-                    <div class="comment_right">
-                        <div class="comment_right_header">
-                            <p class="comment_info">@subComment.User.UserName ● <span id="karma_@subComment.Id">@subComment.Karma</span> points ● @subComment.TimeStamp() ago</p>
-                        </div>
-                        <div class="comment_right_content">
-                            @await Html.PartialAsync("_Comment_Content_ViewPartial", subComment)
-                        </div>
+                <div class="comment_right">
+                    <div class="comment_right_header">
+                        <p class="comment_info">@subComment.User.UserName ● <span id="karma_@subComment.Id">@subComment.Karma</span> points ● @subComment.TimeStamp() ago</p>
+                    </div>
+                    <div class="comment_right_content">
+                        @await Html.PartialAsync("_Comment_Content_ViewPartial", subComment)
                     </div>
                 </div>
-         }
+            </div>
+        }
 
-     }
- }
+    }
+}

@@ -1,4 +1,5 @@
 ﻿@using Foxxit.Models.ViewModels
+@using Foxxit.Extensions
 @model MainPageViewModel
 
 <div class="side_bar_header"><h3>Trending SubReddits</h3></div>
@@ -9,7 +10,7 @@
         <div class="side_bar_left">
             <p>
                 <a href="/SubReddit?subRedditId=@subReddit.Id">
-                    @(subReddit.Name.Contains(" ") || subReddit.Name.Length < 12 ? subReddit.Name : subReddit.Name.Insert(subReddit.Name.Length/2, " "))
+                    @(subReddit.Name.Contains(" ") || subReddit.Name.Length < 12 ? subReddit.Name.ToSubReddit() : subReddit.Name.Insert(subReddit.Name.Length/2, " ").ToSubReddit())
                 </a>
             </p>
         </div>

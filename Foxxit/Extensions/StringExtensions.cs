@@ -29,5 +29,15 @@ namespace Foxxit.Extensions
 
             return displayName;
         }
+
+        public static string ToSubReddit(this string name)
+        {
+            return $"r/{name.ToLower()}";
+        }
+
+        public static string ToUser(this string name)
+        {
+            return $"u/{name.ToLower()}";
+        }
     }
 }
