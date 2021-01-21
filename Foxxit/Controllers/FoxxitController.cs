@@ -90,7 +90,7 @@ namespace Foxxit.Controllers
         {
             var currentUser = await GetActiveUserAsync();
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
-            var posts = await PaginatedList<Post>.CreateAsync(PostService.Sort(sortMethod, null), pageNum ?? 1, sortMethod);
+            var posts = PaginatedList<Post>.Create(PostService.Sort(sortMethod, null), pageNum ?? 1, sortMethod);
             var model = new MainPageViewModel()
             {
                 CurrentUser = currentUser,
@@ -117,7 +117,7 @@ namespace Foxxit.Controllers
             var model = new MainPageViewModel()
             {
                 CurrentUser = await GetActiveUserAsync(),
-                Posts = await PaginatedList<Post>.CreateAsync(await PostService.GetAllIncludeCommentsAndUserAsync(), pageNum ?? 1, sortMethod),
+                Posts = PaginatedList<Post>.Create(await PostService.GetAllIncludeCommentsAndUserAsync(), pageNum ?? 1, sortMethod),
                 SubReddits = await SubRedditService.GetAllIncludeUserAndMembers(),
                 SearchReturnModel = SearchService.Search(category, keyword),
             };
@@ -131,7 +131,7 @@ namespace Foxxit.Controllers
             var currentUser = await GetActiveUserAsync();
             var currentSubReddit = await SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
-            var posts = await PaginatedList<Post>.CreateAsync(PostService.Sort(sortMethod, subRedditId), pageNum ?? 1, sortMethod);
+            var posts = PaginatedList<Post>.Create(PostService.Sort(sortMethod, subRedditId), pageNum ?? 1, sortMethod);
 
             var model = new MainPageViewModel()
             {
@@ -150,7 +150,7 @@ namespace Foxxit.Controllers
             var currentUser = await GetActiveUserAsync();
             var currentSubReddit = await SubRedditService.GetbyIdIncludeUserAndMembers(subRedditId);
             var subReddits = await SubRedditService.GetAllIncludeUserAndMembers();
-            var posts = await PaginatedList<Post>.CreateAsync(PostService.Sort(sortMethod, subRedditId), pageNum ?? 1, sortMethod);
+            var posts = PaginatedList<Post>.Create(PostService.Sort(sortMethod, subRedditId), pageNum ?? 1, sortMethod);
 
             var model = new MainPageViewModel()
             {
