@@ -24,17 +24,16 @@ $('.post_vote').on('click', function (evt) {
         $('#karma_' + id).html(karma)
         debugger;
         if (currentVote == 1) {
-            $('#upvote_' + id).addClass("red");
+            $('#upvote_' + id).addClass("green");
             $('#downvote_' + id).removeClass("red")
         }
         if (currentVote == 0) {
-            $('#upvote_' + id).removeClass("red");
+            $('#upvote_' + id).removeClass("green");
             $('#downvote_' + id).removeClass("red")
         }
         if (currentVote == -1) {
-            $('#downvote_' + id).addClass("red");
-            $('#upvote_' + id).removeClass("red")
+            $('#upvote_' + id).removeClass("green");
+            $('#downvote_' + id).addClass("red")
         }
     });
-    //$('#karma_' + id).load("/vote/" + value + "/" + id),
 });

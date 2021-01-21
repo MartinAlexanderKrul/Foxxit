@@ -7,6 +7,8 @@
     --button-color: #f6f3cf; /* Fox tail cream */
     --green-fox-light-green: #3CB878;
     --green-fox-dark-green: #007335;
+    --green-fox-dark-red: #730d00;
+
     /* FONTS */
     --font-main: 'Roboto', sans-serif;
     --main-font-size: 17px;
@@ -859,24 +861,29 @@ article {
 
 /* Pagination */
 .pagination {
-    background-color: #F5F5F5;
+    background-color: var(--section-color);
     padding: 2%;
 }
 .currentPage {
-    background-color: #f6f3cf;
+    background-color: var(--button-color);
     border-radius: 10%;
-    border: 1px solid #5e5e5d;
+    border: 1px solid var(--font-color-lighter);
     padding: 0.5%;
     font-weight: bold;
     font-size: 1vw;
+}
   
 /*VOTES*/
 i {
     cursor: pointer !important;
 }
 
-.red {
+.green {
     color: var(--green-fox-dark-green);
+}
+
+.red {
+    color: var(--green-fox-dark-red);
 }
 
 .view_change {
