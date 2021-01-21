@@ -1,0 +1,64 @@
+﻿@using Foxxit.Extensions
+@using Foxxit.Models.ViewModels
+@using Foxxit.Enums
+@{ Layout = "_Layout";
+    ViewData["subRedditId"] = Model.CurrentSubReddit.Id;}
+@model MainPageViewModel
+
+<div class="section_intro">
+    <div class="subreddit_header">
+        <div><h1>@Model.CurrentSubReddit.Name</h1></div>
+        <div class="section_intro_buttons">
+            <a class="@("sorting_button section_intro_button" + (Model.Posts.SortMethod == SortMethod.Hot ? " selected_button" : ""))" asp-action="ExpandSubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Hot" asp-route-subRedditId="@Model.CurrentSubReddit.Id">HOT</a>
+            <a class="@("sorting_button section_intro_button" + (Model.Posts.SortMethod == SortMethod.New ? " selected_button" : ""))" asp-action="ExpandSubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.New" asp-route-subRedditId="@Model.CurrentSubReddit.Id">NEW</a>
+            <a class="@("sorting_button section_intro_button" + (Model.Posts.SortMethod == SortMethod.Top ? " selected_button" : ""))" asp-action="ExpandSubReddit" asp-controller="Foxxit" asp-route-sortMethod="@SortMethod.Top" asp-route-subRedditId="@Model.CurrentSubReddit.Id">TOP</a>
+        </div>
+    </div>
+    <div class="create_post">
+        <a asp-action="NewPost" asp-controller="Foxxit" asp-route-subRedditId="@Model.CurrentSubReddit.Id" class="biggest_button not_button bigger_button light_button">CREATE POST</a>
+    </div>
+</div>
+
+<div class="view_change"><a asp-action="SubReddit" asp-controller="Foxxit" asp-route-SubRedditId="@Model.CurrentSubReddit.Id">Collapse posts</a></div>
+
+@foreach (var post in Model.Posts)
+{
+<article>
+    <div class="article_left">
+        @await Html.PartialAsync("_VotesPartial", post)
+    </div>
+
+    <div class="article_middle">
+        <div class="article_header">
+            <div class="article_text">
+                <h4><a href="/post/@post.Id">@post.Title</a></h4>
+                <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in <a href="/subreddit?subRedditId=@post.SubReddit.Id">@post.SubReddit.Name</a></p>
+            </div>
+        </div>
+
+        <div class="article_content">
+            @await Html.PartialAsync("_PostPartial_Content", post)
+        </div>
+
+        <div class="article_footer">
+            <div class="article_section">
+                <div class="comment_number">
+                    <a href="/post/@post.Id">
+                        <i class="fa fa-comment fa-lg load-comments"></i>
+                        @post.NumOfComments() COMMENTS
+                    </a>
+                </div>
+            </div>
+
+            <div class="comment_container">
+                @await Html.PartialAsync("_CommentViewPartial", post)
+            </div>
+        </div>
+    </div>
+
+    <div class="article_right">
+    </div>
+</article>}
+<div class="pagination">
+    @await Html.PartialAsync("_PaginationPartialSubredditExpanded", Model.Posts, this.ViewData)
+</div>

@@ -874,6 +874,14 @@ article {
 i {
     cursor: pointer !important;
 }
+
 .red {
     color: var(--green-fox-dark-green);
+}
+
+.view_change {
+    text-align: right !important;
+    margin-bottom: 1%;
+    font-size: var(--main-font-size-smaller);
+    color: var(--font-color-lighter);
 }

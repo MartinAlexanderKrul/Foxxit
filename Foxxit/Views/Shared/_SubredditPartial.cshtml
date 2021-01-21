@@ -19,18 +19,22 @@
     </div>
 </div>
 
+<div class="view_change"><a asp-action="ExpandSubReddit" asp-controller="Foxxit" asp-route-SubRedditId="@Model.CurrentSubReddit.Id">Expand posts</a></div>
+
 @foreach (var post in Model.Posts)
 {
     //TODO whole row has to be a link
-<article>
-    <div class="article_left">
-        @await Html.PartialAsync("_VotesPartial", post)
-    </div>
-    <div class="article_middle">
-        <div class="article_header">
-            <div class="article_text">
-                <h4><a href="/post/@post.Id">@post.Title</a></h4>
-                <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name</p>
+    <article>
+        <div class="article_left">
+            @await Html.PartialAsync("_VotesPartial", post)
+        </div>
+
+        <div class="article_middle">
+            <div class="article_header">
+                <div class="article_text">
+                    <h4><a href="/post/@post.Id">@post.Title</a></h4>
+                    <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name</p>
+                </div>
             </div>
         </div>
 
@@ -42,6 +46,8 @@
                 </div>
             </div>
         </div>
+    </article>
+}
 <div class="pagination">
     @await Html.PartialAsync("_PaginationPartialSubreddit", Model.Posts, this.ViewData)
 </div>
