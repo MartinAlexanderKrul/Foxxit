@@ -84,5 +84,19 @@ namespace Foxxit.Controllers
 
             return StatusCode(200);
         }
+
+        [HttpGet("comments")]
+        public async Task<ActionResult> GetAllComments()
+        {
+            var comments = await CommentService.GetAllAsync();
+            var result = new List<CommentToSendDTO>();
+
+            foreach (var comment in comments)
+            {
+                result.Add(new CommentToSendDTO(comment.Id, comment.UserId, comment.Text));
+            }
+
+            return Json(new { result });
+        }
     }
 }
