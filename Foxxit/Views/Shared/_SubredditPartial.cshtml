@@ -21,43 +21,41 @@
 @foreach (var post in Model.Posts)
 {
     //TODO whole row has to be a link
-<article>
-    <div class="article_left">
-        <div class="post_vote">
-            <form asp-action="Vote" asp-controller="Home">
-                <input type="hidden" value="up" name="voteType" />
-                <input type="hidden" value="@post.Id" name="postId" />
-                <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
-            </form>
-        </div>
-        <div class="post_vote">@post.Votes.Count</div>
+    <article>
+        <div class="article_left">
+            <div class="post_vote">
+                <form asp-action="Vote" asp-controller="Home">
+                    <input type="hidden" value="up" name="voteType" />
+                    <input type="hidden" value="@post.Id" name="postId" />
+                    <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
+                </form>
+            </div>
+            <div class="post_vote">@post.Votes.Count</div>
 
-        <div class="post_vote">
-            <form asp-action="Vote" asp-controller="Home">
-                <input type="hidden" value="down" name="voteType" />
-                <input type="hidden" value="@post.Id" name="postId" />
-                <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
-            </form>
-        </div>
-    </div>
-
-    <div class="article_middle">
-        <div class="article_header">
-            <div class="article_text">
-                <h4><a href="/post/@post.Id">@post.Title</a></h4>
-                <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name</p>
+            <div class="post_vote">
+                <form asp-action="Vote" asp-controller="Home">
+                    <input type="hidden" value="down" name="voteType" />
+                    <input type="hidden" value="@post.Id" name="postId" />
+                    <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
+                </form>
             </div>
         </div>
-    </div>
 
-    <div class="article_footer">
-        <div class="posts_list_row_right">
-            <a asp-action="Post" asp-controller="Home" asp-route-PostId="@post.Id">
+        <div class="article_middle">
+            <div class="article_header">
+                <div class="article_text">
+                    <h4><a href="/post/@post.Id">@post.Title</a></h4>
+                    <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article_footer">
+            <div class="posts_list_row_right">
                 <div class="comments">
                     <i class="fa fa-comment icon"></i>
                     @post.Comments.Count
                 </div>
-            </a>
+            </div>
         </div>
-    </div>
-</article>}
+    </article>}

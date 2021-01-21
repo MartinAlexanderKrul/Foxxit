@@ -42,7 +42,7 @@
         <div class="article_footer">
             <div class="article_section">
                 <div class="comment_number">
-                    <a href="/post/@Model.Post.Id">
+                    <a href="/post/@Model.Post.Id#comments">
                         <i class="fa fa-comment fa-lg load-comments"></i>
                         @Model.Post.NumOfComments() COMMENTS
                     </a>
@@ -51,7 +51,7 @@
 
             @if (Model.ShouldLoadComments)
             {
-                <div class="comment_container">
+                <div class="comment_container" id="comments">
                     @await Html.PartialAsync("_CommentViewPartial", Model.Post)
                 </div>
             }
