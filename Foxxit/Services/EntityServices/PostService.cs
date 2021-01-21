@@ -34,7 +34,7 @@ namespace Foxxit.Services
             switch (sortMethod)
             {
                 case SortMethod.Hot:
-                    return HotSort(24, subRedditId);
+                    return HotSort(2, subRedditId);
 
                 case SortMethod.New:
                     return NewSort(subRedditId);
@@ -43,13 +43,19 @@ namespace Foxxit.Services
                     return TopSort(4000, subRedditId);
 
                 default:
-                    return HotSort(48, subRedditId);
+                    return HotSort(2, subRedditId);
             }
         }
 
         public IEnumerable<Post> HotSort(int hours, long? subRedditId)
         {
             var filter = GetAllIncludeCommentsAndUserAsync().Result.Where(p => (DateTime.Now - p.CreatedAt).TotalHours < hours).OrderByDescending(p => p.Karma);
+
+            // so that the mainpage is not empty when there are no new posts:
+            if (filter.Count() < 5) 
+            {
+                return HotSort(4000, subRedditId);
+            } 
 
             return subRedditId.HasValue ? 
                 filter.Where(p => p.SubRedditId == subRedditId) : 
