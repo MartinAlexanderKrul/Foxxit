@@ -683,8 +683,8 @@ article {
 }
 
 .img_button {
-    display: inline;
-    padding-left: 5%;
+    display: inline-flex;
+    padding-left: 10%;
     margin-left: 16px;
     margin-top: 4%;
     margin-bottom: 3%;
