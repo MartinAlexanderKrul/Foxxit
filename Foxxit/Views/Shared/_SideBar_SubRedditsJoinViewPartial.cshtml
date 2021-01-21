@@ -4,7 +4,7 @@
 
 <div class="side_bar_header"><h3>Trending SubReddits</h3></div>
 
-@foreach (var subReddit in Model.SubReddits.Where(s => s.Posts.Count() > 1))
+@foreach (var subReddit in Model.SubReddits.Where(s => s.Posts.Count() > 1).OrderByDescending(s => s.Posts.Count()).Take(10))
 {
     <div class="side_bar">
         <div class="side_bar_left">
