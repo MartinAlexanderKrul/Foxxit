@@ -12,24 +12,11 @@
         <div class="comment_section">
 
             <div classs="comment_left">
-                <div class="post_vote">
-                    <form asp-action="Vote" asp-controller="Comment">
-                        <input type="hidden" value="up" name="voteType" />
-                        <input type="hidden" value="@comment.Id" name="commentId" />
-                        <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
-                    </form>
-                </div>
-                <div class="post_vote">
-                    <form asp-action="Vote" asp-controller="Comment">
-                        <input type="hidden" value="down" name="voteType" />
-                        <input type="hidden" value="@comment.Id" name="commentId" />
-                        <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
-                    </form>
-                </div>
+                @await Html.PartialAsync("_VotesPartialComment", comment) 
             </div>
             <div class="comment_right">
                 <div class="comment_right_header">
-                    <p class="comment_info">@comment.User.UserName ● @comment.Votes.Count() points ● @comment.TimeStamp() ago</p>
+                    <p class="comment_info">@comment.User.UserName ● <span id="karma_@comment.Id">@comment.Karma</span> points ● @comment.TimeStamp() ago</p>
                 </div>
                 <div class="comment_right_content">
                     @await Html.PartialAsync("_Comment_Content_ViewPartial", comment)
@@ -51,30 +38,18 @@
             <div class="comment_section sublevel">
 
                 <div classs="comment_left">
-                    <div class="post_vote">
-                        <form asp-action="Vote" asp-controller="Comment">
-                            <input type="hidden" value="up" name="voteType" />
-                            <input type="hidden" value="@subComment.Id" name="commentId" />
-                            <button type="submit"><i class="fa fa-chevron-up fa-lg"></i></button>
-                        </form>
-                    </div>
-                    <div class="post_vote">
-                        <form asp-action="Vote" asp-controller="Comment">
-                            <input type="hidden" value="down" name="voteType" />
-                            <input type="hidden" value="@subComment.Id" name="commentId" />
-                            <button type="submit"><i class="fa fa-chevron-down fa-lg"></i></button>
-                        </form>
+                    @await Html.PartialAsync("_VotesPartialComment", subComment)
+                </div>
+                    <div class="comment_right">
+                        <div class="comment_right_header">
+                            <p class="comment_info">@subComment.User.UserName ● <span id="karma_@subComment.Id">@subComment.Karma</span> points ● @subComment.TimeStamp() ago</p>
+                        </div>
+                        <div class="comment_right_content">
+                            @await Html.PartialAsync("_Comment_Content_ViewPartial", subComment)
+                        </div>
                     </div>
                 </div>
-                <div class="comment_right">
-                    <div class="comment_right_header">
-                        <p class="comment_info">@subComment.User.UserName ● @subComment.Votes.Count() points ● @subComment.TimeStamp() ago</p>
-                    </div>
-                    <div class="comment_right_content">
-                        @await Html.PartialAsync("_Comment_Content_ViewPartial", subComment)
-                    </div>
-                </div>
-            </div>
-        }
-    }
-}
+         }
+
+     }
+ }

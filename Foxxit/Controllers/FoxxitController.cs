@@ -9,6 +9,7 @@ using Foxxit.Models.DTO;
 using Foxxit.Models.Entities;
 using Foxxit.Models.ViewModels;
 using Foxxit.Services;
+using Foxxit.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -22,7 +23,7 @@ namespace Foxxit.Controllers
     {
         private const int PageSize = 10;
 
-        public FoxxitController(IUserSubRedditService userSubRedditservice, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService, IImageService imageService)
+        public FoxxitController(IVoteService voteService, IUserSubRedditService userSubRedditService, IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, ISearchService searchService, IPostService postService, ISubRedditService subRedditService, ICommentService commentService, IImageService imageService)
             : base(userManager, signInManager)
         {
             SearchService = searchService;
@@ -30,7 +31,8 @@ namespace Foxxit.Controllers
             SubRedditService = subRedditService;
             CommentService = commentService;
             UserService = userService;
-            UserSubRedditService = userSubRedditservice;
+            VoteService = voteService;
+            UserSubRedditService = userSubRedditService;
             ImageService = imageService;
         }
 
@@ -41,6 +43,47 @@ namespace Foxxit.Controllers
         public IUserService UserService { get; set; }
         public IUserSubRedditService UserSubRedditService { get; set; }
         public IImageService ImageService { get; set; }
+        public IVoteService VoteService { get; set; }
+
+        [HttpGet("/vote/{value}/{postBaseId}")]
+        public async Task<VotesInfo> Vote(int value, long postBaseId)
+        {
+            var currentUser = await GetActiveUserAsync();
+            var existingVote = VoteService.GetVote(currentUser.Id, postBaseId);
+
+            if (existingVote is null)
+            {
+                existingVote = await VoteService.AddNewVote(currentUser.Id, postBaseId, value);
+                await VoteService.SaveAsync();
+                await VoteService.EnsureOneVote(existingVote);
+            }
+            else if (existingVote.Value == value)
+            {
+                VoteService.Delete(existingVote);
+                await VoteService.SaveAsync();
+                existingVote.Value = 0;
+            }
+            else
+            {
+                existingVote.Value = value;
+                VoteService.Update(existingVote);
+                await VoteService.SaveAsync();
+            }
+
+            var commentModel = await CommentService.GetByIdInclude(postBaseId);
+            var postModel = await PostService.GetByIdIncludeCommentsAndUserAsync(postBaseId);
+
+            if (commentModel is not null)
+            {
+                var dto = new VotesInfo { Karma = commentModel.Karma, CurrentVote = existingVote.Value };
+                return dto;
+            }
+            else
+            {
+                var dto = new VotesInfo { Karma = postModel.Karma, CurrentVote = existingVote.Value };
+                return dto;
+            }
+        }
 
         [HttpGet("")]
         [HttpGet("index")]

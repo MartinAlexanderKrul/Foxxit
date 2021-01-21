@@ -856,3 +856,11 @@ article {
 .search_header {
     margin-bottom: 6px;
 }
+
+/*VOTES*/
+i {
+    cursor: pointer !important;
+}
+.red {
+    color: var(--green-fox-dark-green);
+}
