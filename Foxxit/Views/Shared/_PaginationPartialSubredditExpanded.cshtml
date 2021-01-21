@@ -18,11 +18,15 @@
 {
     if (Model.CurrentPage == i)
     {
-<a asp-action="ExpandSubReddit" asp-route-sortMethod="@(Model.SortMethod)" asp-route-subRedditId="@(ViewData["subRedditId"])" asp-route-pageNum="@Model.CurrentPage" class="btn btn-dark currentPage">@Model.CurrentPage</a> }
-                else
-                {
-<a asp-action="ExpandSubReddit" asp-route-sortMethod="@(Model.SortMethod)" asp-route-subRedditId="@(ViewData["subRedditId"])" asp-route-pageNum="@i" class="btn btn-default">@i</a>}
-            }
+        <a asp-action="ExpandSubReddit" asp-route-sortMethod="@(Model.SortMethod)" asp-route-subRedditId="@(ViewData["subRedditId"])" asp-route-pageNum="@Model.CurrentPage" class="btn btn-dark currentPage">@Model.CurrentPage</a> 
+    }
+    else
+    {
+        <a asp-action="ExpandSubReddit" asp-route-sortMethod="@(Model.SortMethod)" asp-route-subRedditId="@(ViewData["subRedditId"])" asp-route-pageNum="@i" class="btn btn-default">@i</a>
+    }
+
+    }
+
 
 <a asp-action="ExpandSubReddit" asp-route-sortMethod="@(Model.SortMethod)" asp-route-subRedditId="@(ViewData["subRedditId"])" asp-route-pageNum="@(Model.CurrentPage + 1)" class="btn btn-default @nextDisabled">NEXT</a>
 <a asp-action="ExpandSubReddit" asp-route-sortMethod="@(Model.SortMethod)" asp-route-subRedditId="@(ViewData["subRedditId"])" asp-route-pageNum="@(Model.TotalPages)" class="btn btn-default">LAST</a>

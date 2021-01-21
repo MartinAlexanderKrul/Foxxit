@@ -880,7 +880,8 @@ i {
 }
 
 .view_change {
-    text-align: right;
+    text-align: right !important;
     margin-bottom: 1%;
     font-size: var(--main-font-size-smaller);
+    color: var(--font-color-lighter);
 }

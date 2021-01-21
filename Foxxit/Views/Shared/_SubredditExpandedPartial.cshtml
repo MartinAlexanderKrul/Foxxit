@@ -1,7 +1,8 @@
 ﻿@using Foxxit.Extensions
 @using Foxxit.Models.ViewModels
 @using Foxxit.Enums
-@{ Layout = "_Layout"; }
+@{ Layout = "_Layout";
+    ViewData["subRedditId"] = Model.CurrentSubReddit.Id;}
 @model MainPageViewModel
 
 <div class="section_intro">
@@ -57,8 +58,7 @@
 
     <div class="article_right">
     </div>
-</article>
-}
+</article>}
 <div class="pagination">
     @await Html.PartialAsync("_PaginationPartialSubredditExpanded", Model.Posts, this.ViewData)
 </div>
