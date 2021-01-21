@@ -267,6 +267,12 @@ aside {
 
 .side_bar_header {
     margin-bottom: 30px;
+    width: 100% !important;
+    height: auto;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 /* POSTS */
@@ -825,8 +831,8 @@ article {
 }
 
 .text_about {
-    margin-right: 4px !important;
-    margin-left: 4px !important;
+    margin-right: 10% !important;
+    margin-left: 10% !important;
 }
 
 .subreddit_info {
