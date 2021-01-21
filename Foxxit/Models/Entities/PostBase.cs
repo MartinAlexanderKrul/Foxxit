@@ -16,7 +16,6 @@ namespace Foxxit.Models.Entities
         }
 
         public long Id { get; set; }
-
         public string Text { get; set; }
         public DateTime CreatedAt { get; set; }
         public ICollection<Vote> Votes { get; set; }
@@ -24,5 +23,9 @@ namespace Foxxit.Models.Entities
         public long UserId { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public bool IsDeleted { get; set; }
+        public int Karma
+        {
+            get { return Votes.Sum(v => v.Value); }
+        }
     }
 }

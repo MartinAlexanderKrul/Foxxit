@@ -256,8 +256,6 @@ aside {
 }
 
 .side_bar_left {
-    width: 65%;
-    word-wrap: break-word;
 }
 
 .side_bar_left {
@@ -289,6 +287,7 @@ section {
     justify-content: center;
     font-size: 16px;
 }
+
 .not_button, .selected_button {
     background-color: var(--button-color) !important;
 }
@@ -683,8 +682,8 @@ article {
 }
 
 .img_button {
-    display: inline;
-    padding-left: 5%;
+    display: inline-flex;
+    padding-left: 10%;
     margin-left: 16px;
     margin-top: 4%;
     margin-bottom: 3%;
@@ -870,4 +869,11 @@ article {
     padding: 0.5%;
     font-weight: bold;
     font-size: 1vw;
+  
+/*VOTES*/
+i {
+    cursor: pointer !important;
+}
+.red {
+    color: var(--green-fox-dark-green);
 }

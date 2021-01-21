@@ -5,6 +5,8 @@ using Foxxit.Enums;
 using Foxxit.Models.Entities;
 using Foxxit.Repositories;
 using Foxxit.Services;
+using Foxxit.Services.EntityServices;
+using Foxxit.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -96,10 +98,11 @@ namespace Foxxit
             services.AddTransient<ImageRepository>();
             services.AddTransient<IImageService, ImageService>();
 
-            services.AddTransient<IMailService, MailService>();
-
             services.AddTransient<ISearchService, SearchService>();
             services.AddTransient<IMailService, MailService>();
+
+            services.AddTransient<VoteRepository>();
+            services.AddTransient<IVoteService, VoteService>();
 
             services.AddAuthentication()
                 .AddGoogle("google", options =>

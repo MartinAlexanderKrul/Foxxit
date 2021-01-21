@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Foxxit.Migrations
 {
-    public partial class Init : Migration
+    public partial class Heroku : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,7 +34,7 @@ namespace Foxxit.Migrations
                     DisplayName = table.Column<string>(type: "text", nullable: true),
                     Karma = table.Column<int>(type: "integer", nullable: false),
                     About = table.Column<string>(type: "text", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_DATE"),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -186,7 +186,7 @@ namespace Foxxit.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
                     About = table.Column<string>(type: "text", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_DATE"),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     CreatedById = table.Column<long>(type: "bigint", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     IsApproved = table.Column<bool>(type: "boolean", nullable: false)
@@ -208,7 +208,7 @@ namespace Foxxit.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Text = table.Column<string>(type: "text", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_DATE"),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     UserId = table.Column<long>(type: "bigint", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     Discriminator = table.Column<string>(type: "text", nullable: false),
@@ -279,7 +279,7 @@ namespace Foxxit.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ReceiverId = table.Column<long>(type: "bigint", nullable: false),
                     SenderId = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_DATE"),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     HasBeenRead = table.Column<bool>(type: "boolean", nullable: false),
                     PostBaseId = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -310,7 +310,7 @@ namespace Foxxit.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    IsNegative = table.Column<bool>(type: "boolean", nullable: false),
+                    Value = table.Column<int>(type: "integer", nullable: false),
                     OwnerId = table.Column<long>(type: "bigint", nullable: false),
                     PostBaseId = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -334,8 +334,8 @@ namespace Foxxit.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1L, "9c4affc7-ad46-49e3-9491-2fd5a66b33ee", "UserRole", "Admin", "ADMIN" },
-                    { 2L, "92480a0b-a3a2-46fd-8c84-232417e76906", "UserRole", "User", "USER" }
+                    { 1L, "e89008b4-26c7-4c55-bcbd-5a6063f07db3", "UserRole", "Admin", "ADMIN" },
+                    { 2L, "bb5052a3-908f-4900-ae0e-7e97f67e1916", "UserRole", "User", "USER" }
                 });
 
             migrationBuilder.CreateIndex(

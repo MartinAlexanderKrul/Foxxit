@@ -30,5 +30,7 @@ namespace Foxxit.Models.ViewModels
         {
             get { return !ShouldLoadComments; }
         }
+
+        public VoteViewModel VoteViewModel { get; set; }
     }
 }
