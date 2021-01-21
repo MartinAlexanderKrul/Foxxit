@@ -13,7 +13,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_1_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "andrej babis",
@@ -27,7 +27,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_2_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "andrej?babis",
@@ -41,7 +41,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_3_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "andrej*babis",
@@ -55,7 +55,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_4_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "",
@@ -69,7 +69,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_5_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "andy/",
@@ -83,7 +83,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_6_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "a",
@@ -97,7 +97,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_7_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "ab",
@@ -111,7 +111,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_8_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "andrejbabis-miloszemanandrejbabis-miloszemanandrejbabis-miloszemanandrejbabis-miloszemanandrejbabis-miloszeman",
@@ -125,7 +125,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_9_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "andrej/babis",
@@ -139,7 +139,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_10_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "andrej-babis?",
@@ -153,7 +153,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_11_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "andrej-babis!",
@@ -167,7 +167,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_12_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "andrej-babis*",
@@ -181,7 +181,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_13_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "andrej-babis=",
@@ -195,7 +195,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_14_ReturnsFalse()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "andrej+babis=slunicko",
@@ -209,7 +209,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_15_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "andrej-babis",
@@ -223,7 +223,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_16_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "andrej+babis",
@@ -237,7 +237,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_17_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "andrejbabis",
@@ -251,7 +251,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_18_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "---",
@@ -265,7 +265,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_19_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "___",
@@ -279,7 +279,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_20_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "+++",
@@ -293,7 +293,7 @@ namespace XUnitTestsForFoxxit
         [Fact]
         public void RegistrationModelStateValidationTestNewUserName_21_ReturnsTrue()
         {
-            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null).Object;
+            var controller = new Mock<FoxxitController>(null, null, null, null, null, null, null, null, null, null).Object;
             var model = new UsernameChangeViewModel
             {
                 NewUserName = "a-n-D_Y",
