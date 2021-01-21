@@ -40,23 +40,27 @@ namespace Foxxit.Services
                     return NewSort(subRedditId);
 
                 case SortMethod.Top:
-                    return TopSort(168, subRedditId);
+                    return TopSort(4000, subRedditId);
 
                 default:
-                    return HotSort(24, subRedditId);
+                    return HotSort(48, subRedditId);
             }
         }
 
         public IEnumerable<Post> HotSort(int hours, long? subRedditId)
         {
-            var filter = GetAllIncludeCommentsAndUserAsync().Result.Where(p => (DateTime.Now - p.CreatedAt).TotalHours < hours).OrderByDescending(p => p.Votes.Count);
+            var filter = GetAllIncludeCommentsAndUserAsync().Result.Where(p => (DateTime.Now - p.CreatedAt).TotalHours < hours).OrderByDescending(p => p.Karma);
 
-            return subRedditId.HasValue ? filter.Where(p => p.SubRedditId == subRedditId) : filter;
+            return subRedditId.HasValue ? 
+                filter.Where(p => p.SubRedditId == subRedditId) : 
+                filter;
         }
 
         public IEnumerable<Post> NewSort(long? subRedditId)
         {
-            return subRedditId.HasValue ? GetAllIncludeCommentsAndUserAsync().Result.Where(p => p.SubReddit.Id == subRedditId).OrderByDescending(p => p.CreatedAt) : GetAllIncludeCommentsAndUserAsync().Result.OrderByDescending(p => p.CreatedAt);
+            return subRedditId.HasValue ? 
+                GetAllIncludeCommentsAndUserAsync().Result.Where(p => p.SubReddit.Id == subRedditId).OrderByDescending(p => p.CreatedAt) : 
+                GetAllIncludeCommentsAndUserAsync().Result.OrderByDescending(p => p.CreatedAt);
         }
 
         public IEnumerable<Post> TopSort(int hours, long? subRedditId)
