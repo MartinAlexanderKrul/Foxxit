@@ -375,7 +375,7 @@ namespace Foxxit.Controllers
 
             if (changePasswordResult.Succeeded)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login","Account");
             }
             else
             {
