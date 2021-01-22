@@ -365,6 +365,12 @@ article {
     display: flex;
     justify-content: space-between;
     word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.filtered_container, .artile_item {
+    overflow-wrap: break-word !important;
+    width: 100%;
 }
 
 .article_text {
