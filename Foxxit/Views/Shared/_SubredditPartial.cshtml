@@ -23,7 +23,6 @@
 
 @foreach (var post in Model.Posts)
 {
-    //TODO whole row has to be a link
     <article>
         <div class="article_left">
             @await Html.PartialAsync("_VotesPartial", post)
@@ -33,17 +32,20 @@
             <div class="article_header">
                 <div class="article_text">
                     <h4><a href="/post/@post.Id">@post.Title</a></h4>
-                    <p class="article_text_info">Posted by @post.User.UserName @post.TimeStamp() ago in @post.SubReddit.Name</p>
+                    <p class="article_text_info">Posted by @post.User.UserName.ToUser() @post.TimeStamp() ago in @post.SubReddit.Name.ToSubReddit()</p>
                 </div>
             </div>
         </div>
 
         <div class="article_footer">
             <div class="posts_list_row_right">
-                <div class="comments">
-                    <i class="fa fa-comment icon"></i>
-                    @post.Comments.Count
-                </div>
+                <a href="/post/@post.Id#comments">
+
+                    <div class="comments">
+                        <i class="fa fa-comment icon"></i>
+                        @post.NumOfComments()
+                    </div>
+                </a>
             </div>
         </div>
     </article>

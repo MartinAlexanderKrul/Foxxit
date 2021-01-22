@@ -1,8 +1,8 @@
-﻿using Foxxit.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Foxxit.Enums;
 
 namespace Foxxit.Models.DTO
 {
@@ -38,7 +38,7 @@ namespace Foxxit.Models.DTO
         }
 
         // the following async method is used instead of a constructor which cannot run async code
-        public static async Task<PaginatedList<T>> CreateAsync(IEnumerable<T> source, int currentPage, SortMethod sortMethod)
+        public static PaginatedList<T> Create(IEnumerable<T> source, int currentPage, SortMethod sortMethod)
         {
             int pageSize = 10;
             var count = source.Count();

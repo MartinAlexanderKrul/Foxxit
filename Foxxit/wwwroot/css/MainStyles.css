@@ -8,7 +8,6 @@
     --green-fox-light-green: #3CB878;
     --green-fox-dark-green: #007335;
     --green-fox-dark-red: #730d00;
-
     /* FONTS */
     --font-main: 'Roboto', sans-serif;
     --main-font-size: 17px;
@@ -268,6 +267,12 @@ aside {
 
 .side_bar_header {
     margin-bottom: 30px;
+    width: 100% !important;
+    height: auto;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 /* POSTS */
@@ -360,6 +365,12 @@ article {
     display: flex;
     justify-content: space-between;
     word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.filtered_container, .artile_item {
+    overflow-wrap: break-word !important;
+    width: 100%;
 }
 
 .article_text {
@@ -826,8 +837,8 @@ article {
 }
 
 .text_about {
-    margin-right: 4px !important;
-    margin-left: 4px !important;
+    margin-right: 10% !important;
+    margin-left: 10% !important;
 }
 
 .subreddit_info {
@@ -864,15 +875,14 @@ article {
     background-color: var(--section-color);
     padding: 2%;
 }
+
 .currentPage {
     background-color: var(--button-color);
     border-radius: 10%;
-    border: 1px solid var(--font-color-lighter);
     padding: 0.5%;
     font-weight: bold;
-    font-size: 1vw;
 }
-  
+
 /*VOTES*/
 i {
     cursor: pointer !important;

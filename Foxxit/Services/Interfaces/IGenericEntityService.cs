@@ -22,6 +22,5 @@ namespace Foxxit.Services.EntityServices
         Task SaveAsync();
 
         void Update(T entity);
-
     }
 }
