@@ -1,8 +1,7 @@
 ﻿@using Foxxit.Extensions
 @using Foxxit.Models.ViewModels
 @using Foxxit.Enums
-@{ Layout = "_Layout";
-    ViewData["subRedditId"] = Model.CurrentSubReddit.Id;}
+@{ViewData["subRedditId"] = Model.CurrentSubReddit.Id;}
 @model MainPageViewModel
 
 <div class="section_intro">
