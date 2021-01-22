@@ -33,7 +33,7 @@ namespace Foxxit.Controllers
         public ISubRedditService SubRedditService { get; set; }
         public ICommentService CommentService { get; set; }
 
-        [HttpPut("edit/postbase")]
+        [HttpPut("edit/post")]
         public async Task<ActionResult> EditPost([FromBody] EditPostBaseDTO dto)
         {
             var password = Environment.GetEnvironmentVariable("password-foxxit");
@@ -57,6 +57,26 @@ namespace Foxxit.Controllers
 
             PostService.Update(post);
             await PostService.SaveAsync();
+
+            return StatusCode(200);
+        }
+
+        [HttpPut("edit/comment")]
+        public async Task<ActionResult> EditComment([FromBody] EditPostBaseDTO dto)
+        {
+            var password = Environment.GetEnvironmentVariable("password-foxxit");
+
+            if (password != dto.Password)
+            {
+                return StatusCode(400);
+            }
+
+            var comment = await CommentService.GetByIdAsync(dto.Id);
+
+            comment.Text = dto.Text;
+
+            CommentService.Update(comment);
+            await CommentService.SaveAsync();
 
             return StatusCode(200);
         }
